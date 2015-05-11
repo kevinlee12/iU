@@ -78,9 +78,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'cas',                      
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': 'localhost'
+        'USER': 'adminkhnplku',
+        'PASSWORD': 'DRLc_GCUaT8S',
+        'HOST': 'postgresql://$OPENSHIFT_POSTGRESQL_DB_HOST:$OPENSHIFT_POSTGRESQL_DB_PORT'
     }
 }
 # Internationalization
