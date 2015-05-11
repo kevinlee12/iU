@@ -12,7 +12,6 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-import mongoengine
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -77,12 +76,13 @@ WSGI_APPLICATION = 'cas.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': '',
-    },
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'cas',                      
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': 'localhost'
+    }
 }
-
-SESSION_ENGINE = 'mongoengine.django.sessions'
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
 
