@@ -4,10 +4,14 @@ For a hosted version of this app, please click [here](http://cas-codestig.rhclou
 
 ###Features
 
-- Gmail, Yahoo, or MSN login
-- (work in progress)
+- Core journal features: text, images, documents, video(TBD)
+- Gmail, Yahoo, or Windows login
+- Facebook/Twitter Feed Pulls
+- Email reminders
 
 ###Installation on local machine
+Notes: Due to complexity issues, we will not be officially supporting Windows platforms. As an alternative, please install a Debian-based Linux distro (ie. Ubuntu, Linux Mint, etc) on VirtualBox.
+
 1. Install Python 3 (do **not** install Python 2):
 
  - For Macs (with homebrew):
@@ -21,22 +25,19 @@ For a hosted version of this app, please click [here](http://cas-codestig.rhclou
 
  `brew install python3`
 
- - For Windows:
+ - For Debian based systems there should already be Python 3 installed. To be sure, type in the following command into the terminal:
 
- -- Download the latest Python 3 version from [https://www.python.org/](https://www.python.org/)
- and follow the installation wizard.
+  `python3`
 
- -- Configure Python according to this [https://docs.python.org/3/using/windows.html](https://docs.python.org/3/using/windows.html) website.
+  If the terminal does not give you any errors, you are good to go! Else:
+
+  `apt-get install python3` (sudo permissions may be necessary)
 
 2. To ensure that everything goes smoothly, restart your computer. Then, open the terminal and ensure that the correct version of Python is installed by typing in
 
  For Macs/Linux:
 
  `python3`
-
- For Windows:
-
- `py -3`
 
  If you see something like (most importantly, it says Python3.x at the top) this:
  `Python 3.4.0 (default, Apr 11 2014, 13:05:11) `
@@ -46,7 +47,6 @@ For a hosted version of this app, please click [here](http://cas-codestig.rhclou
 
  then you've installed Python 3 successfully! :)
 
-
 3. Clone repo:
  `git clone https://github.com/kevinlee12/cas.git`
 
@@ -55,27 +55,35 @@ For a hosted version of this app, please click [here](http://cas-codestig.rhclou
  `cd cas`
 
 5. Start the virtual environment in the terminal
+ - For Debian-based systems:
 
-   `virtual venv`
+   `virtualenv -p /usr/bin/python3 env`
+
+ - For Macs:
+
+ `virtualenv -p /usr/local/bin/python3 env`
 
  It will then do some pip installation to ensure all the dependencies are satisfied
 
 6. Activate the virtual environment
- `source venv/bin/activate`
 
- (We're almost there to actually running the code!)
+ `source env/bin/activate`
 
-7. Set up the database:
+7. Install the required dependencies:
+
+ `pip install -r requirements.txt`
+
+8. Set up the database:
 
  `django-admin manage.py migrate`
 
-8. Run the server:
+9. Run the server:
 
  `django-admin manage.py runserver`
 
  Here the terminal will tell you how to access the website, like http://127.0.0.1:8000/. Copy and paste that link from the terminal into your favorite browser. That's it!
 
-9. To close the server:
+10. To close the server:
  - Press CTRL - C on your keyboard
  - Type `deactivate` into the terminal.
 
