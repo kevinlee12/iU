@@ -1,9 +1,9 @@
 from setuptools import setup
 
 setup(name='cas',
-    version='1.3',
-    description='django on OpenShift',
-    author='',
+    version='0.1',
+    description='CAS Management App',
+    author='Kevin Lee, Rodney Ho, Janice Zhao',
     author_email='',
-    url='https://github.com/jfmatth/openshift-django17',
+    url='cas-codestig.rhcloud.com',
 )

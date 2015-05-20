@@ -37,6 +37,10 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'debug_toolbar',
+    #'haystack', reactivate once things are 80% done
+    'rest_framework',
+    'journal'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -77,7 +81,7 @@ WSGI_APPLICATION = 'cas.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'cas',                      
+        'NAME': 'cas',
         'USER': '',
         'PASSWORD': '',
         'HOST': 'localhost'
