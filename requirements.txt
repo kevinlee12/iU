@@ -1,6 +1,6 @@
 bcrypt==1.1.1
 cffi==1.0.0
-Django==1.8.1
+Django==1.8.2
 django-angular==0.7.14
 django-debug-toolbar==1.3.0
 django-extras==0.3
