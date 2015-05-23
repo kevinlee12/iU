@@ -86,6 +86,21 @@ DATABASES = {
         'PASSWORD': '',
         'HOST': 'localhost'
     }
+    # 'students': {
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #     'NAME': 'cas_student',
+    #     'USER': '',
+    #     'PASSWORD': '',
+    #     'HOST': 'localhost'
+    # },
+    # 'coordinators': {
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #     'NAME': 'cas_coordinators',
+    #     'USER': '',
+    #     'PASSWORD': '',
+    #     'HOST': 'localhost'
+    # }
+
 }
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
