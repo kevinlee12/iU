@@ -1,6 +1,9 @@
 machine:
   environment:
       SECRET_KEY: 'JRM0u!Hhi&Uzo1iF-{EUh1)/SZ{C=~5QPpPA]m9Y:[z5ue.YfQ'
+      DB_USER: ''
+      DB_PASS: ''
+      DB_HOST: 'localhost'
   python:
     version: 3.3.0
   services:

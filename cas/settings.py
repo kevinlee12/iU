@@ -78,28 +78,18 @@ WSGI_APPLICATION = 'cas.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
+USER = os.environ['DB_USER']
+PASSWORD = os.environ['DB_PASS']
+DB_HOST = os.environ['DB_HOST']
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'cas',
-        'USER': '',
-        'PASSWORD': '',
-        'HOST': 'localhost'
+        'USER': USER,
+        'PASSWORD': PASSWORD,
+        'HOST': DB_HOST,
     }
-    # 'students': {
-    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    #     'NAME': 'cas_student',
-    #     'USER': '',
-    #     'PASSWORD': '',
-    #     'HOST': 'localhost'
-    # },
-    # 'coordinators': {
-    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
-    #     'NAME': 'cas_coordinators',
-    #     'USER': '',
-    #     'PASSWORD': '',
-    #     'HOST': 'localhost'
-    # }
 
 }
 # Internationalization
