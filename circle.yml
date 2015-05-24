@@ -8,5 +8,3 @@ machine:
     version: 3.3.0
   services:
     - postgresql
-  timezone:
-    America/Los_Angeles
