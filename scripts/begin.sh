@@ -1,7 +1,24 @@
 #!/bin/bash
 
 # Authors: Kevin Lee
-# With Credit to Albert's response on StackOverflow: 3466166
+
+# This file is intended to simplify setup of the program.
+# What the file does:
+# 1. Check to ensure that Python3 is installed
+# 2. Sets up virtualenv to use Python3
+# 3. Sets the appropriate environment variables in the virtualenv
+#    for the SECRET_KEY and Database basic information
+
+echo "Checking to ensure right Python is installed"
+if [[ -n $(python3 --version || grep "Python 3") ]]; then
+    echo "Right Python version installed"
+elif  [[ -n $(python --version || grep "Python 3") ]]; then
+    echo "Right Python version installed"
+else
+    echo "Incorrect Python version installed, quitting..."
+    exit
+fi
+echo
 
 echo "Setting up Virtualenv..."
 if [ "$(uname)" == "Darwin" ]; then
