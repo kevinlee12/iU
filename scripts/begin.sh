@@ -39,11 +39,11 @@ echo "...Done"
 echo
 echo "Setting up Database Variables"
 echo "# Database Variables" >> $ENV_ACTIVATE_FILE
-echo "DB_USER=\"''\"" >> $ENV_ACTIVATE_FILE
-echo "export DB_USER" >> $ENV_ACTIVATE_FILE
-echo "DB_PASS=\"''\"" >> $ENV_ACTIVATE_FILE
-echo "export DB_PASS" >> $ENV_ACTIVATE_FILE
-echo "DB_HOST=\"'localhost'\"" >> $ENV_ACTIVATE_FILE
-echo "export DB_HOST" >> $ENV_ACTIVATE_FILE
+echo "OPENSHIFT_POSTGRESQL_DB_USERNAME=''" >> $ENV_ACTIVATE_FILE
+echo "export OPENSHIFT_POSTGRESQL_DB_USERNAME" >> $ENV_ACTIVATE_FILE
+echo "OPENSHIFT_POSTGRESQL_DB_PASSWORD=''" >> $ENV_ACTIVATE_FILE
+echo "export OPENSHIFT_POSTGRESQL_DB_PASSWORD" >> $ENV_ACTIVATE_FILE
+echo "OPENSHIFT_POSTGRESQL_DB_HOST='localhost'" >> $ENV_ACTIVATE_FILE
+echo "export OPENSHIFT_POSTGRESQL_DB_HOST" >> $ENV_ACTIVATE_FILE
 echo "...done"
 echo "For the next step in the setup, type in: source env/bin/activate"

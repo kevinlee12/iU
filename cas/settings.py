@@ -78,9 +78,9 @@ WSGI_APPLICATION = 'cas.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
-USER = os.environ['DB_USER']
-PASSWORD = os.environ['DB_PASS']
-DB_HOST = os.environ['DB_HOST']
+USER = os.environ['OPENSHIFT_POSTGRESQL_DB_USERNAME']
+PASSWORD = os.environ['OPENSHIFT_POSTGRESQL_DB_PASSWORD']
+DB_HOST = os.environ['OPENSHIFT_POSTGRESQL_DB_HOST']
 
 DATABASES = {
     'default': {
