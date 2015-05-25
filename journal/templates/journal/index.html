@@ -1,9 +1,37 @@
-<html>
-    <head>
-        <title> MyCAS </head>
-    </head>
+{% load staticfiles %}
 
-    <body>
-        <p> Hello world! </p>
-    </body>
-</html>
+<head>
+		<title>MyCAS</title>
+		<link rel="stylesheet" type="text/css" href="{% static 'journal/css/reset.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'journal/css/style.css' %}">
+		<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+		<link href='http://fonts.googleapis.com/css?family=Lato:400,900,300italic' rel='stylesheet' type='text/css'>
+        <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script src="{% static 'journal/js/SmoothScroll.js' %}"></script>
+		<script src="{% static 'journal/js/jquery.visible.min.js' %}"></script>
+		<script src="{% static 'journal/js/main.js' %}"></script>
+	</head>
+
+	<body>
+		<div id="container">
+			<div class="parallax background">
+				<div id="main-title">
+					<div id="big">MyCAS</div>
+					<div id="small">A revolution in CAS Management.</div>
+				</div>
+				<div id="overlay"></div>
+				<a href="#categorizations" id="bouncing-arrow">
+					<i class="fa fa-chevron-down"></i>
+				</a>
+			</div>
+			<div id="content">
+				<section id="categorizations">
+					<h2>More Stuff</h2>
+					<div id="categorization-rule">
+						JZ, I'm going to leave it more or less like this, the rest is yours :)
+					</div>
+
+				</section>
+			</div>
+		</div>
+	</body>
