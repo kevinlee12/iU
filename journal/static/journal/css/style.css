@@ -2,16 +2,64 @@ html {
     font-family: 'Lato', sans-serif;
 }
 
+header {
+    position: absolute;
+    width: 95%;
+    padding-left: 10px;
+    line-height: 108px;
+    height: 108px;
+    background-color: rgba(0,0,0,0.1);
+    color: #fff;
+    z-index: 10;
+
+     /*set animation*/
+    -webkit-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
+
+#logo {
+    float: left;
+    font-size: 50px;
+    padding-left: 20px;
+}
+
+#login {
+    float: right;
+    font-size: 30px;
+    right: 80%;
+    padding-right: 50px;
+}
+
+#logo.sticky {
+    float: left;
+    font-size: 24px;
+}
+
+header.sticky {
+    position: fixed;
+    font-size: 24px;
+    line-height: 48px;
+    height: 48px;
+    width: 100%;
+    background-color: yellow;
+    text-align: left;
+    padding-left: 20px;
+    padding-right: 150px;
+    color: black;
+}
+
+
 h2 {
+    top: 10%;
     position: relative;
     color: black;
-    top: 5%;
     overflow: hidden;
     text-align: center;
     font-size: 36px;
 }
 
 .container {
+    margin-top: 10px;
     border: none;
 }
 
@@ -22,12 +70,13 @@ h2 {
     -o-background-size: cover;
     background-size: cover;
     height: 2000px;
+    z-index: 0;
 }
 
 #overlay {
     background-color: rgba(0, 0, 0, 0.6);
     position: absolute;
-    z-index: 2;
+    z-index: 1;
     top: 0;
     left: 0;
     bottom: 0;
@@ -84,7 +133,7 @@ h2 {
     position: relative;
     font-size: 20px;
     text-align: center;
-    top: 8%;
+    top: 12%;
 }
 
 #panel1 {
