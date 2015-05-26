@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $(".background").css("height", $(window).height() + "px");
     fadeInHeader();
-    $("#categorizations").css("height", $(window).height() + "px");
+    $("#panel1").css("height", $(window).height() + "px");
     linkSmoothScroll();
 });
 
