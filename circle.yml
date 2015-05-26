@@ -4,6 +4,7 @@ machine:
       OPENSHIFT_POSTGRESQL_DB_USERNAME: ''
       OPENSHIFT_POSTGRESQL_DB_PASSWORD: ''
       OPENSHIFT_POSTGRESQL_DB_HOST: 'localhost'
+      OPENSHIFT_POSTGRESQL_DB_PORT: ''
   python:
     version: 3.3.0
   services:
