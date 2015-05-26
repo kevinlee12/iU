@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Authors: Kevin Lee
+# Author: Kevin Lee
 
 # This file is intended to simplify setup of the program.
 # What the file does:
