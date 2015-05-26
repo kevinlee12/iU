@@ -32,6 +32,7 @@ echo
 echo "Setting Environment Varibles for Virtualenv"
 echo "" >> $ENV_ACTIVATE_FILE
 echo "# Env Variables Required for this Project" >> $ENV_ACTIVATE_FILE
+echo "# Values that are set are NOT the ones used on actual deployment server" >> $ENV_ACTIVATE_FILE
 echo "SECRET_KEY=\"sy-cmx%i$8*cgz0*\)r_l&qbc1b2wu-hhmr-g5s9p$\(n0hehsb8\"" >> $ENV_ACTIVATE_FILE
 echo "export SECRET_KEY" >> $ENV_ACTIVATE_FILE
 echo "" >> $ENV_ACTIVATE_FILE
