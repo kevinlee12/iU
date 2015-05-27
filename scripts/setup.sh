@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 # Author: Kevin Lee
 
@@ -8,6 +8,7 @@
 # 2. Sets up virtualenv to use Python3
 # 3. Sets the appropriate environment variables in the virtualenv
 #    for the SECRET_KEY and Database basic information
+
 
 echo "Checking to ensure right Python is installed"
 if [[ -n $(python3 --version || grep "Python 3") ]]; then
@@ -49,4 +50,22 @@ echo "export OPENSHIFT_POSTGRESQL_DB_HOST" >> $ENV_ACTIVATE_FILE
 echo "OPENSHIFT_POSTGRESQL_DB_PORT=''" >> $ENV_ACTIVATE_FILE
 echo "export OPENSHIFT_POSTGRESQL_DB_PORT" >> $ENV_ACTIVATE_FILE
 echo "...done"
-echo "For the next step in the setup, type in: source env/bin/activate"
+echo
+echo "Installing project dependencies..."
+echo "Add installation output logs are suppressed"
+source env/bin/activate
+pip install -r requirements.txt | grep "Storing debug log for failure in" &> /dev/null
+sleep 5
+echo "...done"
+deactivate
+echo "Checking if installation of dependencies was successful..."
+if [ $? == 0 ]; then
+   echo "Failed earlier attempt, trying again"
+   echo "Installation logs are now unsuppressed"
+   source env/bin/activate
+   pip install -r requirements.txt
+   sleep 5
+   echo "...done"
+   echo "If there are more errors, please run the script again."
+   deactivate
+fi
