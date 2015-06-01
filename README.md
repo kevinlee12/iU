@@ -1,6 +1,8 @@
 CAS Management
 ===
-[![Circle CI](https://circleci.com/gh/kevinlee12/cas.svg?style=svg)](https://circleci.com/gh/kevinlee12/cas)
+**Master:** [![Circle CI](https://circleci.com/gh/kevinlee12/cas/tree/master.svg?style=svg&circle-token=7ab59457d9addb7061444ef82decb692c3b06521)](https://circleci.com/gh/kevinlee12/cas/tree/master)
+**Develop:**
+[![Circle CI](https://circleci.com/gh/kevinlee12/cas/tree/develop.svg?style=svg&circle-token=7ab59457d9addb7061444ef82decb692c3b06521)](https://circleci.com/gh/kevinlee12/cas/tree/develop)
 
 For a hosted version of this app, please click [here](http://cas-codestig.rhcloud.com).
 
