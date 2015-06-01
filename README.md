@@ -1,5 +1,7 @@
 CAS Management
 ===
+[![Circle CI](https://circleci.com/gh/kevinlee12/cas.svg?style=svg)](https://circleci.com/gh/kevinlee12/cas)
+
 For a hosted version of this app, please click [here](http://cas-codestig.rhcloud.com).
 
 ###Features
@@ -10,7 +12,7 @@ For a hosted version of this app, please click [here](http://cas-codestig.rhclou
 - Email reminders
 
 ###Installation on local machine
-Notes: Due to complexity issues, we will not be officially supporting Windows platforms. As an alternative, please install a Debian-based Linux distro (ie. Ubuntu, Linux Mint, etc) on VirtualBox.
+Notes: We will not be officially supporting Windows platform at this time. As an alternative, please install a Debian-based Linux distro (ie. Ubuntu, Linux Mint, etc) on VirtualBox.
 
 1. Install Python 3 (do **not** install Python 2):
 
@@ -38,14 +40,6 @@ Notes: Due to complexity issues, we will not be officially supporting Windows pl
  `bash scripts/begin.sh`
 
  It will then do some pip installation to ensure all the dependencies are satisfied and modify the default virtualenv to satisfy the requirements of our project.
-
-5. Activate the virtual environment
-
- `source env/bin/activate`
-
-6. Install the required dependencies:
-
- `pip install -r requirements.txt`
 
 7. Set up the database:
 
