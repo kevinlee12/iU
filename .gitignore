@@ -5,6 +5,9 @@ db.sqlite3
 vpython27
 *~
 
+# Local database files
+cas/migrate/
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
