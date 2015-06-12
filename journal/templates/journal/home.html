@@ -1,0 +1,46 @@
+{% extends 'journal/base.html' %}
+{% load staticfiles %}
+
+{% block 'title' %}
+<title> MyCAS </title>
+{% endblock %}
+
+{% block 'page-css' %}
+<link rel="stylesheet" type="text/css" href="{% static 'journal/home-page/css/style.css' %}">
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"
+{% endblock %}
+
+{% block 'page-js' %}
+<script src="{% static 'journal/home-page/js/main.js' %}"></script>
+{% endblock %}
+
+{% block 'content' %}
+<header>
+    <div id="logo">MyCAS</div>
+</header>
+
+<body>
+    <div id="container">
+        <div class="parallax background">
+            <div id="main-title">
+                <div id="big">Welcome</div>
+                <div id="small">to the future of journaling</div>
+            </div>
+            <div id="overlay"></div>
+            <a href="#panel1" id="bouncing-arrow">
+                <i class="fa fa-chevron-down"></i>
+            </a>
+        </div>
+        <div id="content panel">
+            <section id="panel1">
+                <h2>More Stuff</h2>
+                <div id="categorization-rule">
+                    JZ, I'm going to leave it more or less like this, the rest is yours :)
+                </div>
+
+            </section>
+        </div>
+    </div>
+</body>
+
+{% endblock %}

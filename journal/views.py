@@ -1,6 +1,10 @@
 from django.shortcuts import render
 
 
-# Create your views here.
 def index(request):
-    return render(request, 'journal/index.html')
+    return render(request, 'journal/home.html')
+
+
+def welcome(request):
+    name = "Person"
+    return render(request, 'journal/welcome.html', {'name': name})

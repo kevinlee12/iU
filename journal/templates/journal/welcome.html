@@ -1,0 +1,39 @@
+{% extends 'journal/base.html' %}
+{% load staticfiles %}
+
+{% block 'title' %}
+<title> Hi {{name}}! </title>
+{% endblock %}
+
+{% block 'page-css' %}
+<link rel="stylesheet" type="text/css" href="{% static 'journal/welcome/css/style.css' %}">
+{% endblock %}
+
+{% block 'page-js' %}
+<script src="{% static 'journal/welcome/js/main.js' %}"></script>
+{% endblock %}
+
+
+
+
+{% block 'content' %}
+
+<body>
+    <div class="content">
+        <div id="greeter">
+            <h1> Hi {{name}}! </h1>
+            <h2> What would you like to do today? </h2>
+            <input id="search">
+        </div>
+
+        <div id="options">
+            <ul.a>
+                <li>Create an activity</li>
+                <li>Add a journal entry</li>
+                <li>Ask my coordinator something</li>
+            </ul.a>
+        </div>
+    </div>
+</body>
+
+{% endblock %}
