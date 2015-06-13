@@ -27,7 +27,7 @@ DEBUG = False
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
-    'cas-codestig.rhcloud.com'
+    '.cas-codestig.rhcloud.com.'
 ]
 
 
