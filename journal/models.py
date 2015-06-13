@@ -2,6 +2,8 @@ from django.db import models
 
 
 class Users(models.Model):
+    """For use to check if user is registered and type
+    (Student or Coordinator)."""
     USER_TYPES = (
         ('S', 'Student'),
         ('C', 'Coordinator'),
@@ -11,6 +13,7 @@ class Users(models.Model):
 
 
 class Person(models.Model):
+    """Abstract class for all individuals"""
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     email = models.EmailField()
@@ -27,19 +30,23 @@ class Person(models.Model):
 
 
 class Student(Person):
+    """Student object that inherits from Person"""
     student_id = models.IntegerField(9999, 0)  # Max number of digits is 4
     personal_code = models.CharField(max_length=7)
 
 
 class Coordinator(Person):
+    """Coordinator object that inherits from Person"""
     coordinator_id = models.IntegerField(9999, 0)  # Max number of digits is 4
 
 
 class School(models.Model):
+    """School object"""
     name = models.CharField(max_length=30, default="default")
 
 
 class Entry(models.Model):
+    """Entry object used for journaling"""
     ENTRY_TYPES = (
         ('T', 'Text'),
         ('I', 'Image'),

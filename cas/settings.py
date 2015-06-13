@@ -23,9 +23,11 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    '127.0.0.1',
+]
 
 
 # Application definition
@@ -125,6 +127,7 @@ STATICFILES_DIRS = (
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
     os.path.join(BASE_DIR, "static"),
+    '/home/leekevin/cas/journal/static',
 )
 
 TEMPLATE_DIRS = (
@@ -134,7 +137,7 @@ TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
 )
 
-# For use in logging users in:
+# Third Party Login:
 AUTHENTICATION_BACKENDS = (
     'social.backends.google.GoogleOAuth2',
     # 'social.backends.twitter.TwitterOAuth',

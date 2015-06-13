@@ -2,22 +2,34 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <!-- <title>MyCAS</title> -->
+        <!-- Title block -->
         {% block 'title' %} {% endblock %}
+
+        <!-- jQuery -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-        <!-- <link rel="stylesheet" type="text/css" href="{% static 'journal/general/css/reset.css' %}"> -->
+        <script src="{% static 'journal/base/js/jquery-ui.min.js' %}"></script>
+
+        <!-- Bootstrap -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-        <link href='http://fonts.googleapis.com/css?family=Raleway:400,600' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" type="text/css" href="{% static 'journal/general/css/base.css' %}">
-        {% block 'page-css' %}  {% endblock %}
-        <script src="{% static 'journal/general/js/jquery-ui.min.js' %}"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
-        <script src="{% static 'journal/general/js/SmoothScroll.js' %}"></script>
+
+        <!-- Symbols -->
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+        <!-- Fonts -->
+        <link href='http://fonts.googleapis.com/css?family=Raleway:400,600' rel='stylesheet' type='text/css'>
+
+        <!-- Custom CSS Files -->
+        <link rel="stylesheet" type="text/css" href="{% static 'journal/base/css/base.css' %}">
+        {% block 'page-css' %}  {% endblock %}
+
+        <!-- Custom JS Files -->
+        <script src="{% static 'journal/base/js/SmoothScroll.js' %}"></script>
         {% block 'page-js' %} {% endblock %}
 
     </header>
 
+    <!-- Main Content here -->
     {% block 'content' %} {% endblock %}
 
 </html>
