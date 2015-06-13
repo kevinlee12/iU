@@ -25,9 +25,11 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
+OPENSHIFT_DNS = os.environ['OPENSHIFT_APP_DNS']
+
 ALLOWED_HOSTS = [
     '127.0.0.1',
-    '.cas-codestig.rhcloud.com.'
+    OPENSHIFT_DNS
 ]
 
 
