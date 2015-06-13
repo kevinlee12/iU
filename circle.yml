@@ -5,6 +5,8 @@ machine:
       OPENSHIFT_POSTGRESQL_DB_PASSWORD: ''
       OPENSHIFT_POSTGRESQL_DB_HOST: 'localhost'
       OPENSHIFT_POSTGRESQL_DB_PORT: ''
+      SOCIAL_AUTH_GOOGLE_OAUTH2_KEY: '389105605703-5gsndmeeveg27t27r4etvuahlpfisqb6.apps.googleusercontent.com'
+      SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET: 'F4_zw6IOlM-ZKj-X7xIFUOoi'
   python:
     version: 3.3.0
   services:
