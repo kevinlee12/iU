@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 {% block 'title' %}
-<title> Hi {{name}}! </title>
+<title> {{greeting}}{{name}}! </title>
 {% endblock %}
 
 {% block 'page-css' %}
@@ -21,7 +21,7 @@
 <body>
     <div class="content">
         <div id="greeter">
-            <h1> Hi {{name}}! </h1>
+            <h1> {{greeting}}{{name}}! </h1>
             <h2> What would you like to do today? </h2>
             <input id="search">
         </div>

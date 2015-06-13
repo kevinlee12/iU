@@ -1,7 +1,5 @@
 from django.db import models
 
-from datetime import datetime
-
 
 class Users(models.Model):
     USER_TYPES = (
@@ -57,6 +55,8 @@ class Entry(models.Model):
         entry = models.TextField()
     elif entry_type == 'I':
         entry = models.ImageField()
+    elif entry_type == 'V':
+        entry = models.URLField()  # Web links to Youtube or else where
     else:
         entry = models.URLField()  # Web links to Youtube or else where
 

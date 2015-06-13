@@ -38,9 +38,10 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',
+    'journal',
     # 'haystack', reactivate once things are 80% done
     'rest_framework',
-    'journal'
+    'social.apps.django_app.default',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -67,6 +68,8 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social.apps.django_app.context_processors.backends',
+                'social.apps.django_app.context_processors.login_redirect',
             ],
         },
     },
@@ -130,3 +133,16 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
     os.path.join(BASE_DIR, 'templates'),
 )
+
+# For use in logging users in:
+AUTHENTICATION_BACKENDS = (
+    'social.backends.google.GoogleOAuth2',
+    # 'social.backends.twitter.TwitterOAuth',
+    # 'social.backends.yahoo.YahooOpenId',
+    'django.contrib.auth.backends.ModelBackend'
+)
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ['SOCIAL_AUTH_GOOGLE_OAUTH2_KEY']
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ['SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET']
+
+LOGIN_REDIRECT_URL = '/'
