@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import socket
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -23,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # Secure
 CSRF_COOKIE_SECURE = True
@@ -37,7 +38,8 @@ X_FRAME_OPTIONS = 'DENY'
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
-    # OPENSHIFT_DNS
+    os.environ['OPENSHIFT_APP_DNS'],
+    socket.gethostname()
 ]
 
 
