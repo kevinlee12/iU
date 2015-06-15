@@ -14,13 +14,10 @@ For a hosted version of this app, please click [here](http://cas-codestig.rhclou
 - Email reminders
 
 ###Installation on local machine
-Notes: We will not be officially supporting Windows platform at this time. As an alternative, please install a Debian-based Linux distro (ie. Ubuntu, Linux Mint, etc) on VirtualBox.
 
 1. Install Python 3 (do **not** install Python 2):
 
  - For Macs (with homebrew):
-
- -- Open the terminal
 
  -- Install homebrew if you have not already:
  `ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`

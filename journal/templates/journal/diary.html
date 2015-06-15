@@ -1,0 +1,26 @@
+{% extends 'journal/base.html' %}
+{% load staticfiles %}
+
+
+{% block 'title' %}
+<title>Journal </title>
+{% endblock %}
+
+{% block 'page-css' %}
+<link rel="stylesheet" type="text/css" href="{% static 'journal/diary/css/style.css' %}">
+{% endblock %}
+
+{% block 'page-js' %}
+<script src="{% static 'journal/diary/js/main.js' %}"></script>
+{% endblock %}
+
+{% block 'content' %}
+<body>
+    <h1>Main Journaling Page</h1>
+    <h2>TODO:</h2>
+    <ul>
+        <li>Navigation Bar</li>
+        <li>Action Bar</li>
+        <li>List of journals w/ AngularJS</li>
+</body>
+{% endblock %}

@@ -2,9 +2,16 @@ html {
     font-family: 'Raleway', sans-serif;
 }
 
+header, body {
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+}
+
 h1, h2, h3, h4, h5, h6 {
     font-family: 'Raleway', sans-serif;
+    text-align: center;
 }
-p, div {
+p, div, ul {
     font-family: 'Raleway', sans-serif;
+    text-align: center;
 }

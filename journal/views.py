@@ -23,5 +23,5 @@ def welcome(request):
                   {'name': name, 'greeting': greeting})
 
 
-def journal(request):
+def diary(request):
     return render(request, 'journal/diary.html')
