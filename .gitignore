@@ -4,6 +4,7 @@ db.sqlite3
 .pydevproject
 vpython27
 *~
+wsgi/
 
 # Local database files
 cas/migrate/
