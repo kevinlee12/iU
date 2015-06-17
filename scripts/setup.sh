@@ -21,12 +21,12 @@ else
 fi
 echo
 
-echo "Setting up Virtualenv..."
-if [ "$(uname)" == "Darwin" ]; then
-    virtualenv -p /usr/local/bin/python3 env
-elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-    virtualenv -p /usr/bin/python3 env
-fi
+# echo "Setting up Virtualenv..."
+# if [ "$(uname)" == "Darwin" ]; then
+#     virtualenv -p /usr/local/bin/python3 env
+# elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+#     virtualenv -p /usr/bin/python3 env
+# fi
 ENV_ACTIVATE_FILE=env/bin/activate
 echo "...Done"
 echo
