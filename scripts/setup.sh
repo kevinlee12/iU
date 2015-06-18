@@ -23,8 +23,10 @@ echo
 
 # echo "Setting up Virtualenv..."
 # if [ "$(uname)" == "Darwin" ]; then
-#     virtualenv -p /usr/local/bin/python3 env
+#     pyenv env
 # elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+#     apt-get install postgresql postgresql-contrib -y
+#     apt-get install postgresql-client -y
 #     virtualenv -p /usr/bin/python3 env
 # fi
 ENV_ACTIVATE_FILE=env/bin/activate
