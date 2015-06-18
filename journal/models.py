@@ -11,6 +11,9 @@ class Users(models.Model):
     email = models.EmailField()
     user_type = models.CharField(max_length=1, choices=USER_TYPES)
 
+    def type_of_user(self):
+        return self.user_type
+
 
 class Person(models.Model):
     """Abstract class for all individuals"""
