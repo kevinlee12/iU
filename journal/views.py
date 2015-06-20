@@ -3,7 +3,7 @@ from django.shortcuts import render
 from datetime import datetime
 
 
-def index(request):
+def home(request):
     return render(request, 'journal/home.html',
                   {'request': request, 'user': request.user})
 
