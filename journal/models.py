@@ -127,19 +127,19 @@ class Activity(models.Model):
         learned = []
         for e in self.learned_objective:
             if e == 'I':
-                learned.append(I)
+                learned.append(Activity.I)
             elif e == 'U':
-                learned.append(U)
+                learned.append(Activity.U)
             elif e == 'P':
-                learned.append(P)
+                learned.append(Activity.P)
             elif e == 'W':
-                learned.append(W)
+                learned.append(Activity.W)
             elif e == 'S':
-                learned.append(S)
+                learned.append(Activity.S)
             elif e == 'E':
-                learned.append(E)
+                learned.append(Activity.E)
             elif e == 'C':
-                learned.append(C)
+                learned.append(Activity.C)
             else:
-                learned.append(D)
+                learned.append(Activity.D)
         return learned

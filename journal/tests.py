@@ -142,8 +142,15 @@ class Journals(TestCase):
 
         entries = entries.all()
 
+        # Tests to ensure entries are the same
         in_foo = foo_activity.entries.all()
         for i in range(len(entries)):
             expected = entries[i].entry
             actual = in_foo[i].entry
             self.assertEqual(actual, expected)
+
+        # Tests to ensure that learning objectives are the same
+        expected = ['Increased their awareness of their own strengths and areas of growth',
+                    'Undertaken new challenges',
+                    'Shown perseverance and commitment in their activities']
+        self.assertEqual(foo_activity.learning_objectives(), expected)
