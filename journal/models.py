@@ -11,6 +11,7 @@ class Users(models.Model):
     USER_TYPES = (
         ('S', 'Student'),
         ('C', 'Coordinator'),
+        ('A', 'Advisor'),
     )
     email = models.EmailField()
     user_type = models.CharField(max_length=1, choices=USER_TYPES)
@@ -25,7 +26,7 @@ class Person(models.Model):
     last_name = models.CharField(max_length=30)
     email = models.EmailField()
     school_code = models.IntegerField(999999, 0)  # Max number of digits is 6
-    school_name = models.CharField(max_length=30, default='school')
+    school_name = models.CharField(max_length=30)
 
     class Meta:
         abstract = True
@@ -49,38 +50,10 @@ class Student(Person):
     """Student object that inherits from Person"""
     student_id = models.IntegerField(9999, 0)  # Max number of digits is 4
     personal_code = models.CharField(max_length=7)
-    coordinator = models.ForeignKey(Coordinator, default=1)
-    advisor = models.ForeignKey(Advisor, default=1)
+    coordinator = models.ForeignKey(Coordinator)
+    advisor = models.ForeignKey(Advisor)
 
 # The following are used for activity and entry logging.
-
-class Activity(models.Model):
-    """Activites for the students"""
-    activity_name = models.CharField(max_length=30)
-
-    ACTIVITY_TYPES = (
-        ('C', 'Creativity'),
-        ('A', 'Action'),
-        ('S', 'Service'),
-    )
-
-    activity_type = models.CharField(max_length=3, choices=ACTIVITY_TYPES)
-
-    LEARNING_OBJECTIVES = (
-        ('I', 'Increased their awareness of their own strengths and areas of \
-                growth'),
-        ('U', 'Undertaken new challenges'),
-        ('P', 'Planned and initiated activities'),
-        ('W', 'Worked collaboratively with others'),
-        ('S', 'Shown perseverance and commitment in their activities'),
-        ('E', 'Engaged with issues of global importance'),
-        ('C', 'Considered the ethnical implications of their actions'),
-        ('D', 'Developed new skills'),
-    )
-
-    learned_objective = models.CharField(max_length=8,
-                                         choices=LEARNING_OBJECTIVES)
-
 
 class Entry(models.Model):
     """Entry object used for journaling"""
@@ -90,9 +63,8 @@ class Entry(models.Model):
         ('V', 'Video'),
         ('L', 'Link'),
     )
-
-    email = models.EmailField()
-    activity = models.ForeignKey(Activity, default=1)
+    stu_email = models.EmailField()
+    activity_name = models.CharField(max_length=30)
     last_modified = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
     entry_type = models.CharField(max_length=1, choices=ENTRY_TYPES)
@@ -107,3 +79,67 @@ class Entry(models.Model):
 
     def __str__(self):
         return str(self.last_modified) + ' : ' + self.entry
+
+
+class Activity(models.Model):
+    """Activites for the students"""
+    student = models.ForeignKey(Student)
+
+    activity_name = models.CharField(max_length=30)
+    activity_description = models.CharField(max_length=150)
+
+    ACTIVITY_TYPES = (
+        ('C', 'Creativity'),
+        ('A', 'Action'),
+        ('S', 'Service'),
+    )
+
+    activity_type = models.CharField(max_length=3, choices=ACTIVITY_TYPES)
+
+    # The following are the learning objecties expanded:
+    I = 'Increased their awareness of their own strengths and areas of growth'
+    U = 'Undertaken new challenges'
+    P = 'Planned and initiated activities'
+    W = 'Worked collaboratively with others'
+    S = 'Shown perseverance and commitment in their activities'
+    E = 'Engaged with issues of global importance'
+    C = 'Considered the ethnical implications of their actions'
+    D = 'Developed new skills'
+
+    LEARNING_OBJECTIVES = (
+        ('I', I),
+        ('U', U),
+        ('P', P),
+        ('W', W),
+        ('S', S),
+        ('E', E),
+        ('C', C),
+        ('D', D),
+    )
+
+    learned_objective = models.CharField(max_length=8,
+                                         choices=LEARNING_OBJECTIVES)
+
+    entries = models.ManyToManyField(Entry, blank=True)
+
+    def learning_objectives(self):
+        """Returns a list of learned objectives as a list"""
+        learned = []
+        for e in self.learned_objective:
+            if e == 'I':
+                learned.append(I)
+            elif e == 'U':
+                learned.append(U)
+            elif e == 'P':
+                learned.append(P)
+            elif e == 'W':
+                learned.append(W)
+            elif e == 'S':
+                learned.append(S)
+            elif e == 'E':
+                learned.append(E)
+            elif e == 'C':
+                learned.append(C)
+            else:
+                learned.append(D)
+        return learned
