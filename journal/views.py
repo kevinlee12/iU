@@ -1,5 +1,7 @@
 from django.shortcuts import render
 
+from journal.models import Student, Coordinator, Users, Entry
+
 from datetime import datetime
 
 
@@ -23,5 +25,11 @@ def welcome(request):
                   {'name': name, 'greeting': greeting})
 
 
-def diary(request):
-    return render(request, 'journal/diary.html')
+def cabinet(request):
+    try:
+        entries = Entry.objects.all().filter(email=request.user.email)\
+            .order_by('last_modified').reverse()
+    except ObjectDoesNotExist:
+        entries = None
+    return render(request, 'journal/cabinet.html', 
+                  {})

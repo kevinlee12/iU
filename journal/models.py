@@ -1,5 +1,9 @@
 from django.db import models
 
+# The following models are used for gathering user data and storing the
+# associated information of the users including journal entries and basic
+# information.
+
 
 class Users(models.Model):
     """For use to check if user is registered and type
@@ -32,20 +36,53 @@ class Person(models.Model):
         return self.email
 
 
+class Coordinator(Person):
+    """Coordinator object that inherits from Person"""
+
+
+class Advisor(Person):
+    """Advisor object that inherits from Person"""
+
+
 class Student(Person):
     """Student object that inherits from Person"""
     student_id = models.IntegerField(9999, 0)  # Max number of digits is 4
     personal_code = models.CharField(max_length=7)
-
-
-class Coordinator(Person):
-    """Coordinator object that inherits from Person"""
-    coordinator_id = models.IntegerField(9999, 0)  # Max number of digits is 4
+    coordinator = models.ForeignKey(Coordinator)
+    advisor = models.ForeignKey(Advisor)
 
 
 class School(models.Model):
     """School object"""
-    name = models.CharField(max_length=30, default="default")
+    name = models.CharField(max_length=30)
+
+
+# The following are used for activity and entry logging.
+
+class Activity(models.Model):
+    """Activites for the students"""
+    activity_name = models.CharField()
+
+    ACTIVITY_TYPES = (
+        ('C', 'Creativity'),
+        ('A', 'Action'),
+        ('S', 'Service'),
+    )
+
+    activity_type = models.CharField(max_length=3, choices=ACTIVITY_TYPES)
+
+    LEARNING_OBJECTIVES = (
+        ('I', 'Increased their awareness of their own strengths and areas of growth'),
+        ('U', 'Undertaken new challenges'),
+        ('P', 'Planned and initiated activities'),
+        ('W', 'Worked collaboratively with others'),
+        ('S', 'Shown perseverance and commitment in their activities'),
+        ('E', 'Engaged with issues of global importance'),
+        ('C', 'Considered the ethnical implications of their actions'),
+        ('D', 'Developed new skills'),
+    )
+
+    learned_objective = SelectMultipleField(max_length=8, choices=LEARNING_OBJECTIVES)
 
 
 class Entry(models.Model):
@@ -58,6 +95,7 @@ class Entry(models.Model):
     )
 
     email = models.EmailField()
+    activity = models.ForeignKey(Activity)
     last_modified = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
     entry_type = models.CharField(max_length=1, choices=ENTRY_TYPES)
