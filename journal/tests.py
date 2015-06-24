@@ -11,8 +11,7 @@ class StudentTest(TestCase):
 
         Users.objects.create(email='coor@bar.com', user_type='C')
         Coordinator.objects.create(first_name='Coor', last_name='One',
-                                   email='coor@bar.com', school_code=110310,
-                                   coordinator_id=1533)
+                                   email='coor@bar.com', school_code=110310)
 
     def test_student_creation_simple(self):
         """Simple test to ensure that a student is properly registered"""
@@ -27,6 +26,7 @@ class StudentTest(TestCase):
         self.assertEqual(coor_auth.user_type, 'C')
         coor = Coordinator.objects.get(email='coor@bar.com')
         self.assertEqual(coor.full_name(), 'Coor One')
+        self.assertTrue(type(coor) == Coordinator)
 
 
 class Journals(TestCase):

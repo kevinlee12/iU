@@ -25,6 +25,7 @@ class Person(models.Model):
     last_name = models.CharField(max_length=30)
     email = models.EmailField()
     school_code = models.IntegerField(999999, 0)  # Max number of digits is 6
+    school_name = models.CharField(max_length=30, default='school')
 
     class Meta:
         abstract = True
@@ -48,20 +49,14 @@ class Student(Person):
     """Student object that inherits from Person"""
     student_id = models.IntegerField(9999, 0)  # Max number of digits is 4
     personal_code = models.CharField(max_length=7)
-    coordinator = models.ForeignKey(Coordinator)
-    advisor = models.ForeignKey(Advisor)
-
-
-class School(models.Model):
-    """School object"""
-    name = models.CharField(max_length=30)
-
+    coordinator = models.ForeignKey(Coordinator, default=1)
+    advisor = models.ForeignKey(Advisor, default=1)
 
 # The following are used for activity and entry logging.
 
 class Activity(models.Model):
     """Activites for the students"""
-    activity_name = models.CharField()
+    activity_name = models.CharField(max_length=30)
 
     ACTIVITY_TYPES = (
         ('C', 'Creativity'),
@@ -72,7 +67,8 @@ class Activity(models.Model):
     activity_type = models.CharField(max_length=3, choices=ACTIVITY_TYPES)
 
     LEARNING_OBJECTIVES = (
-        ('I', 'Increased their awareness of their own strengths and areas of growth'),
+        ('I', 'Increased their awareness of their own strengths and areas of \
+                growth'),
         ('U', 'Undertaken new challenges'),
         ('P', 'Planned and initiated activities'),
         ('W', 'Worked collaboratively with others'),
@@ -82,7 +78,8 @@ class Activity(models.Model):
         ('D', 'Developed new skills'),
     )
 
-    learned_objective = SelectMultipleField(max_length=8, choices=LEARNING_OBJECTIVES)
+    learned_objective = models.CharField(max_length=8,
+                                         choices=LEARNING_OBJECTIVES)
 
 
 class Entry(models.Model):
@@ -95,7 +92,7 @@ class Entry(models.Model):
     )
 
     email = models.EmailField()
-    activity = models.ForeignKey(Activity)
+    activity = models.ForeignKey(Activity, default=1)
     last_modified = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
     entry_type = models.CharField(max_length=1, choices=ENTRY_TYPES)
