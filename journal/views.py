@@ -1,8 +1,10 @@
 from django.shortcuts import render
 
-from journal.models import Student, Coordinator, Users, Entry
+from journal.models import Student, Coordinator, Advisor, Users, Entry, Activity, School
 
 from datetime import datetime
+
+from django.core.exceptions import ObjectDoesNotExist
 
 
 def home(request):
@@ -26,10 +28,21 @@ def welcome(request):
 
 
 def cabinet(request):
-    try:
-        entries = Entry.objects.all().filter(email=request.user.email)\
-            .order_by('last_modified').reverse()
-    except ObjectDoesNotExist:
-        entries = None
-    return render(request, 'journal/cabinet.html', 
-                  {})
+    activities = ['No Activities!']
+    if not request.user.is_anonymous():
+        try:
+            user_type = Users.objects.get(email=request.user.email)
+        except ObjectDoesNotExist:
+            user_type = None
+            msg = 'User %s not found!' % request.user.get_full_name()
+            activities = [msg]
+        if user_type == 'S':
+            try:
+                student = Student.objects.get(email=request.user.email)
+                activities = Activity.objects.all().filter(student=student)\
+                    .order_by('last_modified').reverse()
+            except ObjectDoesNotExist:
+                msg = 'No Activities for %s!' % request.user.get_full_name()
+                activities = [msg]
+    return render(request, 'journal/cabinet.html',
+                  {'activities': activities})

@@ -20,13 +20,19 @@ class Users(models.Model):
         return self.user_type
 
 
+class School(models.Model):
+    """School object"""
+    school_code = models.IntegerField(999999, 0)  # Max number of digits is 6
+    school_name = models.CharField(max_length=30)
+
+
 class Person(models.Model):
     """Abstract class for all individuals"""
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     email = models.EmailField()
-    school_code = models.IntegerField(999999, 0)  # Max number of digits is 6
-    school_name = models.CharField(max_length=30)
+    school = models.ForeignKey(School)
+
 
     class Meta:
         abstract = True

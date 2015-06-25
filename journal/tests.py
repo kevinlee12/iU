@@ -1,6 +1,7 @@
 from django.test import TestCase
 from journal.models import Users, Advisor, Coordinator, Student
 from journal.models import Entry, Activity
+from journal.models import School
 
 
 class UsersTest(TestCase):
@@ -9,21 +10,22 @@ class UsersTest(TestCase):
         Users.objects.create(email='coor@bar.com', user_type='C')
         Users.objects.create(email='advise@ones.com', user_type='A')
         Users.objects.create(email='fooish@bar.com', user_type='S')
+        School.objects.create(school_name="One HS", school_code=110310)
 
 
     def test_advisor_creation(self):
         """Tests to ensure that advisors have been created successfully"""
+        school = School.objects.get(school_code=110310)
         Advisor.objects.create(first_name='Advise', last_name='Ones',
-                               email='advise@ones.com', school_code=110310,
-                               school_name='No. One HS')
+                               email='advise@ones.com', school=school)
         advisor = Advisor.objects.get(email='advise@ones.com')
         self.assertTrue(type(advisor) == Advisor)
 
     def test_coordinator(self):
         """Tests to ensure that coordinatorshave been created successfully"""
+        school = School.objects.get(school_code=110310)
         Coordinator.objects.create(first_name='Coor', last_name='One',
-                                   email='coor@bar.com', school_code=110310,
-                                   school_name='No. One HS')
+                                   email='coor@bar.com', school=school)
         coordinator = Coordinator.objects.get(email='coor@bar.com')
         self.assertTrue(type(coordinator) == Coordinator)
 
@@ -32,21 +34,22 @@ class UsersTest(TestCase):
         foo_auth = Users.objects.get(email='fooish@bar.com')
         self.assertEqual(foo_auth.user_type, 'S')
 
+
+        school = School.objects.get(school_code=110310)
+
         Advisor.objects.create(first_name='Advise', last_name='Ones',
-                               email='advise@ones.com', school_code=110310,
-                               school_name='No. One HS')
+                               email='advise@ones.com', school=school)
 
         Coordinator.objects.create(first_name='Coor', last_name='One',
-                                   email='coor@bar.com', school_code=110310,
-                                   school_name='No. One HS')
+                                   email='coor@bar.com', school=school)
 
         stu_advisor = Advisor.objects.get(email='advise@ones.com')
         stu_coordinator = Coordinator.objects.get(email='coor@bar.com')
 
         Student.objects.create(first_name='Foo', last_name='Barish',
-                               email='fooish@bar.com', school_code=110310,
-                               student_id=2312, personal_code='abc123',
-                               school_name='No. One HS',
+                               email='fooish@bar.com', student_id=2312,
+                               personal_code='abc123',
+                               school=school,
                                coordinator=stu_coordinator,
                                advisor=stu_advisor)
         student = Student.objects.get(email='fooish@bar.com')
@@ -58,21 +61,23 @@ class UsersTest(TestCase):
 class Journals(TestCase):
     """"Tests to ensure that Journal Entries are properly inserted"""
     def setUp(self):
+        School.objects.create(school_name="One HS", school_code=110310)
+
+        school = School.objects.get(school_code=110310)
+
         Advisor.objects.create(first_name='Advise', last_name='Ones',
-                               email='advise@ones.com', school_code=110310,
-                               school_name='No. One HS')
+                               email='advise@ones.com', school=school)
 
         Coordinator.objects.create(first_name='Coor', last_name='One',
-                                   email='coor@bar.com', school_code=110310,
-                                   school_name='No. One HS')
+                                   email='coor@bar.com', school=school)
 
         stu_advisor = Advisor.objects.get(email='advise@ones.com')
         stu_coordinator = Coordinator.objects.get(email='coor@bar.com')
 
         Student.objects.create(first_name='Foo', last_name='Barish',
-                               email='fooish@bar.com', school_code=110310,
-                               student_id=2312, personal_code='abc123',
-                               school_name='No. One HS',
+                               email='fooish@bar.com', student_id=2312,
+                               personal_code='abc123',
+                               school=school,
                                coordinator=stu_coordinator,
                                advisor=stu_advisor)
 
