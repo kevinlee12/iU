@@ -1,7 +1,5 @@
 from django.db import models
 
-from django.core.exceptions import ValidationError
-
 # The following models are used for gathering user data and storing the
 # associated information of the users including journal entries and basic
 # information.
@@ -90,6 +88,9 @@ class Entry(models.Model):
 
 
 class ActivityOptions(models.Model):
+    """Activity Option objects used for Activity Objects
+       Note: The options must be loaded in order for the forms to work!
+    """
 
     name = models.CharField(max_length=10)
 
@@ -97,6 +98,9 @@ class ActivityOptions(models.Model):
         return self.name
 
 class LearningObjectiveOptions(models.Model):
+    """Learning Objective objects used for Activity Objects
+       Note: The options must be loaded in order for the forms to work!
+    """
 
     objective = models.CharField(max_length=70)
 
@@ -104,7 +108,9 @@ class LearningObjectiveOptions(models.Model):
         return self.objective
 
 class Activity(models.Model):
-    """Activites for the students"""
+    """Activites for the students, depends on ActivityOptions
+       and LearningObjectiveOptions to be preloaded
+    """
     student = models.ForeignKey(Student)
 
     activity_name = models.CharField(max_length=30)

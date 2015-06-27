@@ -110,54 +110,47 @@ class Journals(TestCase):
         self.assertEqual(entries[1].entry, 'Today I walked around the block.')
         self.assertEqual(entries[0].entry, 'http://www.youtube.com')
 
-    # def test_activity(self):
-    #     """Tests to ensure that the activity is linked with the user"""
-    #     foo = Student.objects.get(email='fooish@bar.com')
-    #     lo = LearningObjectiveOptions.objects.filter(objective='Undertaken new challenges')
-    #     act = ActivityOptions.objects.filter(name='Action')
-    #
-    #     Activity.objects.create(student=foo, activity_name='Walking',
-    #                             activity_description='Walking around the block.',
-    #                             activity_type=act, learned_objective=lo)
-    #
-    #     foo_activity = Activity.objects.get(student=foo)
-    #     self.assertEqual(foo_activity.activity_name, 'Walking')
-    #     self.assertEqual(foo_activity.student, foo)
+    def test_activity(self):
+        """Tests to ensure that the activity is linked with the user"""
+        foo = Student.objects.get(email='fooish@bar.com')
 
-    # def test_add_entries(self):
-    #     """Tests to ensure that entries and activity are properly linked with
-    #        user"""
-    #     foo = Student.objects.get(email='fooish@bar.com')
-    #     lo = LearningObjectiveOptions.objects.filter(objective='Undertaken new challenges')
-    #     act = ActivityOptions.objects.filter(name='Action')
-    #
-    #     Activity.objects.create(student=foo, activity_name='Walking',
-    #                             activity_description='Walking around the block.',
-    #                             activity_type=act, learned_objective=lo)
-    #
-    #     foo_activity = Activity.objects.get(student=foo)
-    #
-    #     Entry.objects.create(stu_email=foo.email,
-    #                          activity_name=foo_activity.activity_name,
-    #                          entry_type='T',
-    #                          entry='Today I walked around the block.')
-    #
-    #     Entry.objects.create(stu_email=foo.email,
-    #                          activity_name=foo_activity.activity_name,
-    #                          entry_type='V',
-    #                          entry='http://www.youtube.com')
-    #
-    #     entries = Entry.objects.all().filter(stu_email='fooish@bar.com',
-    #                                          activity_name='Walking')\
-    #                                  .order_by('last_modified')
-    #     for entry in entries:
-    #         foo_activity.entries.add(entry)
-    #
-    #     entries = entries.all()
-    #
-    #     # Tests to ensure entries are the same
-    #     in_foo = foo_activity.entries.all()
-    #     for i in range(len(entries)):
-    #         expected = entries[i].entry
-    #         actual = in_foo[i].entry
-    #         self.assertEqual(actual, expected)
+        Activity.objects.create(student=foo, activity_name='Walking',
+                                activity_description='Walking around the block.')
+
+        foo_activity = Activity.objects.get(student=foo)
+        self.assertEqual(foo_activity.activity_name, 'Walking')
+        self.assertEqual(foo_activity.student, foo)
+
+    def test_add_entries(self):
+        """Tests to ensure that entries and activity are properly linked with
+           user"""
+        foo = Student.objects.get(email='fooish@bar.com')
+        Activity.objects.create(student=foo, activity_name='Walking',
+                                activity_description='Walking around the block.',)
+
+        foo_activity = Activity.objects.get(student=foo)
+
+        Entry.objects.create(stu_email=foo.email,
+                             activity_name=foo_activity.activity_name,
+                             entry_type='T',
+                             entry='Today I walked around the block.')
+
+        Entry.objects.create(stu_email=foo.email,
+                             activity_name=foo_activity.activity_name,
+                             entry_type='V',
+                             entry='http://www.youtube.com')
+
+        entries = Entry.objects.all().filter(stu_email='fooish@bar.com',
+                                             activity_name='Walking')\
+                                     .order_by('last_modified')
+        for entry in entries:
+            foo_activity.entries.add(entry)
+
+        entries = entries.all()
+
+        # Tests to ensure entries are the same
+        in_foo = foo_activity.entries.all()
+        for i in range(len(entries)):
+            expected = entries[i].entry
+            actual = in_foo[i].entry
+            self.assertEqual(actual, expected)
