@@ -3,3 +3,15 @@
   fields:
     email: 'kevinlee963@gmail.com'
     user_type: 'S'
+
+- model: journal.users
+  pk: 2
+  fields:
+    email: 'janicez348@gmail.com'
+    user_type: 'S'
+
+- model: journal.users
+  pk: 3
+  fields:
+    email: 'rodneyrhkk@gmail.com'
+    user_type: 'S'

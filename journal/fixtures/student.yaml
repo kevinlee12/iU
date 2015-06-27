@@ -5,7 +5,29 @@
     last_name: 'Lee'
     email: 'kevinlee963@gmail.com'
     school: 1
-    student_id: 1234
-    personal_code: dty123
+    student_id: '1234'
+    personal_code: 'dty123'
+    coordinator: 1
+    advisor: 1
+
+- model: journal.student
+  pk: 2
+  fields:
+    first_name: 'Janice Jiayu'
+    last_name: 'Zhao'
+    school: 1
+    student_id: '2345'
+    personal_code: 'dty321'
+    coordinator: 1
+    advisor: 1
+
+- model: journal.student
+  pk: 3
+  fields:
+    first_name: 'Rodney'
+    last_name: 'Ho'
+    school: 1
+    student_id: '3456'
+    personal_code: 'dty332'
     coordinator: 1
     advisor: 1
