@@ -1,0 +1,7 @@
+- model: journal.coordinator
+  pk: 1
+  fields:
+    first_name: 'CD'
+    last_name: 'IB'
+    email: 'coor@ibcoor.com'
+    school: 1

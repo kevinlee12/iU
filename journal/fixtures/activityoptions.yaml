@@ -1,0 +1,14 @@
+- model: journal.activityoptions
+  pk: 1
+  fields:
+    name: 'Creativity'
+
+- model: journal.activityoptions
+  pk: 2
+  fields:
+    name: 'Action'
+
+- model: journal.activityoptions
+  pk: 3
+  fields:
+    name: 'Service'

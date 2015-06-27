@@ -1,5 +1,7 @@
 from django.db import models
 
+from django.core.exceptions import ValidationError
+
 # The following models are used for gathering user data and storing the
 # associated information of the users including journal entries and basic
 # information.
@@ -22,7 +24,7 @@ class Users(models.Model):
 
 class School(models.Model):
     """School object"""
-    school_code = models.IntegerField(999999, 0)  # Max number of digits is 6
+    school_code = models.CharField(max_length=6)  # Max number of digits is 6
     school_name = models.CharField(max_length=30)
 
 
@@ -32,7 +34,6 @@ class Person(models.Model):
     last_name = models.CharField(max_length=30)
     email = models.EmailField()
     school = models.ForeignKey(School)
-
 
     class Meta:
         abstract = True
@@ -54,10 +55,11 @@ class Advisor(Person):
 
 class Student(Person):
     """Student object that inherits from Person"""
-    student_id = models.IntegerField(9999, 0)  # Max number of digits is 4
+    student_id = models.CharField(max_length=4)  # Max number of digits is 4
     personal_code = models.CharField(max_length=7)
     coordinator = models.ForeignKey(Coordinator)
     advisor = models.ForeignKey(Advisor)
+
 
 # The following are used for activity and entry logging.
 
@@ -87,6 +89,20 @@ class Entry(models.Model):
         return str(self.last_modified) + ' : ' + self.entry
 
 
+class ActivityOptions(models.Model):
+
+    name = models.CharField(max_length=10)
+
+    def __str__(self):
+        return self.name
+
+class LearningObjectiveOptions(models.Model):
+
+    objective = models.CharField(max_length=70)
+
+    def __str__(self):
+        return self.objective
+
 class Activity(models.Model):
     """Activites for the students"""
     student = models.ForeignKey(Student)
@@ -94,58 +110,10 @@ class Activity(models.Model):
     activity_name = models.CharField(max_length=30)
     activity_description = models.CharField(max_length=150)
 
-    ACTIVITY_TYPES = (
-        ('C', 'Creativity'),
-        ('A', 'Action'),
-        ('S', 'Service'),
-    )
-
-    activity_type = models.CharField(max_length=3, choices=ACTIVITY_TYPES)
-
-    # The following are the learning objecties expanded:
-    I = 'Increased their awareness of their own strengths and areas of growth'
-    U = 'Undertaken new challenges'
-    P = 'Planned and initiated activities'
-    W = 'Worked collaboratively with others'
-    S = 'Shown perseverance and commitment in their activities'
-    E = 'Engaged with issues of global importance'
-    C = 'Considered the ethnical implications of their actions'
-    D = 'Developed new skills'
-
-    LEARNING_OBJECTIVES = (
-        ('I', I),
-        ('U', U),
-        ('P', P),
-        ('W', W),
-        ('S', S),
-        ('E', E),
-        ('C', C),
-        ('D', D),
-    )
-
-    learned_objective = models.CharField(max_length=8,
-                                         choices=LEARNING_OBJECTIVES)
+    activity_type = models.ManyToManyField(ActivityOptions)
+    learned_objective = models.ManyToManyField(LearningObjectiveOptions)
 
     entries = models.ManyToManyField(Entry, blank=True)
 
-    def learning_objectives(self):
-        """Returns a list of learned objectives as a list"""
-        learned = []
-        for e in self.learned_objective:
-            if e == 'I':
-                learned.append(Activity.I)
-            elif e == 'U':
-                learned.append(Activity.U)
-            elif e == 'P':
-                learned.append(Activity.P)
-            elif e == 'W':
-                learned.append(Activity.W)
-            elif e == 'S':
-                learned.append(Activity.S)
-            elif e == 'E':
-                learned.append(Activity.E)
-            elif e == 'C':
-                learned.append(Activity.C)
-            else:
-                learned.append(Activity.D)
-        return learned
+    def __str__(self):
+        return self.activity_name
