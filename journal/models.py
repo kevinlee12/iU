@@ -1,5 +1,11 @@
 from django.db import models
 
+from django.core.exceptions import ValidationError
+
+# The following models are used for gathering user data and storing the
+# associated information of the users including journal entries and basic
+# information.
+
 
 class Users(models.Model):
     """For use to check if user is registered and type
@@ -7,6 +13,7 @@ class Users(models.Model):
     USER_TYPES = (
         ('S', 'Student'),
         ('C', 'Coordinator'),
+        ('A', 'Advisor'),
     )
     email = models.EmailField()
     user_type = models.CharField(max_length=1, choices=USER_TYPES)
@@ -15,12 +22,18 @@ class Users(models.Model):
         return self.user_type
 
 
+class School(models.Model):
+    """School object"""
+    school_code = models.CharField(max_length=6)  # Max number of digits is 6
+    school_name = models.CharField(max_length=30)
+
+
 class Person(models.Model):
     """Abstract class for all individuals"""
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     email = models.EmailField()
-    school_code = models.IntegerField(999999, 0)  # Max number of digits is 6
+    school = models.ForeignKey(School)
 
     class Meta:
         abstract = True
@@ -32,21 +45,23 @@ class Person(models.Model):
         return self.email
 
 
-class Student(Person):
-    """Student object that inherits from Person"""
-    student_id = models.IntegerField(9999, 0)  # Max number of digits is 4
-    personal_code = models.CharField(max_length=7)
-
-
 class Coordinator(Person):
     """Coordinator object that inherits from Person"""
-    coordinator_id = models.IntegerField(9999, 0)  # Max number of digits is 4
 
 
-class School(models.Model):
-    """School object"""
-    name = models.CharField(max_length=30, default="default")
+class Advisor(Person):
+    """Advisor object that inherits from Person"""
 
+
+class Student(Person):
+    """Student object that inherits from Person"""
+    student_id = models.CharField(max_length=4)  # Max number of digits is 4
+    personal_code = models.CharField(max_length=7)
+    coordinator = models.ForeignKey(Coordinator)
+    advisor = models.ForeignKey(Advisor)
+
+
+# The following are used for activity and entry logging.
 
 class Entry(models.Model):
     """Entry object used for journaling"""
@@ -56,8 +71,8 @@ class Entry(models.Model):
         ('V', 'Video'),
         ('L', 'Link'),
     )
-
-    email = models.EmailField()
+    stu_email = models.EmailField()
+    activity_name = models.CharField(max_length=30)
     last_modified = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
     entry_type = models.CharField(max_length=1, choices=ENTRY_TYPES)
@@ -72,3 +87,33 @@ class Entry(models.Model):
 
     def __str__(self):
         return str(self.last_modified) + ' : ' + self.entry
+
+
+class ActivityOptions(models.Model):
+
+    name = models.CharField(max_length=10)
+
+    def __str__(self):
+        return self.name
+
+class LearningObjectiveOptions(models.Model):
+
+    objective = models.CharField(max_length=70)
+
+    def __str__(self):
+        return self.objective
+
+class Activity(models.Model):
+    """Activites for the students"""
+    student = models.ForeignKey(Student)
+
+    activity_name = models.CharField(max_length=30)
+    activity_description = models.CharField(max_length=150)
+
+    activity_type = models.ManyToManyField(ActivityOptions)
+    learned_objective = models.ManyToManyField(LearningObjectiveOptions)
+
+    entries = models.ManyToManyField(Entry, blank=True)
+
+    def __str__(self):
+        return self.activity_name

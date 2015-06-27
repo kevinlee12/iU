@@ -1,0 +1,39 @@
+- model: journal.learningobjectiveoptions
+  pk: 1
+  fields:
+    objective: 'Increased their awareness of their own strengths and areas of growth'
+
+- model: journal.learningobjectiveoptions
+  pk: 2
+  fields:
+    objective: 'Undertaken new challenges'
+
+- model: journal.learningobjectiveoptions
+  pk: 3
+  fields:
+    objective: 'Planned and initiated activities'
+
+- model: journal.learningobjectiveoptions
+  pk: 4
+  fields:
+    objective: 'Worked collaboratively with others'
+
+- model: journal.learningobjectiveoptions
+  pk: 5
+  fields:
+    objective: 'Shown perseverance and commitment in their activities'
+
+- model: journal.learningobjectiveoptions
+  pk: 6
+  fields:
+    objective: 'Engaged with issues of global importance'
+
+- model: journal.learningobjectiveoptions
+  pk: 7
+  fields:
+    objective: 'Considered the ethnical implications of their actions'
+
+- model: journal.learningobjectiveoptions
+  pk: 8
+  fields:
+    objective: 'Developed new skills'

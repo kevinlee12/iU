@@ -1,0 +1,7 @@
+- model: journal.advisor
+  pk: 1
+  fields:
+    first_name: 'AD'
+    last_name: 'IB'
+    email: 'advise@ibcoor.com'
+    school: 1
