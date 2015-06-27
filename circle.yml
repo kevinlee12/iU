@@ -10,3 +10,9 @@ machine:
     version: 3.3.0
   services:
     - postgresql
+
+test:
+  override:
+    - coverage run manage.py test
+  post:
+    - coverage html -d $CIRCLE_ARTIFACTS
