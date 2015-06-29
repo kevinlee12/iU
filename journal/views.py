@@ -9,6 +9,8 @@ from datetime import datetime
 
 from django.core.exceptions import ObjectDoesNotExist
 
+from django.contrib.auth.decorators import login_required
+
 
 def home(request):
     return render(request, 'journal/home.html',
@@ -30,8 +32,9 @@ def welcome(request):
                   {'name': name, 'greeting': greeting})
 
 
-def cabinet(request):
-    activities = ['Welcome to the activities page!']
+def activities(request):
+    stored_activities = ['Welcome to the activities page!',
+                         'You will need to be logged in to continue.']
     user = request.user
     if user.is_authenticated():
         try:
@@ -39,18 +42,19 @@ def cabinet(request):
         except ObjectDoesNotExist:
             auth_user_type = None
             msg = 'User %s not found!' % user.get_full_name()
-            activities = [msg]
+            stored_activities = [msg]
         if auth_user_type == 'S':
             student = Student.objects.get(email=user.email)
-            activities = Activity.objects.all().filter(student=student)\
+            stored_activities = Activity.objects.all().filter(student=student)\
                 .order_by('activity_name').reverse()
-            if len(activities) == 0:
+            if len(stored_activities) == 0:
                 msg = 'No Activities for %s!' % user.get_full_name()
-                activities = [msg]
-    return render(request, 'journal/cabinet.html',
-                  {'activities': activities})
+                stored_activities = [msg]
+    return render(request, 'journal/activities.html',
+                  {'activities': stored_activities})
 
 
+@login_required
 def activity_form(request):
     curr_student = Student.objects.get(email=request.user.email)
     if request.method == 'POST':

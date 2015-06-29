@@ -7,11 +7,11 @@
 {% endblock %}
 
 {% block 'page-css' %}
-<link rel="stylesheet" type="text/css" href="{% static 'journal/cabinet/css/style.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'journal/activities/css/style.css' %}">
 {% endblock %}
 
 {% block 'page-js' %}
-<script src="{% static 'journal/cabinet/js/main.js' %}"></script>
+<script src="{% static 'journal/activities/js/main.js' %}"></script>
 {% endblock %}
 
 {% block 'content' %}
@@ -21,10 +21,11 @@
     <ul>
         <li>Navigation Bar</li>
         <li>Action Bar</li>
-        <li>List of journals w/ AngularJS</li>
+        <li>List of journals (see for loop)</li>
     </ul>
 
-    <h3> Activities </h2>
+    <h3> Activities </h3>
+    <a href="{% url 'activity_form' %}">Click here to add an activity (login required)</a>
         {% for activity in activities %}
         <ul>
           <li> {{activity}} </li>
