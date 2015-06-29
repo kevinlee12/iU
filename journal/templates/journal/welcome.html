@@ -19,21 +19,24 @@
 {% block 'content' %}
 
 <body>
-    <div class="content">
-        <div id="greeter">
-            <h1> {{greeting}}{{name}}! </h1>
-            <h2> What would you like to do today? </h2>
-            <input id="search">
-        </div>
+   <center>
+        <h1> Welcome, _____! </h1>
+        <h2> What would you like to do today? </h2>
+    </center>
+        
+    <img id="journal-circle" src= "{% static 'journal/welcome/img/u2.png' %}"> 
+        <h1><span> Add an Journal </span></h1>
+        <h2><span> Edit a journal </span></h2>
+        <h3><span> View all journals </span> </h3>
 
-        <div id="options">
-            <ul.a>
-                <li>Create an activity</li>
-                <li><a href="{% url 'cabinet' %}">Add a journal entry</a></li>
-                <li>Ask my coordinator something</li>
-            </ul.a>
-        </div>
-    </div>
+    <img id="Activity-circle" src= "{% static 'journal/welcome/img/u4.png' %}"> 
+        <h1 id="add-activity"> Add an activity </h1>
+
+    <img id="question-circle"src= "{% static 'journal/welcome/img/u6.png' %}"> 
+        <h2 id="ask-question"> Ask a Question </h2>
+    <img id="blank-circle1" src= "{% static 'journal/welcome/img/u10.png' %}"> 
+    <img id="blank-circle2" src= "{% static 'journal/welcome/img/u12.png' %}"> 
+    <img id="blank-circle3" src= "{% static 'journal/welcome/img/u14.png' %}">
 </body>
 
 {% endblock %}
