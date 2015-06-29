@@ -23,22 +23,6 @@ h1 span {
     width: 100%;
 }
 
-h2 span {
-    color: white;
-    position: absolute;
-    top:47%;
-    left: 1%;
-    width: 100%;
-}
-
-h3 span {
-    color: white;
-    position: absolute;
-    top:53%;
-    left: 0.5%;
-    width: 100%;
-}
-
 #Activity-circle {
     position: absolute;
     top: 60%;
