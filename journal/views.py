@@ -2,7 +2,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 
-from journal.models import Student, Coordinator, Advisor, Users, Entry, Activity, School
+from journal.models import Student, Users, Activity
 from .forms import ActivityForm
 
 from datetime import datetime

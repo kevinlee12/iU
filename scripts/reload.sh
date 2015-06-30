@@ -12,12 +12,12 @@ echo "Ensuring that all pip requirements are satisfied"
 pip install -r requirements.txt
 echo "...done"
 echo
-echo "Dropping the old cas database"
-dropdb cas
+echo "Dropping the old iu database"
+dropdb iu
 echo "...done"
 echo
-echo "Creating new cas database"
-createdb cas
+echo "Creating new iu database"
+createdb iu
 echo "...done"
 echo
 echo "Removing old migrations"
@@ -46,4 +46,9 @@ python manage.py loaddata activityoptions
 echo "Loading learningobjectiveoptions data"
 python manage.py loaddata learningobjectiveoptions
 echo "...done"
+echo
+echo "Running tests to ensure nothing is broken"
+echo "If any tests fail, something went wrong"
+python3 manage.py test
+echo
 deactivate

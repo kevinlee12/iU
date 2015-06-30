@@ -20,15 +20,36 @@ else
     exit
 fi
 echo
+echo "Checking PostgreSQL"
+if [[ -n $(psql --version || grep "PostgreSQL") ]]; then
+    echo "PostgreSQL is installed"
+else
+    echo "PostgreSQL is not detected, quitting..."
+    echo "Please install PostgreSQL before running this script again."
+    exit
+fi
+echo
+echo "Creating table"
+CREATEDBOUT=$(createdb iu)
+if [[ -n $($CREATEDB || grep "ERROR") ]]; then
+  echo "Something went wrong, exiting:"
+  echo $CREATEDBOUT
+  exit
+fi
+echo "Done"
+echo "Creating role for iu test role and assigning permissions"
+psql -c "CREATE ROLE iu_test;"
+psql -c "ALTER ROLE iu_test WITH CREATEDB;"
+psql -c "ALTER ROLE iu_test WITH LOGIN"
+echo "...done"
 
-# echo "Setting up Virtualenv..."
-# if [ "$(uname)" == "Darwin" ]; then
-#     pyenv env
-# elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
-#     apt-get install postgresql postgresql-contrib -y
-#     apt-get install postgresql-client -y
-#     virtualenv -p /usr/bin/python3 env
-# fi
+echo "Setting up Virtualenv..."
+if [ "$(uname)" == "Darwin" ]; then
+    pyenv env
+elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+    virtualenv -p /usr/bin/python3 env
+fi
+
 ENV_ACTIVATE_FILE=env/bin/activate
 echo "...Done"
 echo
@@ -46,7 +67,7 @@ echo "...Done"
 echo
 echo "Setting up Database Variables"
 echo "# Database Variables" >> $ENV_ACTIVATE_FILE
-echo "OPENSHIFT_POSTGRESQL_DB_USERNAME=''" >> $ENV_ACTIVATE_FILE
+echo "OPENSHIFT_POSTGRESQL_DB_USERNAME='iu_test'" >> $ENV_ACTIVATE_FILE
 echo "export OPENSHIFT_POSTGRESQL_DB_USERNAME" >> $ENV_ACTIVATE_FILE
 echo "OPENSHIFT_POSTGRESQL_DB_PASSWORD=''" >> $ENV_ACTIVATE_FILE
 echo "export OPENSHIFT_POSTGRESQL_DB_PASSWORD" >> $ENV_ACTIVATE_FILE

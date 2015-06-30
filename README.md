@@ -1,9 +1,9 @@
 CAS Management
 ===
-**Master:** [![Circle CI](https://circleci.com/gh/kevinlee12/cas/tree/master.svg?style=svg&circle-token=02f06191194ac379a0c4b7244fa361a6a619098a)](https://circleci.com/gh/kevinlee12/cas/tree/master)
+**Master:** [![Circle CI](https://circleci.com/gh/kevinlee12/iU/tree/master.svg?style=svg&circle-token=02f06191194ac379a0c4b7244fa361a6a619098a)](https://circleci.com/gh/kevinlee12/iU/tree/master)
 
 **Develop:**
-[![Circle CI](https://circleci.com/gh/kevinlee12/cas/tree/develop.svg?style=svg&circle-token=02f06191194ac379a0c4b7244fa361a6a619098a)](https://circleci.com/gh/kevinlee12/cas/tree/develop)
+[![Circle CI](https://circleci.com/gh/kevinlee12/iU/tree/develop.svg?style=svg&circle-token=02f06191194ac379a0c4b7244fa361a6a619098a)](https://circleci.com/gh/kevinlee12/iU/tree/develop)
 
 For a hosted version of this app, please click [here](http://cas-codestig.rhcloud.com).
 
@@ -30,11 +30,11 @@ For a hosted version of this app, please click [here](http://cas-codestig.rhclou
  -- Ubuntu systems should have Python 3 preinstalled.
 
 2. Clone repo:
- `git clone https://github.com/kevinlee12/cas.git`
+ `git clone https://github.com/kevinlee12/iu.git`
 
 3. Navigate to the cas folder, on Unix/Linux the command is
 
- `cd cas`
+ `cd iu`
 
 4. Start the setup script:
  `bash scripts/begin.sh`

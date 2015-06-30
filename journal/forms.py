@@ -1,8 +1,10 @@
-from django.forms import ModelForm, ValidationError, ModelMultipleChoiceField
+from django.forms import ModelForm
 from journal.models import Activity, ActivityOptions, LearningObjectiveOptions
 from django.forms.widgets import CheckboxSelectMultiple
 
+
 class ActivityForm(ModelForm):
+    """Form for adding Activities"""
 
     class Meta:
         model = Activity
