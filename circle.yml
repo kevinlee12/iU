@@ -2,7 +2,7 @@ machine:
   environment:
       SECRET_KEY: 'JRM0u!Hhi&Uzo1iF-{EUh1)/SZ{C=~5QPpPA]m9Y:[z5ue.YfQ'
       OPENSHIFT_APP_DNS: 'cas-codestig.rhcloud.com'
-      OPENSHIFT_POSTGRESQL_DB_USERNAME: ''
+      OPENSHIFT_POSTGRESQL_DB_USERNAME: 'iu_test'
       OPENSHIFT_POSTGRESQL_DB_PASSWORD: ''
       OPENSHIFT_POSTGRESQL_DB_HOST: 'localhost'
       OPENSHIFT_POSTGRESQL_DB_PORT: ''
