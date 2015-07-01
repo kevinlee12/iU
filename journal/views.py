@@ -2,7 +2,7 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 
-from journal.models import Student, Users, Activity
+from journal.models import Student, Users, Activity, Entry
 from .forms import ActivityForm
 from .forms import EntryForm
 
@@ -64,7 +64,7 @@ def activity_form(request):
             f = form.save(commit=False)
             f.student = curr_student
             f.save()
-            return HttpResponseRedirect('/cabinet')
+            return HttpResponseRedirect('/activities')
     else:
         form = ActivityForm()
 
@@ -77,7 +77,11 @@ def entry_form(request, activity_id, entry_id=None):
     curr_student = Student.objects.get(email=request.user.email)
     activity = Activity.objects.get(pk=activity_id)
     if request.method == 'POST':
-        form = EntryForm(request.POST)
+        try:
+            entry = Entry.objects.get(id=entry_id)
+            form = EntryForm(request.POST, instance=entry)
+        except ObjectDoesNotExist:
+            form = EntryForm(request.POST, request.FILES)
         if form.is_valid():
             f = form.save(commit=False)
             f.stu_email = curr_student.email
@@ -86,7 +90,11 @@ def entry_form(request, activity_id, entry_id=None):
             activity.entries.add(f)
             return HttpResponseRedirect('/activity/' + activity_id)
     else:
-        form = EntryForm()
+        try:
+            entry = Entry.objects.get(id=entry_id)
+            form = EntryForm(instance=entry)
+        except ObjectDoesNotExist:
+            form = EntryForm(request.FILES)
 
     return render(request, 'journal/entry_form.html',
                   {'form': form, 'activity': activity.activity_name})

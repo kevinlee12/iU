@@ -29,7 +29,7 @@
     <a href="/entry_form/{{ activity_id }}">Click here to add an entry</a>
     {% for entry in entries %}
     <ul>
-      <li><a href="/entry_form/{{activity_id}}/{{entry.entry.id}}" {{ entry.entry }} </li>
+      <li><a href="/entry_form/{{activity_id}}/{{entry.id}}"> {{ entry.entry }} </a></li>
     </ul>
     {% endfor %}
 </body>

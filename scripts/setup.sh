@@ -45,7 +45,7 @@ echo "...done"
 
 echo "Setting up Virtualenv..."
 if [ "$(uname)" == "Darwin" ]; then
-    pyenv env
+    pyvenv env
 elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
     virtualenv -p /usr/bin/python3 env
 fi
