@@ -46,6 +46,8 @@ python manage.py loaddata activityoptions
 echo "Loading learningobjectiveoptions data"
 python manage.py loaddata learningobjectiveoptions
 echo "...done"
+echo "Loading sample entries and stuff"
+python manage.py loaddata sample_entries
 echo
 echo "Running tests to ensure nothing is broken"
 echo "If any tests fail, something went wrong"
