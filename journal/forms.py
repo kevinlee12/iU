@@ -1,6 +1,9 @@
 from django.forms import ModelForm
 from journal.models import Activity, ActivityOptions, LearningObjectiveOptions
+from journal.models import Entry
 from django.forms.widgets import CheckboxSelectMultiple
+
+from django import forms
 
 
 class ActivityForm(ModelForm):
@@ -20,3 +23,11 @@ class ActivityForm(ModelForm):
 
         self.fields['learned_objective'].widget = CheckboxSelectMultiple()
         self.fields['learned_objective'].queryset = LearningObjectiveOptions.objects.all()
+
+
+class EntryForm(ModelForm):
+    """Form for adding Entries for Activity"""
+
+    class Meta:
+        model = Entry
+        fields = ['entry_type', 'entry']
