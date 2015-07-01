@@ -26,10 +26,10 @@
 
     <h3> Activities </h3>
     <a href="{% url 'activity_form' %}">Click here to add an activity (login required)</a>
-        {% for activity in activities %}
-        <ul>
-          <li> {{activity}} </li>
-        </ul>
-        {% endfor %}
+    {% for activity in activities %}
+    <ul>
+      <li> <a href="/activity/{{activity.id}}"> {{activity}} </a> </li>
+    </ul>
+    {% endfor %}
 </body>
 {% endblock %}

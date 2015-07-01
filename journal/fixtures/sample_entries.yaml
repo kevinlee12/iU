@@ -1,0 +1,29 @@
+- model: journal.entry
+  pk: 1
+  fields:
+    stu_email: 'kevinlee963@gmail.com'
+    activity_name: 'Walking around the block'
+    last_modified: 2015-01-21 12:34:12
+    created: 2015-01-21 12:34:12
+    entry_type: 'T'
+    entry: 'I learned I can actually walk around the block 100 times.'
+
+- model: journal.entry
+  pk: 2
+  fields:
+    stu_email: 'kevinlee963@gmail.com'
+    activity_name: 'Walking around the block'
+    last_modified: 2015-01-21 12:36:12
+    created: 2015-01-21 12:36:12
+    entry_type: 'T'
+    entry: 'Walking is amazing, nature is amazing'
+
+- model: journal.activity
+  pk: 1
+  fields:
+    student: 1
+    activity_name: 'Walking around the block'
+    activity_description: 'Just walking'
+    activity_type: [2]
+    learned_objective: [1, 2]
+    entries: [1, 2]
