@@ -3,7 +3,7 @@
 {% block 'content' %}
 <h3> Hi {{ student }}! </h3>
 
-<form action="." method="post">
+<form action="" method="post">
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Submit" />
