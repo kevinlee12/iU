@@ -75,10 +75,9 @@ def activity_form(request):
 def entry_form(request, activity_id, entry_pk=None):
     curr_student = Student.objects.get(email=request.user.email)
     activity = Activity.objects.get(id=activity_id)
+    e = None
     if entry_pk:
         e = Entry.objects.get(pk=entry_pk)
-    else:
-        e = None
     if request.method == 'POST':
         form = EntryForm(request.POST, instance=e)
         if form.is_valid():
