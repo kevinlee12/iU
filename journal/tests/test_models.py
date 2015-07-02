@@ -1,4 +1,5 @@
 from django.test import TestCase
+
 from journal.models import Users, Advisor, Coordinator, Student
 from journal.models import Entry, Activity
 from journal.models import LearningObjectiveOptions, ActivityOptions
