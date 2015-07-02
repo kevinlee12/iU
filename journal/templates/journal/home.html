@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 {% block 'title' %}
-<title> MyCAS </title>
+<title> iU </title>
 {% endblock %}
 
 {% block 'page-css' %}
@@ -15,7 +15,7 @@
 
 {% block 'content' %}
 <header>
-    <div id="logo">MyCAS</div>
+    <div id="logo">iU</div>
     <div id="login">
         {% if user and not user.is_anonymous %}
         Hello {{ user.get_full_name|default:user.username }}!

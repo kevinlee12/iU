@@ -15,8 +15,9 @@ class ActivitySeleleniumTests(StaticLiveServerTestCase):
         super(ActivitySeleleniumTests, cls).tearDownClass()
 
     def setUp(self):
-        self.selenium.get('%s%s' % (self.live_server_url, '/activities/'))
+        """Opens the home page"""
+        self.selenium.get('%s%s' % (self.live_server_url, '/'))
 
-    def test_activity_page(self):
-        """Tests to ensure that the word activityies is present"""
-        self.selenium.find_elements_by_link_text('Activities')
+    def test_elements(self):
+        """Tests to ensure the proper elements are present"""
+        self.selenium.find_elements_by_link_text('iU')
