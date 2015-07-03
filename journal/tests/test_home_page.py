@@ -21,3 +21,4 @@ class ActivitySeleleniumTests(StaticLiveServerTestCase):
     def test_elements(self):
         """Tests to ensure the proper elements are present"""
         self.selenium.find_elements_by_link_text('iU')
+        self.selenium.find_elements_by_link_text('Welcome')
