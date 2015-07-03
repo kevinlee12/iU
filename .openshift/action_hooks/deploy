@@ -7,6 +7,9 @@
 echo "---> ACTION HOOK: deploy <---"
 source $OPENSHIFT_HOMEDIR/python/virtenv/venv/bin/activate
 
+echo "Installing the pip dependencies"
+pip install -r "$OPENSHIFT_REPO_DIR"/requirements.txt
+
 echo "Executing 'python $OPENSHIFT_REPO_DIR/manage.py migrate --noinput'"
 python "$OPENSHIFT_REPO_DIR"/manage.py migrate --noinput
 
