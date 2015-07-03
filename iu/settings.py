@@ -27,9 +27,9 @@ SECRET_KEY = os.environ['SECRET_KEY']
 DEBUG = False
 
 # Secure
-# CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_HTTPONLY = True
-# SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True
 X_FRAME_OPTIONS = 'DENY'
@@ -56,6 +56,7 @@ INSTALLED_APPS = (
     # 'haystack', reactivate once things are 80% done
     'rest_framework',
     'social.apps.django_app.default',
+    'sslserver',
 )
 
 MIDDLEWARE_CLASSES = (
