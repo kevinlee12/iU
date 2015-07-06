@@ -25,7 +25,7 @@
     </ul> -->
 
     <h2> Entries for {{ name }} </h2>
-    <h4> {{ activity_description}} </h4>
+    <h2><small> {{ activity_description}} </small></h2>
     <a href="/activity_form/{{ activity_pk }}">Edit the activity</a>
     <br><a href="/entry_form/{{ activity_id }}">Click here to add an entry</a>
     {% for entry in entries %}
