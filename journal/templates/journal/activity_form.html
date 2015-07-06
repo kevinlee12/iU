@@ -5,7 +5,8 @@
 
 <form action="" method="post">
     {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Submit" />
+    {{ form.as_p }}
+    <a class="btn btn-default" href="/activities" role="button"> Back </a>
+    <input class="btn btn-default" type="submit" value="Submit" />
 </form>
 {% endblock %}

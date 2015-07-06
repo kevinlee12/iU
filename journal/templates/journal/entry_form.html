@@ -1,11 +1,12 @@
 {% extends 'journal/base.html' %}
 
 {% block 'content' %}
-<h3> Adding entry for {{ activity }}! </h3>
+<h3> Adding entry for {{ activity_name }}! </h3>
 
 <form action="" method="post">
     {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Submit" />
+    {{ form.as_p }}
+    <a class="btn btn-default" href="/activity/{{ activity_id }}/" role="button"> Back </a>
+    <input class="btn btn-default" type="submit" value="Submit" />
 </form>
 {% endblock %}

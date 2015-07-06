@@ -51,4 +51,5 @@ def entry_form(request, activity_id, entry_pk=None):
         form = EntryForm(instance=e)
 
     return render(request, 'journal/entry_form.html',
-                  {'form': form, 'activity': activity.activity_name})
+                  {'form': form, 'activity_name': activity.activity_name,
+                   'activity_id': activity_id})
