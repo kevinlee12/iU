@@ -2,7 +2,7 @@
   pk: 1
   fields:
     stu_email: 'kevinlee963@gmail.com'
-    activity_name: 'Walking around the block'
+    activity_pk: 1
     last_modified: 2015-01-21 12:34:12
     created: 2015-01-21 12:34:12
     entry_type: 'T'
@@ -12,7 +12,7 @@
   pk: 2
   fields:
     stu_email: 'kevinlee963@gmail.com'
-    activity_name: 'Walking around the block'
+    activity_pk: 1
     last_modified: 2015-01-21 12:36:12
     created: 2015-01-21 12:36:12
     entry_type: 'T'
@@ -24,6 +24,9 @@
     student: 1
     activity_name: 'Walking around the block'
     activity_description: 'Just walking'
+    start_date: 2015-01-21
+    activity_adviser: 'Dog'
+    advisor_phone: '5555555555'
     activity_type: [2]
     learned_objective: [1, 2]
     entries: [1, 2]
@@ -32,7 +35,7 @@
   pk: 3
   fields:
     stu_email: 'janicez348@gmail.com '
-    activity_name: 'Walking around the block'
+    activity_pk: 2
     last_modified: 2015-01-21 12:34:12
     created: 2015-01-21 12:34:12
     entry_type: 'T'
@@ -42,7 +45,7 @@
   pk: 4
   fields:
     stu_email: 'janicez348@gmail.com '
-    activity_name: 'Walking around the block'
+    activity_pk: 2
     last_modified: 2015-01-21 12:36:12
     created: 2015-01-21 12:36:12
     entry_type: 'T'
@@ -54,6 +57,9 @@
     student: 2
     activity_name: 'Walking around the block'
     activity_description: 'Just walking'
+    start_date: 2015-01-21
+    activity_adviser: 'Dog'
+    advisor_phone: '5555555555'
     activity_type: [2]
     learned_objective: [1, 2]
     entries: [1, 2]

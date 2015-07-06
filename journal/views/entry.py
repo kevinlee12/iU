@@ -43,7 +43,7 @@ def entry_form(request, activity_id, entry_pk=None):
             else:
                 f = form.save(commit=False)
                 f.stu_email = curr_student.email
-                f.activity_name = activity.activity_name
+                f.activity_pk = activity.pk
                 f.save()
                 activity.entries.add(f)
             return HttpResponseRedirect('/activity/' + activity_id)

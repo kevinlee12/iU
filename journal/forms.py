@@ -9,6 +9,8 @@ from django import forms
 class ActivityForm(ModelForm):
     """Form for adding Activities"""
 
+    
+
     class Meta:
         model = Activity
         fields = ['activity_name', 'activity_description', 'activity_type',

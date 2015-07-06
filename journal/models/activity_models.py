@@ -1,34 +1,12 @@
 from django.db import models
+from django.core.validators import RegexValidator
 
-from .users_models import *
+from .entry_models import Entry
+from .users_models import Student
 
-# The following are used for activity and entry logging.
-
-class Entry(models.Model):
-    """Entry object used for journaling"""
-    ENTRY_TYPES = (
-        ('T', 'Text'),
-        ('I', 'Image'),
-        ('V', 'Video'),
-        ('L', 'Link'),
-    )
-    stu_email = models.EmailField()
-    activity_name = models.CharField(max_length=30)
-    last_modified = models.DateTimeField(auto_now=True)
-    created = models.DateTimeField(auto_now_add=True)
-    entry_type = models.CharField(max_length=1, choices=ENTRY_TYPES)
-    entry = models.TextField()
-    # if entry_type == 'T':
-    #     entry = models.TextField()
-    # elif entry_type == 'I':
-    #     entry = models.ImageField()
-    # elif entry_type == 'V':
-    #     entry = models.URLField()  # Web links to Youtube or else where
-    # elif entry_type == 'L':
-    #     entry = models.URLField()  # Web links to Youtube or else where
-
-    def __str__(self):
-        return str(self.last_modified) + ' : ' + self.entry
+# The following contains the Activity model along with the supporting models:
+# - ActivityOptions: Creativity, Action, and Service (from fixtures)
+# - LearningObjectiveOptions: 7 learning objects (from fixtures)
 
 
 class ActivityOptions(models.Model):
@@ -62,6 +40,17 @@ class Activity(models.Model):
 
     activity_type = models.ManyToManyField(ActivityOptions)
     learned_objective = models.ManyToManyField(LearningObjectiveOptions)
+
+    start_date = models.DateField(auto_now_add=True)
+    end_date = models.DateField(auto_now_add=True, blank=True, null=True)
+
+    activity_adviser = models.CharField(max_length=50)
+    advisor_email = models.EmailField(blank=True, null=True)
+    phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$',
+                                 message="Phone number must be entered in the format: \
+                                '+999999999'. Up to 15 digits allowed.")
+    advisor_phone = models.CharField(blank=True, null=True,
+                                     validators=[phone_regex], max_length=15)
 
     entries = models.ManyToManyField(Entry, blank=True)
 
