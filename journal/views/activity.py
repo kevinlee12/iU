@@ -34,17 +34,23 @@ def activities(request):
 
 
 @login_required
-def activity_form(request):
+def activity_form(request, activity_pk=None):
     curr_student = Student.objects.get(email=request.user.email)
+    a = None
+    if activity_pk:
+        a = Activity.objects.get(pk=activity_pk)
     if request.method == 'POST':
-        form = ActivityForm(request.POST)
+        form = ActivityForm(request.POST, instance=a)
         if form.is_valid():
+            if type(a) == Activity:
+                form.save()
+                return HttpResponseRedirect('/activity/' + str(a.id))
             f = form.save(commit=False)
             f.student = curr_student
             f.save()
             return HttpResponseRedirect('/activities')
     else:
-        form = ActivityForm()
+        form = ActivityForm(instance=a)
 
     return render(request, 'journal/activity_form.html',
                   {'form': form, 'student': curr_student.full_name()})

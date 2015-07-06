@@ -16,17 +16,18 @@
 
 {% block 'content' %}
 <body>
-    <h1>Entries Page</h1>
+    <!-- <h1>Entries Page</h1>
     <h2>TODO:</h2>
     <ul>
         <li>Navigation Bar</li>
         <li>Action Bar</li>
         <li>List of journals (see for loop)</li>
-    </ul>
+    </ul> -->
 
-    {{ activity }}
-    <h3> Entries for {{ name }} </h3>
-    <a href="/entry_form/{{ activity_id }}">Click here to add an entry</a>
+    <h2> Entries for {{ name }} </h2>
+    <h4> {{ activity_description}} </h4>
+    <a href="/activity_form/{{ activity_pk }}">Edit the activity</a>
+    <br><a href="/entry_form/{{ activity_id }}">Click here to add an entry</a>
     {% for entry in entries %}
     <ul>
       <li><a href="/entry_form/{{activity_id}}/{{entry.pk}}"> {{ entry.entry }} </a></li>

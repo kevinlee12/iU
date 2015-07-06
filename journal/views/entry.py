@@ -22,6 +22,8 @@ def entries(request, activity_id):
         return render(request, 'journal/error.html')
     return render(request, 'journal/entries.html',
                   {'name': name, 'entries': activity_entries,
+                   'activity_description': activity.activity_description,
+                   'activity_pk': activity.pk,
                    'activity_id': activity.id})
 
 
