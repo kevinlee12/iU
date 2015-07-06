@@ -41,7 +41,7 @@ class Activity(models.Model):
     activity_type = models.ManyToManyField(ActivityOptions)
     learned_objective = models.ManyToManyField(LearningObjectiveOptions)
 
-    start_date = models.DateField(auto_now_add=True)
+    start_date = models.DateField()
     end_date = models.DateField(auto_now_add=True, blank=True, null=True)
 
     activity_adviser = models.CharField(max_length=50)
