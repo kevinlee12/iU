@@ -16,26 +16,66 @@
 
 {% block 'content' %}
 <body>
-    <h1>Main Journaling Page</h1>
-    {% if user and not user.is_anonymous %}
-    Hello {{ user.get_full_name|default:user.username }}!
-    <a href="{% url 'auth:logout' %}?next={{ request.path }}">Logout</a>
-    {% else %}
-    <a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}">Login with Google</a>
-    {% endif %}
-    <h2>TODO:</h2>
-    <ul>
-        <li>Navigation Bar</li>
-        <li>Action Bar</li>
-        <li>List of journals (see for loop)</li>
-    </ul>
+	<nav class="navbar navbar-left">
+    	<div class="container-fluid">
+    	    <div class="navbar-header" >
+	        	<a class="navbar-brand" href=" ">
+    	        	<img src = "{% static 'journal/activities/img/our-logo.jpg' %}"> 
+    	        </a>
+        	</div>
 
-    <h3> Activities </h3>
-    <a href="{% url 'activity_form' %}">Click here to add an activity (login required)</a>
-    {% for activity in activities %}
-    <ul>
-      <li> <a href="/activity/{{activity.id}}"> {{activity}} </a> </li>
-    </ul>
-    {% endfor %}
+        	<div id="welcome-text">
+            	<h3> {% if user and not user.is_anonymous %}
+                	Welcome <br> {{ user.get_full_name|default:user.username }}! <br>
+                	<a href="{% url 'auth:logout' %}?next={{ request.path }}"> <h5>Logout</h5> </a>
+                	{% else %}
+                	<a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}">Login with Google</a>
+                	{% endif %}
+            	</h3>
+            	<h4> Click on the add button <br> 
+             	to create a new journal. <br> 
+             	To edit a journal,<br> 
+             	click on an activity. 
+            	</h4> <br>
+            	<h5> Need Inspiration? </h5>
+        	</div>
+        </div>
+
+  		<div class="collapse navbar-collapse">
+  		</div>
+	</nav>
+
+	<div class="content">
+		<div class="container-fluid">
+    		<div id = "pencil-sign" >
+        		<img src = "{% static 'journal/activities/img/journal_sign.png' %}">   
+    		</div>
+
+    		<div id="activities-list">
+        		<div class = "row">
+            		<div class="col-xs-12 col-md-6 col-lg-4" >
+                		<div id="add-journal-sign activity-box" >
+                    		<a href="{% url 'activity_form' %}"> 
+                    			<img src = "{% static 'journal/activities/img/add_sign.png' %}">
+                    		</a>
+                		</div>
+            		</div>
+
+            		{% for activity in activities %}
+            		<div class="col-xs-12 col-md-6 col-lg-4" >
+                		<a class="thumbnail activity-box" href="/activity/{{activity.id}}"> 
+                    		<div id="activity-name">
+                    			{{activity}} 
+                    		</div>
+							<div id="activity-description">
+                        		{{activity.activity_description}}
+                    		</div>
+                		</a>
+            		</div>
+            		{% endfor %}
+        		</div>
+    		</div>
+    	</div>
+	</div>
 </body>
 {% endblock %}
