@@ -6,7 +6,7 @@ import sys
 setup(name='iU',
     version='0.3',
     description='CAS Management App',
-    author='Kevin Lee, Rodney Ho, Janice Zhao',
+    author='The iU Authors',
     author_email='',
-    url='cas-codestig.rhcloud.com',
+    url='iu-codestig.rhcloud.com',
 )

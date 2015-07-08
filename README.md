@@ -5,52 +5,83 @@ CAS Management
 **Develop:**
 [![Circle CI](https://circleci.com/gh/kevinlee12/iU/tree/develop.svg?style=svg&circle-token=02f06191194ac379a0c4b7244fa361a6a619098a)](https://circleci.com/gh/kevinlee12/iU/tree/develop)
 
-For a hosted version of this app, please click [here](http://cas-codestig.rhcloud.com).
+For a hosted version of this app, please click [here](http://iu-codestig.rhcloud.com).
 
-###Features
+**Hello and welcome!**
 
-- Core journal features: text, images, documents, video(TBD)
-- Gmail, Yahoo, or Windows login
-- Facebook/Twitter Feed Pulls
-- Email reminders
+### What is iU?
 
-###Installation on local machine
+iU is an app written by a group of IB alumni with an interest for helping IB
+students manage their CAS portfolios easier.
 
-1. Install Python 3 (do **not** install Python 2):
+You should (**soon**) expect to find an app that has a full fledged Student and Coordinator interface that allows for Students to efficiently add and/or modify their CAS entries.
 
- - For Macs (with homebrew):
+We aim to have one of the best user interfaces and flows so that Students can focus their efforts on producing the most thoughtful reflections and Coordinators can focus on providing the best guidance to their Students.
 
- -- Install homebrew if you have not already:
- `ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"`
+### Installing
 
- -- Install Python 3 using Brew:
+Please see our [wiki](https://github.com/kevinlee12/iU/wiki/Installing-the-Project-Locally) for details on installing the project.
 
- `brew install python3`
+### Licensing
+   Copyright 2015 The iU Authors
 
- -- Ubuntu systems should have Python 3 preinstalled.
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
 
-2. Clone repo:
- `git clone https://github.com/kevinlee12/iu.git`
+     http://www.apache.org/licenses/LICENSE-2.0
 
-3. Navigate to the cas folder, on Unix/Linux the command is
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
 
- `cd iu`
+   Copyright (c) Django Software Foundation and individual contributors.
+All rights reserved.
 
-4. Start the setup script:
- `bash scripts/begin.sh`
+Redistribution and use in source and binary forms, with or without modification,
+are permitted provided that the following conditions are met:
+    1. Redistributions of source code must retain the above copyright notice,
+       this list of conditions and the following disclaimer.
 
- It will then do some pip installation to ensure all the dependencies are satisfied and modify the default virtualenv to satisfy the requirements of our project.
+    2. Redistributions in binary form must reproduce the above copyright
+       notice, this list of conditions and the following disclaimer in the
+       documentation and/or other materials provided with the distribution.
 
-7. Set up the database:
+    3. Neither the name of Django nor the names of its contributors may be used
+       to endorse or promote products derived from this software without
+       specific prior written permission.
 
- `django-admin manage.py migrate`
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR
+ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
+SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-8. Run the server:
+Copyright (c) 2014 John F Matthew
 
- `django-admin manage.py runserver`
+The MIT License (MIT)
 
- Here the terminal will tell you how to access the website, like http://127.0.0.1:8000/. Copy and paste that link from the terminal into your favorite browser. That's it!
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
 
-10. To close the server:
- - Press CTRL - C on your keyboard
- - Type `deactivate` into the terminal.
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
