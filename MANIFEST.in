@@ -1,0 +1,4 @@
+include LICENSE
+include README.md
+recursive-include journal/static *
+recursive-include journal/templates *

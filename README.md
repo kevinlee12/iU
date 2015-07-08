@@ -23,21 +23,16 @@ We aim to have one of the best user interfaces and flows so that Students can fo
 Please see our [wiki](https://github.com/kevinlee12/iU/wiki/Installing-the-Project-Locally) for details on installing the project.
 
 ### Licensing
-   Copyright 2015 The iU Authors
+The bulk of the project that is authored by The iU Authors is licensed with Apache License, Version 2.0.
+A copy of the license is included in the root directory of the Project. Files that do not explicitly state
+the license are inherited from the original source; if no such source exists, that file will be placed
+under the Apache License, Version 2.0. Copyright will be inherited from their respective sources, unless
+authored by The iU Authors.
 
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
+### Acknowledgements
+The following is an incomplete list of acknowledgements and licensing of the respective authors.
 
-     http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
-
-   Copyright (c) Django Software Foundation and individual contributors.
+Copyright (c) Django Software Foundation and individual contributors.
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification,
