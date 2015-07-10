@@ -31,11 +31,12 @@ def entries(request, activity_id):
     """Function to satify the gathering of entries for a particular activity"""
     try:
         activity = Activity.objects.get(id=activity_id)
+        if activity.student.email != request.user.email:
+            return HttpResponseRedirect('/activities')
         name = activity.activity_name
-        activity_entries = activity.entries.all().order_by('last_modified')\
-                                                 .reverse()
+        activity_entries = activity.entries.all().order_by('created').reverse()
     except ObjectDoesNotExist:
-        return render(request, 'journal/error.html')
+        return HttpResponseRedirect('/activities')
     return render(request, 'journal/entries.html',
                   {'name': name, 'entries': activity_entries,
                    'activity_description': activity.activity_description,
@@ -44,28 +45,34 @@ def entries(request, activity_id):
 
 
 @login_required
-def entry_form(request, activity_id, entry_pk=None):
+def entry_form(request, activity_id, entry_type=None, entry_pk=None):
     """Function that allows the user to add/edit entries"""
     curr_student = Student.objects.get(email=request.user.email)
     activity = Activity.objects.get(id=activity_id)
+    if entry_type is None:  # New form
+        return render(request, 'journal/entry_form.html',
+                      {'activity': activity, 'entry_type': entry_type})
+
     e = None
     if entry_pk:
         e = Entry.objects.get(pk=entry_pk)
     if request.method == 'POST':
-        form = EntryForm(request.POST, instance=e)
+        form = EntryForm(request.POST, request.FILES, instance=e)
         if form.is_valid():
-            if type(e) == Entry:
+            if type(e) == Entry:  # Editing
                 form.save()
-            else:
+            else:  # New
                 f = form.save(commit=False)
                 f.stu_email = curr_student.email
                 f.activity_pk = activity.pk
+                f.entry_type = entry_type
                 f.save()
                 activity.entries.add(f)
-            return HttpResponseRedirect('/activity/' + activity_id)
+        return HttpResponseRedirect('/activity/' + activity_id)
+        # return HttpResponseRedirect('/entry_form/' + str(activity_id) + '/' + entry_type + '/' + str(f.pk))
     else:
-        form = EntryForm(instance=e)
+        form = EntryForm(request.FILES, instance=e)
 
     return render(request, 'journal/entry_form.html',
-                  {'form': form, 'activity_name': activity.activity_name,
-                   'activity_id': activity_id})
+                  {'form': form, 'activity': activity,
+                   'entry_type': entry_type})
