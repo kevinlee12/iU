@@ -23,8 +23,10 @@ urlpatterns = [
     url(r'^welcome/', views.welcome, name='welcome'),
     url(r'^activities/$', views.activities, name='cabinet'),
     url(r'^activity_form/$', views.activity_form, name='activity_form'),
-    url(r'^activity_form/(?P<activity_pk>[0-9]+)/$', views.activity_form, name='activity_form'),
-    url(r'^activity/(?P<activity_id>[0-9]+)/$', views.entries, name='entries'),
+    url(r'^activity_form/(?P<activity_pk>[0-9]+)', views.activity_form, name='activity_form'),
+    url(r'^activity/(?P<activity_id>[0-9]+)', views.entries, name='entries'),
     url(r'^entry_form/(?P<activity_id>[0-9]+)/$', views.entry_form, name='entry_form'),
-    url(r'^entry_form/(?P<activity_id>[0-9]+)/(?P<entry_pk>[0-9]+)', views.entry_form, name='entry_form'),
+    url(r'^entry_form/(?P<activity_id>[0-9]+)/(?P<entry_type>[til])/$', views.entry_form, name='entry_form'),
+    url(r'^entry_form/(?P<activity_id>[0-9]+)/(?P<entry_type>[til])/(?P<entry_pk>[0-9]+)', views.entry_form, name='entry_form'),
+    url(r'^delete_entry/(?P<activity_id>[0-9]+)/(?P<entry_pk>[0-9]+)', views.delete_entry, name='delete_entry'),
 ]

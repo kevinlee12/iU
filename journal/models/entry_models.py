@@ -15,32 +15,32 @@
 # limitations under the License.
 
 from django.db import models
+from django.conf import settings
 
+from django.core.files.storage import FileSystemStorage
 # The following are used for activity and entry logging.
 
+fs = FileSystemStorage(location=settings.MEDIA_ROOT)
+
+def file_name(instance, filename):
+    return instance.pk
 
 class Entry(models.Model):
     """Entry object used for journaling"""
     ENTRY_TYPES = (
-        ('T', 'Text'),
-        ('I', 'Image'),
-        ('V', 'Video'),
-        ('L', 'Link'),
+        ('t', 'Text'),
+        ('i', 'Image'),
+        # ('v', 'Video'),
+        ('l', 'Link'),
     )
     stu_email = models.EmailField()
     activity_pk = models.CharField(max_length=30)
     last_modified = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
     entry_type = models.CharField(max_length=1, choices=ENTRY_TYPES)
-    entry = models.TextField()
-    # if entry_type == 'T':
-    #     entry = models.TextField()
-    # elif entry_type == 'I':
-    #     entry = models.ImageField()
-    # elif entry_type == 'V':
-    #     entry = models.URLField()  # Web links to Youtube or else where
-    # elif entry_type == 'L':
-    #     entry = models.URLField()  # Web links to Youtube or else where
+    text_entry = models.TextField(blank=True)
+    image_entry = models.ImageField(blank=True, upload_to=file_name)
+    link_entry = models.URLField(blank=True)
 
     def __str__(self):
-        return str(self.last_modified) + ' : ' + self.entry
+        return str(self.created) + " : " + (self.text_entry or str(self.image_entry) or str(self.link_entry))

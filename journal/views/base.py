@@ -15,7 +15,7 @@
 # limitations under the License.
 
 # For all of the areas where user would first encounter
-
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
 from datetime import datetime
@@ -23,6 +23,8 @@ from datetime import datetime
 
 def home(request):
     """Function to satisfy the home page"""
+    if request.user and not request.user.is_anonymous:
+        return HttpResponseRedirect('/activities/')
     return render(request, 'journal/home.html',
                   {'request': request, 'user': request.user})
 

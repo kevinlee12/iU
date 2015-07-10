@@ -28,10 +28,14 @@
     <h2><small> {{ activity_description}} </small></h2>
     <a href="/activity_form/{{ activity_pk }}">Edit the activity</a>
     <br><a href="/entry_form/{{ activity_id }}">Click here to add an entry</a>
-    {% for entry in entries %}
-    <ul>
-      <li><a href="/entry_form/{{activity_id}}/{{entry.pk}}"> {{ entry.entry }} </a></li>
-    </ul>
-    {% endfor %}
+    {% if entries %}
+      {% for entry in entries %}
+      <ul>
+        <li><a href="/entry_form/{{ activity_id }}/{{ entry.entry_type }}/{{ entry.pk }}/"> {{ entry }} </a></li>
+      </ul>
+      {% endfor %}
+    {% else %}
+      <h3> No entries yet, would you like to <a href="/entry_form/{{ activity_id }}">add</a> one? </h3>
+    {% endif %}
 </body>
 {% endblock %}

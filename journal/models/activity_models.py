@@ -52,7 +52,7 @@ class Activity(models.Model):
     student = models.ForeignKey(Student)
 
     activity_name = models.CharField(max_length=30)
-    activity_description = models.CharField(max_length=150)
+    activity_description = models.TextField(max_length=150)
 
     activity_type = models.ManyToManyField(ActivityOptions)
     learned_objective = models.ManyToManyField(LearningObjectiveOptions)

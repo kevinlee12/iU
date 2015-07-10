@@ -55,4 +55,4 @@ class EntryForm(ModelForm):
 
     class Meta:
         model = Entry
-        fields = ['entry_type', 'entry']
+        fields = ['text_entry', 'image_entry', 'link_entry']

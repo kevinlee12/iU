@@ -16,7 +16,7 @@
 
 # All things entry related
 from django.shortcuts import render
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, Http404
 
 from journal.models import Student, Activity, Entry
 from journal.forms import EntryForm
@@ -25,6 +25,8 @@ from django.core.exceptions import ObjectDoesNotExist
 
 from django.contrib.auth.decorators import login_required
 
+from django.shortcuts import get_object_or_404
+
 
 @login_required
 def entries(request, activity_id):
@@ -32,6 +34,7 @@ def entries(request, activity_id):
     try:
         activity = Activity.objects.get(id=activity_id)
         if activity.student.email != request.user.email:
+            # Redirect its not the corresponding activity
             return HttpResponseRedirect('/activities')
         name = activity.activity_name
         activity_entries = activity.entries.all().order_by('created').reverse()
@@ -69,10 +72,22 @@ def entry_form(request, activity_id, entry_type=None, entry_pk=None):
                 f.save()
                 activity.entries.add(f)
         return HttpResponseRedirect('/activity/' + activity_id)
-        # return HttpResponseRedirect('/entry_form/' + str(activity_id) + '/' + entry_type + '/' + str(f.pk))
     else:
-        form = EntryForm(request.FILES, instance=e)
+        form = EntryForm(instance=e)
 
     return render(request, 'journal/entry_form.html',
                   {'form': form, 'activity': activity,
-                   'entry_type': entry_type})
+                   'entry_type': entry_type, 'entry_pk': entry_pk})
+
+
+@login_required
+def delete_entry(request, activity_id, entry_pk):
+    activity = get_object_or_404(Activity, id=activity_id)
+    entry = get_object_or_404(Entry, pk=entry_pk)
+    if entry.entry_type == "i":  # If image exists, delete it
+        entry.image_entry.delete()
+    activity.entries.remove(entry)
+    if entry.stu_email != request.user.email:
+        raise Http404()
+    entry.delete()
+    return HttpResponseRedirect('/activity/' + activity_id)
