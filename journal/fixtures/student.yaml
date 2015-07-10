@@ -33,3 +33,15 @@
     personal_code: 'dty332'
     coordinator: 1
     advisor: 1
+
+- model: journal.student
+  pk: 4
+  fields:
+    first_name: 'Student'
+    last_name: 'Test'
+    email: 'stu_test@test.test'
+    school: 1
+    student_id: '3321'
+    personal_code: 'dty312'
+    coordinator: 1
+    advisor: 1

@@ -35,4 +35,5 @@ class ActivitySeleleniumTests(StaticLiveServerTestCase):
 
     def test_activity_page(self):
         """Tests to ensure that the word activityies is present"""
-        self.selenium.find_elements_by_link_text('Activities')
+        image = self.selenium.find_element_by_xpath("//img[@src='/static/journal/activities/img/add_sign.png']")
+        image.click()
