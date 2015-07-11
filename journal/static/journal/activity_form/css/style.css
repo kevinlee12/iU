@@ -1,3 +1,21 @@
+/*TODO: 
+this entire section needs to be 
+wrapped with a boostrap grid. */
+
+body {
+	width:100%;
+	margin:0px;
+	padding:0px;
+}
+
+h3 {
+	text-align: center;
+	color: #05CCCE;
+	margin-bottom: 30px;
+	margin-top: 30px;
+	font-size: 30px;
+}
+
 h4 {
 	color:#05CCCE;
 	text-align: center:;
@@ -10,15 +28,9 @@ li {
 .activity-box {
 	text-align: center;
 	position: relative;
-	left: 33%;
+	left: 27%;
 	color: rgb(128, 128, 128);
-	width: 33%;
-}
-
-.activity-type-box {
-	position: relative;
-	left: 43%;
-	color: rgb(128, 128, 128);
+	width: 45%;
 }
 
 .advisor-box {
@@ -29,17 +41,14 @@ li {
 	color: rgb(128, 128, 128);
 }
 
-.learnojb-box {
-	position: relative;
-	left: 29%;
-	color: rgb(128, 128, 128);
-	overflow: hidden;
-	font-size: 15px;
+.help-block {
+	text-align: center;
+	font-size: 12px;
 }
 
 .row {
 	position: relative;
-	left: 33.65%;
+	left: 18%;
 	color: rgb(128, 128, 128);
 	text-align: center;
 }
@@ -54,28 +63,37 @@ li {
 	font-size: 20px;
 }
 
+#activity-type-box {
+	position: relative;
+	left: 37%;
+	color: rgb(128, 128, 128);
+}
+
 #advisor-info {
 	text-align: center;
 	font-size: 20px;
 }
 
-#header {
-	text-align: center;
-	color: #05CCCE;
-	margin-bottom: 30px;
-	margin-top: 30px;
-	font-size: 30px;
-}
-
-#helpBlock {
-	text-align: center;
-	font-size: 12px;
+#container {
+	width: 600px;
+	margin:0 ;
+	position:relative;
+	left: 25%;
 }
 
 #learning-obj {
 	text-align: center;
 	font-size: 20px;
 }
+
+#learn-obj-box {
+	position: relative;
+	left: 10%;
+	color: rgb(128, 128, 128);
+	overflow: hidden;
+	font-size: 15px;
+}
+
 
 
 
