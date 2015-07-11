@@ -9,15 +9,17 @@
 <link rel="stylesheet" type="text/css" href="{% static 'journal/activity_form/css/style.css' %}">
 {% endblock %}
 
-{% block 'content' %}
+{% block 'content' %}\
+<div class="container">
 <h3 id="header"> Hi {{ student }}! </h3>
 
+<div class="container-fluid">
 <form action="" method="post">
     {% csrf_token %}
     <!-- {{ form.as_p}}
  -->
 
- <div class="ActivityBox">
+ <div class="activity-box">
 	<div class="form-group">
 		<label for="activity_name"> Activity Name: </label>
 		<input class="form-control" type = "text" name="activity_name"/>
@@ -66,56 +68,56 @@
 	<br>
 	<h4> Learning Objectives: </h4>
 	<div class="checkbox">
-		<label> 
+		<label>
 		<input id="learned_objective" type = "checkbox" name="learned_objective"/>
 		Increased their awareness of their own strengths and areas of growth
 		</label>
 	</div>
 
 	<div class="checkbox">
-		<label> 
+		<label>
 		<input id="learned_objective" type = "checkbox" name="learned_objective"/>
 		Undertaken new challenges
 		</label>
 	</div>
 
 	<div class="checkbox">
-		<label> 
+		<label>
 		<input id="learned_objective" type = "checkbox" name="learned_objective"/>
 		Planned and initiated activities
 		</label>
 	</div>
 
 	<div class="checkbox">
-		<label> 
+		<label>
 		<input id="learned_objective" type = "checkbox" name="learned_objective"/>
 		Worked collaboratively with others
 		</label>
 	</div>
 
 	<div class="checkbox">
-		<label> 
+		<label>
 		<input id="learned_objective" type = "checkbox" name="learned_objective"/>
 		Shown perseverance and commitment in their activities
 		</label>
 	</div>
 
 	<div class="checkbox">
-		<label> 
+		<label>
 		<input id="learned_objective" type = "checkbox" name="learned_objective"/>
 		Engaged with issues of global importance
 		</label>
 	</div>
 
 	<div class="checkbox">
-		<label> 
+		<label>
 		<input id="learned_objective" type = "checkbox" name="learned_objective"/>
 		Considered the ethical implications of their actions
 		</label>
 	</div>
 
 	<div class="checkbox">
-		<label> 
+		<label>
 		<input id="learned_objective" type = "checkbox" name="learned_objective"/>
 		Developed new skills
 		</label>
@@ -145,4 +147,6 @@
     <a class="btn btn-default" href="/activities" role="button"> Back </a>
     <input class="btn btn-default" type="submit" value="Submit" />
 </form>
+</div>
+</div>
 {% endblock %}
