@@ -1,14 +1,91 @@
-.form-control {
-	width: 100%;
+h4 {
+	color:#05CCCE;
+	text-align: center:;
+}
+
+li {
+	list-style-type: none;
 }
 
 .activity-box {
 	text-align: center;
-	margin-left: 100px;
-	margin-right: 100px;
+	position: relative;
+	left: 33%;
+	color: rgb(128, 128, 128);
+	width: 33%;
+}
+
+.activity-type-box {
+	position: relative;
+	left: 43%;
+	color: rgb(128, 128, 128);
+}
+
+.advisor-box {
+	position: relative;
+	left: 37.5%;
+	width: 25%;
+	text-align: center;
+	color: rgb(128, 128, 128);
+}
+
+.learnojb-box {
+	position: relative;
+	left: 29%;
+	color: rgb(128, 128, 128);
+	overflow: hidden;
+	font-size: 15px;
+}
+
+.row {
+	position: relative;
+	left: 33.65%;
+	color: rgb(128, 128, 128);
+	text-align: center;
+}
+
+.submit-button {
+	text-align: center;
+	color: rgb(128, 128, 128);
+}
+
+#activity-type {
+	text-align: center;
+	font-size: 20px;
+}
+
+#advisor-info {
+	text-align: center;
+	font-size: 20px;
 }
 
 #header {
 	text-align: center;
 	color: #05CCCE;
+	margin-bottom: 30px;
+	margin-top: 30px;
+	font-size: 30px;
 }
+
+#helpBlock {
+	text-align: center;
+	font-size: 12px;
+}
+
+#learning-obj {
+	text-align: center;
+	font-size: 20px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
