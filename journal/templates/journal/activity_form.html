@@ -1,11 +1,147 @@
 {% extends 'journal/base.html' %}
+{% load staticfiles %}
+
+{% block 'title' %}
+<title>Activity Form </title>
+{% endblock %}
+
+{% block 'page-css' %}
+<link rel="stylesheet" type="text/css" href="{% static 'journal/activity_form/css/style.css' %}">
+{% endblock %}
 
 {% block 'content' %}
-<h3> Hi {{ student }}! </h3>
+<h3 id="header"> Hi {{ student }}! </h3>
 
 <form action="" method="post">
     {% csrf_token %}
-    {{ form.as_p }}
+    <!-- {{ form.as_p}}
+ -->
+
+ <div class="ActivityBox">
+	<div class="form-group">
+		<label for="activity_name"> Activity Name: </label>
+		<input class="form-control" type = "text" name="activity_name"/>
+	</div>
+
+	<div class="form-group">
+		<label for="activity_description"> Activity Description: </label>
+		<textarea class="form-control" rows="3"> </textarea>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-2">
+		<label for="start_date"> Start Date: </label>
+		<input class="form-control" type = "date" name="start_date"/>
+		</div>
+
+	<div class="col-xs-2">
+		<label for="end_date"> End Date: </label>
+		<input class="form-control" type = "date" name="end_date"/>
+	</div>
+	</div>
+</div>
+
+<div class="TypeAndObjectivesBox">
+	<h4> Activity Type: </h4>
+	<div class="checkbox">
+		<label>
+		<input id="activity_type" type="checkbox" name="activity_tyle"/>
+		Creativity
+		</label>
+	</div>
+
+	<div class="checkbox">
+		<label>
+		<input id="activity_type" type="checkbox" name="activity_tyle"/>
+		Action
+		</label>
+	</div>
+
+		<div class="checkbox">
+		<label>
+		<input id="activity_type" type="checkbox" name="activity_tyle"/>
+		Service
+		</label>
+	</div>
+	<br>
+	<h4> Learning Objectives: </h4>
+	<div class="checkbox">
+		<label> 
+		<input id="learned_objective" type = "checkbox" name="learned_objective"/>
+		Increased their awareness of their own strengths and areas of growth
+		</label>
+	</div>
+
+	<div class="checkbox">
+		<label> 
+		<input id="learned_objective" type = "checkbox" name="learned_objective"/>
+		Undertaken new challenges
+		</label>
+	</div>
+
+	<div class="checkbox">
+		<label> 
+		<input id="learned_objective" type = "checkbox" name="learned_objective"/>
+		Planned and initiated activities
+		</label>
+	</div>
+
+	<div class="checkbox">
+		<label> 
+		<input id="learned_objective" type = "checkbox" name="learned_objective"/>
+		Worked collaboratively with others
+		</label>
+	</div>
+
+	<div class="checkbox">
+		<label> 
+		<input id="learned_objective" type = "checkbox" name="learned_objective"/>
+		Shown perseverance and commitment in their activities
+		</label>
+	</div>
+
+	<div class="checkbox">
+		<label> 
+		<input id="learned_objective" type = "checkbox" name="learned_objective"/>
+		Engaged with issues of global importance
+		</label>
+	</div>
+
+	<div class="checkbox">
+		<label> 
+		<input id="learned_objective" type = "checkbox" name="learned_objective"/>
+		Considered the ethical implications of their actions
+		</label>
+	</div>
+
+	<div class="checkbox">
+		<label> 
+		<input id="learned_objective" type = "checkbox" name="learned_objective"/>
+		Developed new skills
+		</label>
+	</div>
+</div>
+<br>
+
+<h4> Advisor's Info: </h4>
+<div class="AdvisorBox">
+	<div class="form-group">
+		<label for="activity_adviser"> Activity Adviser: </label>
+		<input id="activity_adviser" type = "text" name="activity_adviser"/>
+	</div>
+
+
+	<div class="form-group">
+		<label for="advisor_phone"> Advisor Phone: </label>
+		<input id="advisor_phone" type = "text" name="advisor_phone"/>
+	</div>
+
+	<div class="form-group">
+		<label for="advisor_email"> Advisor Email: </label>
+		<input id="advisor_email" type = "email" name="advisor_email"/>
+	</div>
+</div>
+
     <a class="btn btn-default" href="/activities" role="button"> Back </a>
     <input class="btn btn-default" type="submit" value="Submit" />
 </form>
