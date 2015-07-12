@@ -13,13 +13,22 @@
  * limitations under the License.
 */
 
+.navbar {
+  background-color: rgba(0,0,0,0.05);
+  /*background-color: black;*/
+  border-bottom: 0px;
+  color: white;
+  height: 50px;
+}
+
 header {
     position: absolute;
-    width: 95%;
-    padding-left: 10px;
-    line-height: 108px;
-    height: 108px;
-    background-color: rgba(0,0,0,0.1);
+    width: 100%;
+    padding-left: 0px;
+    padding-right: 0px;
+    line-height: 50px;
+    height: 50px;
+    /*background-color: rgba(0,0,0,0.1);*/
     color: #fff;
     z-index: 10;
 
@@ -31,14 +40,15 @@ header {
 #logo {
     float: left;
     font-size: 50px;
-    padding-left: 20px;
+    padding-left: 15px;
 }
 
 #login {
     float: right;
-    font-size: 30px;
+    font-size: 20px;
     right: 80%;
-    padding-right: 50px;
+    padding-right: 100px;
+    color: white;
 }
 
 #logo.sticky {
@@ -46,17 +56,18 @@ header {
     font-size: 24px;
 }
 
-header.sticky {
+.container-fluid.sticky {
     position: fixed;
-    font-size: 24px;
+    font-size: 20px;
     line-height: 48px;
-    height: 48px;
+    height: 50px;
     width: 100%;
-    background-color: yellow;
+    background-color: #05CCCE;
     text-align: left;
     padding-left: 20px;
     padding-right: 150px;
-    color: black;
+    margin-top: 0px;
+    color: white;
 }
 
 
@@ -69,13 +80,13 @@ h2 {
     font-size: 36px;
 }
 
-.container {
-    margin-top: 10px;
+.container-fluid {
+    margin-top: 5px;
     border: none;
 }
 
 .background {
-    background: url(../img/bg.jpg) no-repeat center center fixed;
+    background: url(../img/birdhouse.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -95,8 +106,9 @@ h2 {
 }
 
 #main-title {
-    position: relative;
-    top: 25%;
+    position: absolute;
+    top: 37%;
+    left: 50%;
     color: white;
     z-index: 5;
     text-align: center;
@@ -104,7 +116,7 @@ h2 {
 
 #big {
     font-size: 72px;
-    border-bottom: 1px solid white;
+    border-bottom: 2px solid white;
     display: inline-block;
     overflow: hidden;
 }
@@ -150,6 +162,21 @@ h2 {
 #panel1 {
     height: 1900px;
 }
+
+img {
+  width: 17%;
+}
+
+body {
+  padding-top: 0px;
+}
+
+.nav-links {
+  position: relative;
+  left: 10%;
+}
+
+
 
 
 /*Keyframes. http://www.smashingmagazine.com/2011/05/17/an-introduction-to-css3-keyframe-animations/ */

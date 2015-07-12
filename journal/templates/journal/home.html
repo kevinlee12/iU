@@ -14,17 +14,39 @@
 {% endblock %}
 
 {% block 'content' %}
+
+<nav class="navbar navbar-default navbar-fixed-top">
+<div class="container-fluid">
+<div class="collaps navbar-collapse" id="bs-example-navbar-collapse-1">
 <header>
-    <div id="logo">iU</div>
+    <div id="logo"> <img src="{% static 'journal/home/img/logo3.gif' %}"> iU </div>
+    <div class="nav-links">
+     <ul class="nav navbar-nav">
+        <li><a href="#"> <font color="white"> Welcome</font></a></li>
+    </ul>
+         <ul class="nav navbar-nav">
+        <li><a href="#"> <font color="white"> About Us</font></a></li>
+    </ul>
+         <ul class="nav navbar-nav">
+        <li><a href="#"> <font color="white"> Features</font></a></li>
+    </ul>
+         <ul class="nav navbar-nav">
+        <li><a href="#"> <font color="white"> Contact Us</font></a></li>
+    </ul>
+    </div>
     <div id="login">
         {% if user and not user.is_anonymous %}
         Hello {{ user.get_full_name|default:user.username }}!
         <a href="{% url 'auth:logout' %}?next={{ request.path }}">Logout</a>
         {% else %}
-        <a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}">Login with Google</a>
+        <a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}">
+        <font color="white"> Login </font> </a>
         {% endif %}
     </div>
 </header>
+</div>
+</nav>
+
 
 <body>
     <div id="container">
@@ -33,7 +55,7 @@
                 <div id="big">Welcome</div>
                 <div id="small">to the future of journaling</div>
             </div>
-            <div id="overlay"></div>
+           <!--  <div id="overlay"></div> -->
             <a href="#panel1" id="bouncing-arrow">
                 <i class="fa fa-chevron-down"></i>
             </a>
