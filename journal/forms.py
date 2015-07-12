@@ -37,7 +37,7 @@ class ActivityForm(ModelForm):
         model = Activity
         fields = ['activity_name', 'activity_description', 'activity_type',
                   'learned_objective', 'start_date', 'end_date',
-                  'activity_adviser', 'advisor_phone', 'advisor_phone']
+                  'activity_adviser', 'advisor_phone', 'advisor_email']
 
     def __init__(self, *args, **kwargs):
         super(ActivityForm, self).__init__(*args, **kwargs)
