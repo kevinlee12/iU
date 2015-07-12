@@ -61,10 +61,11 @@ def activity_form(request, activity_pk=None):
             if type(a) == Activity:
                 form.save()
                 return HttpResponseRedirect('/activity/' + str(a.id))
-            f = form.save(commit=False)
-            f.student = curr_student
-            f.save()
-            return HttpResponseRedirect('/activities')
+            else:
+                f = form.save(commit=False)
+                f.student = curr_student
+                f.save()
+                return HttpResponseRedirect('/activities')
     else:
         form = ActivityForm(instance=a)
 

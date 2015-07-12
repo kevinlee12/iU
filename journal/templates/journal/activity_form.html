@@ -39,7 +39,7 @@
 
 				<div class="col-xs-4 col-md-4 col-lg-4">
 					<label for="end_date"> End Date: </label>
-					<input class="form-control" type="date" name="{{form.end_date.name}}" value="{{form.end_date.value}}"/>
+					<input class="form-control" type="date" name="{{form.end_date.name}}" min="{{ form.start_date.value }}" value="{{form.end_date.value}}"/>
 				</div>
 			</div>
 			<br>
@@ -66,7 +66,7 @@
 					<label for="advisor_phone"> Advisor Phone: </label>
 					<input class="form-control" type="tel" name="{{form.advisor_phone.name}}" value="{% if form.advisor_phone.value %}{{form.advisor_phone.value}}{% endif %}" />
 				</div>
-				
+
 				<div class="form-group">
 					<label for="advisor_email"> Advisor Email: </label>
 					<input class="form-control" type="email" name="{{form.advisor_email.name}}" value="{% if form.advisor_email.value %}{{form.advisor_email.value}}{% endif %}"/>
@@ -76,8 +76,8 @@
 
 			<div class="submit-button">
     			<a class="btn btn-default" href="/activities" role="button"> Back </a>
-    			<input class="btn btn-default" type="submit" value="Submit" /> 
-    		</div
+    			<input class="btn btn-success" type="submit" value="Submit" />
+    	</div>
 		</form>
 	</div>
 </body>

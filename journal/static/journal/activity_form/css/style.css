@@ -1,10 +1,10 @@
-/*TODO: 
-this entire section needs to be 
+/*TODO:
+this entire section needs to be
 wrapped with a boostrap grid. */
 
 body {
-	margin:0px;
-	padding:0px;
+	margin: 0px;
+	padding: 0px;
 }
 
 h3 {
@@ -16,8 +16,8 @@ h3 {
 }
 
 h4 {
-	color:#05CCCE;
-	text-align: center:;
+	color: #05CCCE;
+	text-align: center;
 }
 
 li {
@@ -92,17 +92,3 @@ li {
 	overflow: hidden;
 	font-size: 15px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
