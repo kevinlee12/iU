@@ -65,6 +65,7 @@ def activity_form(request, activity_pk=None):
                 f = form.save(commit=False)
                 f.student = curr_student
                 f.save()
+                form.save()
                 return HttpResponseRedirect('/activities')
     else:
         form = ActivityForm(instance=a)

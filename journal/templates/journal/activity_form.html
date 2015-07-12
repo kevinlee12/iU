@@ -22,7 +22,7 @@
 			<div class="activity-box">
 				<div class="form-group">
 					<label for="activity_name"> Activity Name: </label>
-					<input class="form-control" type="text" name="{{form.activity_name.name}}" value="{% if form.activity_name.value %}{{ form.activity_name.value }}{% endif %}" required/>
+					<input class="form-control" type="text" name="{{form.activity_name.name}}" value="{% if form.activity_name.value %}{{ form.activity_name.value }}{% endif %}" required>
 				</div>
 
 				<div class="form-group">
@@ -34,12 +34,12 @@
 			<div class="row">
 				<div class="col-xs-4 col-md-4 col-lg-4">
 					<label for="start_date"> Start Date: </label>
-					<input class="form-control" type="date" name="{{form.start_date.name}}" value="{{form.start_date.value}}" required/>
+					<input class="form-control" type="date" name="{{form.start_date.name}}" value="{{form.start_date.value}}" required>
 				</div>
 
 				<div class="col-xs-4 col-md-4 col-lg-4">
 					<label for="end_date"> End Date: </label>
-					<input class="form-control" type="date" name="{{form.end_date.name}}" min="{{ form.start_date.value }}" value="{{form.end_date.value}}"/>
+					<input class="form-control" type="date" name="{{ form.end_date.name }}" min="{{ form.start_date.value }}" value="{{form.end_date.value}}">
 				</div>
 			</div>
 			<br>
@@ -59,17 +59,17 @@
 			<div class="advisor-box">
 				<div class="form-group">
 					<label for="activity_adviser"> Activity Adviser: </label>
-					<input class="form-control" type="text" name="{{form.activity_adviser.name}}" value="{% if form.activity_adviser.value %}{{form.activity_adviser.value}}{% endif %}" />
+					<input class="form-control" type="text" name="{{form.activity_adviser.name}}" value="{% if form.activity_adviser.value %}{{form.activity_adviser.value}}{% endif %}">
 				</div>
 
 				<div class="form-group">
 					<label for="advisor_phone"> Advisor Phone: </label>
-					<input class="form-control" type="tel" name="{{form.advisor_phone.name}}" value="{% if form.advisor_phone.value %}{{form.advisor_phone.value}}{% endif %}" />
+					<input class="form-control" type="tel" name="{{form.advisor_phone.name}}" value="{% if form.advisor_phone.value %}{{form.advisor_phone.value}}{% endif %}">
 				</div>
 
 				<div class="form-group">
 					<label for="advisor_email"> Advisor Email: </label>
-					<input class="form-control" type="email" name="{{form.advisor_email.name}}" value="{% if form.advisor_email.value %}{{form.advisor_email.value}}{% endif %}"/>
+					<input class="form-control" type="email" name="{{form.advisor_email.name}}" value="{% if form.advisor_email.value %}{{form.advisor_email.value}}{% endif %}">
 				</div>
 			</div>
 			<br>
