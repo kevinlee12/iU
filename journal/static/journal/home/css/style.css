@@ -13,13 +13,20 @@
  * limitations under the License.
 */
 
-/*.navbar {
+nav.navbar.navbar-default {
   background-color: rgba(0,0,0,0.05);
-  background-color: black;
-  border-bottom: 0px;
+  padding-bottom: 0px;
+  margin-bottom: 30px;
+  border-bottom: 0px ;
   color: white;
-  height: 10px;
-}*/
+}
+
+.container-fluid {
+    margin-top: 0px;
+    border: none;
+    color: white;
+    z-index:10;
+}
 
 .navbar-header {
   width: 100%;
@@ -32,12 +39,29 @@
   float: left;
 }
 
-nav.navbar.navbar-default {
-  background-color: rgba(0,0,0,0.05);
-  padding-bottom: 0px;
-  margin-bottom: 30px;
-  border-bottom: 0px ;
-  color: white;
+#logo {
+    float: left;
+    font-size: 40px;
+    padding-left: 15px;
+    color: white;
+    width: 10%;
+    height: 10%;
+    display: inline-block;
+    vertical-align: baseline;
+    white-space: nowrap;
+}
+
+a.navbar-brand {
+  width: 100%;
+  vertical-align: baseline;
+  display: inline-block;
+  white-space: nowrap;
+  float: left;
+  font-size: 30px;
+}
+
+.navbar-nav a {
+  font-size: 19px;
 }
 
 .navbar-default .navbar-brand {
@@ -48,59 +72,30 @@ nav.navbar.navbar-default {
   color: white;
 }
 
-
-/*header {
-    position: absolute;
-    width: 100%;
-    padding-left: 0px;
-    padding-right: 0px;
-    line-height: 50px;
-    height: 50px;
-    background-color: rgba(0,0,0,0.1);
-    color: #fff;
-    z-index: 10;
-
-     /*set animation
-    -webkit-transition: all 0.4s ease;
-    transition: all 0.4s ease;
-}*/
-a.navbar-brand {
-  width: 100%;
-  vertical-align: baseline;
+.navbar-brand img {
   display: inline-block;
-  white-space: nowrap;
-  float: left;
+  width: 53%;
 }
 
-#logo {
-    float: left;
-    font-size: 50px;
-    padding-left: 15px;
-    color: white;
-    width: 10%;
-    height: 10%;
-    display: inline-block;
-    vertical-align: baseline;
-    white-space: nowrap;
-}
+/*NOTE: will come back to this later*/
 
-#login {
+/*#login {
     float: right;
     font-size: 20px;
     right: 80%;
     padding-right: 100px;
     color: white;
     text-align: right;
-}
+}*/
 
 #logo.sticky {
     float: left;
-    font-size: 24px;
+    font-size: 28px;
 }
 
 .container-fluid.sticky {
     position: fixed;
-    font-size: 15px;
+    font-size: 24px;
     line-height: 48px;
     height: 52px;
     width: 100%;
@@ -122,13 +117,6 @@ h2 {
     font-size: 36px;
 }
 
-.container-fluid {
-    margin-top: 0px;
-    border: none;
-    color: white;
-    z-index:10;
-}
-
 .background {
     background: url(../img/birdhouse.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
@@ -140,7 +128,7 @@ h2 {
 }
 
 #overlay {
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.2);
     position: absolute;
     z-index: 1;
     top: 0;
@@ -156,12 +144,6 @@ h2 {
     color: white;
     z-index: 5;
     text-align: center;
-    /* Small devices (tablets, 768px and up) */
-    @media (min-width: 768px) {
-      #main-title {
-        text-align: justify;
-      }
-    }
 }
 
 #big {
@@ -174,15 +156,6 @@ h2 {
 #small {
     font-size: 36px;
     overflow: hidden;
-}
-
-#greeter {
-    text-align: center;
-    position: relative;
-    color: white;
-    font-size: 50px;
-    overflow: hidden;
-    z-index: 5;
 }
 
 #bouncing-arrow {
@@ -200,13 +173,6 @@ h2 {
   -o-animation: bounce 2s infinite;
   -webkit-animation: bounce 2s infinite;
   animation: bounce 2s infinite;
-}
-
-#categorization-rule {
-    position: relative;
-    font-size: 20px;
-    text-align: center;
-    top: 12%;
 }
 
 #about-us {
@@ -235,32 +201,17 @@ section {
 
 h2 {
     text-align: center;
-    border-bottom: 1px solid white;
+    border-bottom: 2px solid rgba(74,74,74,0.12);
     border-width: 30%;
     color: #05CCCE;
     display: inline-block;
 }
 
-img {
-  width: 45%;
-  display: inline-block;
-}
-
 body {
   padding-top: 0px;
   margin-top: 0%;
-  background-color: rgba(0,0,0,0.1);
   color: white;
-
 }
-
-.nav-links {
-  position: relative;
-  left: 10%;
-}
-
-
-
 
 /*Keyframes. http://www.smashingmagazine.com/2011/05/17/an-introduction-to-css3-keyframe-animations/ */
 @keyframes bounce {
