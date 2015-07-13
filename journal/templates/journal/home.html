@@ -14,17 +14,36 @@
 {% endblock %}
 
 {% block 'content' %}
-<header>
-    <div id="logo">iU</div>
-    <div id="login">
-        {% if user and not user.is_anonymous %}
-        Hello {{ user.get_full_name|default:user.username }}!
-        <a href="{% url 'auth:logout' %}?next={{ request.path }}">Logout</a>
-        {% else %}
-        <a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}">Login with Google</a>
-        {% endif %}
+
+<nav class="navbar navbar-default navbar-fixed-top">
+	<div class="container-fluid">
+		<div class="navbar-header">
+      		<div id="logo"> 
+      			<a class="navbar-brand" href=" "> <img src="{% static 'journal/home/img/logo3.gif' %}"> iU </a> 
+      		</div>
+
+      		 <!-- Collect the nav links, forms, and other content for toggling -->
+    		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      			<ul class="nav navbar-nav">
+        			<li><a href="#about-us">About</a></li>
+        			<li><a href="#features">Features</a></li>
+        			<li><a href="#interest">Interested?</a></li>
+        			<li><a href="#contact-us">Chat with us</a></li>
+    				<li> 
+    				{% if user and not user.is_anonymous %}
+        			Hello {{ user.get_full_name|default:user.username }}!
+        			<a href="{% url 'auth:logout' %}?next={{ request.path }}">Logout</a>
+        			{% else %}
+        			<a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}">
+        		 	Login </a>
+       				{% endif %}
+       				</li>
+       			</ul>
+       		</div>
+       	</div>
     </div>
-</header>
+</nav>
+
 
 <body>
     <div id="container">
@@ -34,17 +53,25 @@
                 <div id="small">to the future of journaling</div>
             </div>
             <div id="overlay"></div>
-            <a href="#panel1" id="bouncing-arrow">
+            <a href="#about-us" id="bouncing-arrow">
                 <i class="fa fa-chevron-down"></i>
             </a>
         </div>
         <div id="content panel">
-            <section id="panel1">
-                <h2>More Stuff</h2>
-                <div id="categorization-rule">
-                    JZ, I'm going to leave it more or less like this, the rest is yours :)
-                </div>
+            <section id="about-us">
+                <h2>About Us</h2>
+            </section>
 
+            <section id="features">
+            	<h2> Features </h2>
+            </section>
+
+            <section id="interest">
+            	<h2> Interested? </h2>
+            </section>
+            
+            <section id="contact-us">
+            	<h2> Chat With Us </h2>
             </section>
         </div>
     </div>
