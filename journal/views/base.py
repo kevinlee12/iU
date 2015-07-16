@@ -18,8 +18,11 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
+from journal.models import Users
+
 from datetime import datetime
 
+from django.core.exceptions import ObjectDoesNotExist
 
 def home(request):
     """Function to satisfy the home page"""
@@ -27,6 +30,18 @@ def home(request):
         return HttpResponseRedirect('/activities/')
     return render(request, 'journal/home.html',
                   {'request': request, 'user': request.user})
+
+def login_redirects(request):
+    """Function that redirects users appropriately after login"""
+    try:
+        user = Users.objects.get(email=request.user.email)
+    except ObjectDoesNotExist:
+        return HttpResponseRedirect('/activities')
+    if user.user_type == 'S':
+        return HttpResponseRedirect('/activities')
+    elif user.user_type == 'C':
+        return HttpResponseRedirect('/students')
+    return home(request)
 
 
 def welcome(request):

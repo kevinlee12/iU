@@ -5,3 +5,15 @@
     last_name: 'IB'
     email: 'coor@ibcoor.com'
     school: 1
+    students: [1, 2, 3, 4]
+    advisors: [1, 2]
+
+- model: journal.coordinator
+  pk: 2
+  fields:
+    first_name: 'Kevin'
+    last_name: 'Lee'
+    email: 'leekevin@berkeley.edu'
+    school: 1
+    students: [1, 2, 3, 4]
+    advisors: [1, 2]
