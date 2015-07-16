@@ -47,7 +47,7 @@ def activities(request):
                 msg = 'No Activities for %s!' % user.get_full_name()
                 stored_activities = [msg]
     return render(request, 'journal/activities.html',
-                  {'activities': stored_activities, 'student': student})
+                  {'activities': stored_activities, 'is_student': is_student})
 
 
 @login_required
@@ -72,4 +72,4 @@ def activity_form(request, activity_pk=None):
         form = ActivityForm(instance=a)
 
     return render(request, 'journal/activity_form.html',
-                  {'form': form, 'student': curr_student.full_name()})
+                  {'form': form, 'student': curr_student})

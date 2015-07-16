@@ -34,4 +34,5 @@ urlpatterns = [
     url(r'^student_registration/$', views.student_registration, name='student_registration'),
     url(r'^student_registration/(?P<student_pk>[0-9]+)/', views.student_registration, name='student_registration'),
     url(r'^student_activities/(?P<student_pk>[0-9]+)/', views.student_activities, name='student_activities'),
+    url(r'^student_entries/(?P<student_pk>[0-9]+)/(?P<activity_pk>[0-9]+)', views.student_entries, name='student_entries'),
 ]

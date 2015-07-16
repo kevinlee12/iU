@@ -27,11 +27,14 @@
     <h2> Entries for {{ name }} </h2>
     <h2><small> {{ activity_description}} </small></h2>
     <h3><small> {{ activity_start }} -- {{ activity_end }} </small></h2>
+    {% if is_student %}
     <a href="/activity_form/{{ activity_pk }}">Edit the activity</a>
-    <br><a href="/entry_form/{{ activity_id }}">Click here to add an entry</a>
+    <br><a href="/entry_form/{{ activity_id }}/t/">Click here to add an entry</a>
+    {% endif %}
     {% if entries %}
       {% for entry in entries %}
       <ul>
+        <!-- TODO: Coordinators commentor's interface -->
         <li><a href="/entry_form/{{ activity_id }}/{{ entry.entry_type }}/{{ entry.pk }}/"> {{ entry }} </a></li>
       </ul>
       {% endfor %}

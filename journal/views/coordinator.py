@@ -68,16 +68,36 @@ def student_registration(request, student_pk=None):
     return render(request, 'journal/student_registration_form.html',
                   {'form': form, 'coordinator': curr_coordinator})
 
+def coordinator_check(request, student):
+    """Used for ensuring that coordinators are matched with the right students"""
+    curr_coordinator = Coordinator.objects.get(email=request.user.email)
+    if student.stu_coordinator != curr_coordinator != curr_coordinator.pk:
+        return render(request, 'journal/error.html')
+    return  # Check is good
+
 
 @login_required
 def student_activities(request, student_pk):
-    curr_coordinator = Coordinator.objects.get(email=request.user.email)
     student = Student.objects.get(pk=student_pk)
-    if student.stu_coordinator != curr_coordinator.pk:
-        return render(request, 'journal/error.html')
-
-    is_student = False
+    # coordinator_check(request, student)
     stored_activities = Activity.objects.all().filter(student=student)\
         .order_by('activity_name').reverse()
     return render(request, 'journal/activities.html',
-                  {'activities': stored_activities, 'student': is_student})
+                  {'activities': stored_activities, 'student_pk': student.pk,
+                   'is_student': False})
+
+
+@login_required
+def student_entries(request, student_pk, activity_pk):
+    student = Student.objects.get(pk=student_pk)
+    coordinator_check(request, student)
+    activity = Activity.objects.get(pk=activity_pk)
+    activity_entries = activity.entries.all().order_by('created').reverse()
+    name = activity.activity_name
+    return render(request, 'journal/entries.html',
+                  {'name': name, 'entries': activity_entries,
+                   'activity_description': activity.activity_description,
+                   'activity_pk': activity.pk, 'activity_id': activity.id,
+                   'activity_start': activity.start_date,
+                   'activity_end': activity.end_date or "Ongoing",
+                   'is_student': False})

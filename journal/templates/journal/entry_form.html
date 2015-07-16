@@ -19,14 +19,14 @@
   </ul>
 </h4>
 
-{% if not entry_type %}
 <div>
   <h3> What is your entry type? </h3>
-  <a class="btn btn-default" href="/entry_form/{{ activity.id }}/t"> Text </a>
-  <a class="btn btn-default" href="/entry_form/{{ activity.id }}/i"> Image </a>
-  <a class="btn btn-default" href="/entry_form/{{ activity.id }}/l"> Link </a>
+  <ul class="nav nav-tabs">
+    <li role="presentation" {% if entry_type == "t" %}class="active"{% endif %}><a class="btn btn-default" href="/entry_form/{{ activity.id }}/t/{% if entry_pk %}{{entry_pk}}{% endif %}"> Text </a></li>
+    <li role="presentation" {% if entry_type == "i" %}class="active"{% endif %}><a class="btn btn-default" href="/entry_form/{{ activity.id }}/i/{% if entry_pk %}{{entry_pk}}{% endif %}"> Image </a></li>
+    <li role="presentation" {% if entry_type == "l" %}class="active"{% endif %}><a class="btn btn-default" href="/entry_form/{{ activity.id }}/l/{% if entry_pk %}{{entry_pk}}{% endif %}"> Link </a></li>
+  <ul>
 <div>
-{% endif %}
 
 <form action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
@@ -37,7 +37,7 @@
     {% elif entry_type == "i" %}
       <div class="form-group">
         {{ form.image_entry }}
-        <!-- <input type="file" class="form-control" accept="image/*"
+        <!-- TODO: <input type="file" class="form-control" accept="image/*"
                name="{{ form.image_entry.name }}"
                value="{{ form.image_entry.value }}" required> -->
       </div>

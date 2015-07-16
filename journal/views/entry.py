@@ -45,7 +45,8 @@ def entries(request, activity_id):
                    'activity_description': activity.activity_description,
                    'activity_pk': activity.pk, 'activity_id': activity.id,
                    'activity_start': activity.start_date,
-                   'activity_end': activity.end_date or "Ongoing"})
+                   'activity_end': activity.end_date or 'Ongoing',
+                   'is_student': True})
 
 
 @login_required
