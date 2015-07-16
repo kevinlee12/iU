@@ -28,9 +28,17 @@ nav.navbar.navbar-default {
     z-index:10;
 }
 
+.container-fluid.sticky {
+    position: fixed;
+    width: 100%;
+    background-color: #05CCCE;
+    color: white;
+    transition: background-color 2s ease 0s;
+}
+
 .navbar-header {
   width: 100%;
-  height: 20%;
+  height: 30%;
   border-bottom: 0px ;
   color: white;
   display: inline-block;
@@ -49,6 +57,11 @@ nav.navbar.navbar-default {
     display: inline-block;
     vertical-align: baseline;
     white-space: nowrap;
+}
+
+#logo.sticky {
+    float: left;
+    font-size: 40px;
 }
 
 a.navbar-brand {
@@ -74,38 +87,10 @@ a.navbar-brand {
 
 .navbar-brand img {
   display: inline-block;
-  width: 53%;
+  width: 33px;
+  height: 33px;
 }
 
-/*NOTE: will come back to this later*/
-
-/*#login {
-    float: right;
-    font-size: 20px;
-    right: 80%;
-    padding-right: 100px;
-    color: white;
-    text-align: right;
-}*/
-
-#logo.sticky {
-    float: left;
-    font-size: 28px;
-}
-
-.container-fluid.sticky {
-    position: fixed;
-    font-size: 24px;
-    line-height: 48px;
-    height: 52px;
-    width: 100%;
-    background-color: #05CCCE;
-    text-align: left;
-    padding-left: 20px;
-    padding-right: 150px;
-    margin-top: 0px;
-    color: white;
-}
 
 h2 {
     top: 10%;
