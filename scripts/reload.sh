@@ -45,12 +45,12 @@ echo "...done"
 echo "Loading the databases with data"
 echo "Loading school data"
 python manage.py loaddata school
-echo "Loading coordinator data"
-python manage.py loaddata coordinator
-echo "Loading advisor data"
-python manage.py loaddata advisor
 echo "Loading student data"
 python manage.py loaddata student
+echo "Loading advisor data"
+python manage.py loaddata advisor
+echo "Loading coordinator data"
+python manage.py loaddata coordinator
 echo "Loading users data"
 python manage.py loaddata users
 echo "Loading activityoptions data"

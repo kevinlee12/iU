@@ -14,14 +14,24 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# TODO: Split this file
+
 from django.forms import ModelForm
 from journal.models import Activity, ActivityOptions, LearningObjectiveOptions
 from journal.models import Entry
+from journal.models import Student
 from django.forms.widgets import CheckboxSelectMultiple
 
 from django import forms
 
 import datetime
+
+class StudentRegistrationForm(ModelForm):
+    """Form for handling student registration"""
+    class Meta:
+        model = Student
+        fields = ['first_name', 'last_name', 'email', 'student_id',
+                  'personal_code', 'stu_advisor']
 
 
 class ActivityForm(ModelForm):

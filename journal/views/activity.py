@@ -14,7 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# For all things activity related (with the exception of entries)
+# For all things activity related (with the exception of entries) for students.
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 
@@ -28,9 +28,9 @@ from django.contrib.auth.decorators import login_required
 
 def activities(request):
     """Function for the main activities page, login is not required"""
-    stored_activities = ['Welcome to the activities page!',
-                         'You will need to be logged in to continue.']
+    stored_activities = []
     user = request.user
+    is_student = False
     if user.is_authenticated():
         try:
             auth_user_type = Users.objects.get(email=user.email).user_type
@@ -42,11 +42,12 @@ def activities(request):
             student = Student.objects.get(email=user.email)
             stored_activities = Activity.objects.all().filter(student=student)\
                 .order_by('activity_name').reverse()
+            is_student = True
             if len(stored_activities) == 0:
                 msg = 'No Activities for %s!' % user.get_full_name()
                 stored_activities = [msg]
     return render(request, 'journal/activities.html',
-                  {'activities': stored_activities})
+                  {'activities': stored_activities, 'student': student})
 
 
 @login_required
