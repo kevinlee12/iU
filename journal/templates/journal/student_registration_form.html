@@ -1,0 +1,26 @@
+{% extends 'journal/base.html' %}
+{% load staticfiles %}
+
+{% block 'title' %}
+<title>Student Registration Form </title>
+{% endblock %}
+
+{% block 'page-css' %}
+{% endblock %}
+
+{% block 'page-js' %}
+{% endblock %}
+
+{% block 'content' %}
+<body>
+	<div id="container">
+		<h3> Hi {{ coordinator }}! </h3>
+		<form action="" method="post">
+    		{% csrf_token %}
+				{{ form.as_p }}
+				<a class="btn btn-default" href="/students" role="button"> Back </a>
+				<input class="btn btn-success" type="submit" value="Submit" />
+		</form>
+	</div>
+</body>
+{% endblock %}

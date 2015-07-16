@@ -25,3 +25,4 @@
 from .activity import *
 from .base import *
 from .entry import *
+from .coordinator import *

@@ -18,8 +18,8 @@
 <nav class="navbar navbar-default navbar-fixed-top">
 	<div class="container-fluid">
 		<div class="navbar-header">
-      		<div id="logo"> 
-      			<a class="navbar-brand" href=" "> <img src="{% static 'journal/home/img/logo3.gif' %}"> iU </a> 
+      		<div id="logo">
+      			<a class="navbar-brand" href=" "> <img src="{% static 'journal/home/img/logo3.gif' %}"> iU </a>
       		</div>
 
       		 <!-- Collect the nav links, forms, and other content for toggling -->
@@ -29,12 +29,12 @@
         			<li><a href="#features">Features</a></li>
         			<li><a href="#interest">Interested?</a></li>
         			<li><a href="#contact-us">Chat with us</a></li>
-    				<li> 
+    				<li>
     				{% if user and not user.is_anonymous %}
         			Hello {{ user.get_full_name|default:user.username }}!
         			<a href="{% url 'auth:logout' %}?next={{ request.path }}">Logout</a>
         			{% else %}
-        			<a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}">
+        			<a href="{% url 'social:begin' 'google-oauth2' %}">
         		 	Login </a>
        				{% endif %}
        				</li>
@@ -69,7 +69,7 @@
             <section id="interest">
             	<h2> Interested? </h2>
             </section>
-            
+
             <section id="contact-us">
             	<h2> Chat With Us </h2>
             </section>

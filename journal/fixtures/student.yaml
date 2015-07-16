@@ -7,8 +7,8 @@
     school: 1
     student_id: '1234'
     personal_code: 'dty123'
-    coordinator: 1
-    advisor: 1
+    stu_coordinator: 2
+    stu_advisor: 1
 
 - model: journal.student
   pk: 2
@@ -19,8 +19,8 @@
     school: 1
     student_id: '2345'
     personal_code: 'dty321'
-    coordinator: 1
-    advisor: 1
+    stu_coordinator: 2
+    stu_advisor: 1
 
 - model: journal.student
   pk: 3
@@ -31,8 +31,8 @@
     school: 1
     student_id: '3456'
     personal_code: 'dty332'
-    coordinator: 1
-    advisor: 1
+    stu_coordinator: 2
+    stu_advisor: 1
 
 - model: journal.student
   pk: 4
@@ -43,5 +43,5 @@
     school: 1
     student_id: '3321'
     personal_code: 'dty312'
-    coordinator: 1
-    advisor: 1
+    stu_coordinator: 2
+    stu_advisor: 1

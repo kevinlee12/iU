@@ -20,6 +20,7 @@ from . import views
 
 urlpatterns = [
     url(r'^$', views.home, name='home'),
+    url(r'^login_redirects/', views.login_redirects, name='login_redirects'),
     url(r'^welcome/', views.welcome, name='welcome'),
     url(r'^activities/$', views.activities, name='cabinet'),
     url(r'^activity_form/$', views.activity_form, name='activity_form'),
@@ -29,4 +30,8 @@ urlpatterns = [
     url(r'^entry_form/(?P<activity_id>[0-9]+)/(?P<entry_type>[til])/$', views.entry_form, name='entry_form'),
     url(r'^entry_form/(?P<activity_id>[0-9]+)/(?P<entry_type>[til])/(?P<entry_pk>[0-9]+)', views.entry_form, name='entry_form'),
     url(r'^delete_entry/(?P<activity_id>[0-9]+)/(?P<entry_pk>[0-9]+)', views.delete_entry, name='delete_entry'),
+    url(r'^students/', views.coordinator, name='students'),
+    url(r'^student_registration/$', views.student_registration, name='student_registration'),
+    url(r'^student_registration/(?P<student_pk>[0-9]+)/', views.student_registration, name='student_registration'),
+    url(r'^student_activities/(?P<student_pk>[0-9]+)/', views.student_activities, name='student_activities'),
 ]

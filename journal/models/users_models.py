@@ -52,24 +52,32 @@ class Person(models.Model):
     class Meta:
         abstract = True
 
-    def full_name(self):
+    def __str__(self):
         return self.first_name + ' ' + self.last_name
 
     def user_email(self):
         return self.email
 
 
-class Coordinator(Person):
-    """Coordinator object that inherits from Person"""
-
-
-class Advisor(Person):
-    """Advisor object that inherits from Person"""
-
-
 class Student(Person):
     """Student object that inherits from Person"""
     student_id = models.CharField(max_length=4)  # Max number of digits is 4
     personal_code = models.CharField(max_length=7)
-    coordinator = models.ForeignKey(Coordinator)
-    advisor = models.ForeignKey(Advisor)
+    stu_coordinator = models.IntegerField()  # Use coordinator pk
+    stu_advisor = models.IntegerField()  # User coordinator pk
+
+
+class IBAdmin(Person):
+    students = models.ManyToManyField(Student, blank=True)
+
+    class Meta:
+        abstract = True
+
+
+class Advisor(IBAdmin):
+    """Advisor object that inherits from Person"""
+
+
+class Coordinator(IBAdmin):
+    """Coordinator object that inherits from Person"""
+    advisors = models.ManyToManyField(Advisor)
