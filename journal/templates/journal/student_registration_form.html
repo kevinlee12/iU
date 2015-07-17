@@ -1,4 +1,4 @@
-{% extends 'journal/base.html' %}
+{% extends 'journal/base_user.html' %}
 {% load staticfiles %}
 
 {% block 'title' %}
@@ -11,7 +11,10 @@
 {% block 'page-js' %}
 {% endblock %}
 
-{% block 'content' %}
+{% block 'nav-content' %}
+{% endblock %}
+
+{% block 'main-content' %}
 <body>
 	<div id="container">
 		<h3> Hi {{ coordinator }}! </h3>

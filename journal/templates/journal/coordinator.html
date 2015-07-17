@@ -1,4 +1,4 @@
-{% extends 'journal/base.html' %}
+{% extends 'journal/base_user.html' %}
 {% load staticfiles %}
 
 
@@ -14,19 +14,20 @@
 <!-- <script src="{% static 'journal/entries/js/main.js' %}"></script> -->
 {% endblock %}
 
-{% block 'content' %}
-<body>
-    <h2> Students </h2>
-    <a href="/student_registration/">Click here to register a student</a>
-    {% if students %}
-      {% for student in students %}
-      <ul>
-        <li><a href="/student_activities/{{student.pk}}"> {{ student }} </a>
-          <small><a href="/student_registration/{{student.pk}}"> edit </small></a></li>
-      </ul>
-      {% endfor %}
-    {% else %}
-      <h3> No students yet, would you like to <a href="/student_registration/">register</a> them? </h3>
-    {% endif %}
-</body>
+{% block 'nav-content' %}
+{% endblock %}
+
+{% block 'main-content' %}
+<h2> Students </h2>
+<a href="/student_registration/">Click here to register a student</a>
+{% if students %}
+  {% for student in students %}
+  <ul>
+    <li><a href="/student_activities/{{student.pk}}"> {{ student }} </a>
+      <small><a href="/student_registration/{{student.pk}}"> edit </small></a></li>
+  </ul>
+  {% endfor %}
+{% else %}
+  <h3> No students yet, would you like to <a href="/student_registration/">register</a> them? </h3>
+{% endif %}
 {% endblock %}

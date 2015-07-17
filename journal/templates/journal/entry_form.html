@@ -1,6 +1,16 @@
-{% extends 'journal/base.html' %}
+{% extends 'journal/base_user.html' %}
+{% load staticfiles %}
 
-{% block 'content' %}
+{% block 'page-css' %}
+{% endblock %}
+
+{% block 'page-js' %}
+{% endblock %}
+
+{% block 'nav-content' %}
+{% endblock %}
+
+{% block 'main-content' %}
 <h3> Adding entry for {{ activity.activity_name }}! </h3>
 <h3><small> Here's a jist of your activity </small></h3>
 <h4>Description: {{ activity.activity_description }} </h4>
@@ -32,6 +42,7 @@
     {% csrf_token %}
     {% if entry_type == "t" %}
       <div class="form-group">
+        <!-- TODO(Janice): Please resize this textarea, its currently at the very bottom of the page. --> 
         <textarea class="form-control" rows="3" name="{{ form.text_entry.name }}" value="{{ form.text_entry.value }}" required>{% if form.text_entry.value %}{{ form.text_entry.value }}{% endif %}</textarea>
       </div>
     {% elif entry_type == "i" %}

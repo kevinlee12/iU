@@ -1,4 +1,4 @@
-{% extends 'journal/base.html' %}
+{% extends 'journal/base_user.html' %}
 {% load staticfiles %}
 
 {% block 'title' %}
@@ -13,7 +13,11 @@
 <script src="{% static 'journal/activity_form/js/main.js' %}"></script>
 {% endblock %}
 
-{% block 'content' %}
+
+{% block 'nav-content' %}
+{% endblock %}
+
+{% block 'main-content' %}
 <body>
 	<div id="container">
 		<h3> Hi {{ student }}! </h3>

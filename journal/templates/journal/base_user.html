@@ -1,0 +1,40 @@
+{% extends 'journal/base.html' %}
+{% load staticfiles %}
+
+
+{% block 'title' %}
+<title>Journal </title>
+{% endblock %}
+
+{% block 'user-css' %}
+<link rel="stylesheet" type="text/css" href="{% static 'journal/base_user/css/style.css' %}">
+{% block 'page-css'%} {% endblock %}
+{% endblock %}
+
+{% block 'user-js' %}
+<script src="{% static 'journal/base_user/js/main.js' %}"></script>
+{% block 'page-js' %} {% endblock %}
+{% endblock %}
+
+{% block 'content' %}
+<body>
+	<nav class="navbar navbar-left">
+		<div class="container-fluid">
+			<div class="navbar-header" >
+				<a class="navbar-brand" href=" ">
+					<img src = "{% static 'journal/activities/img/our-logo.jpg' %}">
+				</a>
+			</div>
+
+			{% block 'nav-content' %} {% endblock %}
+
+			<div class="collapse navbar-collapse">
+			</div>
+		</div>
+	</nav>
+
+	<div class="container-fluid">
+		{% block 'main-content' %} {% endblock %}
+	</div>
+</body>
+{% endblock %}

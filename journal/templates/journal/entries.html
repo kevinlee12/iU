@@ -1,4 +1,4 @@
-{% extends 'journal/base.html' %}
+{% extends 'journal/base_user.html' %}
 {% load staticfiles %}
 
 
@@ -14,32 +14,25 @@
 <script src="{% static 'journal/entries/js/main.js' %}"></script>
 {% endblock %}
 
-{% block 'content' %}
-<body>
-    <!-- <h1>Entries Page</h1>
-    <h2>TODO:</h2>
-    <ul>
-        <li>Navigation Bar</li>
-        <li>Action Bar</li>
-        <li>List of journals (see for loop)</li>
-    </ul> -->
+{% block 'nav-content'%}
+{% endblock %}
 
-    <h2> Entries for {{ name }} </h2>
-    <h2><small> {{ activity_description}} </small></h2>
-    <h3><small> {{ activity_start }} -- {{ activity_end }} </small></h2>
-    {% if is_student %}
-    <a href="/activity_form/{{ activity_pk }}">Edit the activity</a>
-    <br><a href="/entry_form/{{ activity_id }}/t/">Click here to add an entry</a>
-    {% endif %}
-    {% if entries %}
-      {% for entry in entries %}
-      <ul>
-        <!-- TODO: Coordinators commentor's interface -->
-        <li><a href="/entry_form/{{ activity_id }}/{{ entry.entry_type }}/{{ entry.pk }}/"> {{ entry }} </a></li>
-      </ul>
-      {% endfor %}
-    {% else %}
-      <h3> No entries yet, would you like to <a href="/entry_form/{{ activity_id }}">add</a> one? </h3>
-    {% endif %}
-</body>
+{% block 'main-content' %}
+<h2> Entries for {{ name }} </h2>
+<h2><small> {{ activity_description}} </small></h2>
+<h3><small> {{ activity_start }} -- {{ activity_end }} </small></h2>
+{% if is_student %}
+<a href="/activity_form/{{ activity_pk }}">Edit the activity</a>
+<br><a href="/entry_form/{{ activity_id }}/t/">Click here to add an entry</a>
+{% endif %}
+{% if entries %}
+  {% for entry in entries %}
+  <ul>
+    <!-- TODO: Coordinators commentor's interface -->
+    <li><a href="/entry_form/{{ activity_id }}/{{ entry.entry_type }}/{{ entry.pk }}/"> {{ entry }} </a></li>
+  </ul>
+  {% endfor %}
+{% else %}
+  <h3> No entries yet, would you like to <a href="/entry_form/{{ activity_id }}">add</a> one? </h3>
+{% endif %}
 {% endblock %}
