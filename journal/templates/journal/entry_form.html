@@ -2,6 +2,7 @@
 {% load staticfiles %}
 
 {% block 'page-css' %}
+<link rel="stylesheet" type="text/css" href="{% static 'journal/entry_form/css/style.css' %}">
 {% endblock %}
 
 {% block 'page-js' %}
@@ -29,20 +30,18 @@
   </ul>
 </h4>
 
-<div>
-  <h3> What is your entry type? </h3>
-  <ul class="nav nav-tabs">
-    <li role="presentation" {% if entry_type == "t" %}class="active"{% endif %}><a class="btn btn-default" href="/entry_form/{{ activity.id }}/t/{% if entry_pk %}{{entry_pk}}{% endif %}"> Text </a></li>
-    <li role="presentation" {% if entry_type == "i" %}class="active"{% endif %}><a class="btn btn-default" href="/entry_form/{{ activity.id }}/i/{% if entry_pk %}{{entry_pk}}{% endif %}"> Image </a></li>
-    <li role="presentation" {% if entry_type == "l" %}class="active"{% endif %}><a class="btn btn-default" href="/entry_form/{{ activity.id }}/l/{% if entry_pk %}{{entry_pk}}{% endif %}"> Link </a></li>
-  <ul>
-<div>
+<h3> What is your entry type? </h3>
+<ul class="nav nav-tabs">
+  <li role="presentation" {% if entry_type == "t" %}class="active"{% endif %}><a class="btn btn-default" href="/entry_form/{{ activity.id }}/t/{% if entry_pk %}{{entry_pk}}{% endif %}"> Text </a></li>
+  <li role="presentation" {% if entry_type == "i" %}class="active"{% endif %}><a class="btn btn-default" href="/entry_form/{{ activity.id }}/i/{% if entry_pk %}{{entry_pk}}{% endif %}"> Image </a></li>
+  <li role="presentation" {% if entry_type == "l" %}class="active"{% endif %}><a class="btn btn-default" href="/entry_form/{{ activity.id }}/l/{% if entry_pk %}{{entry_pk}}{% endif %}"> Link </a></li>
+</ul>
 
 <form action="" method="post" enctype="multipart/form-data">
     {% csrf_token %}
     {% if entry_type == "t" %}
       <div class="form-group">
-        <!-- TODO(Janice): Please resize this textarea, its currently at the very bottom of the page. --> 
+        <!-- TODO(Janice): Please resize this textarea, its currently at the very bottom of the page. -->
         <textarea class="form-control" rows="3" name="{{ form.text_entry.name }}" value="{{ form.text_entry.value }}" required>{% if form.text_entry.value %}{{ form.text_entry.value }}{% endif %}</textarea>
       </div>
     {% elif entry_type == "i" %}

@@ -40,6 +40,11 @@ li {
 	list-style-type: none;
 }
 
+form {
+	padding-left: 240px;
+	display: inline-block;
+}
+
 .activity-box {
 	text-align: center;
 	position: relative;

@@ -39,15 +39,15 @@
        			<li><a href="#contact-us">Chat with us</a></li>
        		</ul>
        		<ul class="nav navbar-nav navbar-right">
-   				<li>
-   				{% if user and not user.is_anonymous %}
-       			Hello {{ user.get_full_name|default:user.username }}!
-       			<a href="{% url 'auth:logout' %}?next={{ request.path }}">Logout</a>
-       			{% else %}
-       			<a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}">
-        		 Login With Google </a>
-       			{% endif %}
-       			</li>
+	   				<li>
+	   				{% if user and not user.is_anonymous %}
+	     			Hello {{ user.get_full_name|default:user.username }}!
+	     			<a href="{% url 'auth:logout' %}">Logout</a>
+	     			{% else %}
+	     			<a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}">
+	      		Login With Google </a>
+	     			{% endif %}
+	       		</li>
        		</ul>
    		</div>
     </div>
