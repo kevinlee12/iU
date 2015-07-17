@@ -23,6 +23,8 @@
 <h3><small> {{ activity_start }} -- {{ activity_end }} </small></h2>
 {% if is_student %}
 <a href="/activity_form/{{ activity_pk }}">Edit the activity</a>
+<!-- TODO: Confirmation dialog -->
+<a href="/delete_activity/{{ activity_pk }}"> Delete the activity </a>
 <br><a href="/entry_form/{{ activity_id }}/t/">Click here to add an entry</a>
 {% endif %}
 {% if entries %}
