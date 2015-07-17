@@ -24,12 +24,37 @@ from datetime import datetime
 
 from django.core.exceptions import ObjectDoesNotExist
 
+from django.core.mail import send_mail
+
+from journal.forms import ContactForm 
+
 def home(request):
+
     """Function to satisfy the home page"""
     if request.user and not request.user.is_anonymous:
         return HttpResponseRedirect('/activities/')
+
+    if request.method == 'POST':
+        form = ContactForm(request.POST)
+
+        if form.is_valid():
+            subject = form.cleaned_data['subject']
+            message = form.cleaned_data['message']
+            sender = form.cleaned_data['sender']
+            cc_myself = form.cleaned_data['cc_myself']
+
+            recipients = ['info@example.com']
+            if cc_myself:
+                recipients.append(sender)
+
+            send_mail(subject, message, sender, recipients)
+            return HttpResponseRedirect('/thanks/')
+    else:
+        form = ContactForm()
+
     return render(request, 'journal/home.html',
-                  {'request': request, 'user': request.user})
+            {'request': request, 'user': request.user, 'form': form})
+
 
 def login_redirects(request):
     """Function that redirects users appropriately after login"""
