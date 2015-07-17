@@ -52,22 +52,36 @@
 			</div>
 			{% endif %}
 
-			{% for activity in activities %}
-			<div class="col-xs-12 col-md-6 col-lg-4" >
-				{% if is_student %}
-				<a class="thumbnail activity-box" href="/activity/{{activity.id}}">
-				{% else %}
-				<a class="thumbnail activity-box" href="/student_entries/{{student_pk}}/{{activity.pk}}">
-				{% endif %}
-					<div id="activity-name">
-						{{activity	}}
-					</div>
-					<div id="activity-description">
-						{{activity.activity_description}}
-					</div>
-				</a>
-			</div>
-			{% endfor %}
+			{% if activities %}
+				{% for activity in activities %}
+				<div class="col-xs-12 col-md-6 col-lg-4" >
+					{% if is_student %}
+					<a class="thumbnail activity-box" href="/activity/{{activity.id}}">
+					{% else %}
+					<a class="thumbnail activity-box" href="/student_entries/{{student_pk}}/{{activity.pk}}">
+					{% endif %}
+						<div id="activity-name">
+							{{ activity	}}
+						</div>
+						<div id="activity-description">
+							{{activity.activity_description}}
+						</div>
+					</a>
+				</div>
+				{% endfor %}
+			{% else %}
+				<div class="col-xs-12 col-md-6 col-lg-4" >
+					{% if is_student %}
+					<a class="thumbnail activity-box" href="{% url 'activity_form' %}">
+						No activities yet, would you like to add one?
+					</a>
+					{% else %}
+					<a class="thumbnail activity-box" href="#">
+						The student does not have any activities yet. Would you like to tell the student to add one?
+					{% endif %}
+					</a>
+				</div>
+			{% endif %}
 		</div>
 	</div>
 </div>
