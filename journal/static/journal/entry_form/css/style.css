@@ -13,12 +13,17 @@
  * limitations under the License.
 */
 
+/*TODO(Janice): Fix so that it works on mobile*/
 form {
-	padding-left: 240px;
 	display: inline-block;
 }
 
-#nav-tabs {
-	height: 20px;
+input {
+	display: block;
+}
+
+.nav-tabs {
+	height: 45px;
+	width: 80%;
 	display: inline-block;
 }
