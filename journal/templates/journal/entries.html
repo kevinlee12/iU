@@ -15,26 +15,49 @@
 {% endblock %}
 
 {% block 'nav-content'%}
+{% if is_student %}
+<div class="activity-description">
+<h4 id="activity"> {{ activity_description}} </h4> 
+<h5> {{ activity_start }} -- {{ activity_end }} </h5>
+</div>
+<div class="action-bar">
+<a href="/entry_form/{{ activity_id }}/t/"> Add an entry</a> <br>
+<a href="/activity_form/{{ activity_pk }}">Edit the activity</a> <br>
+<!-- TODO: Confirmation dialog -->
+<a href="/delete_activity/{{ activity_pk }}"> Delete the activity </a>
+</div>
+{% endif %}
 {% endblock %}
 
 {% block 'main-content' %}
 <h2> Entries for {{ name }} </h2>
-<h2><small> {{ activity_description}} </small></h2>
-<h3><small> {{ activity_start }} -- {{ activity_end }} </small></h2>
-{% if is_student %}
-<a href="/activity_form/{{ activity_pk }}">Edit the activity</a>
-<!-- TODO: Confirmation dialog -->
-<a href="/delete_activity/{{ activity_pk }}"> Delete the activity </a>
-<br><a href="/entry_form/{{ activity_id }}/t/">Click here to add an entry</a>
-{% endif %}
-{% if entries %}
+
+
+<table class="table table-hover">
+	<tr>
+		<td> Date Created </td>
+		<td> Entry Content </td>
+	</tr>
+	{% if entries %}
+  		{% for entry in entries %}
+  	<tr>
+  		<td> <a href="/entry_form/{{ activity_id }}/{{ entry.entry_type }}/{{ entry.pk }}/"> {{ entry.created }} </a> </td>
+  		<td> <a href="/entry_form/{{ activity_id }}/{{ entry.entry_type }}/{{ entry.pk }}/"> {{ entry.text_entry }} </a> </td>
+  		{% endfor %}
+  	{% else %}
+  		<h3> No entries yet, would you like to <a href="/entry_form/{{ activity_id }}">add</a> one? </h3>
+	{% endif %}
+	</tr>
+
+</table>
+<!-- {% if entries %}
   {% for entry in entries %}
-  <ul>
+  <ul> -->
     <!-- TODO: Coordinators commentor's interface -->
-    <li><a href="/entry_form/{{ activity_id }}/{{ entry.entry_type }}/{{ entry.pk }}/"> {{ entry }} </a></li>
+   <!--  <li><a href="/entry_form/{{ activity_id }}/{{ entry.entry_type }}/{{ entry.pk }}/"> {{ entry }} </a></li>
   </ul>
   {% endfor %}
 {% else %}
   <h3> No entries yet, would you like to <a href="/entry_form/{{ activity_id }}">add</a> one? </h3>
-{% endif %}
+{% endif %} -->
 {% endblock %}
