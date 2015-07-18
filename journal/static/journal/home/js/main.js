@@ -15,8 +15,12 @@
 $(document).ready(function() {
     $(".background").css("height", $(window).height() + "px");
     fadeInHeader();
-    $("#panel1").css("height", $(window).height() + "px");
+    $("#about-us").css("height", $(window).height() + "px");
     linkSmoothScroll();
+    $("#features").css("height", $(window).height() + "px");
+    $("#interest").css("height", $(window).height() + "px");
+    $("#contact-us").css("height", $(window).height() + "px");
+ 
 });
 
 
@@ -61,6 +65,7 @@ $(window).scroll(function() {
         $('.container-fluid').removeClass("sticky");
     }
 });
+
 
 
 
