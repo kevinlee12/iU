@@ -166,22 +166,6 @@ button.navbar-toggle.collapsed {
   animation: bounce 2s infinite;
 }
 
-#about-us {
-    height: 1000px;
-}
-
-#features {
-    height: 1000px;
-}
-
-#interest {
-    height: 1000px;
-}
-
-#contact-us {
-    height: 1000px;
-}
-
 #content {
   text-align: center;
 }
