@@ -33,7 +33,7 @@
 {% block 'main-content' %}
 <h2> Entries for {{ name }} </h2>
 <table class="table table-hover">
-	<tr>
+	<tr class="table-header">
 		<td> Date Created </td>
 		<td> Entry Content </td>
 	</tr>
@@ -43,9 +43,16 @@
   		<td> <a href="/entry_form/{{ activity_id }}/{{ entry.entry_type }}/{{ entry.pk }}/"> {{ entry.created }} </a> </td>
   		<td> <a href="/entry_form/{{ activity_id }}/{{ entry.entry_type }}/{{ entry.pk }}/"> {{ entry.text_entry }} </a> </td>
   		{% endfor %}
-  	{% else %}
-  		<h3> No entries yet, would you like to <a href="/entry_form/{{ activity_id }}">add</a> one? </h3>
-	{% endif %}
 	</tr>
-</table>
+	{% else %}
+	<tr>
+		<td>
+  		<h4> No entries yet, would you like to <a href="/entry_form/{{ activity_id }}">add</a> one? </h4>
+  	</td>
+  	<td>
+  	</td>
+  </tr>
+	{% endif %}
 {% endblock %}
+</table>
+
