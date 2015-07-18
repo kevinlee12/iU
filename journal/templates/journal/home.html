@@ -84,35 +84,34 @@
 
               <h4> Got Questions? We are here to help. </h4>
               <form action="" method="post">
-
                 <div class="sender_name">
-                <div class="form-group">   
-                  <label for="id_sender">Sender Name:</label>
-                  <input class="form-control" type="email" name="sender" id="id_sender" />
-                </div>
+                  <div class="form-group">   
+                    <label for="id_sender"> Name:</label>
+                    <input class="form-control" type="email" name="{{form.sender.name}}" value="{% if form.sender.value %} {{form.sender.value}} {% endif %}" />
+                  </div>
                 </div>
 
                 <div class="subject">
-                <div class="form-group">  
-                  <label for="id_subject">Subject:</label>
-                  <input class="form-control" id="id_subject" type="text" name="subject" maxlength="100" />
-                </div>
+                  <div class="form-group">  
+                    <label for="id_subject">Subject:</label>
+                    <input class="form-control" type="text" name="{{form.subject.name}}" value="{% if form.subject.value %} {{form.subject.value}} {% endif %}" maxlength="100" />
+                  </div>
                 </div>
 
                 <div class="message">
-                <div class="form-group"> 
-                  <label for="id_message">Message:</label>
-                  <textarea class="form-control" rows="5"type="text" name="message" id="id_message" >
-                  </textarea>
-                </div>
+                  <div class="form-group"> 
+                    <label for="id_message">Message:</label>
+                    <textarea class="form-control" rows="5"type="text" name="{{form.message.name}}" value="{{form.message.value}}" >
+                    </textarea>
+                  </div>
                 </div>
 
                 <div class="cc">
-                <div class="checkbox"> 
-                  <label for="id_cc_myself">
-                  <input type="checkbox" name="cc_myself" id="id_cc_myself"> CC Myself
-                  </label>
-                </div>
+                  <div class="checkbox"> 
+                    <label for="id_cc_myself"> 
+                      <input type="checkbox" name="{{form.cc_myself.name}}" value="{{form.cc_myself.value}}" /> Send a copy to myself
+                    </label>
+                  </div>
                 </div>
                 
                 <button type="submit" class="btn btn-default"> Send </button>

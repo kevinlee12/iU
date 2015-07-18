@@ -43,7 +43,7 @@ def home(request):
             sender = form.cleaned_data['sender']
             cc_myself = form.cleaned_data['cc_myself']
 
-            recipients = ['info@example.com']
+            recipients = ['info@example.com']  # TODO: Change recipients
             if cc_myself:
                 recipients.append(sender)
 
@@ -53,7 +53,7 @@ def home(request):
         form = ContactForm()
 
     return render(request, 'journal/home.html',
-            {'request': request, 'user': request.user, 'form': form})
+                {'request': request, 'user': request.user, 'form': form})
 
 
 def login_redirects(request):

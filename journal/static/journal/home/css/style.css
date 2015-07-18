@@ -198,7 +198,7 @@ h2 {
     color: #05CCCE;
     display: inline-block;
     margin-bottom: -10px;
-    margin-top: 12%;
+    margin-top: 8%;
 }
 
 body {
@@ -241,6 +241,10 @@ form {
 
 label {
   font-weight: 400;
+}
+
+.btn-default {
+  color: #888888;
 }
 
 /*Keyframes. http://www.smashingmagazine.com/2011/05/17/an-introduction-to-css3-keyframe-animations/ */

@@ -23,6 +23,7 @@ urlpatterns = [
     url(r'^login_redirects/', views.login_redirects, name='login_redirects'),
     url(r'^welcome/', views.welcome, name='welcome'),
     url(r'^activities/$', views.activities, name='cabinet'),
+    url(r'^delete_activity/(?P<activity_pk>[0-9]+)', views.activity_deletion, name='delete_activity'),
     url(r'^activity_form/$', views.activity_form, name='activity_form'),
     url(r'^activity_form/(?P<activity_pk>[0-9]+)', views.activity_form, name='activity_form'),
     url(r'^activity/(?P<activity_id>[0-9]+)', views.entries, name='entries'),

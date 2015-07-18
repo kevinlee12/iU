@@ -25,6 +25,8 @@ from django.core.exceptions import ObjectDoesNotExist
 
 from django.contrib.auth.decorators import login_required
 
+from .entry import delete_entry
+
 
 def activities(request):
     """Function for the main activities page, login is not required"""
@@ -43,11 +45,15 @@ def activities(request):
             stored_activities = Activity.objects.all().filter(student=student)\
                 .order_by('activity_name').reverse()
             is_student = True
-            if len(stored_activities) == 0:
-                msg = 'No Activities for %s!' % user.get_full_name()
-                stored_activities = [msg]
     return render(request, 'journal/activities.html',
                   {'activities': stored_activities, 'is_student': is_student})
+
+
+def student_activity_check(request, activity):
+    curr_student = Student.objects.get(email=request.user.email)
+    if activity.student != curr_student:
+        return render(request, 'journal/error.html')
+    return
 
 
 @login_required
@@ -56,6 +62,7 @@ def activity_form(request, activity_pk=None):
     a = None
     if activity_pk:
         a = Activity.objects.get(pk=activity_pk)
+        student_activity_check(request, a)
     if request.method == 'POST':
         form = ActivityForm(request.POST, instance=a)
         if form.is_valid():
@@ -73,3 +80,14 @@ def activity_form(request, activity_pk=None):
 
     return render(request, 'journal/activity_form.html',
                   {'form': form, 'student': curr_student})
+
+
+@login_required
+def activity_deletion(request, activity_pk):
+    activity = Activity.objects.get(pk=activity_pk)
+    student_activity_check(request, activity)
+    entries = activity.entries.all()
+    for entry in entries:
+        delete_entry(request, activity.id, entry.pk)
+    activity.delete()
+    return HttpResponseRedirect('/activities/')
