@@ -17,22 +17,21 @@
 {% block 'nav-content'%}
 {% if is_student %}
 <div class="activity-description">
-<h4 id="activity"> {{ activity_description}} </h4> 
-<h5> {{ activity_start }} -- {{ activity_end }} </h5>
+	<h4 id="activity"> {{ activity_description}} </h4> 
+	<h5> {{ activity_start }} -- {{ activity_end }} </h5>
 </div>
+
 <div class="action-bar">
-<a href="/entry_form/{{ activity_id }}/t/"> Add an entry</a> <br>
-<a href="/activity_form/{{ activity_pk }}">Edit the activity</a> <br>
-<!-- TODO: Confirmation dialog -->
-<a href="/delete_activity/{{ activity_pk }}"> Delete the activity </a>
+	<a href="/entry_form/{{ activity_id }}/t/"> Add an entry</a> <br>
+	<a href="/activity_form/{{ activity_pk }}">Edit the activity</a> <br>
+	<!-- TODO: Confirmation dialog -->
+	<a href="/delete_activity/{{ activity_pk }}"> Delete the activity </a>
 </div>
 {% endif %}
 {% endblock %}
 
 {% block 'main-content' %}
 <h2> Entries for {{ name }} </h2>
-
-
 <table class="table table-hover">
 	<tr>
 		<td> Date Created </td>
@@ -48,16 +47,5 @@
   		<h3> No entries yet, would you like to <a href="/entry_form/{{ activity_id }}">add</a> one? </h3>
 	{% endif %}
 	</tr>
-
 </table>
-<!-- {% if entries %}
-  {% for entry in entries %}
-  <ul> -->
-    <!-- TODO: Coordinators commentor's interface -->
-   <!--  <li><a href="/entry_form/{{ activity_id }}/{{ entry.entry_type }}/{{ entry.pk }}/"> {{ entry }} </a></li>
-  </ul>
-  {% endfor %}
-{% else %}
-  <h3> No entries yet, would you like to <a href="/entry_form/{{ activity_id }}">add</a> one? </h3>
-{% endif %} -->
 {% endblock %}
