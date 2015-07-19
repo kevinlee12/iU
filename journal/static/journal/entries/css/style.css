@@ -21,3 +21,58 @@ ul {
     font-size: 23px;
     color: red;
 }
+
+h2 {
+	color: rgb(128, 128, 128);
+	margin-top: 60px;
+	margin-left: 300px;
+}
+
+#activity {
+	border-bottom: 1px solid rgba(74,74,74,0.12);
+	display: inline-block;
+	line-height: 50px;
+}
+
+.table {
+	width: 75%;
+}
+
+td {
+	color: #05CCCE;
+	font-size: 18px;
+}
+
+td a:hover {
+	color: #05CCCE;
+}
+
+a {
+	color: rgb(128, 128, 128);
+}
+
+.action-bar {
+	text-align: center;
+	margin-top: 50px;
+	font-size: 20px;
+	line-height: 30px;
+}
+
+.action-bar a:hover {
+	color: #05CCCE;
+}
+
+.activity-description {
+	color: rgb(128, 128, 128);
+	text-align: center;
+	margin-top: 130px;
+}
+
+.table {
+	margin-top: 55px;
+	margin-left: 300px; 
+}
+
+.table-header {
+	font-weight: bold;
+}
