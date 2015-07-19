@@ -26,11 +26,16 @@
 
 #activity-description {
 	position: relative;
-	top: 50%;
+	top: 38%;
 	text-align: left;
-	padding-left: 10px;
+	padding-left: 5%;
+	max-width: 90%;
+	word-wrap: break-word;
 	color: rgb(128, 128, 128);
-	font-size: 18px;
+	font-size: 16px;
+	font-size: 1.5vw;
+	overflow-x: hidden;
+	overflow-y: hidden;
 }
 
 #activity-name {
@@ -38,9 +43,13 @@
 	top: 10%;
 	background-color: #30CCCB;
 	color: white;
-	font-size: 24px;
+	font-size: 1.8vw;
 	padding-right: 20px;
 	padding-left: 10px;
+	max-width: 280px;
+	max-height: 34px;
+	overflow-x: hidden;
+	overflow-y: hidden;
 }
 
 #add-journal-sign {

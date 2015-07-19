@@ -61,10 +61,10 @@
 					{% endif %}
 						<div id="activity-box" href>
 							<div id="activity-name">
-								{{ activity	}}
+								{{ activity.name_short }}
 							</div>
 							<div id="activity-description">
-								{{activity.activity_description}}
+								{{activity.description_short}}
 							</div>
 						</div>
 					</a>
@@ -73,13 +73,25 @@
 			{% else %}
 				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
 					{% if is_student %}
-					<a class="thumbnail activity-box" href="{% url 'activity_form' %}">
-						No activities yet, would you like to add one?
-					</a>
+					<a href="{% url 'activity_form' %}">
+						<div id="activity-box">
+							<div id="activity-name">
+								No Activities yet,
+							</div>
+							<div id="activity-description">
+								would you like to <b>add</b> one?
+							</div>
 					{% else %}
-					<a class="thumbnail activity-box" href="#">
-						The student does not have any activities yet. Would you like to tell the student to add one?
+					<a href="#">
+						<div id="activity-box">
+							<div id="activity-name">
+								No Activities
+							</div>
+							<div id="activity-description" style="font-size: 1.3vw">
+								The student does not have any activities yet. Would you like to tell the student to add one?
+							</div>
 					{% endif %}
+						</div>
 					</a>
 				</div>
 			{% endif %}

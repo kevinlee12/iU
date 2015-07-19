@@ -13,6 +13,5 @@
 // limitations under the License.
 
 $(document).ready(function() {
-    $(".navbar-left").css("height", $(window).height() + "px");
-    $(".container").css("width", $(window).width() - 240 + "px")
+
 });
