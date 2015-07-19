@@ -13,8 +13,6 @@
  * limitations under the License.
 */
 
-/* Temporary CSS elements */
-
 ul {
     list-style: none;
     margin-left: -3%;
@@ -24,18 +22,13 @@ ul {
 
 h2 {
 	color: rgb(128, 128, 128);
-	margin-top: 60px;
-	margin-left: 300px;
+	margin-top: 40px;
 }
 
 #activity {
 	border-bottom: 1px solid rgba(74,74,74,0.12);
 	display: inline-block;
 	line-height: 50px;
-}
-
-.table {
-	width: 75%;
 }
 
 td {
@@ -54,7 +47,7 @@ a {
 .action-bar {
 	text-align: center;
 	margin-top: 50px;
-	font-size: 20px;
+	font-size: 18px;
 	line-height: 30px;
 }
 
@@ -65,12 +58,11 @@ a {
 .activity-description {
 	color: rgb(128, 128, 128);
 	text-align: center;
-	margin-top: 130px;
 }
 
 .table {
-	margin-top: 55px;
-	margin-left: 300px; 
+	margin-top: 3.5vw;
+  padding-left: 20%;
 }
 
 .table-header {
