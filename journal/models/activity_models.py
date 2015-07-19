@@ -72,3 +72,16 @@ class Activity(models.Model):
 
     def __str__(self):
         return self.activity_name
+
+    def shorten(word, max_length):
+        if len(word) > max_length:
+            new_str = word[:max_length]
+            new_str += '...'
+            return new_str
+        return word
+
+    def name_short(self):
+        return Activity.shorten(self.activity_name, 18)
+
+    def description_short(self):
+        return Activity.shorten(self.activity_description, 70)
