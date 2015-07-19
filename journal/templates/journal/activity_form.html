@@ -20,67 +20,73 @@
 
 {% block 'main-content' %}
 <h3> Hi {{ student }}! </h3>
-<form action="" method="post">
-	{% csrf_token %}
-	<div class="activity-box">
-		<div class="form-group">
-			<label for="activity_name"> Activity Name: </label>
-			<input class="form-control" type="text" name="{{form.activity_name.name}}" value="{% if form.activity_name.value %}{{ form.activity_name.value }}{% endif %}" required>
-		</div>
+<div class="row">
+	<div class="col-xs-12 col-md-12 col-lg-12">
+		<form action="" method="post">
+			{% csrf_token %}
+			<div class="activity-box">
+				<div class="form-group">
+					<label for="activity_name"> Activity Name: </label>
+					<input class="form-control" type="text" name="{{form.activity_name.name}}" value="{% if form.activity_name.value %}{{ form.activity_name.value }}{% endif %}" required>
+				</div>
 
-		<div class="form-group">
-			<label for="activity_description"> Activity Description: </label>
-			<textarea class="form-control" rows="3" type="text" name="{{form.activity_description.name}}" value="{{form.activity_description.value}}" required>{% if form.activity_description.value %} {{form.activity_description.value}} {% endif %} </textarea>
-		</div>
+				<div class="form-group">
+					<label for="activity_description"> Activity Description: </label>
+					<textarea class="form-control" rows="3" type="text" name="{{form.activity_description.name}}" value="{{form.activity_description.value}}" required>{% if form.activity_description.value %} {{form.activity_description.value}} {% endif %} </textarea>
+				</div>
+			</div>
+
+			<div class="dates">
+				<div class="row">
+					<div class="col-xs-6 col-md-6 col-lg-6">
+						<label for="start_date"> Start Date: </label>
+						<input class="form-control" type="date" name="{{form.start_date.name}}" value="{% if form.start_date.value %}{{form.start_date.value}}{% endif %}" required>
+					</div>
+
+					<div class="col-xs-6 col-md-6 col-lg-6">
+						<label for="end_date"> End Date: </label>
+						<input class="form-control" type="date" name="{{ form.end_date.name }}" value="{% if form.end_date.value %}{{ form.end_date.value }}{% endif %}">
+					</div>
+				</div>
+			</div>
+			<br>
+
+			<h4 id="activity-type"> Activity Type: </h4>
+			<div id="activity-type-box">
+				{{ form.activity_type }}
+			</div>
+
+			<h4 id="learning-obj"> Learning Objectives: </h4>
+			<div id="learn-obj-box">
+				{{ form.learned_objective }}
+			</div>
+
+			<h4 id="advisor-info"> Advisor's Info: </h4>
+			<span class="help-block"> *Required only upon final submission to IB coordinator* </span>
+			<div class="advisor-box">
+				<div class="form-group">
+					<label for="activity_adviser"> Activity Adviser: </label>
+					<input class="form-control" type="text" name="{{form.activity_adviser.name}}" value="{% if form.activity_adviser.value %}{{form.activity_adviser.value}}{% endif %}">
+				</div>
+
+				<div class="form-group">
+					<label for="advisor_phone"> Advisor Phone: </label>
+					<input class="form-control" type="tel" name="{{form.advisor_phone.name}}" value="{% if form.advisor_phone.value %}{{form.advisor_phone.value}}{% endif %}">
+				</div>
+
+				<div class="form-group">
+					<label for="advisor_email"> Advisor Email: </label>
+					<input class="form-control" type="email" name="{{ form.advisor_email.name }}" value="{% if form.advisor_email.value %}{{form.advisor_email.value}}{% endif %}">
+				</div>
+			</div>
+			<br>
+
+			<div class="submit-button">
+					<a class="btn btn-default" href="/activities" role="button"> Back </a>
+					<input class="btn btn-success" type="submit" value="Submit" />
+			</div>
+		</form>
 	</div>
-
-	<div class="row">
-		<div class="col-xs-4 col-md-4 col-lg-4">
-			<label for="start_date"> Start Date: </label>
-			<input class="form-control" type="date" name="{{form.start_date.name}}" value="{% if form.start_date.value %}{{form.start_date.value}}{% endif %}" required>
-		</div>
-
-		<div class="col-xs-4 col-md-4 col-lg-4">
-			<label for="end_date"> End Date: </label>
-			<input class="form-control" type="date" name="{{ form.end_date.name }}" value="{% if form.end_date.value %}{{ form.end_date.value }}{% endif %}">
-		</div>
-	</div>
-	<br>
-
-	<h4 id="activity-type"> Activity Type: </h4>
-	<div id="activity-type-box">
-		{{ form.activity_type }}
-	</div>
-
-	<h4 id="learning-obj"> Learning Objectives: </h4>
-	<div id="learn-obj-box">
-		{{ form.learned_objective }}
-	</div>
-
-	<h4 id="advisor-info"> Advisor's Info: </h4>
-	<span class="help-block"> *Required only upon final submission to IB coordinator* </span>
-	<div class="advisor-box">
-		<div class="form-group">
-			<label for="activity_adviser"> Activity Adviser: </label>
-			<input class="form-control" type="text" name="{{form.activity_adviser.name}}" value="{% if form.activity_adviser.value %}{{form.activity_adviser.value}}{% endif %}">
-		</div>
-
-		<div class="form-group">
-			<label for="advisor_phone"> Advisor Phone: </label>
-			<input class="form-control" type="tel" name="{{form.advisor_phone.name}}" value="{% if form.advisor_phone.value %}{{form.advisor_phone.value}}{% endif %}">
-		</div>
-
-		<div class="form-group">
-			<label for="advisor_email"> Advisor Email: </label>
-			<input class="form-control" type="email" name="{{ form.advisor_email.name }}" value="{% if form.advisor_email.value %}{{form.advisor_email.value}}{% endif %}">
-		</div>
-	</div>
-	<br>
-
-	<div class="submit-button">
-			<a class="btn btn-default" href="/activities" role="button"> Back </a>
-			<input class="btn btn-success" type="submit" value="Submit" />
-	</div>
-</form>
+</div>
 
 {% endblock %}
