@@ -32,6 +32,7 @@
 
 {% block 'main-content' %}
 <h2> Entries for {{ name }} </h2>
+{% if entries %}
 <table class="table table-hover">
 	<tr class="table-header">
 		<td class="col-md-4"> Date Created </td>
@@ -53,5 +54,9 @@
   	</td>
   </tr>
 	{% endif %}
+{% else %}
+<h4> No entries yet, would you like to <a href="/entry_form/{{ activity_id }}/t">add</a> one? </h4>
+{% endif %}
+
 {% endblock %}
 </table>

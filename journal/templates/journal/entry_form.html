@@ -10,14 +10,14 @@
 
 {% block 'nav-content' %}
 <div class="activity-description">
-  <h4 id="activity"> {{ activity.activity_description}} </h4> 
+  <h3 id="activity"> {{ activity.activity_description}} </h3>
+  <div id="dates">
+    {{ activity.start_date }} - {{ activity.end_date | default:'Ongoing' }}
+  </div>
 </div>
 
 <div class="action-bar">
-  <a href="/entry_form/{{ activity_id }}/t/"> Add an entry</a> <br>
-  <a href="/activity_form/{{ activity_pk }}">Edit the activity</a> <br>
-  <!-- TODO: Confirmation dialog -->
-  <a href="/delete_activity/{{ activity_pk }}"> Delete the activity </a>
+  <a href="/activity/{{ activity.id }}/"> <i class="fa fa-long-arrow-left fa-6x"></i> Back to {{ activity.activity_name }}</a>
 </div>
 {% endblock %}
 
@@ -65,12 +65,11 @@
     </div>
   {% endif %}
     <div class="buttons">
-      <a class="btn btn-default" href="/activity/{{ activity.id }}/" role="button"> Back </a>
-      {% if entry_type %}
-      <button class="btn btn-success" type="submit" value="Submit">Submit </button>
-      {% endif %}
       {% if entry_pk %}
       <a class="btn btn-danger" role="button" href="/delete_entry/{{ activity.id }}/{{ entry_pk }}"> Delete Entry</a>
+      {% endif %}
+      {% if entry_type %}
+      <button class="btn btn-success" type="submit" value="Submit">Submit </button>
       {% endif %}
     </div>
 </form>
