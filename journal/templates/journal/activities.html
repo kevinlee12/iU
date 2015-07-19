@@ -15,36 +15,35 @@
 {% endblock %}
 
 {% block 'nav-content' %}
-<div id="welcome-text">
-	<h3> {% if user and not user.is_anonymous %}
-		Welcome <br> {{ user.get_full_name|default:user.username }}! <br>
-		<a href="{% url 'auth:logout' %}?next={{ request.path }}"> <h5>Logout</h5> </a>
-		{% else %}
-		<a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}">Login with Google</a>
-		{% endif %}
-	</h3>
-	{% if is_student %}
-	<h4> Click on the add button <br>
-		to create a new journal. <br>
-		To edit a journal,<br>
-		click on an activity.
-	</h4> <br>
-	<h5> Need Inspiration? </h5>
+<h3> {% if user and not user.is_anonymous %}
+	Welcome <br> {{ user.get_full_name|default:user.username }}! <br>
+	<a href="{% url 'auth:logout' %}?next={{ request.path }}"> <h5>Logout</h5> </a>
+	{% else %}
+	<a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}">Login with Google</a>
 	{% endif %}
-</div>
+</h3>
+{% if is_student %}
+<h4> Click on the add button <br>
+	to create a new journal. <br>
+	To edit a journal,<br>
+	click on an activity.
+</h4> <br>
+<h5> Need Inspiration? </h5>
+{% endif %}
 {% endblock %}
 
 {% block 'main-content'%}
 <div class="content">
-	<div id = "pencil-sign" >
-		<img src = "{% static 'journal/activities/img/journal_sign.png' %}">
-	</div>
-
 	<div id="activities-list">
 		<div class = "row">
+			<div class="col-xs-12 col-md-12 col-lg-12">
+				<div id = "pencil-sign" >
+					<img src = "{% static 'journal/activities/img/journal_sign.png' %}">
+				</div>
+			</div>
 			{% if is_student %}
-			<div class="col-xs-12 col-md-6 col-lg-4" >
-				<div id="add-journal-sign activity-box" >
+			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
+				<div id="add-journal-sign" >
 					<a href="{% url 'activity_form' %}">
 						<img src = "{% static 'journal/activities/img/add_sign.png' %}">
 					</a>
@@ -54,23 +53,25 @@
 
 			{% if activities %}
 				{% for activity in activities %}
-				<div class="col-xs-12 col-md-6 col-lg-4" >
+				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
 					{% if is_student %}
-					<a class="thumbnail activity-box" href="/activity/{{activity.id}}">
+					<a href="/activity/{{activity.id}}">
 					{% else %}
-					<a class="thumbnail activity-box" href="/student_entries/{{student_pk}}/{{activity.pk}}">
+					<a href="/student_entries/{{student_pk}}/{{activity.pk}}">
 					{% endif %}
-						<div id="activity-name">
-							{{ activity	}}
-						</div>
-						<div id="activity-description">
-							{{activity.activity_description}}
+						<div id="activity-box" href>
+							<div id="activity-name">
+								{{ activity	}}
+							</div>
+							<div id="activity-description">
+								{{activity.activity_description}}
+							</div>
 						</div>
 					</a>
 				</div>
 				{% endfor %}
 			{% else %}
-				<div class="col-xs-12 col-md-6 col-lg-4" >
+				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
 					{% if is_student %}
 					<a class="thumbnail activity-box" href="{% url 'activity_form' %}">
 						No activities yet, would you like to add one?
