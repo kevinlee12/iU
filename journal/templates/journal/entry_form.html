@@ -9,20 +9,28 @@
 {% endblock %}
 
 {% block 'nav-content' %}
+<div class="activity-description">
+  <h4 id="activity"> {{ activity.activity_description}} </h4> 
+</div>
+
+<div class="action-bar">
+  <a href="/entry_form/{{ activity_id }}/t/"> Add an entry</a> <br>
+  <a href="/activity_form/{{ activity_pk }}">Edit the activity</a> <br>
+  <!-- TODO: Confirmation dialog -->
+  <a href="/delete_activity/{{ activity_pk }}"> Delete the activity </a>
+</div>
 {% endblock %}
 
 {% block 'main-content' %}
 <h3> Adding entry for {{ activity.activity_name }}! </h3>
-<h3><small> Here's a jist of your activity </small></h3>
-<h4>Description: {{ activity.activity_description }} </h4>
-<h4>Learning Objectives:
+<h4><b>Learning Objectives:</b>
   <ul>
   {% for l in activity.learned_objective.all %}
     <li>{{ l.objective }}</li>
   {% endfor %}
   </ul>
 </h4>
-<h4> CAS Type:
+<h4> <b>CAS Type:</b>
   <ul>
     {% for i in activity.activity_type.all %}
     <li> {{ i.name }} </li>
@@ -30,40 +38,40 @@
   </ul>
 </h4>
 
-<h3> What is your entry type? </h3>
+<h3 id="entry-type"> What is your entry type? </h3>
 <ul class="nav nav-tabs">
   <li role="presentation" {% if entry_type == "t" %}class="active"{% endif %}><a class="btn btn-default" href="/entry_form/{{ activity.id }}/t/{% if entry_pk %}{{entry_pk}}{% endif %}"> Text </a></li>
   <li role="presentation" {% if entry_type == "i" %}class="active"{% endif %}><a class="btn btn-default" href="/entry_form/{{ activity.id }}/i/{% if entry_pk %}{{entry_pk}}{% endif %}"> Image </a></li>
   <li role="presentation" {% if entry_type == "l" %}class="active"{% endif %}><a class="btn btn-default" href="/entry_form/{{ activity.id }}/l/{% if entry_pk %}{{entry_pk}}{% endif %}"> Link </a></li>
 </ul>
-
+<br>
 <form action="" method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {% if entry_type == "t" %}
-      <div class="form-group">
-        <!-- TODO(Janice): Please resize this textarea, its currently at the very bottom of the page. -->
-        <textarea class="form-control" rows="3" name="{{ form.text_entry.name }}" value="{{ form.text_entry.value }}" required>{% if form.text_entry.value %}{{ form.text_entry.value }}{% endif %}</textarea>
-      </div>
-    {% elif entry_type == "i" %}
-      <div class="form-group">
-        {{ form.image_entry }}
+  {% csrf_token %}
+  {% if entry_type == "t" %}
+    <div class="form-group">
+      <textarea class="form-control" rows="10" name="{{ form.text_entry.name }}" value="{{ form.text_entry.value }}" required>{% if form.text_entry.value %}{{ form.text_entry.value }}{% endif %}</textarea>
+    </div>
+  {% elif entry_type == "i" %}
+    <div class="form-group">
+      {{ form.image_entry }}
         <!-- TODO: <input type="file" class="form-control" accept="image/*"
                name="{{ form.image_entry.name }}"
                value="{{ form.image_entry.value }}" required> -->
-      </div>
-    {% elif entry_type == "l" %}
-      <div class="form-group">
-        <input type="url" class="form-control" name="{{ form.link_entry.name }}"
-               value="{{ form.link_entry.value }}" required>
-      </div>
-    {% endif %}
-
-    <a class="btn btn-default" href="/activity/{{ activity.id }}/" role="button"> Back </a>
-    {% if entry_type %}
+    </div>
+  {% elif entry_type == "l" %}
+    <div class="form-group">
+      <input type="url" class="form-control" name="{{ form.link_entry.name }}"
+             value="{{ form.link_entry.value }}" required>
+    </div>
+  {% endif %}
+    <div class="buttons">
+      <a class="btn btn-default" href="/activity/{{ activity.id }}/" role="button"> Back </a>
+      {% if entry_type %}
       <button class="btn btn-success" type="submit" value="Submit">Submit </button>
-    {% endif %}
-    {% if entry_pk %}
+      {% endif %}
+      {% if entry_pk %}
       <a class="btn btn-danger" role="button" href="/delete_entry/{{ activity.id }}/{{ entry_pk }}"> Delete Entry</a>
-    {% endif %}
+      {% endif %}
+    </div>
 </form>
 {% endblock %}

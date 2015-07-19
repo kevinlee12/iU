@@ -22,8 +22,81 @@ input {
 	display: block;
 }
 
+ul {
+	list-style-type: none;
+}
+
 .nav-tabs {
 	height: 45px;
 	width: 80%;
 	display: inline-block;
 }
+
+h5 {
+	width: 30%;
+}
+
+h3 {
+	text-align: center;
+	margin-top: 60px;
+	margin-bottom: 30px;
+	color: #05CCCE;
+}
+
+h4 {
+	text-align: center;
+	line-height: 25px;
+	color: rgb(128, 128, 128);
+}
+
+.activity-description {
+	text-align: center;
+	margin-top: 130px;
+}
+
+#activity {
+	border-bottom: 1px solid rgba(74,74,74,0.12);
+	display: inline-block;
+	line-height: 50px;
+	color: rgb(128, 128, 128);
+}
+
+.action-bar {
+	text-align: center;
+	margin-top: 50px;
+	font-size: 20px;
+	line-height: 30px;
+	color: rgb(128, 128, 128);
+}
+
+a {
+	color: rgb(128, 128, 128);
+}
+
+.action-bar a:hover {
+	color: #05CCCE;
+}
+
+.nav-tabs {
+	width: 30%;
+	position: relative;
+	left: 25%;
+}
+
+form {
+	margin-left: 21%;
+	text-align: center;
+}
+
+.form-control {
+	width: 138%;
+}
+
+.buttons {
+	margin-left: 100px;
+}
+
+#entry-type {
+	margin-top: 30px;
+}
+
