@@ -28,6 +28,11 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 
 
+def entry_verification(student, entry):
+    if student.email != entry.stu_email:
+        return Http404()
+
+
 @login_required
 def entries(request, activity_id):
     """Function to satify the gathering of entries for a particular activity"""
@@ -48,26 +53,25 @@ def entries(request, activity_id):
                    'activity_end': activity.end_date or 'Ongoing',
                    'is_student': True})
 
-
 @login_required
-def entry_form(request, activity_id, entry_type=None, entry_pk=None):
+def entry_form(request, activity_id, entry_type, entry_pk=None):
     """Function that allows the user to add/edit entries"""
     curr_student = Student.objects.get(email=request.user.email)
     activity = Activity.objects.get(id=activity_id)
-    if entry_type is None:  # New form
-        return render(request, 'journal/entry_form.html',
-                      {'activity': activity, 'entry_type': entry_type})
 
     e = None
     if entry_pk:
         e = Entry.objects.get(pk=entry_pk)
+        entry_verification(curr_student, e)
     if request.method == 'POST':
         form = EntryForm(request.POST, request.FILES, instance=e)
         if form.is_valid():
+            f = form.save(commit=False)
+            f.correct_entry_type()
             if type(e) == Entry:  # Editing
+                f.save()
                 form.save()
             else:  # New
-                f = form.save(commit=False)
                 f.stu_email = curr_student.email
                 f.activity_pk = activity.pk
                 f.entry_type = entry_type
@@ -89,7 +93,7 @@ def delete_entry(request, activity_id, entry_pk):
     if entry.entry_type == "i":  # If image exists, delete it
         entry.image_entry.delete()
     activity.entries.remove(entry)
-    if entry.stu_email != request.user.email:
-        raise Http404()
+    student = Student.objects.get(email=request.user.email)
+    entry_verification(student, entry)
     entry.delete()
     return HttpResponseRedirect('/activity/' + activity_id)

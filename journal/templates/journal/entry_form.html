@@ -6,6 +6,7 @@
 {% endblock %}
 
 {% block 'page-js' %}
+<script src="{% static 'journal/entry_form/js/main.js' %}"></script>
 {% endblock %}
 
 {% block 'nav-content' %}
@@ -39,31 +40,35 @@
 </h4>
 
 <h3 id="entry-type"> What is your entry type? </h3>
-<ul class="nav nav-tabs">
-  <li role="presentation" {% if entry_type == "t" %}class="active"{% endif %}><a class="btn btn-default" href="/entry_form/{{ activity.id }}/t/{% if entry_pk %}{{entry_pk}}{% endif %}"> Text </a></li>
-  <li role="presentation" {% if entry_type == "i" %}class="active"{% endif %}><a class="btn btn-default" href="/entry_form/{{ activity.id }}/i/{% if entry_pk %}{{entry_pk}}{% endif %}"> Image </a></li>
-  <li role="presentation" {% if entry_type == "l" %}class="active"{% endif %}><a class="btn btn-default" href="/entry_form/{{ activity.id }}/l/{% if entry_pk %}{{entry_pk}}{% endif %}"> Link </a></li>
+<ul id="entry-type-selection" class="nav nav-tabs">
+  <li role="presentation"><a role="tab" data-toggle="tab" href="#text"> Text </a></li>
+  <li role="presentation"><a role="tab" data-toggle="tab" href="#image"> Image </a></li>
+  <li role="presentation"><a role="tab" data-toggle="tab" href="#link"> Link </a></li>
 </ul>
 <br>
-<form action="" method="post" enctype="multipart/form-data">
+{{ form.errors }}
+<form name="entry_form" action="" method="post" enctype="multipart/form-data">
   {% csrf_token %}
-  {% if entry_type == "t" %}
-    <div class="form-group">
-      <textarea class="form-control" rows="10" name="{{ form.text_entry.name }}" value="{{ form.text_entry.value }}" required>{% if form.text_entry.value %}{{ form.text_entry.value }}{% endif %}</textarea>
+  <div class="tab-content">
+    <div id="text" class="tab-pane form-group">
+      <textarea class="form-control" rows="10" name="{{ form.text_entry.name }}" value="{{ form.text_entry.value }}">{{ form.text_entry.value|default:'' }}</textarea>
     </div>
-  {% elif entry_type == "i" %}
-    <div class="form-group">
-      {{ form.image_entry }}
-        <!-- TODO: <input type="file" class="form-control" accept="image/*"
-               name="{{ form.image_entry.name }}"
-               value="{{ form.image_entry.value }}" required> -->
+
+    <div id="image" class="tab-pane form-group">
+      {% if form.image_entry.value %}
+      <img src="/media/{{ form.image_entry.value.name }}">
+      {% endif %}
+      <input type="file" class="form-control" accept="image/*"
+             id="{{ form.image_entry.id }}"
+             name="{{ form.image_entry.name }}"
+             value="{{ form.image_entry.value }}">
     </div>
-  {% elif entry_type == "l" %}
-    <div class="form-group">
+
+    <div id="link" class="tab-pane form-group">
       <input type="url" class="form-control" name="{{ form.link_entry.name }}"
-             value="{{ form.link_entry.value }}" required>
+             value="{{ form.link_entry.value|default:'' }}">
     </div>
-  {% endif %}
+</div>
     <div class="buttons">
       {% if entry_pk %}
       <a class="btn btn-danger" role="button" href="/delete_entry/{{ activity.id }}/{{ entry_pk }}"> Delete Entry</a>

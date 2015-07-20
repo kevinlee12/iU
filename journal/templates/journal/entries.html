@@ -22,7 +22,7 @@
 </div>
 
 <div class="action-bar">
-	<a href="/entry_form/{{ activity_id }}/t/"> Add an entry</a> <br>
+	<a href="/entry_form/{{ activity_id }}/text/#text"> Add an entry</a> <br>
 	<a href="/activity_form/{{ activity_pk }}">Edit the activity</a> <br>
 	<!-- TODO: Confirmation dialog -->
 	<a href="/delete_activity/{{ activity_pk }}"> Delete the activity </a>
@@ -40,13 +40,14 @@
 	</tr>
 	{% if entries %}
   		{% for entry in entries %}
-  	<tr>
-  		<td class="col-xs-6 col-md-4"> <a href="/entry_form/{{ activity_id }}/{{ entry.entry_type }}/{{ entry.pk }}/"> {{ entry.created }} </a> </td>
-  		<td class="col-xs-6 col-md-8"> <a href="/entry_form/{{ activity_id }}/{{ entry.entry_type }}/{{ entry.pk }}/"> {{ entry.text_entry }} </a> </td>
+  	<tr class='clickable-row' data-href="/entry_form/{{ activity_id }}/{{ entry.entry_type }}/{{ entry.pk }}/#{{ entry.entry_type }}">
+	  		<td class="col-xs-6 col-md-4"> {{ entry.created }} </td>
+	  		<td class="col-xs-6 col-md-8"> {{ entry }} </td>
+			<!-- </a> -->
   		{% endfor %}
 	</tr>
 	{% else %}
-	<tr>
+	<tr class='clickable-row'>
 		<td class="col-xs-6 col-md-4">
   		<h4> No entries yet, would you like to <a href="/entry_form/{{ activity_id }}/t">add</a> one? </h4>
   	</td>

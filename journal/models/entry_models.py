@@ -28,19 +28,31 @@ def file_name(instance, filename):
 class Entry(models.Model):
     """Entry object used for journaling"""
     ENTRY_TYPES = (
-        ('t', 'Text'),
-        ('i', 'Image'),
+        ('text', 'Text'),
+        ('image', 'Image'),
         # ('v', 'Video'),
-        ('l', 'Link'),
+        ('link', 'Link'),
     )
     stu_email = models.EmailField()
     activity_pk = models.CharField(max_length=30)
     last_modified = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
-    entry_type = models.CharField(max_length=1, choices=ENTRY_TYPES)
+    entry_type = models.CharField(max_length=6, choices=ENTRY_TYPES)
     text_entry = models.TextField(blank=True)
-    image_entry = models.ImageField(blank=True, upload_to=file_name)
+    image_entry = models.ImageField(blank=True, storage=fs)
     link_entry = models.URLField(blank=True)
 
     def __str__(self):
-        return str(self.created) + " : " + (self.text_entry or str(self.image_entry) or str(self.link_entry))
+        return self.text_entry or str(self.image_entry) or str(self.link_entry)
+
+    def is_valid_entry(self):
+        count = bool(self.text_entry) + bool(self.image_entry) + bool(self.link_entry)
+        return count < 2
+
+    def correct_entry_type(self):
+        if len(self.text_entry) > 0:
+            self.entry_type = 'text'
+        elif self.image_entry.name:
+            self.entry_type = 'image'
+        elif self.link_entry:
+            self.entry_type = 'link'

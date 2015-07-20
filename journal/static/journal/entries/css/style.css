@@ -32,9 +32,10 @@ h2 {
   color: #05CCCE;
 }
 
-td {
-	color: #05CCCE;
+.table-header {
+	/*color: #05CCCE;*/
 	font-size: 18px;
+  font-weight: bold;
 }
 
 td a:hover {
@@ -64,8 +65,4 @@ a {
 .table {
 	margin-top: 3.5vw;
   padding-left: 20%;
-}
-
-.table-header {
-	font-weight: bold;
 }
