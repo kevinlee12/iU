@@ -27,7 +27,7 @@ h1 {
     left: 40%;
     max-width: 100%;
     height: auto;
-    width: auto\9;
+    width: auto;
 }
 
 h1 span {
@@ -62,7 +62,7 @@ h1 span {
     left: 60%;
     max-width: 100%;
     height: auto;
-    width: auto\9;
+    width: auto;
 }
 
 #ask-question {
@@ -79,7 +79,7 @@ h1 span {
     left: 47%;
     max-width: 100%;
     height: auto;
-    width: auto\9;
+    width: auto;
 }
 
 #blank-circle2 {
@@ -88,7 +88,7 @@ h1 span {
     left: 65%;
     max-width: 100%;
     height: auto;
-    width: auto\9;
+    width: auto;
 }
 
 #blank-circle3 {
@@ -97,5 +97,5 @@ h1 span {
     left: 27%;
     max-width: 100%;
     height: auto;
-    width: auto\9;
+    width: auto;
 }

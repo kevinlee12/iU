@@ -50,7 +50,7 @@ class Entry(models.Model):
         return count < 2
 
     def correct_entry_type(self):
-        if len(self.text_entry) > 0:
+        if self.text_entry:
             self.entry_type = 'text'
         elif self.image_entry.name:
             self.entry_type = 'image'

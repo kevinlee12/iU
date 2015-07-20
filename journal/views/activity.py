@@ -38,7 +38,7 @@ def activities(request):
             auth_user_type = Users.objects.get(email=user.email).user_type
         except ObjectDoesNotExist:
             auth_user_type = None
-            msg = 'User %s not found!' % user.get_full_name()
+            msg = 'User {0} not found!'.format(user.get_full_name())
             stored_activities = [msg]
         if auth_user_type == 'S':
             student = Student.objects.get(email=user.email)

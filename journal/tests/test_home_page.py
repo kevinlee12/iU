@@ -34,7 +34,7 @@ class ActivitySeleleniumTests(StaticLiveServerTestCase):
 
     def setUp(self):
         """Opens the home page"""
-        self.selenium.get('%s%s' % (self.live_server_url, '/'))
+        self.selenium.get('{0}{1}'.format(self.live_server_url, '/'))
 
     def test_elements(self):
         """Tests to ensure the proper elements are present"""

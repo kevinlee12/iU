@@ -31,7 +31,7 @@ class ActivitySeleleniumTests(StaticLiveServerTestCase):
         super(ActivitySeleleniumTests, cls).tearDownClass()
 
     def setUp(self):
-        self.selenium.get('%s%s' % (self.live_server_url, '/activities/'))
+        self.selenium.get('{0}{1}'.format(self.live_server_url, '/activities/'))
 
     def test_activity_page(self):
         """Tests to ensure that the word activityies is present"""
