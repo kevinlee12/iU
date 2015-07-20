@@ -68,8 +68,11 @@ def student_registration(request, student_pk=None):
     return render(request, 'journal/student_registration_form.html',
                   {'form': form, 'coordinator': curr_coordinator})
 
+
 def coordinator_check(request, student):
-    """Used for ensuring that coordinators are matched with the right students"""
+    """Used for ensuring that coordinators are matched with the right
+       students
+    """
     curr_coordinator = Coordinator.objects.get(email=request.user.email)
     if student.stu_coordinator != curr_coordinator != curr_coordinator.pk:
         return render(request, 'journal/error.html')

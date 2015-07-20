@@ -26,6 +26,7 @@ from django import forms
 
 import datetime
 
+
 class ContactForm(forms.Form):
     subject = forms.CharField(max_length=100)
     message = forms.CharField(widget=forms.Textarea)
@@ -35,6 +36,7 @@ class ContactForm(forms.Form):
 
 class StudentRegistrationForm(ModelForm):
     """Form for handling student registration"""
+
     class Meta:
         model = Student
         fields = ['first_name', 'last_name', 'email', 'student_id',
@@ -64,7 +66,8 @@ class ActivityForm(ModelForm):
         self.fields['activity_type'].required = True
 
         self.fields['learned_objective'].widget = CheckboxSelectMultiple()
-        self.fields['learned_objective'].queryset = LearningObjectiveOptions.objects.all()
+        self.fields['learned_objective'].queryset = LearningObjectiveOptions\
+            .objects.all()
 
 
 class EntryForm(ModelForm):

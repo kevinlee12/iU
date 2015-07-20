@@ -26,10 +26,10 @@ from django.core.exceptions import ObjectDoesNotExist
 
 from django.core.mail import send_mail
 
-from journal.forms import ContactForm 
+from journal.forms import ContactForm
+
 
 def home(request):
-
     """Function to satisfy the home page"""
     if request.user and not request.user.is_anonymous:
         return HttpResponseRedirect('/activities/')
@@ -53,7 +53,7 @@ def home(request):
         form = ContactForm()
 
     return render(request, 'journal/home.html',
-                {'request': request, 'user': request.user, 'form': form})
+                  {'request': request, 'user': request.user, 'form': form})
 
 
 def login_redirects(request):

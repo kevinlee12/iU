@@ -22,8 +22,6 @@ from django.core.files.storage import FileSystemStorage
 
 fs = FileSystemStorage(location=settings.MEDIA_ROOT)
 
-def file_name(instance, filename):
-    return instance.pk
 
 class Entry(models.Model):
     """Entry object used for journaling"""
@@ -46,7 +44,8 @@ class Entry(models.Model):
         return self.text_entry or str(self.image_entry) or str(self.link_entry)
 
     def is_valid_entry(self):
-        count = bool(self.text_entry) + bool(self.image_entry) + bool(self.link_entry)
+        count = bool(self.text_entry) + bool(self.image_entry) + \
+                bool(self.link_entry)
         return count < 2
 
     def correct_entry_type(self):

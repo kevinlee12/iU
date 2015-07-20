@@ -35,6 +35,7 @@ class ActivityOptions(models.Model):
     def __str__(self):
         return self.name
 
+
 class LearningObjectiveOptions(models.Model):
     """Learning Objective objects used for Activity Objects
        Note: The options must be loaded in order for the forms to work!
@@ -44,6 +45,7 @@ class LearningObjectiveOptions(models.Model):
 
     def __str__(self):
         return self.objective
+
 
 class Activity(models.Model):
     """Activites for the students, depends on ActivityOptions

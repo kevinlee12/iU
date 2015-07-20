@@ -17,6 +17,7 @@
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium.webdriver.firefox.webdriver import WebDriver
 
+
 class ActivitySeleleniumTests(StaticLiveServerTestCase):
     """Selenium tests for the activity page"""
 
@@ -31,8 +32,11 @@ class ActivitySeleleniumTests(StaticLiveServerTestCase):
         super(ActivitySeleleniumTests, cls).tearDownClass()
 
     def setUp(self):
-        self.selenium.get('{0}{1}'.format(self.live_server_url, '/activities/'))
+        self.selenium.get('{0}{1}'.format(self.live_server_url,
+                                          '/activities/'))
 
     def test_activity_page(self):
         """Tests to ensure that the word activityies is present"""
-        image = self.selenium.find_element_by_xpath("//img[@src='/static/journal/activities/img/journal_sign.png']")
+        image = self.selenium\
+            .find_element_by_xpath("//img[@src='/static/journal/activities/img/\
+                                    journal_sign.png']")

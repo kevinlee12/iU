@@ -19,6 +19,7 @@ from selenium.webdriver.firefox.webdriver import WebDriver
 
 from .utilities import assert_true
 
+
 class ActivitySeleleniumTests(StaticLiveServerTestCase):
     """Selenium tests for the activity page"""
 
@@ -40,6 +41,7 @@ class ActivitySeleleniumTests(StaticLiveServerTestCase):
         """Tests to ensure the proper elements are present"""
         self.selenium.find_elements_by_link_text('iU')
         self.selenium.find_elements_by_link_text('Welcome')
-        about_us = self.selenium.find_elements_by_xpath('//*[@href="#about-us"]')
+        about_us = self.selenium\
+            .find_elements_by_xpath('//*[@href="#about-us"]')
         assert_true(len(about_us), 2)
         self.selenium.find_element_by_link_text('Features').click()

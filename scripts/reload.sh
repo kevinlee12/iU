@@ -24,6 +24,16 @@ echo "Ensuring that all pip requirements are satisfied"
 pip install -r requirements.txt
 echo "...done"
 echo
+# echo "Checking npm"
+# if [[ -n $(npm -v || grep "No") ]]; then
+#     echo "NPM is not installed"
+#     echo "Ensuring all npm files are satisfied"
+#     nodeenv --requirements=node-requirements.txt --jobs=4 --force env
+#     echo
+# elif  [[ -n $(npm --version || grep "1.") ]]; then
+#     echo "NPM installed, moving on"
+# fi
+# deactivate_node
 echo "Dropping the old iu database"
 dropdb iu
 echo "...done"
@@ -61,8 +71,8 @@ echo "...done"
 echo "Loading sample entries and stuff"
 python manage.py loaddata sample_entries
 echo
-# echo "Running tests to ensure nothing is broken"
-# echo "If any tests fail, something went wrong"
-# python3 manage.py test
-# echo
+echo "Running tests to ensure nothing is broken"
+echo "If any tests fail, something went wrong"
+python3 manage.py test
+echo
 deactivate

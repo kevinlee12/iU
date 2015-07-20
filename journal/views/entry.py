@@ -53,6 +53,7 @@ def entries(request, activity_id):
                    'activity_end': activity.end_date or 'Ongoing',
                    'is_student': True})
 
+
 @login_required
 def entry_form(request, activity_id, entry_type, entry_pk=None):
     """Function that allows the user to add/edit entries"""
@@ -76,6 +77,7 @@ def entry_form(request, activity_id, entry_type, entry_pk=None):
                 f.activity_pk = activity.pk
                 f.entry_type = entry_type
                 f.save()
+                form.save()
                 activity.entries.add(f)
         return HttpResponseRedirect('/activity/' + activity_id)
     else:
