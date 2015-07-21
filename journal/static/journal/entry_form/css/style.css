@@ -50,11 +50,11 @@ h4 {
 	text-align: center;
 }
 
-#activity {
+.activity {
 	border-bottom: 1px solid rgba(74,74,74,0.12);
 	display: inline-block;
 	line-height: 50px;
-	color: #05CCCE;
+	color: rgb(128, 128, 128);;
 }
 
 .action-bar {
@@ -81,6 +81,6 @@ form {
 	width: 70vw;
 }
 
-#entry-type {
+.entry-type {
 	margin-top: 30px;
 }

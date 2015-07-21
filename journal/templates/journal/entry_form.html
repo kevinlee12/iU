@@ -11,7 +11,7 @@
 
 {% block 'nav-content' %}
 <div class="activity-description">
-  <h3 id="activity"> {{ activity.activity_description}} </h3>
+  <h3 class="activity"> {{ activity.activity_description}} </h3>
   <div id="dates">
     {{ activity.start_date }} - {{ activity.end_date | default:'Ongoing' }}
   </div>
@@ -39,7 +39,7 @@
   </ul>
 </h4>
 
-<h3 id="entry-type"> What is your entry type? </h3>
+<h3 class="entry-type"> What is your entry type? </h3>
 <ul id="entry-type-selection" class="nav nav-tabs">
   <li role="presentation"><a role="tab" data-toggle="tab" href="#text"> Text </a></li>
   <li role="presentation"><a role="tab" data-toggle="tab" href="#image"> Image </a></li>

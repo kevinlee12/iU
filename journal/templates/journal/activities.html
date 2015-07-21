@@ -34,16 +34,16 @@
 
 {% block 'main-content'%}
 <div class="content">
-	<div id="activities-list">
+	<div class="activities-list">
 		<div class = "row">
 			<div class="col-xs-12 col-md-12 col-lg-12">
-				<div id = "pencil-sign" >
+				<div class="pencil-sign" >
 					<img src = "{% static 'journal/activities/img/journal_sign.png' %}">
 				</div>
 			</div>
 			{% if is_student %}
 			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
-				<div id="add-journal-sign" >
+				<div class="add-journal-sign" >
 					<a href="{% url 'activity_form' %}">
 						<img src = "{% static 'journal/activities/img/add_sign.png' %}">
 					</a>
@@ -59,11 +59,11 @@
 					{% else %}
 					<a href="/student_entries/{{student_pk}}/{{activity.pk}}">
 					{% endif %}
-						<div id="activity-box" href>
-							<div id="activity-name">
+						<div class="activity-box" href>
+							<div class="activity-name">
 								{{ activity.name_short }}
 							</div>
-							<div id="activity-description">
+							<div class="activity-description">
 								{{activity.description_short}}
 							</div>
 						</div>
@@ -74,20 +74,20 @@
 				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
 					{% if is_student %}
 					<a href="{% url 'activity_form' %}">
-						<div id="activity-box">
-							<div id="activity-name">
+						<div class="activity-box">
+							<div class="activity-name">
 								No Activities yet,
 							</div>
-							<div id="activity-description">
+							<div class="activity-description">
 								would you like to <b>add</b> one?
 							</div>
 					{% else %}
 					<a href="#">
-						<div id="activity-box">
-							<div id="activity-name">
+						<div class="activity-box">
+							<div class="activity-name">
 								No Activities
 							</div>
-							<div id="activity-description" style="font-size: 1.3vw">
+							<div class="activity-description" style="font-size: 1.3vw">
 								The student does not have any activities yet. Would you like to tell the student to add one?
 							</div>
 					{% endif %}

@@ -19,20 +19,20 @@
 {% block 'content' %}
 <body>
 	<div class="container-fluid">
-		<nav id="sidebar">
-			<div id="brand">
+		<nav class="sidebar">
+			<div class="brand">
 				<a href=" ">
-					<object id="logo" data="{% static 'journal/base_user/img/logo.svg' %}" type="image/svg+xml">
+					<object class="logo" data="{% static 'journal/base_user/img/logo.svg' %}" type="image/svg+xml">
 						<img src = "{% static 'journal/base_user/img/logo.svg' %}">
 					</object>
 				</a>
 			</div>
-			<div id="nav-text">
+			<div class="nav-text">
 				{% block 'nav-content' %} {% endblock %}
 			</div>
 		</nav>
 
-		<div id="main">
+		<div class="main">
 			{% block 'main-content' %} {% endblock %}
 		</div>
 	</div>

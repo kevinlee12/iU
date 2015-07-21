@@ -20,7 +20,7 @@ wrapped with a boostrap grid. */
 
 body {
 	margin: 0;
-	padding: 0px;
+	padding: 0;
 }
 
 h3 {
@@ -80,31 +80,25 @@ form {
 	color: rgb(128, 128, 128);
 }
 
-#activity-type {
+.activity-type {
 	font-size: 20px;
 }
 
-#activity-type-box {
+.activity-type-box {
 	position: relative;
 	color: rgb(128, 128, 128);
 }
 
-#advisor-info {
+.advisor-info {
 	text-align: center;
 	font-size: 20px;
 }
 
-#container {
-	width: 600px;
-	margin:0 ;
-	position:relative;
-}
-
-#learning-obj {
+.learning-obj {
 	font-size: 20px;
 }
 
-#learn-obj-box {
+.learn-obj-box {
 	position: relative;
 	color: rgb(128, 128, 128);
 	overflow: hidden;

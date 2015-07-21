@@ -25,7 +25,7 @@ h2 {
 	margin-top: 40px;
 }
 
-#activity {
+.activity {
 	border-bottom: 1px solid rgba(74,74,74,0.12);
 	display: inline-block;
 	line-height: 50px;

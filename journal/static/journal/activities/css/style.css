@@ -13,18 +13,18 @@
  * limitations under the License.
 */
 
-#activity-box {
+.activity-box {
 	height: 153px;
 	text-align: center;
 	border: 1px solid rgba(74, 74, 74, 0.2);
 }
 
-#activities-list {
+.activities-list {
 	position: relative;
 	top: 15%;
 }
 
-#activity-description {
+.activity-description {
 	position: relative;
 	top: 38%;
 	text-align: left;
@@ -38,7 +38,7 @@
 	overflow-y: hidden;
 }
 
-#activity-name {
+.activity-name {
 	position: absolute;
 	top: 10%;
 	background-color: #30CCCB;
@@ -52,14 +52,14 @@
 	overflow-y: hidden;
 }
 
-#add-journal-sign {
+.add-journal-sign {
 	position: relative;
 	top: 50%;
 	height: 153px;
 	text-align: center;
 }
 
-#pencil-sign {
+.pencil-sign {
 	position: relative;
 	left: 0;
   text-align: left;

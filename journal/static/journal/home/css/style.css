@@ -13,7 +13,7 @@
  * limitations under the License.
 */
 
-nav.navbar.navbar-default {
+.navbar.navbar-default {
   background-color: rgba(0,0,0,0.05);
   padding-bottom: 0;
   margin-bottom: 30px;
@@ -22,7 +22,7 @@ nav.navbar.navbar-default {
 }
 
 .container-fluid {
-  margin-top: 0px;
+  margin-top: 0;
   border: none;
   color: white;
   z-index:10;
@@ -44,7 +44,7 @@ nav.navbar.navbar-default {
   white-space: nowrap;
 }
 
-#logo {
+.logo {
     font-size: 40px;
     padding-left: 15px;
     color: white;
@@ -55,7 +55,7 @@ nav.navbar.navbar-default {
     white-space: nowrap;
 }
 
-#logo.sticky {
+.logo.sticky {
     float: left;
     font-size: 40px;
 }
@@ -86,8 +86,8 @@ a.navbar-brand {
   height: 33px;
 }
 
-button.navbar-toggle.collapsed {
-  border: 0px;
+.navbar-toggle.collapsed {
+  border: 0;
 }
 
 .navbar-default .navbar-toggle .icon-bar {
@@ -114,7 +114,7 @@ button.navbar-toggle.collapsed {
   z-index: 0;
 }
 
-#overlay {
+.overlay {
     background-color: rgba(0, 0, 0, 0.2);
     position: absolute;
     z-index: 1;
@@ -124,7 +124,7 @@ button.navbar-toggle.collapsed {
     right: 0;
 }
 
-#main-title {
+.main-title {
   position: absolute;
   top: 37%;
   left: 50%;
@@ -133,19 +133,19 @@ button.navbar-toggle.collapsed {
   text-align: center;
 }
 
-#big {
+.big {
   font-size: 72px;
   border-bottom: 2px solid white;
   display: inline-block;
   overflow: hidden;
 }
 
-#small {
+.small {
   font-size: 36px;
   overflow: hidden;
 }
 
-#bouncing-arrow {
+.bouncing-arrow {
   position: absolute;
   color: white;
   z-index: 5;
@@ -162,10 +162,6 @@ button.navbar-toggle.collapsed {
   animation: bounce 2s infinite;
 }
 
-#content {
-  text-align: center;
-}
-
 section {
   text-align: center;
   color: #05CCCE;
@@ -174,7 +170,6 @@ section {
 h2 {
     text-align: center;
     border-bottom: 2px solid rgba(74,74,74,0.12);
-    border-width: 30%;
     color: #05CCCE;
     display: inline-block;
     margin-bottom: -10px;
@@ -182,8 +177,8 @@ h2 {
 }
 
 body {
-  padding-top: 0px;
-  margin-top: 0%;
+  padding-top: 0;
+  margin-top: 0;
   color: white;
 }
 
