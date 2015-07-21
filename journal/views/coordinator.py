@@ -18,8 +18,8 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 
-from journal.models import Coordinator, Users, Student, Activity
-from journal.forms import StudentRegistrationForm
+from journal.models import Coordinator, Users, Student, Activity, Advisor
+from journal.forms import StudentRegistrationForm, AdvisorForm
 
 from django.core.exceptions import ObjectDoesNotExist
 
@@ -29,6 +29,7 @@ from django.contrib.auth.decorators import login_required
 def coordinator(request):
     user = request.user
     students = []
+    advisors = []
     if user.is_authenticated():
         try:
             auth_user_type = Users.objects.get(email=user.email).user_type
@@ -38,13 +39,43 @@ def coordinator(request):
         if auth_user_type == 'C':
             coor = Coordinator.objects.get(email=user.email)
             students = coor.students.all().order_by('last_name')
+            advisors = coor.advisors.all().order_by('first_name')
     return render(request, 'journal/coordinator.html',
-                  {'students': students, 'coordinator': coor})
+                  {'students': students, 'coordinator': coor,
+                   'advisors': advisors})
+
+
+@login_required
+def advisors_form(request, advisors_pk=None):
+    curr_coordinator = Coordinator.objects.get(email=request.user.email)
+
+    advisor = None
+    if advisors_pk:
+        advisor = Advisor.objects.get(pk=advisors_pk)
+
+    if request.method == 'POST':
+        form = AdvisorForm(request.POST, instance=advisor)
+        if form.is_valid():
+            if type(advisor) == Advisor:
+                form.save()
+            else:
+                f = form.save(commit=False)
+                f.school = curr_coordinator.school
+                f.students = curr_coordinator.students
+                f.save()
+                form.save()
+                curr_coordinator.advisors.add(f)
+            return HttpResponseRedirect('/coordinator')
+    else:
+        form = AdvisorForm(instance=advisor)
+    return render(request, 'journal/advisor_registration.html',
+                  {'form': form, 'coordinator': curr_coordinator})
 
 
 @login_required
 def student_registration(request, student_pk=None):
     curr_coordinator = Coordinator.objects.get(email=request.user.email)
+
     s = None
     if student_pk:
         s = Student.objects.get(pk=student_pk)

@@ -63,9 +63,8 @@ class Student(Person):
     """Student object that inherits from Person"""
     student_id = models.CharField(max_length=4)  # Max number of digits is 4
     personal_code = models.CharField(max_length=7)
-    stu_coordinator = models.IntegerField()  # Use coordinator pk
-    stu_advisor = models.IntegerField()  # User coordinator pk
-
+    # For the following, please use the respective pk fields.
+    stu_coordinator = models.IntegerField()
 
 class IBAdmin(Person):
     students = models.ManyToManyField(Student, blank=True)

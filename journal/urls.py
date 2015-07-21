@@ -35,7 +35,7 @@ urlpatterns = [
         '(?P<entry_pk>[0-9]+)/', views.entry_form, name='entry_form'),
     url(r'^delete_entry/(?P<activity_id>[0-9]+)/(?P<entry_pk>[0-9]+)',
         views.delete_entry, name='delete_entry'),
-    url(r'^students/', views.coordinator, name='students'),
+    url(r'^coordinator/', views.coordinator, name='coordinator'),
     url(r'^student_registration/$', views.student_registration,
         name='student_registration'),
     url(r'^student_registration/(?P<student_pk>[0-9]+)/',
@@ -44,4 +44,7 @@ urlpatterns = [
         views.student_activities, name='student_activities'),
     url(r'^student_entries/(?P<student_pk>[0-9]+)/(?P<activity_pk>[0-9]+)',
         views.student_entries, name='student_entries'),
+    url(r'^advisor_form/$', views.advisors_form, name='advisors_form'),
+    url(r'^advisor_form/(?P<advisors_pk>[0-9]+)/', views.advisors_form,
+        name='advisors_form'),
 ]

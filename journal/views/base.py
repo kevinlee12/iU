@@ -65,7 +65,7 @@ def login_redirects(request):
     if user.user_type == 'S':
         return HttpResponseRedirect('/activities')
     elif user.user_type == 'C':
-        return HttpResponseRedirect('/students')
+        return HttpResponseRedirect('/coordinator')
     return home(request)
 
 

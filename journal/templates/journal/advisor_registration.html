@@ -1,0 +1,28 @@
+{% extends 'journal/base_user.html' %}
+{% load staticfiles %}
+
+{% block 'title' %}
+<title>Advisor Form </title>
+{% endblock %}
+
+{% block 'page-css' %}
+{% endblock %}
+
+{% block 'page-js' %}
+{% endblock %}
+
+{% block 'nav-content' %}
+<div>
+	Advisor Profile
+</div>
+{% endblock %}
+
+{% block 'main-content' %}
+<h3> Hi {{ coordinator }}! </h3>
+<form action="" method="post">
+		{% csrf_token %}
+		{{ form }}
+		<a class="btn btn-default" href="/coordinator" role="button"> Back </a>
+		<input class="btn btn-success" type="submit" value="Submit" />
+</form>
+{% endblock %}

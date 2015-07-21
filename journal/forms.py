@@ -20,6 +20,7 @@ from django.forms import ModelForm
 from journal.models import Activity, ActivityOptions, LearningObjectiveOptions
 from journal.models import Entry
 from journal.models import Student
+from journal.models import Advisor
 from django.forms.widgets import CheckboxSelectMultiple
 
 from django import forms
@@ -29,9 +30,17 @@ import datetime
 
 class ContactForm(forms.Form):
     subject = forms.CharField(max_length=100)
-    message = forms.CharField(widget=forms.Textarea)
+    message = forms.CharField(max_length=300, widget=forms.Textarea)
     sender = forms.EmailField()
     cc_myself = forms.BooleanField(required=False)
+
+
+class AdvisorForm(ModelForm):
+    """Form for handling advisors"""
+
+    class Meta:
+        model = Advisor
+        fields = ['first_name', 'last_name', 'email']
 
 
 class StudentRegistrationForm(ModelForm):
@@ -40,7 +49,7 @@ class StudentRegistrationForm(ModelForm):
     class Meta:
         model = Student
         fields = ['first_name', 'last_name', 'email', 'student_id',
-                  'personal_code', 'stu_advisor']
+                  'personal_code']
 
 
 class ActivityForm(ModelForm):

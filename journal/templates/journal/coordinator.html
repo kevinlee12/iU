@@ -7,18 +7,17 @@
 {% endblock %}
 
 {% block 'page-css' %}
-<!-- <link rel="stylesheet" type="text/css" href="{% static 'journal/entries/css/style.css' %}"> -->
 {% endblock %}
 
 {% block 'page-js' %}
-<!-- <script src="{% static 'journal/entries/js/main.js' %}"></script> -->
 {% endblock %}
 
 {% block 'nav-content' %}
 {% endblock %}
 
 {% block 'main-content' %}
-<h2> Students </h2>
+<h2> Hi {{ coordinator }}! </h2>
+<h2>Students</h2>
 <a href="/student_registration/">Click here to register a student</a>
 {% if students %}
   {% for student in students %}
@@ -29,5 +28,17 @@
   {% endfor %}
 {% else %}
   <h3> No students yet, would you like to <a href="/student_registration/">register</a> them? </h3>
+{% endif %}
+
+<h2>Advisors</h2>
+<a href="/advisor_form/">Click here to register an advisor</a>
+{% if advisors %}
+  {% for advisor in advisors %}
+  <ul>
+    <li><a href="/advisor_form/{{advisor.pk}}"> {{ advisor }} </a>
+  </ul>
+  {% endfor %}
+{% else %}
+  <h3> No advisors yet, would you like to <a href="/advisor_form/">register</a> them? </h3>
 {% endif %}
 {% endblock %}
