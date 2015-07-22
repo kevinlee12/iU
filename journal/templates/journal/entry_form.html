@@ -1,5 +1,6 @@
 {% extends 'journal/base_user.html' %}
 {% load staticfiles %}
+{% load comments %}
 
 {% block 'page-css' %}
 <link rel="stylesheet" type="text/css" href="{% static 'journal/entry_form/css/style.css' %}">
@@ -78,4 +79,10 @@
       {% endif %}
     </div>
 </form>
+
+{% if entry_pk %}
+{% render_comment_list for entry %}
+{% render_comment_form for entry %}
+{% endif %}
+
 {% endblock %}

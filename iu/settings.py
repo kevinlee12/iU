@@ -61,10 +61,12 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = (
+    'django_comments',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',
@@ -74,6 +76,8 @@ INSTALLED_APPS = (
     'social.apps.django_app.default',
     'sslserver',
 )
+
+SITE_ID = 8123
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',

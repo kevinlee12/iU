@@ -40,12 +40,16 @@
 	</tr>
 	{% if entries %}
   		{% for entry in entries %}
-  	<tr class='clickable-row' data-href="/entry_form/{{ activity_id }}/{{ entry.entry_type }}/{{ entry.pk }}/#{{ entry.entry_type }}">
+			{% if is_student %}
+  		<tr class='clickable-row' data-href="/entry_form/{{ activity_id }}/{{ entry.entry_type }}/{{ entry.pk }}/#{{ entry.entry_type }}">
+			{% else %}
+			<tr class='clickable-row' data-href="/entry_view/{{ student_pk }}/{{ entry.pk }}/">
+			{% endif %}
 	  		<td class="col-xs-6 col-md-4"> {{ entry.created }} </td>
 	  		<td class="col-xs-6 col-md-8"> {{ entry }} </td>
 			<!-- </a> -->
   		{% endfor %}
-	</tr>
+		</tr>
 	{% else %}
 	<tr class='clickable-row'>
 		<td class="col-xs-6 col-md-4">
