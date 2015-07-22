@@ -15,19 +15,21 @@
 {% endblock %}
 
 {% block 'nav-content'%}
-{% if is_student %}
 <div class="activity-description">
 	<h3 id="activity"> {{ activity_description}} </h3>
 	<h5> {{ activity_start }} -- {{ activity_end }} </h5>
 </div>
 
 <div class="action-bar">
+	{% if is_student %}
 	<a href="/entry_form/{{ activity_id }}/text/#text"> Add an entry</a> <br>
 	<a href="/activity_form/{{ activity_pk }}">Edit the activity</a> <br>
 	<!-- TODO: Confirmation dialog -->
 	<a href="/delete_activity/{{ activity_pk }}"> Delete the activity </a>
+	{% else %}
+	<a href="/activity_view/{{ student_pk }}/{{ activity_pk }}/"> View activity details </a>
+	{% endif %}
 </div>
-{% endif %}
 {% endblock %}
 
 {% block 'main-content' %}

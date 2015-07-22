@@ -1,0 +1,63 @@
+{% extends 'journal/base_user.html' %}
+{% load staticfiles %}
+{% load comments %}
+
+{% block 'page-css' %}
+<!-- <link rel="stylesheet" type="text/css" href="{% static 'journal/entry_form/css/style.css' %}"> -->
+{% endblock %}
+
+{% block 'page-js' %}
+<!-- <script src="{% static 'journal/entry_form/js/main.js' %}"></script> -->
+{% endblock %}
+
+{% block 'nav-content' %}
+<div class="student-description">
+  {{ student }}
+  <a href="{{ request.META.HTTP_REFERER }}"><i class="fa fa-long-arrow-left fa-6x"></i> Back to {{ student }}'s activities </a>
+</div>
+{% endblock %}
+
+
+{% block 'main-content' %}
+<!-- The actual activity information is below: -->
+<h2> Activity Info for {{ activity.activity_name }} </h2>
+<h2><small> {{ activity.activity_description }} </small></h2>
+<br><h3> {{ activity.start_date }} - {{ activity.end_date }}</h3>
+<br><h2>Activity Type(s):</h2>
+<ul>
+{% for type in activity.activity_type.all %}
+  <li>{{ type }}</li>
+{% endfor %}
+</ul>
+<h2> Learning Objectives: </h2>
+<ul>
+{% for lo in activity.learned_objective.all %}
+  <li>{{ lo }}</li>
+{% endfor %}
+</ul>
+{% if activity.activity_adviser %}
+<h2>Activity Advisor Information</h2>
+<br><h3>{{ activity.activity_adviser }}</h3>
+{{ activity.advisor_phone }}
+{{ activity.advisor_email }}
+{% else %}
+No Advisor information has been provided yet
+{% endif %}
+
+
+<!-- This is the comments so far -->
+{% render_comment_list for activity %}
+<!-- The commenting form is here -->
+{% get_comment_form for activity as form %}
+<form action="{% comment_form_target %}" method="POST">
+  {% csrf_token %}
+  {{ form.honeypot }}
+  {{ form.content_type }}
+  {{ form.object_pk }}
+  {{ form.timestamp }}
+  {{ form.security_hash }}
+  <textarea class="form-group" id="{{ form.comment.id }}" rows="10" name="{{ form.comment.name }}" value="{{ form.comment.value }}" required></textarea>
+  <input type="hidden" name="next" value="{{ request.get_full_path }}">
+  <br><input class="btn btn-success" type="submit" value="Add comment" id="id_submit">
+</form>
+{% endblock %}

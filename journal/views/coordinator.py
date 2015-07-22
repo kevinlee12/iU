@@ -123,6 +123,15 @@ def student_activities(request, student_pk):
 
 
 @login_required
+def student_activity_description(request, student_pk, activity_pk):
+    student = Student.objects.get(pk=student_pk)
+    coordinator_check(request, student)
+    activity = Activity.objects.get(pk=activity_pk)
+    return render(request, 'journal/activity_description_coor_view.html',
+                  {'student': student, 'activity': activity})
+
+
+@login_required
 def student_entries(request, student_pk, activity_pk):
     student = Student.objects.get(pk=student_pk)
     coordinator_check(request, student)

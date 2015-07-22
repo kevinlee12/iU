@@ -49,4 +49,6 @@ urlpatterns = [
         name='advisors_form'),
     url(r'^entry_view/(?P<student_pk>[0-9]+)/(?P<activity_pk>[0-9]+)/(?P<entry_pk>[0-9]+)/',
         views.view_stu_entry, name='view_stu_entry'),
+    url(r'activity_view/(?P<student_pk>[0-9]+)/(?P<activity_pk>[0-9]+)/',
+        views.student_activity_description, name='activity_view'),
 ]
