@@ -27,3 +27,7 @@ h1, h2, h3, h4, h5, h6 {
 p, div, ul {
     font-family: 'Raleway', sans-serif;
 }
+
+#id_honeypot {
+    display: none;
+}

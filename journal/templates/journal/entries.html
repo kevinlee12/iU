@@ -15,19 +15,21 @@
 {% endblock %}
 
 {% block 'nav-content'%}
-{% if is_student %}
 <div class="activity-description">
 	<h3 id="activity"> {{ activity_description}} </h3>
 	<h5> {{ activity_start }} -- {{ activity_end }} </h5>
 </div>
 
 <div class="action-bar">
+	{% if is_student %}
 	<a href="/entry_form/{{ activity_id }}/text/#text"> Add an entry</a> <br>
 	<a href="/activity_form/{{ activity_pk }}">Edit the activity</a> <br>
 	<!-- TODO: Confirmation dialog -->
 	<a href="/delete_activity/{{ activity_pk }}"> Delete the activity </a>
+	{% else %}
+	<a href="/activity_view/{{ student_pk }}/{{ activity_pk }}/"> View activity details </a>
+	{% endif %}
 </div>
-{% endif %}
 {% endblock %}
 
 {% block 'main-content' %}
@@ -40,12 +42,16 @@
 	</tr>
 	{% if entries %}
   		{% for entry in entries %}
-  	<tr class='clickable-row' data-href="/entry_form/{{ activity_id }}/{{ entry.entry_type }}/{{ entry.pk }}/#{{ entry.entry_type }}">
+			{% if is_student %}
+  		<tr class='clickable-row' data-href="/entry_form/{{ activity_id }}/{{ entry.entry_type }}/{{ entry.pk }}/#{{ entry.entry_type }}">
+			{% else %}
+			<tr class='clickable-row' data-href="/entry_view/{{ student_pk }}/{{ activity_pk }}/{{ entry.pk }}/">
+			{% endif %}
 	  		<td class="col-xs-6 col-md-4"> {{ entry.created }} </td>
 	  		<td class="col-xs-6 col-md-8"> {{ entry }} </td>
 			<!-- </a> -->
   		{% endfor %}
-	</tr>
+		</tr>
 	{% else %}
 	<tr class='clickable-row'>
 		<td class="col-xs-6 col-md-4">
