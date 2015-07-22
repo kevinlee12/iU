@@ -140,10 +140,12 @@ def student_entries(request, student_pk, activity_pk):
 
 
 @login_required
-def view_stu_entry(request, student_pk, entry_pk):
+def view_stu_entry(request, student_pk, activity_pk, entry_pk):
     curr_coordinator = Coordinator.objects.get(email=request.user.email)
     student = Student.objects.get(pk=student_pk)
+    activity = Activity.objects.get(pk=activity_pk)
     coordinator_check(request, student)
     entry = Entry.objects.get(pk=entry_pk)
     return render(request, 'journal/entry_coor_view.html',
-                  {'entry': entry, 'coordinator': curr_coordinator})
+                  {'entry': entry, 'activity': activity,
+                   'coordinator': curr_coordinator})

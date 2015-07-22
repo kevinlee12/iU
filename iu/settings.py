@@ -71,12 +71,13 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'debug_toolbar',
     'journal',
+    'iu_commenting',
     # 'haystack', reactivate once things are 80% done
     'rest_framework',
     'social.apps.django_app.default',
     'sslserver',
 )
-
+COMMENTS_APP = 'iu_commenting'
 SITE_ID = 8123
 
 MIDDLEWARE_CLASSES = (

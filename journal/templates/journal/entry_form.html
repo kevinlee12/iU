@@ -81,8 +81,19 @@
 </form>
 
 {% if entry_pk %}
-{% render_comment_list for entry %}
-{% render_comment_form for entry %}
+  {% render_comment_list for entry %}
+  {% get_comment_form for entry as form %}
+    <form action="{% comment_form_target %}" method="POST">
+    {% csrf_token %}
+    {{ form.honeypot }}
+    {{ form.content_type }}
+    {{ form.object_pk }}
+    {{ form.timestamp }}
+    {{ form.security_hash }}
+    <textarea class="form-group" id="{{ form.comment.id }}" rows="10" name="{{ form.comment.name }}" value="{{ form.comment.value }}" required></textarea>
+    <input type="hidden" name="next" value="{{ request.get_full_path }}/#{{ entry_type }}">
+    <br><input class="btn btn-success" type="submit" value="Add comment" id="id_submit">
+    </form>
 {% endif %}
 
 {% endblock %}

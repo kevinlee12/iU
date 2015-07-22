@@ -47,6 +47,6 @@ urlpatterns = [
     url(r'^advisor_form/$', views.advisors_form, name='advisors_form'),
     url(r'^advisor_form/(?P<advisors_pk>[0-9]+)/', views.advisors_form,
         name='advisors_form'),
-    url(r'^entry_view/(?P<student_pk>[0-9]+)/(?P<entry_pk>[0-9]+)/',
+    url(r'^entry_view/(?P<student_pk>[0-9]+)/(?P<activity_pk>[0-9]+)/(?P<entry_pk>[0-9]+)/',
         views.view_stu_entry, name='view_stu_entry'),
 ]
