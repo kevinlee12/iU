@@ -85,7 +85,8 @@ def entry_form(request, activity_id, entry_type, entry_pk=None):
 
     return render(request, 'journal/entry_form.html',
                   {'form': form, 'activity': activity,
-                   'entry_type': entry_type, 'entry_pk': entry_pk})
+                   'entry_type': entry_type, 'entry_pk': entry_pk,
+                   'entry': e})
 
 
 @login_required

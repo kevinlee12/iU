@@ -18,7 +18,8 @@
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 
-from journal.models import Coordinator, Users, Student, Activity, Advisor
+from journal.models import Coordinator, Users, Student, Advisor
+from journal.models import Activity, Entry
 from journal.forms import StudentRegistrationForm, AdvisorForm
 
 from django.core.exceptions import ObjectDoesNotExist
@@ -122,6 +123,15 @@ def student_activities(request, student_pk):
 
 
 @login_required
+def student_activity_description(request, student_pk, activity_pk):
+    student = Student.objects.get(pk=student_pk)
+    coordinator_check(request, student)
+    activity = Activity.objects.get(pk=activity_pk)
+    return render(request, 'journal/activity_description_coor_view.html',
+                  {'student': student, 'activity': activity})
+
+
+@login_required
 def student_entries(request, student_pk, activity_pk):
     student = Student.objects.get(pk=student_pk)
     coordinator_check(request, student)
@@ -134,4 +144,17 @@ def student_entries(request, student_pk, activity_pk):
                    'activity_pk': activity.pk, 'activity_id': activity.id,
                    'activity_start': activity.start_date,
                    'activity_end': activity.end_date or "Ongoing",
+                   'student_pk': student.pk,
                    'is_student': False})
+
+
+@login_required
+def view_stu_entry(request, student_pk, activity_pk, entry_pk):
+    curr_coordinator = Coordinator.objects.get(email=request.user.email)
+    student = Student.objects.get(pk=student_pk)
+    activity = Activity.objects.get(pk=activity_pk)
+    coordinator_check(request, student)
+    entry = Entry.objects.get(pk=entry_pk)
+    return render(request, 'journal/entry_coor_view.html',
+                  {'entry': entry, 'activity': activity,
+                   'coordinator': curr_coordinator})

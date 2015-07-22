@@ -1,0 +1,41 @@
+{% extends 'journal/base_user.html' %}
+{% load staticfiles %}
+{% load comments %}
+
+{% block 'page-css' %}
+<!-- <link rel="stylesheet" type="text/css" href="{% static 'journal/entry_form/css/style.css' %}"> -->
+{% endblock %}
+
+{% block 'page-js' %}
+<!-- <script src="{% static 'journal/entry_form/js/main.js' %}"></script> -->
+{% endblock %}
+
+{% block 'nav-content' %}
+<div class="activity-description">
+  <h3 id="activity"> {{ activity.activity_description}} </h3>
+  <div id="dates">
+    {{ activity.start_date }} - {{ activity.end_date | default:'Ongoing' }}
+  </div>
+</div>
+{% endblock %}
+
+
+{% block 'main-content' %}
+<!-- The actual entry is below: -->
+{{ entry }}
+<!-- This is the comments so far -->
+{% render_comment_list for entry %}
+<!-- The commenting form is here -->
+{% get_comment_form for entry as form %}
+<form action="{% comment_form_target %}" method="POST">
+  {% csrf_token %}
+  {{ form.honeypot }}
+  {{ form.content_type }}
+  {{ form.object_pk }}
+  {{ form.timestamp }}
+  {{ form.security_hash }}
+  <textarea class="form-group" id="{{ form.comment.id }}" rows="10" name="{{ form.comment.name }}" value="{{ form.comment.value }}" required></textarea>
+  <input type="hidden" name="next" value="{{ request.get_full_path }}">
+  <br><input class="btn btn-success" type="submit" value="Add comment" id="id_submit">
+</form>
+{% endblock %}

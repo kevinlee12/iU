@@ -79,7 +79,8 @@ def activity_form(request, activity_pk=None):
         form = ActivityForm(instance=a)
 
     return render(request, 'journal/activity_form.html',
-                  {'form': form, 'student': curr_student})
+                  {'form': form, 'student': curr_student,
+                   'activity': a})
 
 
 @login_required
