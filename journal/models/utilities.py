@@ -14,9 +14,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Place all imports here, in alphabetical order
-# Naming convention: <model name>_models.py
 
-from .activity_models import *
-from .entry_models import *
-from .users_models import *
+def shorten(string, max_length):
+    """Utility to shorten strings to a max length of characters, replaces the
+       rest with three dots.
+    """
+    if len(string) > max_length:
+        return '{0}...'.format(string[:max_length])
+    return string

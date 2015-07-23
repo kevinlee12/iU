@@ -8,13 +8,17 @@
 #
 #      http://www.apache.org/licenses/LICENSE-2.0
 #
-# Unless required by applicable law or agreed to in writing, softwar
+# Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS-IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
 # For all of the areas where user would first encounter
+from actstream.actions import follow
+from actstream.models import user_stream
+from actstream.models import following
+
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 
@@ -25,7 +29,7 @@ from journal.forms import StudentRegistrationForm, AdvisorForm
 from django.core.exceptions import ObjectDoesNotExist
 
 from django.contrib.auth.decorators import login_required
-
+from django.shortcuts import get_object_or_404
 
 def coordinator(request):
     user = request.user
@@ -42,8 +46,8 @@ def coordinator(request):
             students = coor.students.all().order_by('last_name')
             advisors = coor.advisors.all().order_by('first_name')
     return render(request, 'journal/coordinator.html',
-                  {'students': students, 'coordinator': coor,
-                   'advisors': advisors})
+                  {'feed': user_stream(request.user), 'students': students,
+                   'coordinator': coor, 'advisors': advisors})
 
 
 @login_required
@@ -66,38 +70,11 @@ def advisors_form(request, advisors_pk=None):
                 f.save()
                 form.save()
                 curr_coordinator.advisors.add(f)
+                follow(request.user, f)
             return HttpResponseRedirect('/coordinator')
     else:
         form = AdvisorForm(instance=advisor)
     return render(request, 'journal/advisor_registration.html',
-                  {'form': form, 'coordinator': curr_coordinator})
-
-
-@login_required
-def student_registration(request, student_pk=None):
-    curr_coordinator = Coordinator.objects.get(email=request.user.email)
-
-    s = None
-    if student_pk:
-        s = Student.objects.get(pk=student_pk)
-        if s.stu_coordinator != curr_coordinator.pk:
-            return render(request, 'journal/error.html')
-    if request.method == 'POST':
-        form = StudentRegistrationForm(request.POST, instance=s)
-        if form.is_valid():
-            if type(s) == Student:
-                form.save()
-            else:
-                f = form.save(commit=False)
-                f.school = curr_coordinator.school
-                f.stu_coordinator = curr_coordinator.pk
-                form.save()
-                f.save()
-            return HttpResponseRedirect('/students')
-    else:
-        form = StudentRegistrationForm(instance=s)
-
-    return render(request, 'journal/student_registration_form.html',
                   {'form': form, 'coordinator': curr_coordinator})
 
 
@@ -110,6 +87,43 @@ def coordinator_check(request, student):
         return render(request, 'journal/error.html')
     return  # Check is good
 
+
+@login_required
+def student_registration(request, student_pk=None):
+    curr_coordinator = Coordinator.objects.get(email=request.user.email)
+
+    s = None
+    if student_pk:
+        s = Student.objects.get(pk=student_pk)
+        coordinator_check(request, s)
+    if request.method == 'POST':
+        form = StudentRegistrationForm(request.POST, instance=s)
+        if form.is_valid():
+            if type(s) == Student:
+                form.save()
+            else:
+                f = form.save(commit=False)
+                f.school = curr_coordinator.school
+                f.stu_coordinator = curr_coordinator.pk
+                form.save()
+                f.save()
+                curr_coordinator.students.add(f)
+                follow(request.user, f)
+            return HttpResponseRedirect('/coordinator')
+    else:
+        form = StudentRegistrationForm(instance=s)
+
+    return render(request, 'journal/student_registration_form.html',
+                  {'form': form, 'coordinator': curr_coordinator,
+                   'student_pk': student_pk})
+
+
+@login_required
+def remove_student(request, student_pk):
+    student = get_object_or_404(Student, pk=student_pk)
+    coordinator_check(request, student)
+    student.delete()
+    return HttpResponseRedirect('/coordinator')
 
 @login_required
 def student_activities(request, student_pk):

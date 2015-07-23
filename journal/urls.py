@@ -8,7 +8,7 @@
 #
 #      http://www.apache.org/licenses/LICENSE-2.0
 #
-# Unless required by applicable law or agreed to in writing, softwar
+# Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS-IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
@@ -47,6 +47,8 @@ urlpatterns = [
     url(r'^advisor_form/$', views.advisors_form, name='advisors_form'),
     url(r'^advisor_form/(?P<advisors_pk>[0-9]+)/', views.advisors_form,
         name='advisors_form'),
+    url(r'^remove_student/(?P<student_pk>[0-9]+)/', views.remove_student,
+        name='remove_student'),
     url(r'^entry_view/(?P<student_pk>[0-9]+)/(?P<activity_pk>[0-9]+)/(?P<entry_pk>[0-9]+)/',
         views.view_stu_entry, name='view_stu_entry'),
     url(r'activity_view/(?P<student_pk>[0-9]+)/(?P<activity_pk>[0-9]+)/',

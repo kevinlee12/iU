@@ -61,6 +61,7 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = (
+    'actstream',
     'django_comments',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -79,6 +80,13 @@ INSTALLED_APPS = (
 )
 COMMENTS_APP = 'iu_commenting'
 SITE_ID = 8123
+
+ACTSTREAM_SETTINGS = {
+    'FETCH_RELATIONS': True,
+    'USE_PREFETCH': True,
+    'USE_JSONFIELD': False,
+    'GFK_FETCH_DEPTH': 1,
+}
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',

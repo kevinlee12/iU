@@ -8,13 +8,15 @@
 #
 #      http://www.apache.org/licenses/LICENSE-2.0
 #
-# Unless required by applicable law or agreed to in writing, softwar
+# Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS-IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
 # For all things activity related (with the exception of entries) for students.
+from actstream import action
+
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 
@@ -68,12 +70,14 @@ def activity_form(request, activity_pk=None):
         if form.is_valid():
             if type(a) == Activity:
                 form.save()
+                action.send(request.user, verb='modifed the activity', target=a)
                 return HttpResponseRedirect('/activity/' + str(a.id))
             else:
                 f = form.save(commit=False)
                 f.student = curr_student
                 f.save()
                 form.save()
+                action.send(request.user, verb='created a new activity', target=a)
                 return HttpResponseRedirect('/activities')
     else:
         form = ActivityForm(instance=a)

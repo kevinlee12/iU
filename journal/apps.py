@@ -14,9 +14,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Place all imports here, in alphabetical order
-# Naming convention: <model name>_models.py
+from django.apps import AppConfig
+from actstream import registry
 
-from .activity_models import *
-from .entry_models import *
-from .users_models import *
+from django.contrib.auth.models import User
+
+class JournalConfig(AppConfig):
+
+    name = 'journal'
+
+    def ready(self):
+        registry.register(User, self.get_model('Entry'),
+                          self.get_model('Activity'),
+                          self.get_model('Student'),
+                          self.get_model('Coordinator'))

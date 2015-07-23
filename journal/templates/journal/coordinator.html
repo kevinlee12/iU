@@ -1,6 +1,6 @@
 {% extends 'journal/base_user.html' %}
 {% load staticfiles %}
-
+{% load activity_tags %}
 
 {% block 'title' %}
 <title>Welcome Coordinator! </title>
@@ -41,4 +41,9 @@
 {% else %}
   <h3> No advisors yet, would you like to <a href="/advisor_form/">register</a> them? </h3>
 {% endif %}
+
+{% for action in feed %}
+    {% display_action action %}
+{% endfor %}
+
 {% endblock %}
