@@ -56,19 +56,6 @@ def home(request):
                   {'request': request, 'user': request.user, 'form': form})
 
 
-def login_redirects(request):
-    """Function that redirects users appropriately after login"""
-    try:
-        user = Users.objects.get(email=request.user.email)
-    except ObjectDoesNotExist:
-        return HttpResponseRedirect('/activities')
-    if user.user_type == 'S':
-        return HttpResponseRedirect('/activities')
-    elif user.user_type == 'C':
-        return HttpResponseRedirect('/coordinator')
-    return home(request)
-
-
 def welcome(request):
     """For the landing page after the user logs in"""
     name = ''

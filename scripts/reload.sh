@@ -53,6 +53,13 @@ echo "Migrating database"
 python3 manage.py migrate
 echo "...done"
 echo "Loading the databases with data"
+echo
+echo "Loading activityoptions data"
+python manage.py loaddata activityoptions
+echo "Loading learningobjectiveoptions data"
+python manage.py loaddata learningobjectiveoptions
+echo "Loading users data"
+python manage.py loaddata users
 echo "Loading school data"
 python manage.py loaddata school
 echo "Loading student data"
@@ -61,12 +68,6 @@ echo "Loading advisor data"
 python manage.py loaddata advisor
 echo "Loading coordinator data"
 python manage.py loaddata coordinator
-echo "Loading users data"
-python manage.py loaddata users
-echo "Loading activityoptions data"
-python manage.py loaddata activityoptions
-echo "Loading learningobjectiveoptions data"
-python manage.py loaddata learningobjectiveoptions
 echo "...done"
 echo "Loading sample entries and stuff"
 python manage.py loaddata sample_entries
