@@ -15,34 +15,30 @@
 $(document).ready(function() {
     $(".background").css("height", $(window).height() + "px");
     fadeInHeader();
-    $("#about-us").css("height", $(window).height() + "px");
+    $("section").css("height", $(window).height() + "px");
     linkSmoothScroll();
-    $("#features").css("height", $(window).height() + "px");
-    $("#interest").css("height", $(window).height() + "px");
-    $("#contact-us").css("height", $(window).height() + "px");
- 
 });
 
 
 function fadeInHeader() {
-    $("#overlay").css("display", "none");
-    $("#main-title").css("display","none");
-    $("#small").css("display", "none");
-    $("#big").css("display", "none");
-    $("#greeter").css("display", "none");
+    $(".overlay").css("display", "none");
+    $(".main-title").css("display","none");
+    $(".small").css("display", "none");
+    $(".big").css("display", "none");
+    $(".greeter").css("display", "none");
     $("header").css("display", "none");
     setTimeout(function() {
-        $("#overlay").fadeIn(300);
+        $(".overlay").fadeIn(300);
     }, 700);
     setTimeout(function() {
-        $("#main-title").fadeIn(100);
-        $("#big").fadeIn(100);
-        $("#small").fadeIn(600);
-        $("#greeter").fadeIn(2000);
+        $(".main-title").fadeIn(100);
+        $(".big").fadeIn(100);
+        $(".small").fadeIn(600);
+        $(".greeter").fadeIn(2000);
         $("header").fadeIn(2000);
     }, 2000);
     setTimeout(function() {
-      $('#bouncing-arrow').show(100);
+      $('.bouncing-arrow').show(100);
   }, 3500);
 }
 
