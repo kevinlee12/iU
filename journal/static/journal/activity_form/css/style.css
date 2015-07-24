@@ -13,11 +13,6 @@
  * limitations under the License.
 */
 
-
-/*TODO:
-this entire section needs to be
-wrapped with a boostrap grid. */
-
 body {
 	margin: 0;
 	padding: 0;
@@ -46,24 +41,27 @@ form {
 }
 
 .activity-box {
-	/*text-align: center;*/
+	text-align: center;
 	position: relative;
-	left: 27%;
+	left: 25%;
 	color: rgb(128, 128, 128);
-	width: 45%;
+	width: 50%;
 }
 
 .advisor-box {
 	position: relative;
-	left: 37.5%;
-	width: 25%;
-	/*text-align: center;*/
+	left: 30%;
+	width: 40%;
+	text-align: center;
 	color: rgb(128, 128, 128);
 }
 
 .dates {
-	left: 18%;
+	margin-bottom: 10%;
+	padding-left: 15%;
+	padding-right: 17%;
 }
+
 
 .help-block {
 	text-align: center;
@@ -85,7 +83,8 @@ form {
 }
 
 .activity-type-box {
-	position: relative;
+	padding-left: 40%;
+	margin-bottom: 20px;
 	color: rgb(128, 128, 128);
 }
 
@@ -99,7 +98,7 @@ form {
 }
 
 .learn-obj-box {
-	position: relative;
+	padding-left: 13%;
 	color: rgb(128, 128, 128);
 	overflow: hidden;
 	font-size: 15px;
