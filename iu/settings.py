@@ -61,19 +61,32 @@ ALLOWED_HOSTS = [
 # Application definition
 
 INSTALLED_APPS = (
+    'actstream',
+    'django_comments',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
+    'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'debug_toolbar',
     'journal',
+    'iu_commenting',
     # 'haystack', reactivate once things are 80% done
     'rest_framework',
     'social.apps.django_app.default',
     'sslserver',
 )
+COMMENTS_APP = 'iu_commenting'
+SITE_ID = 8123
+
+ACTSTREAM_SETTINGS = {
+    'FETCH_RELATIONS': True,
+    'USE_PREFETCH': True,
+    'USE_JSONFIELD': False,
+    'GFK_FETCH_DEPTH': 1,
+}
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',

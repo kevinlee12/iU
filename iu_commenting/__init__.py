@@ -14,9 +14,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Place all imports here, in alphabetical order
-# Naming convention: <model name>_models.py
+from django_comments.models import Comment
 
-from .activity_models import *
-from .entry_models import *
-from .users_models import *
+from .forms import EntryCommentForm
+
+
+def get_model():
+    return Comment
+
+
+def get_form():
+    return EntryCommentForm

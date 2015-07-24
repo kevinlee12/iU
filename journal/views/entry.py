@@ -8,13 +8,15 @@
 #
 #      http://www.apache.org/licenses/LICENSE-2.0
 #
-# Unless required by applicable law or agreed to in writing, softwar
+# Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS-IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
 # All things entry related
+from actstream import action
+
 from django.shortcuts import render
 from django.http import HttpResponseRedirect, Http404
 
@@ -72,6 +74,7 @@ def entry_form(request, activity_id, entry_type, entry_pk=None):
             if type(e) == Entry:  # Editing
                 f.save()
                 form.save()
+                action.send(curr_student, verb='added an entry to', target=activity)
             else:  # New
                 f.stu_email = curr_student.email
                 f.activity_pk = activity.pk
@@ -79,13 +82,15 @@ def entry_form(request, activity_id, entry_type, entry_pk=None):
                 f.save()
                 form.save()
                 activity.entries.add(f)
+                action.send(curr_student, verb='edited an entry of', target=activity)
         return HttpResponseRedirect('/activity/' + activity_id)
     else:
         form = EntryForm(instance=e)
 
     return render(request, 'journal/entry_form.html',
                   {'form': form, 'activity': activity,
-                   'entry_type': entry_type, 'entry_pk': entry_pk})
+                   'entry_type': entry_type, 'entry_pk': entry_pk,
+                   'entry': e})
 
 
 @login_required

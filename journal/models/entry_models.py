@@ -8,7 +8,7 @@
 #
 #      http://www.apache.org/licenses/LICENSE-2.0
 #
-# Unless required by applicable law or agreed to in writing, softwar
+# Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS-IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
@@ -16,6 +16,8 @@
 
 from django.db import models
 from django.conf import settings
+
+from .utilities import shorten
 
 from django.core.files.storage import FileSystemStorage
 # The following are used for activity and entry logging.
@@ -41,7 +43,9 @@ class Entry(models.Model):
     link_entry = models.URLField(blank=True)
 
     def __str__(self):
-        return self.text_entry or str(self.image_entry) or str(self.link_entry)
+        if self.text_entry:
+            return shorten(self.text_entry, 50)
+        return str(self.image_entry) or str(self.link_entry)
 
     def is_valid_entry(self):
         count = bool(self.text_entry) + bool(self.image_entry) + \
@@ -55,3 +59,9 @@ class Entry(models.Model):
             self.entry_type = 'image'
         elif self.link_entry:
             self.entry_type = 'link'
+
+    def save(self, *args, **kwargs):
+        self.correct_entry_type()
+        if not self.is_valid_entry():
+            return  # Don't save it not valid
+        super(Entry, self).save(*args, **kwargs)

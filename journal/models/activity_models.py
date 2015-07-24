@@ -8,7 +8,7 @@
 #
 #      http://www.apache.org/licenses/LICENSE-2.0
 #
-# Unless required by applicable law or agreed to in writing, softwar
+# Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS-IS" BASIS,
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
@@ -19,6 +19,7 @@ from django.core.validators import RegexValidator
 
 from .entry_models import Entry
 from .users_models import Student
+from .utilities import shorten
 
 # The following contains the Activity model along with the supporting models:
 # - ActivityOptions: Creativity, Action, and Service (from fixtures)
@@ -75,15 +76,11 @@ class Activity(models.Model):
     def __str__(self):
         return self.activity_name
 
-    def shorten(word, max_length):
-        if len(word) > max_length:
-            new_str = word[:max_length]
-            new_str += '...'
-            return new_str
-        return word
-
     def name_short(self):
-        return Activity.shorten(self.activity_name, 18)
+        return shorten(self.activity_name, 18)
 
     def description_short(self):
-        return Activity.shorten(self.activity_description, 70)
+        return shorten(self.activity_description, 70)
+
+    def get_absolute_url(self):
+        return "/student_entries/{0}/{1}".format(self.student.pk, self.pk)
