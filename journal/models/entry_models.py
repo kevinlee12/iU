@@ -65,3 +65,6 @@ class Entry(models.Model):
         if not self.is_valid_entry():
             return  # Don't save it not valid
         super(Entry, self).save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return '/entry/{0}/{1}'.format(activity_pk, self.pk)

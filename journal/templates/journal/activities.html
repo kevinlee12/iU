@@ -44,7 +44,7 @@
 			{% if is_student %}
 			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
 				<div class="add-journal-sign" >
-					<a href="{% url 'activity_form' %}">
+					<a href="/activity_details/">
 						<img src = "{% static 'journal/activities/img/add_sign.png' %}">
 					</a>
 				</div>
@@ -54,11 +54,7 @@
 			{% if activities %}
 				{% for activity in activities %}
 				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
-					{% if is_student %}
-					<a href="/activity/{{activity.id}}">
-					{% else %}
-					<a href="/student_entries/{{student_pk}}/{{activity.pk}}">
-					{% endif %}
+					<a href="/entries/{{ activity.pk }}">
 						<div class="activity-box" href>
 							<div class="activity-name">
 								{{ activity.name_short }}
@@ -73,7 +69,7 @@
 			{% else %}
 				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
 					{% if is_student %}
-					<a href="{% url 'activity_form' %}">
+					<a href="/activity_details/">
 						<div class="activity-box">
 							<div class="activity-name">
 								No Activities yet,

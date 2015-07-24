@@ -15,21 +15,24 @@
 # limitations under the License.
 
 # For all of the areas where user would first encounter
-from actstream.actions import follow
+from actstream.actions import follow, unfollow
 from actstream.models import user_stream
 from actstream.models import following
 
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 
-from journal.models import Coordinator, Users, Student, Advisor
+from journal.models import Coordinator, UserType, Student, Advisor
 from journal.models import Activity, Entry
 from journal.forms import StudentRegistrationForm, AdvisorForm
 
 from django.core.exceptions import ObjectDoesNotExist
+from django.db import IntegrityError
 
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
+from django.contrib.auth.models import User
+
 
 def coordinator(request):
     user = request.user
@@ -37,12 +40,12 @@ def coordinator(request):
     advisors = []
     if user.is_authenticated():
         try:
-            auth_user_type = Users.objects.get(email=user.email).user_type
+            auth_user_type = UserType.objects.get(user=user).user_type
         except ObjectDoesNotExist:
             auth_user_type = None
             return HttpResponseRedirect('/')
         if auth_user_type == 'C':
-            coor = Coordinator.objects.get(email=user.email)
+            coor = Coordinator.objects.get(user=user)
             students = coor.students.all().order_by('last_name')
             advisors = coor.advisors.all().order_by('first_name')
     return render(request, 'journal/coordinator.html',
@@ -82,15 +85,15 @@ def coordinator_check(request, student):
     """Used for ensuring that coordinators are matched with the right
        students
     """
-    curr_coordinator = Coordinator.objects.get(email=request.user.email)
-    if student.stu_coordinator != curr_coordinator != curr_coordinator.pk:
+    curr_coordinator = Coordinator.objects.get(user=request.user)
+    if student.stu_coordinator != curr_coordinator.pk:
         return render(request, 'journal/error.html')
     return  # Check is good
 
 
 @login_required
 def student_registration(request, student_pk=None):
-    curr_coordinator = Coordinator.objects.get(email=request.user.email)
+    curr_coordinator = Coordinator.objects.get(user=request.user)
 
     s = None
     if student_pk:
@@ -105,10 +108,17 @@ def student_registration(request, student_pk=None):
                 f = form.save(commit=False)
                 f.school = curr_coordinator.school
                 f.stu_coordinator = curr_coordinator.pk
+                # Create user in django auth
+                stu_email = form.cleaned_data['email']
+                try:
+                    new_stu = User.objects.create_user(stu_email, stu_email)
+                except IntegrityError:
+                    new_stu = User.objects.get(email=stu_email)
+                f.user = new_stu
                 form.save()
                 f.save()
                 curr_coordinator.students.add(f)
-                follow(request.user, f)
+                follow(request.user, new_stu)
             return HttpResponseRedirect('/coordinator')
     else:
         form = StudentRegistrationForm(instance=s)
@@ -122,13 +132,17 @@ def student_registration(request, student_pk=None):
 def remove_student(request, student_pk):
     student = get_object_or_404(Student, pk=student_pk)
     coordinator_check(request, student)
+    stu = User.objects.get(email=student.user.email)
+    unfollow(request.user, stu)
     student.delete()
     return HttpResponseRedirect('/coordinator')
 
+
 @login_required
-def student_activities(request, student_pk):
+def activities_view(request, student_pk):
+    """For viewing all activities related to the student"""
     student = Student.objects.get(pk=student_pk)
-    # coordinator_check(request, student)
+    coordinator_check(request, student)
     stored_activities = Activity.objects.all().filter(student=student)\
         .order_by('activity_name').reverse()
     return render(request, 'journal/activities.html',
@@ -137,19 +151,19 @@ def student_activities(request, student_pk):
 
 
 @login_required
-def student_activity_description(request, student_pk, activity_pk):
-    student = Student.objects.get(pk=student_pk)
-    coordinator_check(request, student)
+def activity_view(request, activity_pk):
+    """For viewing specific activity specifics"""
     activity = Activity.objects.get(pk=activity_pk)
+    coordinator_check(request, activity.student)
     return render(request, 'journal/activity_description_coor_view.html',
-                  {'student': student, 'activity': activity})
+                  {'student': activity.student, 'activity': activity})
 
 
 @login_required
-def student_entries(request, student_pk, activity_pk):
-    student = Student.objects.get(pk=student_pk)
-    coordinator_check(request, student)
+def entries_view(request, activity_pk):
     activity = Activity.objects.get(pk=activity_pk)
+    student = activity.student
+    coordinator_check(request, student)
     activity_entries = activity.entries.all().order_by('created').reverse()
     name = activity.activity_name
     return render(request, 'journal/entries.html',
@@ -163,10 +177,10 @@ def student_entries(request, student_pk, activity_pk):
 
 
 @login_required
-def view_stu_entry(request, student_pk, activity_pk, entry_pk):
-    curr_coordinator = Coordinator.objects.get(email=request.user.email)
-    student = Student.objects.get(pk=student_pk)
+def view_stu_entry(request, activity_pk, entry_pk):
+    curr_coordinator = Coordinator.objects.get(user=request.user)
     activity = Activity.objects.get(pk=activity_pk)
+    student = activity.student
     coordinator_check(request, student)
     entry = Entry.objects.get(pk=entry_pk)
     return render(request, 'journal/entry_coor_view.html',

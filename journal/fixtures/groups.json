@@ -1,0 +1,10 @@
+[
+{
+  "pk": 1,
+  "fields": {
+    "name": "Glen A. Wilson HS",
+    "permissions": []
+  },
+  "model": "auth.group"
+}
+]

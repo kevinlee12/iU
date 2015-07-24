@@ -20,20 +20,16 @@ echo "Beginning the reload process"
 echo "Activating the virtual environment"
 source env/bin/activate
 echo
-echo "Ensuring that all pip requirements are satisfied"
-pip install -r requirements.txt
-echo "...done"
+for arg in "$@"; do
+  if [ "$arg" == "--ignore-pip" ]; then
+    echo "Bypassing pip"
+  else
+    echo "Ensuring that all pip requirements are satisfied"
+    pip install -r requirements.txt
+    echo "...done"
+  fi
+done
 echo
-# echo "Checking npm"
-# if [[ -n $(npm -v || grep "No") ]]; then
-#     echo "NPM is not installed"
-#     echo "Ensuring all npm files are satisfied"
-#     nodeenv --requirements=node-requirements.txt --jobs=4 --force env
-#     echo
-# elif  [[ -n $(npm --version || grep "1.") ]]; then
-#     echo "NPM installed, moving on"
-# fi
-# deactivate_node
 echo "Dropping the old iu database"
 dropdb iu
 echo "...done"
@@ -53,12 +49,16 @@ echo "Migrating database"
 python3 manage.py migrate
 echo "...done"
 echo "Loading the databases with data"
+echo "Loadding user data"
+python manage.py loaddata auth_users
+echo "Loadding group data"
+python manage.py loaddata groups
 echo "Loading school data"
 python manage.py loaddata school
 echo "Loading student data"
 python manage.py loaddata student
-echo "Loading advisor data"
-python manage.py loaddata advisor
+# echo "Loading advisor data"
+# python manage.py loaddata advisor
 echo "Loading coordinator data"
 python manage.py loaddata coordinator
 echo "Loading users data"
@@ -72,7 +72,7 @@ echo "Loading sample entries and stuff"
 python manage.py loaddata sample_entries
 echo
 echo "Running tests to ensure nothing is broken"
-echo "If any tests fail, something went wrong"
-python3 manage.py test
-echo
+# echo "If any tests fail, something went wrong"
+# python3 manage.py test
+# echo
 deactivate

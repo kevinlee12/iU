@@ -39,17 +39,21 @@ class ContactForm(forms.Form):
 class AdvisorForm(ModelForm):
     """Form for handling advisors"""
 
+    email = forms.EmailField()
+
     class Meta:
         model = Advisor
-        fields = ['first_name', 'last_name', 'email']
+        fields = ['first_name', 'last_name']
 
 
 class StudentRegistrationForm(ModelForm):
     """Form for handling student registration"""
 
+    email = forms.EmailField()
+
     class Meta:
         model = Student
-        fields = ['first_name', 'last_name', 'email', 'student_id',
+        fields = ['first_name', 'last_name', 'student_id',
                   'personal_code']
 
 

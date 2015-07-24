@@ -20,7 +20,7 @@ from actstream import action
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 
-from journal.models import Student, Users, Activity
+from journal.models import Student, UserType, Activity
 from journal.forms import ActivityForm
 
 from django.core.exceptions import ObjectDoesNotExist
@@ -30,20 +30,20 @@ from django.contrib.auth.decorators import login_required
 from .entry import delete_entry
 
 
-def activities(request):
+def stu_activities(request):
     """Function for the main activities page, login is not required"""
     stored_activities = []
     user = request.user
     is_student = False
     if user.is_authenticated():
         try:
-            auth_user_type = Users.objects.get(email=user.email).user_type
+            auth_user_type = UserType.objects.get(user=request.user).user_type
         except ObjectDoesNotExist:
             auth_user_type = None
             msg = 'User {0} not found!'.format(user.get_full_name())
             stored_activities = [msg]
         if auth_user_type == 'S':
-            student = Student.objects.get(email=user.email)
+            student = Student.objects.get(user=user)
             stored_activities = Activity.objects.all().filter(student=student)\
                 .order_by('activity_name').reverse()
             is_student = True
@@ -52,7 +52,7 @@ def activities(request):
 
 
 def student_activity_check(request, activity):
-    curr_student = Student.objects.get(email=request.user.email)
+    curr_student = Student.objects.get(user=request.user)
     if activity.student != curr_student:
         return render(request, 'journal/error.html')
     return
@@ -60,7 +60,7 @@ def student_activity_check(request, activity):
 
 @login_required
 def activity_form(request, activity_pk=None):
-    curr_student = Student.objects.get(email=request.user.email)
+    curr_student = Student.objects.get(user=request.user)
     a = None
     if activity_pk:
         a = Activity.objects.get(pk=activity_pk)

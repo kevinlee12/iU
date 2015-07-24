@@ -15,15 +15,22 @@
 # limitations under the License.
 
 # For all of the areas where user would first encounter
+from .student import stu_activities, activity_form
+from .coordinator import activities_view, activity_view
+
+from .entry import stu_entries, entry_form
+from .coordinator import entries_view, view_stu_entry
+
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
-from journal.models import Users
+from journal.models import UserType
 
 from datetime import datetime
 
 from django.core.exceptions import ObjectDoesNotExist
 
+from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 
 from journal.forms import ContactForm
@@ -59,7 +66,7 @@ def home(request):
 def login_redirects(request):
     """Function that redirects users appropriately after login"""
     try:
-        user = Users.objects.get(email=request.user.email)
+        user = UserType.objects.get(user=request.user)
     except ObjectDoesNotExist:
         return HttpResponseRedirect('/activities')
     if user.user_type == 'S':
@@ -69,17 +76,46 @@ def login_redirects(request):
     return home(request)
 
 
-def welcome(request):
-    """For the landing page after the user logs in"""
-    name = ''
-    current_hour = datetime.now().time().hour
-    if current_hour < 12:
-        greeting = 'Good morning'
-    elif current_hour < 17:
-        greeting = 'Good afternoon'
-    else:
-        greeting = 'Good evening'
-    if request.user.is_authenticated():
-        name = ' ' + request.user.get_full_name()
-    return render(request, 'journal/welcome.html',
-                  {'name': name, 'greeting': greeting})
+def get_user_type(request):
+    return UserType.objects.get(user=request.user).user_type
+
+
+@login_required
+def activities(request, student_pk=None):
+    user_type = get_user_type(request)
+
+    if user_type == 'S':
+        return stu_activities(request)
+    elif user_type == 'C':
+        return activities_view(request, student_pk)
+    return
+
+
+@login_required
+def activity_details(request, activity_pk=None):
+    user_type = get_user_type(request)
+
+    if user_type == 'S':
+        return activity_form(request, activity_pk)
+    elif user_type == 'C':
+        return activity_view(request, activity_pk)
+
+
+@login_required
+def entries(request, activity_pk):
+    user_type = get_user_type(request)
+
+    if user_type == 'S':
+        return stu_entries(request, activity_pk)
+    elif user_type == 'C':
+        return entries_view(request, activity_pk)
+
+
+@login_required
+def entry(request, activity_pk, entry_pk=None):
+    user_type = get_user_type(request)
+
+    if user_type == 'S':
+        return entry_form(request, activity_pk, entry_pk)
+    elif user_type == 'C':
+        return view_stu_entry(request, activity_pk, entry_pk)

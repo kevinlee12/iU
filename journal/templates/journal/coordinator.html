@@ -18,16 +18,16 @@
 {% block 'main-content' %}
 <h2> Hi {{ coordinator }}! </h2>
 <h2>Students</h2>
-<a href="/student_registration/">Click here to register a student</a>
+<a href="/student/">Click here to register a student</a>
 {% if students %}
   {% for student in students %}
   <ul>
-    <li><a href="/student_activities/{{student.pk}}"> {{ student }} </a>
-      <small><a href="/student_registration/{{student.pk}}"> edit </small></a></li>
+    <li><a href="/activities/{{student.pk}}"> {{ student }} </a>
+      <small><a href="/student/{{student.pk}}"> edit </small></a></li>
   </ul>
   {% endfor %}
 {% else %}
-  <h3> No students yet, would you like to <a href="/student_registration/">register</a> them? </h3>
+  <h3> No students yet, would you like to <a href="/student/">register</a> them? </h3>
 {% endif %}
 
 <h2>Advisors</h2>
