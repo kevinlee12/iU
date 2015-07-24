@@ -77,7 +77,7 @@ def activity_form(request, activity_pk=None):
                 f.student = curr_student
                 f.save()
                 form.save()
-                action.send(request.user, verb='created a new activity', target=a)
+                action.send(curr_student, verb='created a new activity', target=a)
                 return HttpResponseRedirect('/activities')
     else:
         form = ActivityForm(instance=a)

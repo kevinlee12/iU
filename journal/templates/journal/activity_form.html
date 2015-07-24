@@ -102,7 +102,7 @@
     {{ form.timestamp }}
     {{ form.security_hash }}
     <textarea class="form-group" id="{{ form.comment.id }}" rows="10" name="{{ form.comment.name }}" value="{{ form.comment.value }}" required></textarea>
-    <input type="hidden" name="next" value="{{ request.get_full_path }}">
+    <input type="hidden" name="next" value="/comment_submit/">
     <br><input class="btn btn-success" type="submit" value="Add comment" id="id_submit">
     </form>
 {% endif %}

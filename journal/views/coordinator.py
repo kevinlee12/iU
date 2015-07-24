@@ -16,8 +16,7 @@
 
 # For all of the areas where user would first encounter
 from actstream.actions import follow
-from actstream.models import user_stream
-from actstream.models import following
+from actstream.models import user_stream, following
 
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
@@ -31,6 +30,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 
+
 def coordinator(request):
     user = request.user
     students = []
@@ -42,12 +42,30 @@ def coordinator(request):
             auth_user_type = None
             return HttpResponseRedirect('/')
         if auth_user_type == 'C':
-            coor = Coordinator.objects.get(email=user.email)
+            coor = Coordinator.objects.get(email=request.user.email)
             students = coor.students.all().order_by('last_name')
             advisors = coor.advisors.all().order_by('first_name')
     return render(request, 'journal/coordinator.html',
                   {'feed': user_stream(request.user), 'students': students,
                    'coordinator': coor, 'advisors': advisors})
+
+
+def user_creation(email, user_type):
+    exists = Users.objects.filter(email=email).count()
+    if not exists:
+        Users.objects.create(email=email, user_type=user_type)
+    return
+
+
+def user_removal(email):
+    exists = Users.objects.filter(email=email).count()
+    if exists:
+        Users.objects.get(email=email).delete()
+    return
+
+
+def is_student(request):
+    return Users.objects.get(email=request.user.email).user_type == 'S'
 
 
 @login_required
@@ -67,6 +85,7 @@ def advisors_form(request, advisors_pk=None):
                 f = form.save(commit=False)
                 f.school = curr_coordinator.school
                 f.students = curr_coordinator.students
+                user_creation(f.email, 'A')
                 f.save()
                 form.save()
                 curr_coordinator.advisors.add(f)
@@ -105,6 +124,7 @@ def student_registration(request, student_pk=None):
                 f = form.save(commit=False)
                 f.school = curr_coordinator.school
                 f.stu_coordinator = curr_coordinator.pk
+                user_creation(f.email, 'S')
                 form.save()
                 f.save()
                 curr_coordinator.students.add(f)
@@ -118,17 +138,43 @@ def student_registration(request, student_pk=None):
                    'student_pk': student_pk})
 
 
+def delete_entry(activity_id, entry_pk):
+    activity = get_object_or_404(Activity, id=activity_id)
+    entry = get_object_or_404(Entry, pk=entry_pk)
+    if entry.entry_type == "i":  # If image exists, delete it
+        entry.image_entry.delete()
+    activity.entries.remove(entry)
+    entry.delete()
+    return
+
+
+def activity_deletion(activity):
+    entries = activity.entries.all()
+    for entry in entries:
+        delete_entry(activity.id, entry.pk)
+    activity.delete()
+    return
+
+
 @login_required
 def remove_student(request, student_pk):
     student = get_object_or_404(Student, pk=student_pk)
     coordinator_check(request, student)
+    # Remove all activites
+    activities = Activity.objects.filter(student=student)
+    for a in activities:
+        activity_deletion(a)
+    user_removal(student.email)
     student.delete()
     return HttpResponseRedirect('/coordinator')
 
+
 @login_required
 def student_activities(request, student_pk):
+    if is_student(request):
+        return HttpResponseRedirect('/activities')
     student = Student.objects.get(pk=student_pk)
-    # coordinator_check(request, student)
+    coordinator_check(request, student)
     stored_activities = Activity.objects.all().filter(student=student)\
         .order_by('activity_name').reverse()
     return render(request, 'journal/activities.html',
@@ -138,6 +184,8 @@ def student_activities(request, student_pk):
 
 @login_required
 def student_activity_description(request, student_pk, activity_pk):
+    if is_student(request):
+        return HttpResponseRedirect('/activity_form/{0}'.format(activity_pk))
     student = Student.objects.get(pk=student_pk)
     coordinator_check(request, student)
     activity = Activity.objects.get(pk=activity_pk)
@@ -147,6 +195,8 @@ def student_activity_description(request, student_pk, activity_pk):
 
 @login_required
 def student_entries(request, student_pk, activity_pk):
+    if is_student(request):
+        return HttpResponseRedirect('/activity/{0}'.format(activity_pk))
     student = Student.objects.get(pk=student_pk)
     coordinator_check(request, student)
     activity = Activity.objects.get(pk=activity_pk)
@@ -164,11 +214,15 @@ def student_entries(request, student_pk, activity_pk):
 
 @login_required
 def view_stu_entry(request, student_pk, activity_pk, entry_pk):
+    activity = Activity.objects.get(pk=activity_pk)
+    entry = Entry.objects.get(pk=entry_pk)
+    if is_student(request):
+        return HttpResponseRedirect('/entry_form/{0}/{1}/{2}'
+                                    .format(activity.id, entry.entry_type,
+                                            entry.pk))
     curr_coordinator = Coordinator.objects.get(email=request.user.email)
     student = Student.objects.get(pk=student_pk)
-    activity = Activity.objects.get(pk=activity_pk)
     coordinator_check(request, student)
-    entry = Entry.objects.get(pk=entry_pk)
     return render(request, 'journal/entry_coor_view.html',
                   {'entry': entry, 'activity': activity,
                    'coordinator': curr_coordinator})

@@ -33,7 +33,7 @@ class Entry(models.Model):
         # ('v', 'Video'),
         ('link', 'Link'),
     )
-    stu_email = models.EmailField()
+    stu_pk = models.IntegerField()
     activity_pk = models.CharField(max_length=30)
     last_modified = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
