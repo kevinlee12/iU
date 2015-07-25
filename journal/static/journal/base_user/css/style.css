@@ -54,17 +54,17 @@
 }
 
 .main {
-  top: 0px;
+  top: 0;
   position: absolute;
   left: 240px;
-  right: 0px;
-  bottom: 0px;
+  right: 0;
+  bottom: 0;
   z-index: 1;
   padding: 20px;
 }
 
 button {
-  border-width: 0px;
+  border-width: 0;
   background-color: white;
 }
 
