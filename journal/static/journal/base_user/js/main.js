@@ -11,3 +11,31 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
+$(function() {
+    // run the currently selected effect
+    function runEffect() {
+      if ($(".main").css("left") == "240px") {
+      	$(".main").css("left", "20px");
+      	$(".button-2").css("display", "inline-block")
+   	  }
+      else if($(".main").css("left") == "20px") {
+      	$(".main").css("left", "240px");
+      	$(".button-2").css("display", "none")
+      }
+      // run the effect
+      $( "#effect" ).toggle( "drop", 50 );
+    };
+
+    // set effect from select menu value
+    $( "button" ).click(function() {
+      runEffect();
+    });
+  });
+
+
+
+
+
+
+
