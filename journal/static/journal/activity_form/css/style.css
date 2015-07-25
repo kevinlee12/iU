@@ -40,6 +40,14 @@ form {
 	padding-left: 10%;
 }
 
+a {
+	color: rgb(128, 128, 128);
+}
+
+a:hover {
+	color: #05CCCE;
+}
+
 .activity-box {
 	text-align: center;
 	position: relative;
