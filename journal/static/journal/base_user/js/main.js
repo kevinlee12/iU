@@ -19,17 +19,25 @@ $(function() {
       	$(".main").animate({
           "left": "-=220px"
         }, 1000);
-      	$(".button-2").css("display", "inline-block")
+
+        $(".sidebar").animate({
+          "left": "-=245px"
+        }, 1000);
+
+      	$(".button-2").css("display", "inline-block");
    	  }
       else if($(".main").css("left") == "20px") {
       	$(".main").animate({
           "left": "+=220px"
         }, 1000);
-      	$(".button-2").css("display", "none")
+
+        $(".sidebar").animate({
+          "left": "+=245px"
+        }, 1000);
+
+      	$(".button-2").css("display", "none");
       }
-      // run the effect
-      $( "#effect" ).toggle( "drop", 1000 );
-    };
+    }
 
     // set effect from select menu value
     $( "button" ).click(function() {
