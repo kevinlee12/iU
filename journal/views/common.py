@@ -15,6 +15,8 @@
 # limitations under the License.
 
 # For all of the areas where user would first encounter
+from actstream import action
+
 from .student import stu_activities, activity_form
 from .coordinator import activities_view, activity_view
 
@@ -24,7 +26,8 @@ from .coordinator import entries_view, view_stu_entry
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
-from journal.models import UserType
+from journal.models import UserType, Coordinator, Student
+from journal.models import Activity, Entry
 
 from datetime import datetime
 
@@ -119,3 +122,20 @@ def entry(request, activity_pk, entry_pk=None):
         return entry_form(request, activity_pk, entry_pk)
     elif user_type == 'C':
         return view_stu_entry(request, activity_pk, entry_pk)
+
+
+@login_required
+def comment_submit(request):
+    url_source = request.META['HTTP_REFERER']
+    user_type = get_user_type(request)
+    if user_type == 'S':
+        user = Student.objects.get(user=request.user)
+    elif user_type == 'C':
+        user = Coordinator.objects.get(user=request.user)
+    url_source = url_source.split("/")
+    if 'entry' in url_source:
+        source = Entry.objects.get(pk=url_source[-2])
+    elif 'activity_details' in url_source:
+        source = Activity.objects.get(pk=url_source[-1])
+    action.send(user, verb='commented on', target=source)
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])

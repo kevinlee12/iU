@@ -38,12 +38,12 @@ echo "Creating new iu database"
 createdb iu
 echo "...done"
 echo
-echo "Removing old migrations"
-rm -rf journal/migrations
-echo "...done"
-echo "Making migrations"
-python3 manage.py makemigrations journal
-echo "...done"
+# echo "Removing old migrations"
+# rm -rf journal/migrations
+# echo "...done"
+# echo "Making migrations"
+# python3 manage.py makemigrations journal
+# echo "...done"
 echo
 echo "Migrating database"
 python3 manage.py migrate
@@ -51,6 +51,8 @@ echo "...done"
 echo "Loading the databases with data"
 echo "Loadding user data"
 python manage.py loaddata auth_users
+echo "Loading users data"
+python manage.py loaddata users
 echo "Loadding group data"
 python manage.py loaddata groups
 echo "Loading school data"
@@ -61,8 +63,6 @@ python manage.py loaddata student
 # python manage.py loaddata advisor
 echo "Loading coordinator data"
 python manage.py loaddata coordinator
-echo "Loading users data"
-python manage.py loaddata users
 echo "Loading activityoptions data"
 python manage.py loaddata activityoptions
 echo "Loading learningobjectiveoptions data"
@@ -71,8 +71,13 @@ echo "...done"
 echo "Loading sample entries and stuff"
 python manage.py loaddata sample_entries
 echo
-echo "Running tests to ensure nothing is broken"
-# echo "If any tests fail, something went wrong"
-# python3 manage.py test
-# echo
+for arg in "$@"; do
+  if [ "$arg" == "--bypass-test" ]; then
+    echo "Bypassing test"
+  else
+    echo "If any tests fail, something went wrong"
+    python3 manage.py test
+    echo
+  fi
+done
 deactivate

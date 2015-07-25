@@ -1,6 +1,6 @@
 {% extends 'journal/base_user.html' %}
 {% load staticfiles %}
-
+{% load activity_tags %}
 
 {% block 'title' %}
 <title>Journal </title>
@@ -93,5 +93,12 @@
 			{% endif %}
 		</div>
 	</div>
+	{% if is_student %}
+	<ul>
+	{% for action in feed %}
+	    <li>{% display_action action %}</li>
+	{% endfor %}
+	</ul>
+	{% endif %}
 </div>
 {% endblock %}

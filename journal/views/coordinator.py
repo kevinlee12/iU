@@ -35,19 +35,14 @@ from django.contrib.auth.models import User
 
 
 def coordinator(request):
-    user = request.user
-    students = []
-    advisors = []
-    if user.is_authenticated():
-        try:
-            auth_user_type = UserType.objects.get(user=user).user_type
-        except ObjectDoesNotExist:
-            auth_user_type = None
-            return HttpResponseRedirect('/')
-        if auth_user_type == 'C':
-            coor = Coordinator.objects.get(user=user)
-            students = coor.students.all().order_by('last_name')
-            advisors = coor.advisors.all().order_by('first_name')
+    coor = Coordinator.objects.get(user=request.user)
+    students = coor.students.all().order_by('last_name')
+    advisors = coor.advisors.all().order_by('first_name')
+    if not following(request.user):
+        for student in students:
+            follow(request.user, student)
+            follow(User.objects.get(email=student.user.email), coor)
+
     return render(request, 'journal/coordinator.html',
                   {'feed': user_stream(request.user), 'students': students,
                    'coordinator': coor, 'advisors': advisors})
@@ -118,7 +113,8 @@ def student_registration(request, student_pk=None):
                 form.save()
                 f.save()
                 curr_coordinator.students.add(f)
-                follow(request.user, new_stu)
+                follow(request.user, f)
+                follow(new_stu, curr_coordinator)
             return HttpResponseRedirect('/coordinator')
     else:
         form = StudentRegistrationForm(instance=s)
@@ -133,7 +129,11 @@ def remove_student(request, student_pk):
     student = get_object_or_404(Student, pk=student_pk)
     coordinator_check(request, student)
     stu = User.objects.get(email=student.user.email)
-    unfollow(request.user, stu)
+    try:
+        unfollow(request.user, student)
+        unfollow(stu, request.user)
+    except:
+        pass
     student.delete()
     return HttpResponseRedirect('/coordinator')
 

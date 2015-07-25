@@ -16,6 +16,8 @@
 
 # For all things activity related (with the exception of entries) for students.
 from actstream import action
+from actstream.models import user_stream
+from actstream.models import following
 
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
@@ -48,7 +50,8 @@ def stu_activities(request):
                 .order_by('activity_name').reverse()
             is_student = True
     return render(request, 'journal/activities.html',
-                  {'activities': stored_activities, 'is_student': is_student})
+                  {'activities': stored_activities, 'is_student': is_student,
+                   'feed': user_stream(request.user)})
 
 
 def student_activity_check(request, activity):
@@ -70,14 +73,14 @@ def activity_form(request, activity_pk=None):
         if form.is_valid():
             if type(a) == Activity:
                 form.save()
-                action.send(request.user, verb='modifed the activity', target=a)
+                action.send(curr_student, verb='modifed the activity', target=a)
                 return HttpResponseRedirect('/activity/' + str(a.id))
             else:
                 f = form.save(commit=False)
                 f.student = curr_student
                 f.save()
                 form.save()
-                action.send(request.user, verb='created a new activity', target=a)
+                action.send(curr_student, verb='created a new activity', target=a)
                 return HttpResponseRedirect('/activities')
     else:
         form = ActivityForm(instance=a)

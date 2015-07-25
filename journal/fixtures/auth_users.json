@@ -52,5 +52,23 @@
   },
   "pk": 3,
   "model": "auth.user"
+},
+{
+  "model": "auth.user",
+  "fields": {
+    "is_active": true,
+    "username": "janicezhao348@gmail.com",
+    "last_login": null,
+    "password": "!fLHVspFzqoVd6JkTl0zAtjnGRnXfG7q7Wka9vgdO",
+    "is_superuser": false,
+    "groups": [],
+    "email": "janicezhao348@gmail.com",
+    "is_staff": false,
+    "last_name": "",
+    "date_joined": "2015-07-24T21:44:34.121",
+    "user_permissions": [],
+    "first_name": ""
+  },
+  "pk": 6
 }
 ]

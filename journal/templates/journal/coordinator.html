@@ -42,8 +42,9 @@
   <h3> No advisors yet, would you like to <a href="/advisor_form/">register</a> them? </h3>
 {% endif %}
 
+<ul>
 {% for action in feed %}
-    {% display_action action %}
+    <li>{% display_action action %}</li>
 {% endfor %}
-
+</ul>
 {% endblock %}

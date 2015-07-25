@@ -1,7 +1,18 @@
 - model: journal.coordinator
   pk: 1
   fields:
+    first_name: 'Kevin'
+    last_name: 'Lee'
     user: 3
+    school: 1
+    students: [1, 2]
+    advisors: []
+- model: journal.coordinator
+  pk: 2
+  fields:
+    first_name: 'Janice'
+    last_name: 'Zhao'
+    user: 6
     school: 1
     students: [1, 2]
     advisors: []

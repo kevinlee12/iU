@@ -67,4 +67,4 @@ class Entry(models.Model):
         super(Entry, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
-        return '/entry/{0}/{1}'.format(activity_pk, self.pk)
+        return '/entry/{0}/{1}/#{2}'.format(self.activity_pk, self.pk, self.entry_type)

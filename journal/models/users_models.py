@@ -76,6 +76,8 @@ class IBAdmin(Person):
     class Meta:
         abstract = True
 
+    def __str__(self):
+        return self.first_name + ' ' + self.last_name
 
 class Advisor(IBAdmin):
     """Advisor object that inherits from Person"""
@@ -85,4 +87,5 @@ class Coordinator(IBAdmin):
     """Coordinator object that inherits from Person"""
     advisors = models.ManyToManyField(Advisor)
 
-    # def save(self, *args, **kwargs):
+    def get_absolute_url(self):
+        return '#'

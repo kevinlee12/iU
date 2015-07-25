@@ -6,8 +6,6 @@ vpython27
 *~
 wsgi/
 
-# Local database files
-*/migrations/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

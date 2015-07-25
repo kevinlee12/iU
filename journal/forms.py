@@ -23,6 +23,7 @@ from journal.models import Advisor
 from django.forms.widgets import CheckboxSelectMultiple
 
 from django import forms
+from django.contrib.auth.models import User
 
 import datetime
 
@@ -50,6 +51,13 @@ class StudentRegistrationForm(ModelForm):
     """Form for handling student registration"""
 
     email = forms.EmailField()
+
+    def __init__(self, *args, **kwargs):
+        super(StudentRegistrationForm, self).__init__(*args, **kwargs)
+
+        if kwargs['instance']:
+            student = kwargs['instance']
+            self.fields['email'].initial = student.user.email
 
     class Meta:
         model = Student
