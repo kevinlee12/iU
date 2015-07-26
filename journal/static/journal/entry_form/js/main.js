@@ -36,3 +36,9 @@ $(document).ready(function() {
       required_append(window.location.hash);
   });
 });
+
+$(function() {
+    // run the currently selected effect
+    function deleteConfirmation() {
+      
+    }
