@@ -131,11 +131,12 @@ USER = os.environ['OPENSHIFT_POSTGRESQL_DB_USERNAME']
 PASSWORD = os.environ['OPENSHIFT_POSTGRESQL_DB_PASSWORD']
 DB_HOST = os.environ['OPENSHIFT_POSTGRESQL_DB_HOST']
 DB_PORT = os.environ['OPENSHIFT_POSTGRESQL_DB_PORT']
+NAME = os.environ['DB_NAME']
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'iu',
+        'NAME': NAME,
         'USER': USER,
         'PASSWORD': PASSWORD,
         'HOST': DB_HOST,

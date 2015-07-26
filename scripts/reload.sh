@@ -51,10 +51,10 @@ echo "...done"
 echo "Loading the databases with data"
 echo "Loadding user data"
 python manage.py loaddata auth_users
-echo "Loading users data"
-python manage.py loaddata users
 echo "Loadding group data"
 python manage.py loaddata groups
+echo "Loading users data"
+python manage.py loaddata users
 echo "Loading school data"
 python manage.py loaddata school
 echo "Loading student data"
@@ -71,13 +71,7 @@ echo "...done"
 echo "Loading sample entries and stuff"
 python manage.py loaddata sample_entries
 echo
-for arg in "$@"; do
-  if [ "$arg" == "--bypass-test" ]; then
-    echo "Bypassing test"
-  else
-    echo "If any tests fail, something went wrong"
-    python3 manage.py test
-    echo
-  fi
-done
+echo "If any tests fail, something went wrong"
+python3 manage.py test
+echo
 deactivate

@@ -26,7 +26,7 @@ class UserType(models.Model):
     """For use to check if user is registered and type
     (Student or Coordinator)."""
 
-    user = models.OneToOneField(User, unique=True, default=0)
+    user = models.OneToOneField(User, unique=True)
     USER_TYPES = (
         ('S', 'Student'),
         ('C', 'Coordinator'),
@@ -37,7 +37,7 @@ class UserType(models.Model):
 
 class School(models.Model):
     """School object"""
-    group = models.OneToOneField(Group, default=0)
+    group = models.OneToOneField(Group)
     school_code = models.CharField(max_length=6)  # Max number of digits is 6
     school_name = models.CharField(max_length=30)
 
