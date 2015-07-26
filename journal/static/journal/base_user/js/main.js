@@ -12,53 +12,51 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+
 $(document).ready(function() {
-  $(function() {
-    // run the currently selected effect
-    function runEffect() {
-      if ($(".main").css("left") == "240px") {
-        $(".main").animate({
-          "left": "-=220px"
-        }, 1000);
-
-        $(".sidebar").animate({
-          "left": "-=245px"
-        }, 1000);
-
-        $(".button-2").css("display", "inline-block");
-      }
-      else if($(".main").css("left") == "20px") {
-        $(".main").animate({
-          "left": "+=220px"
-        }, 1000);
-
-        $(".sidebar").animate({
-          "left": "+=245px"
-        }, 1000);
-
-        $(".button-2").css("display", "none");
-      }
-    }
-
-    // set effect from select menu value
-    $( ".sidebar-button" ).click(function() {
-      runEffect();
-    });
-    $( ".button-2" ).click(function() {
-      runEffect();
-    });
+  resizeAction();
+  $(window).resize(function () {
+    resizeAction();
   });
-  
-  if ($(window).width() < 650) {
-    $(".main").css("left", "0");
-    $(".sidebar").css("display", "none");
+
+});
+
+function resizeAction() {
+  if ($(window).width() < 768) {
+    runEffect();
+  }
+}
+
+$( ".sidebar-button" ).click(function() {
+  runEffect();
+});
+$( ".button-2" ).click(function() {
+  runEffect();
+});
+
+
+function runEffect() {
+  console.log("1");
+  if ($(".main").css("left") == "240px") {
+    $(".main").animate({
+      "left": "-=220px"
+    }, 1000);
+
+    $(".sidebar").animate({
+      "left": "-=245px"
+    }, 1000);
+
     $(".button-2").css("display", "inline-block");
   }
+  else if($(".main").css("left") == "20px") {
+    $(".main").animate({
+      "left": "+=220px"
+    }, 1000);
 
-})
+    $(".sidebar").animate({
+      "left": "+=245px"
+    }, 1000);
 
-
-
-
-
-
+    $(".button-2").css("display", "none");
+  }
+}
