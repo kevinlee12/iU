@@ -144,7 +144,7 @@ def student_registration(request, student_pk=None):
                    'student_pk': student_pk})
 
 
-def delete_entry(activity_id, entry_pk):
+def delete_stu_entry(activity_id, entry_pk):
     activity = get_object_or_404(Activity, id=activity_id)
     entry = get_object_or_404(Entry, pk=entry_pk)
     if entry.entry_type == "i":  # If image exists, delete it
@@ -154,7 +154,7 @@ def delete_entry(activity_id, entry_pk):
     return
 
 
-def activity_deletion(activity):
+def activity_stu_deletion(activity):
     entries = activity.entries.all()
     for entry in entries:
         delete_entry(activity.id, entry.pk)
