@@ -218,6 +218,7 @@ def entries_view(request, activity_pk):
 def view_stu_entry(request, activity_pk, entry_pk):
     curr_coordinator = Coordinator.objects.get(user=request.user)
     activity = Activity.objects.get(pk=activity_pk)
+    entry = Entry.objects.get(pk=entry_pk)
     student = activity.student
     coordinator_check(request, student)
     return render(request, 'journal/entry_coor_view.html',

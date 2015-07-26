@@ -78,7 +78,7 @@ def entry_form(request, activity_pk, entry_pk=None):
                 form.save()
                 action.send(curr_student, verb='edited an entry of', target=activity)
             else:  # New
-                f.pk = curr_student.pk
+                f.stu_pk = curr_student.pk
                 f.activity_pk = activity.pk
                 f.save()
                 form.save()
