@@ -19,25 +19,3 @@
     student_id: '2345'
     personal_code: 'dty321'
     stu_coordinator: 2
-
-- model: journal.student
-  pk: 3
-  fields:
-    first_name: 'Rodney'
-    last_name: 'Ho'
-    email: 'rodneyrhkk@gmail.com'
-    school: 1
-    student_id: '3456'
-    personal_code: 'dty332'
-    stu_coordinator: 2
-
-- model: journal.student
-  pk: 4
-  fields:
-    first_name: 'Student'
-    last_name: 'Test'
-    email: 'stu_test@test.test'
-    school: 1
-    student_id: '3321'
-    personal_code: 'dty312'
-    stu_coordinator: 2

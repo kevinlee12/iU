@@ -21,7 +21,7 @@ from . import views
 urlpatterns = [
     url(r'^$', views.home, name='home'),
     url(r'^login_redirects/', views.login_redirects, name='login_redirects'),
-    url(r'^welcome/', views.welcome, name='welcome'),
+    # url(r'^welcome/', views.welcome, name='welcome'),
     url(r'^activities/$', views.activities, name='cabinet'),
     url(r'^delete_activity/(?P<activity_pk>[0-9]+)', views.activity_deletion,
         name='delete_activity'),
@@ -53,4 +53,5 @@ urlpatterns = [
         views.view_stu_entry, name='view_stu_entry'),
     url(r'activity_view/(?P<student_pk>[0-9]+)/(?P<activity_pk>[0-9]+)/',
         views.student_activity_description, name='activity_view'),
+    url(r'comment_submit/', views.comment_ping, name='comment_submit'),
 ]

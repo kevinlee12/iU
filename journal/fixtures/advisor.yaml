@@ -5,7 +5,7 @@
     last_name: 'IB'
     email: 'advise@ibcoor.com'
     school: 1
-    students: [1, 2, 3, 4]
+    students: [1, 2]
 
 - model: journal.advisor
   pk: 2
@@ -14,4 +14,4 @@
     last_name: 'IB'
     email: 'advise@ibcoor.com'
     school: 1
-    students: [1, 2, 3, 4]
+    students: [1, 2]

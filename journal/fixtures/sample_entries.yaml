@@ -1,7 +1,7 @@
 - model: journal.entry
   pk: 1
   fields:
-    stu_email: 'kevinlee963@gmail.com'
+    stu_pk: 1
     activity_pk: 1
     last_modified: 2015-01-21 12:34:12
     created: 2015-01-21 12:34:12
@@ -11,7 +11,7 @@
 - model: journal.entry
   pk: 2
   fields:
-    stu_email: 'kevinlee963@gmail.com'
+    stu_pk: 1
     activity_pk: 1
     last_modified: 2015-01-21 12:36:12
     created: 2015-01-21 12:36:12
@@ -34,7 +34,7 @@
 - model: journal.entry
   pk: 3
   fields:
-    stu_email: 'janicez348@gmail.com '
+    stu_pk: 2
     activity_pk: 2
     last_modified: 2015-01-21 12:34:12
     created: 2015-01-21 12:34:12
@@ -44,7 +44,7 @@
 - model: journal.entry
   pk: 4
   fields:
-    stu_email: 'janicez348@gmail.com '
+    stu_pk: 2
     activity_pk: 2
     last_modified: 2015-01-21 12:36:12
     created: 2015-01-21 12:36:12

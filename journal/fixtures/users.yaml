@@ -11,18 +11,6 @@
     user_type: 'S'
 
 - model: journal.users
-  pk: 3
-  fields:
-    email: 'rodneyrhkk@gmail.com'
-    user_type: 'S'
-
-- model: journal.users
-  pk: 4
-  fields:
-    email: 'stu_test@test.test'
-    user_type: 'S'
-
-- model: journal.users
   pk: 4
   fields:
     email: 'leekevin@berkeley.edu'

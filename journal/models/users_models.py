@@ -29,8 +29,15 @@ class Users(models.Model):
         ('C', 'Coordinator'),
         ('A', 'Advisor'),
     )
+
+    STATUS = (
+        ('N', 'New'),
+        ('A', 'Active'),
+        ('I', 'Inactive'),  # This is for deleted users queued for removal
+    )
     email = models.EmailField()
     user_type = models.CharField(max_length=1, choices=USER_TYPES)
+    # status = models.CharField(max_length=1, choices=STATUS)
 
     def type_of_user(self):
         return self.user_type

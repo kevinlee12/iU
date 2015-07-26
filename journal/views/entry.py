@@ -31,7 +31,7 @@ from django.shortcuts import get_object_or_404
 
 
 def entry_verification(student, entry):
-    if student.email != entry.stu_email:
+    if student.pk != entry.stu_pk:
         return Http404()
 
 
@@ -74,15 +74,15 @@ def entry_form(request, activity_id, entry_type, entry_pk=None):
             if type(e) == Entry:  # Editing
                 f.save()
                 form.save()
-                action.send(curr_student, verb='added an entry to', target=activity)
+                action.send(curr_student, verb='edited an entry of', target=activity)
             else:  # New
-                f.stu_email = curr_student.email
+                f.pk = curr_student.pk
                 f.activity_pk = activity.pk
                 f.entry_type = entry_type
                 f.save()
                 form.save()
                 activity.entries.add(f)
-                action.send(curr_student, verb='edited an entry of', target=activity)
+                action.send(curr_student, verb='added an entry to', target=activity)
         return HttpResponseRedirect('/activity/' + activity_id)
     else:
         form = EntryForm(instance=e)
