@@ -21,8 +21,21 @@ ul {
 }
 
 h2 {
-	color: rgb(128, 128, 128);
+	color: #05CCCE;
 	margin-top: 40px;
+	/*margin-left: 40px;*/
+	text-align: center;
+}
+
+h4 {
+	margin-top: 30px;
+	/*margin-left: 27px;*/
+	text-align: center;
+	color: rgb(128, 128, 128);
+}
+
+h4 a {
+	color: #05CCCE;
 }
 
 .activity {
@@ -33,18 +46,13 @@ h2 {
   color: #05CCCE;
 }
 
-.table-header {
-	/*color: #05CCCE;*/
-	font-size: 18px;
-  font-weight: bold;
-}
-
-td a:hover {
-	color: #05CCCE;
-}
-
 a {
 	color: rgb(128, 128, 128);
+	font-size: 17px;
+}
+
+a:hover {
+	color: #05CCCE;
 }
 
 .activities-link {
@@ -68,7 +76,14 @@ a {
 	text-align: center;
 }
 
-.table {
-	margin-top: 3.5vw;
-  padding-left: 20%;
+.entry-list {
+	height: 100px;
+	text-align: center;
+	border: 1px solid rgba(74, 74, 74, 0.2);
+	border-radius: 2px;
+	margin-top: 30px;
+	margin-left: 100px;
+	margin-right: 100px;
+	
 }
+

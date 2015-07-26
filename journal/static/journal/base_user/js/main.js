@@ -12,11 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-$(function() {
+$(document).ready(function() {
+  $(function() {
     // run the currently selected effect
     function runEffect() {
       if ($(".main").css("left") == "240px") {
-      	$(".main").animate({
+        $(".main").animate({
           "left": "-=220px"
         }, 1000);
 
@@ -24,10 +25,10 @@ $(function() {
           "left": "-=245px"
         }, 1000);
 
-      	$(".button-2").css("display", "inline-block");
-   	  }
+        $(".button-2").css("display", "inline-block");
+      }
       else if($(".main").css("left") == "20px") {
-      	$(".main").animate({
+        $(".main").animate({
           "left": "+=220px"
         }, 1000);
 
@@ -35,16 +36,26 @@ $(function() {
           "left": "+=245px"
         }, 1000);
 
-      	$(".button-2").css("display", "none");
+        $(".button-2").css("display", "none");
       }
     }
 
     // set effect from select menu value
-    $( "button" ).click(function() {
+    $( ".sidebar-button" ).click(function() {
+      runEffect();
+    });
+    $( ".button-2" ).click(function() {
       runEffect();
     });
   });
+  
+  if ($(window).width() < 650) {
+    $(".main").css("left", "0");
+    $(".sidebar").css("display", "none");
+    $(".button-2").css("display", "inline-block");
+  }
 
+})
 
 
 

@@ -33,7 +33,7 @@
 					{% block 'nav-content' %} {% endblock %}
 				</div>
 
-				<button onclick="runEffect()" class="sidebar-menu-icon" id="		sidebar-menu-expand">
+				<button class="sidebar-button" onclick="runEffect()" class="sidebar-menu-icon" id="sidebar-menu-expand">
 					<i class="fa fa-chevron-left sidebar-menu-img">
 					</i>
 					<i class="fa fa-bars">
@@ -45,7 +45,7 @@
 		<div class="main">
 			{% block 'main-content' %} {% endblock %}
 			<div class="button-2">
-				<button onclick="runEffect()" class=" sidebar-menu-icon" id="	sidebar-menu-expand">
+				<button onclick="runEffect()" class=" sidebar-menu-icon" id="sidebar-menu-expand">
 					<i class="fa fa-bars">
 					</i>
 					<i class="fa fa-chevron-right sidebar-menu-img">
@@ -54,4 +54,6 @@
 			</div>
 		</div>
 	</div>
+	{% block 'modal' %} {% endblock %}
+</body>
 {% endblock %}

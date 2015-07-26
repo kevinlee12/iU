@@ -35,10 +35,11 @@ $(document).ready(function() {
       window.location.hash = e.target.hash;
       required_append(window.location.hash);
   });
+  $('#myModal').on('shown.bs.modal', function () {
+    $('#myInput').focus()
+  })
 });
 
-$(function() {
-    // run the currently selected effect
-    function deleteConfirmation() {
-      
-    }
+// $('#myModal').on('shown.bs.modal', function () {
+//   $('#myInput').focus()
+// })
