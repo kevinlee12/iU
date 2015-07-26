@@ -83,4 +83,4 @@ class Activity(models.Model):
         return shorten(self.activity_description, 70)
 
     def get_absolute_url(self):
-        return "/student_entries/{0}/{1}".format(self.student.pk, self.pk)
+        return "/entries/{0}/".format(self.pk)

@@ -2,7 +2,8 @@ machine:
   environment:
       SECRET_KEY: 'JRM0u!Hhi&Uzo1iF-{EUh1)/SZ{C=~5QPpPA]m9Y:[z5ue.YfQ'
       OPENSHIFT_APP_DNS: 'cas-codestig.rhcloud.com'
-      OPENSHIFT_POSTGRESQL_DB_USERNAME: ''
+      DB_NAME: 'circle_test'
+      OPENSHIFT_POSTGRESQL_DB_USERNAME: 'ubuntu'
       OPENSHIFT_POSTGRESQL_DB_PASSWORD: ''
       OPENSHIFT_POSTGRESQL_DB_HOST: 'localhost'
       OPENSHIFT_POSTGRESQL_DB_PORT: ''
@@ -11,8 +12,17 @@ machine:
   services:
     - postgresql
 
-test:
+# TODO
+# test:
+#   override:
+#     - coverage run manage.py test
+#   post:
+#     - coverage html -d $CIRCLE_ARTIFACTS
+
+database:
   override:
-    - coverage run manage.py test
-  post:
-    - coverage html -d $CIRCLE_ARTIFACTS
+    - python manage.py migrate
+    - python manage.py loaddata auth_users
+    - python manage.py loaddata groups
+    - python manage.py loaddata learningobjectiveoptions
+    - python manage.py loaddata activityoptions

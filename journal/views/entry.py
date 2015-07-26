@@ -36,11 +36,11 @@ def entry_verification(student, entry):
 
 
 @login_required
-def entries(request, activity_id):
+def stu_entries(request, activity_pk):
     """Function to satify the gathering of entries for a particular activity"""
     try:
-        activity = Activity.objects.get(id=activity_id)
-        if activity.student.email != request.user.email:
+        activity = Activity.objects.get(pk=activity_pk)
+        if activity.student.user.email != request.user.email:
             # Redirect its not the corresponding activity
             return HttpResponseRedirect('/activities')
         name = activity.activity_name
@@ -57,14 +57,16 @@ def entries(request, activity_id):
 
 
 @login_required
-def entry_form(request, activity_id, entry_type, entry_pk=None):
+def entry_form(request, activity_pk, entry_pk=None):
     """Function that allows the user to add/edit entries"""
-    curr_student = Student.objects.get(email=request.user.email)
-    activity = Activity.objects.get(id=activity_id)
+    curr_student = Student.objects.get(user=request.user)
+    activity = Activity.objects.get(pk=activity_pk)
 
     e = None
+    entry_type = 'text'
     if entry_pk:
         e = Entry.objects.get(pk=entry_pk)
+        entry_type = e.entry_type
         entry_verification(curr_student, e)
     if request.method == 'POST':
         form = EntryForm(request.POST, request.FILES, instance=e)
@@ -78,12 +80,11 @@ def entry_form(request, activity_id, entry_type, entry_pk=None):
             else:  # New
                 f.pk = curr_student.pk
                 f.activity_pk = activity.pk
-                f.entry_type = entry_type
                 f.save()
                 form.save()
                 activity.entries.add(f)
-                action.send(curr_student, verb='added an entry to', target=activity)
-        return HttpResponseRedirect('/activity/' + activity_id)
+                action.send(curr_student, verb='edited an entry of', target=activity)
+        return HttpResponseRedirect('/entries/' + activity_pk)
     else:
         form = EntryForm(instance=e)
 
@@ -94,13 +95,13 @@ def entry_form(request, activity_id, entry_type, entry_pk=None):
 
 
 @login_required
-def delete_entry(request, activity_id, entry_pk):
-    activity = get_object_or_404(Activity, id=activity_id)
+def delete_entry(request, activity_pk, entry_pk):
+    activity = get_object_or_404(Activity, pk=activity_pk)
     entry = get_object_or_404(Entry, pk=entry_pk)
     if entry.entry_type == "i":  # If image exists, delete it
         entry.image_entry.delete()
     activity.entries.remove(entry)
-    student = Student.objects.get(email=request.user.email)
+    student = Student.objects.get(user=request.user)
     entry_verification(student, entry)
     entry.delete()
-    return HttpResponseRedirect('/activity/' + activity_id)
+    return HttpResponseRedirect('/entries/' + str(activity_pk))

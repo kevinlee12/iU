@@ -131,11 +131,12 @@ USER = os.environ['OPENSHIFT_POSTGRESQL_DB_USERNAME']
 PASSWORD = os.environ['OPENSHIFT_POSTGRESQL_DB_PASSWORD']
 DB_HOST = os.environ['OPENSHIFT_POSTGRESQL_DB_HOST']
 DB_PORT = os.environ['OPENSHIFT_POSTGRESQL_DB_PORT']
+NAME = os.environ['DB_NAME']
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'iu',
+        'NAME': NAME,
         'USER': USER,
         'PASSWORD': PASSWORD,
         'HOST': DB_HOST,
@@ -192,6 +193,24 @@ AUTHENTICATION_BACKENDS = (
     # 'social.backends.yahoo.YahooOpenId',
     'django.contrib.auth.backends.ModelBackend'
 )
+
+SOCIAL_AUTH_PIPELINE = (
+    'social.pipeline.social_auth.social_details',
+    'social.pipeline.social_auth.social_uid',
+    'social.pipeline.social_auth.auth_allowed',
+    'social.pipeline.social_auth.social_user',
+
+    'journal.utils.associate_by_email',
+
+    'social.pipeline.user.get_username',
+    'social.pipeline.user.create_user',
+    'social.pipeline.social_auth.associate_user',
+    'social.pipeline.social_auth.load_extra_data',
+    'social.pipeline.user.user_details'
+)
+
+SOCIAL_AUTH_USER_MODEL = 'auth.user'
+SOCIAL_AUTH_USERNAME_IS_FULL_EMAIL = True
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ['SOCIAL_AUTH_GOOGLE_OAUTH2_KEY']
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ['SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET']

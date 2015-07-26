@@ -15,45 +15,40 @@
 # limitations under the License.
 
 from django.db import models
+from django.contrib.auth.models import User, Group
 
 # The following models are used for gathering user data and storing the
 # associated information of the users including journal entries and basic
 # information.
 
 
-class Users(models.Model):
+class UserType(models.Model):
     """For use to check if user is registered and type
     (Student or Coordinator)."""
+
+    user = models.OneToOneField(User, unique=True)
     USER_TYPES = (
         ('S', 'Student'),
         ('C', 'Coordinator'),
         ('A', 'Advisor'),
     )
-
-    STATUS = (
-        ('N', 'New'),
-        ('A', 'Active'),
-        ('I', 'Inactive'),  # This is for deleted users queued for removal
-    )
-    email = models.EmailField()
     user_type = models.CharField(max_length=1, choices=USER_TYPES)
     # status = models.CharField(max_length=1, choices=STATUS)
-
-    def type_of_user(self):
-        return self.user_type
 
 
 class School(models.Model):
     """School object"""
+    group = models.OneToOneField(Group)
     school_code = models.CharField(max_length=6)  # Max number of digits is 6
     school_name = models.CharField(max_length=30)
 
 
 class Person(models.Model):
     """Abstract class for all individuals"""
+
+    user = models.OneToOneField(User, unique=True, default=0)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
-    email = models.EmailField()
     school = models.ForeignKey(School)
 
     class Meta:
@@ -62,8 +57,8 @@ class Person(models.Model):
     def __str__(self):
         return self.first_name + ' ' + self.last_name
 
-    def user_email(self):
-        return self.email
+    def email(self):
+        return self.user.email
 
 
 class Student(Person):
@@ -74,7 +69,7 @@ class Student(Person):
     stu_coordinator = models.IntegerField()
 
     def get_absolute_url(self):
-        return '/student_activities/{0}/'.format(self.pk)
+        return '/activities/{0}'.format(self.pk)
 
 class IBAdmin(Person):
     students = models.ManyToManyField(Student, blank=True)
@@ -82,6 +77,8 @@ class IBAdmin(Person):
     class Meta:
         abstract = True
 
+    def __str__(self):
+        return self.first_name + ' ' + self.last_name
 
 class Advisor(IBAdmin):
     """Advisor object that inherits from Person"""
@@ -90,3 +87,6 @@ class Advisor(IBAdmin):
 class Coordinator(IBAdmin):
     """Coordinator object that inherits from Person"""
     advisors = models.ManyToManyField(Advisor)
+
+    def get_absolute_url(self):
+        return '#'

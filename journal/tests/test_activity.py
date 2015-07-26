@@ -14,29 +14,29 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from django.contrib.staticfiles.testing import StaticLiveServerTestCase
-from selenium.webdriver.firefox.webdriver import WebDriver
-
-
-class ActivitySeleleniumTests(StaticLiveServerTestCase):
-    """Selenium tests for the activity page"""
-
-    @classmethod
-    def setUpClass(cls):
-        super(ActivitySeleleniumTests, cls).setUpClass()
-        cls.selenium = WebDriver()
-
-    @classmethod
-    def tearDownClass(cls):
-        cls.selenium.quit()
-        super(ActivitySeleleniumTests, cls).tearDownClass()
-
-    def setUp(self):
-        self.selenium.get('{0}{1}'.format(self.live_server_url,
-                                          '/activities/'))
-
-    def test_activity_page(self):
-        """Tests to ensure that the word activityies is present"""
-        image = self.selenium\
-            .find_element_by_xpath("//img[@src='/static/journal/activities/"
-                                   "img/journal_sign.png']")
+# from django.contrib.staticfiles.testing import StaticLiveServerTestCase
+# from selenium.webdriver.firefox.webdriver import WebDriver
+#
+#
+# class ActivitySeleleniumTests(StaticLiveServerTestCase):
+#     """Selenium tests for the activity page"""
+#
+#     @classmethod
+#     def setUpClass(cls):
+#         super(ActivitySeleleniumTests, cls).setUpClass()
+#         cls.selenium = WebDriver()
+#
+#     @classmethod
+#     def tearDownClass(cls):
+#         cls.selenium.quit()
+#         super(ActivitySeleleniumTests, cls).tearDownClass()
+#
+#     def setUp(self):
+#         self.selenium.get('{0}{1}'.format(self.live_server_url,
+#                                           '/activities/'))
+#
+#     def test_activity_page(self):
+#         """Tests to ensure that the word activityies is present"""
+#         image = self.selenium\
+#             .find_element_by_xpath("//img[@src='/static/journal/activities/"
+#                                    "img/journal_sign.png']")

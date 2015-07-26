@@ -21,9 +21,9 @@
 # Pattern for these files:
 # from .<file_name> import *
 # Notes: Do not forget the period before file name and the asterick at the end.
-
+#
+# from .activity import *
+from .student import *
 from .common import *
-from .activity import *
-# from .base import *
 from .entry import *
 from .coordinator import *

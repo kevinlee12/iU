@@ -28,4 +28,4 @@ class StudentAdmin(admin.ModelAdmin):
                                 'classes': ['collapse']}),
     ]
 
-admin.site.register(Student, StudentAdmin)
+# admin.site.register(Student, StudentAdmin)

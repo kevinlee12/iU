@@ -1,9 +1,9 @@
 - model: journal.student
   pk: 1
   fields:
+    user: 1
     first_name: 'Kevin'
     last_name: 'Lee'
-    email: 'kevinlee963@gmail.com'
     school: 1
     student_id: '1234'
     personal_code: 'dty123'
@@ -12,9 +12,9 @@
 - model: journal.student
   pk: 2
   fields:
+    user: 2
     first_name: 'Janice Jiayu'
     last_name: 'Zhao'
-    email: 'janicez348@gmail.com'
     school: 1
     student_id: '2345'
     personal_code: 'dty321'
