@@ -19,7 +19,7 @@
 	Welcome <br> {{ user.get_full_name|default:user.username }}! <br>
 	<a href="{% url 'auth:logout' %}?next={{ request.path }}"> <h5>Logout</h5> </a>
 	{% else %}
-	<a href="{% url 'social:begin' 'google-oauth2' %}?next={{ request.path }}">Login with Google</a>
+	<a href="#">Login with Google</a>
 	{% endif %}
 </h3>
 {% if is_student %}

@@ -45,6 +45,7 @@ echo
 # python3 manage.py makemigrations journal
 # echo "...done"
 echo
+sleep 5
 echo "Migrating database"
 python3 manage.py migrate
 echo "...done"

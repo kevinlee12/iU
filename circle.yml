@@ -21,6 +21,7 @@ machine:
 
 database:
   override:
+    - sleep 5
     - python manage.py migrate
     - python manage.py loaddata auth_users
     - python manage.py loaddata groups
