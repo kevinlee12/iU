@@ -52,7 +52,7 @@ class ActivitySeleleniumTests(StaticLiveServerTestCase):
         wait = WebDriverWait(self.selenium, 30)
         wait.until(EC.element_to_be_clickable((By.ID,'submit_approve_access')))
         self.selenium.find_element_by_xpath('//*[@id="submit_approve_access"]').click()
-        self.selenium.implicitly_wait(15)
+        self.selenium.implicitly_wait(20)
         self.selenium.find_element_by_xpath("//img[@src='/static/journal/activities/"
                                    "img/journal_sign.png']")
         self.selenium.find_element_by_xpath('/html/body/div[1]/div[2]/div[1]/div/div/div[3]/a/div')
