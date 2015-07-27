@@ -72,6 +72,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'debug_toolbar',
     'journal',
+    'imagekit',
     'iu_commenting',
     # 'haystack', reactivate once things are 80% done
     'rest_framework',

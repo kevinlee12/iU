@@ -1,5 +1,6 @@
 {% extends 'journal/base_user.html' %}
 {% load staticfiles %}
+{% load imagekit %}
 
 
 {% block 'title' %}
@@ -45,10 +46,10 @@
 			<div class="entry-list">
 				<b>{{ entry.created }}</b> <br>
 				{% if entry.image_entry %}
-					<img src="/media/{{entry.image_entry.name}}">
+					{% thumbnail '100x50' entry.image_entry %}
 				{% else %}
 					{{ entry }}
-				{% endif %} 
+				{% endif %}
 			</div>
 		</a>
 	</div>
@@ -80,4 +81,3 @@
       </div>
   </div>
 {% endblock %}
-

@@ -16,6 +16,9 @@
 
 from django.db import models
 from django.conf import settings
+from imagekit.models import ProcessedImageField
+from imagekit.processors import Thumbnail
+
 
 from .utilities import shorten
 
@@ -39,7 +42,10 @@ class Entry(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     entry_type = models.CharField(max_length=6, choices=ENTRY_TYPES)
     text_entry = models.TextField(blank=True)
-    image_entry = models.ImageField(blank=True, storage=fs)
+    image_entry = ProcessedImageField(processors=[Thumbnail(800, 600)],
+                                      format='JPEG',
+                                      options={'quality': 80},
+                                      blank=True, storage=fs)
     link_entry = models.URLField(blank=True)
 
     def __str__(self):
