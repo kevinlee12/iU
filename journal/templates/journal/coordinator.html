@@ -17,6 +17,8 @@
 <h3> Welcome <br> {{ coordinator }}! </h3>
   <div class="sidebar-links">
     <a href="/student/">Register a student</a> <br>
+    <div class="border">
+    </div>
     <a href="/advisor_form/">Register an advisor</a>
   </div>
 {% endblock %}
@@ -27,10 +29,14 @@
     <div class="students">
       <div class="col-xs-12 col-md-4 col-lg-4">
         <h2>Students</h2> <br>
+        <div class="border-2">
+        </div>
         {% if students %}
           {% for student in students %}
           <a class="student-names" href="/activities/{{student.pk}}"> {{ student }} </a>
           <small><a href="/student/{{student.pk}}"> (edit) </a> <br> </small>
+          <div class="border">
+          </div>
           {% endfor %}
         {% else %}
         <h4> No students yet, would you like to <a href="/student/">register</a> them? </h4>
@@ -41,6 +47,8 @@
     <div class="advisors">
       <div class="col-xs-12 col-md-4 col-lg-4">
         <h2>Advisors</h2> <br>
+        <div class="border-2">
+        </div>
         {% if advisors %}
           {% for advisor in advisors %}
           <a href="/advisor_form/{{advisor.pk}}"> {{ advisor }} </a>
@@ -53,11 +61,17 @@
 
     <div class="recent-activities">
       <div class="col-xs-12 col-md-4 col-lg-4">
-        <h2> Student Activities </h2>
+        <h2> Student Activities </h2> <br>
+        <div class="border-2">
+        </div>
+        <div class="activity-feed">
         {% for action in feed %}
           <h5>{% display_action action %} </h5>
+          <div class="border">
+          </div>
         {% endfor %}
+        </div>
       </div>
     </div>
-</div>
+  </div>
 {% endblock %}

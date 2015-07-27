@@ -21,9 +21,10 @@
 
 h2 {
 	color: #05CCCE;
-	border-bottom: 1px solid rgba(74, 74, 74, 0.12);
+	/*border-bottom: 1px solid rgba(74, 74, 74, 0.12);*/
 	text-align: left; 
-	display: inline-block;
+	/*display: inline-block;*/
+	margin-bottom: -20px;
 }
 
 .title {
@@ -44,8 +45,6 @@ h4 {
 
 h5 {
 	color: rgb(128,128,128);
-	border-bottom: 1px solid rgba(74, 74, 74, 0.12);
-	display: inline-block;
 	line-height: 30px;
 	width: 100%;
 }
@@ -64,6 +63,7 @@ small a {
 
 .sidebar-links{
 	margin-top: 20%;
+	line-height: 40px;
 }
 
 .sidebar-links a {
@@ -74,18 +74,28 @@ small a {
 .student-names {
 	color: rgb(128, 128, 128);
 	font-size: 18px;
+	margin-top: 40px;
+	line-height: 40px;
+}
+
+.students {
+	width: 90%;
 }
 
 .student-names:hover {
 	color: #05CCCE;
 }
 
-h4 a:hover {
-	color: rgb(128, 128, 128);
+.border {
+	border-bottom: 1px solid rgba(74, 74, 74, 0.12);
 }
 
-.students {
-	width: 90%;
+.border-2 {
+	border-bottom: 2px solid rgba(74, 74, 74, 0.12);
+}
+
+h4 a:hover {
+	color: rgb(128, 128, 128);
 }
 
 .advisors {
@@ -95,4 +105,8 @@ h4 a:hover {
 .recent-activities {
 	width: 100%;
 	text-align: justify;
+}
+
+.activity-feed {
+	margin-top: 10px;
 }
