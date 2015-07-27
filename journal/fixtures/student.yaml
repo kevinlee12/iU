@@ -7,7 +7,7 @@
     school: 1
     student_id: '1234'
     personal_code: 'dty123'
-    stu_coordinator: 2
+    stu_coordinator: 1
 
 - model: journal.student
   pk: 2
@@ -19,3 +19,14 @@
     student_id: '2345'
     personal_code: 'dty321'
     stu_coordinator: 2
+
+- model: journal.student
+  pk: 3
+  fields:
+    user: 7
+    first_name: 'Comet'
+    last_name: 'Tester'
+    school: 1
+    student_id: '2061'
+    personal_code: 'dty075'
+    stu_coordinator: 1

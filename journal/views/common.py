@@ -66,21 +66,21 @@ def home(request):
                   {'request': request, 'user': request.user, 'form': form})
 
 
+def get_user_type(request):
+    return UserType.objects.get(user=request.user).user_type
+
+
 def login_redirects(request):
     """Function that redirects users appropriately after login"""
     try:
-        user = UserType.objects.get(user=request.user)
-    except ObjectDoesNotExist:
+        user_type = get_user_type(request)
+    except:
+        return HttpResponseRedirect('/')
+    if user_type == 'S':
         return HttpResponseRedirect('/activities')
-    if user.user_type == 'S':
-        return HttpResponseRedirect('/activities')
-    elif user.user_type == 'C':
+    elif user_type == 'C':
         return HttpResponseRedirect('/coordinator')
-    return home(request)
-
-
-def get_user_type(request):
-    return UserType.objects.get(user=request.user).user_type
+    return HttpResponseRedirect('/')
 
 
 @login_required

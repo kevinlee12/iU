@@ -21,3 +21,9 @@
   fields:
     user: 6
     user_type: 'C'
+
+- model: journal.usertype
+  pk: 5
+  fields:
+    user: 7
+    user_type: 'S'
