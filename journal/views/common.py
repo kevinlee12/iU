@@ -20,7 +20,7 @@ from actstream import action
 from .student import stu_activities, activity_form
 from .coordinator import activities_view, activity_view
 
-from .entry import stu_entries, entry_form
+from .student import stu_entries, entry_form
 from .coordinator import entries_view, view_stu_entry
 
 from django.http import HttpResponseRedirect

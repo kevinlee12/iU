@@ -23,12 +23,13 @@ MAX_HEIGHT = 500
 
 class ResizeToRatio:
     """A Processor that will resize an image to MAX_WIDTH and MAX_HEIGHT."""
+
     def process(self, image):
         w, h = image.size
-        if w > MAX_WIDTH:
+        if w > MAX_WIDTH and w > h:
             h = (h * MAX_WIDTH) // w
             w = MAX_WIDTH
-        elif h > MAX_HEIGHT:
+        elif h > MAX_HEIGHT and h > w:
             w = (w * MAX_HEIGHT) // h
             h = MAX_HEIGHT
         return image.resize((w, h), Image.ANTIALIAS)

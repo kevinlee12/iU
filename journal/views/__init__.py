@@ -25,5 +25,4 @@
 # from .activity import *
 from .student import *
 from .common import *
-from .entry import *
 from .coordinator import *
