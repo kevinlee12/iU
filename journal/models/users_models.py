@@ -24,17 +24,21 @@ from django.conf import settings
 # information.
 
 
-class UserType(models.Model):
-    """For use to check if user is registered and type
-    (Student or Coordinator)."""
+# Django User notes:
+# - Groups: school
+# - Permissions (one): student, coordinator, advisor
 
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, unique=True)
-    USER_TYPES = (
-        ('S', 'Student'),
-        ('C', 'Coordinator'),
-        ('A', 'Advisor'),
-    )
-    user_type = models.CharField(max_length=1, choices=USER_TYPES)
+# class UserType(models.Model):
+#     """For use to check if user is registered and type
+#     (Student or Coordinator)."""
+#
+#     user = models.OneToOneField(settings.AUTH_USER_MODEL, unique=True)
+#     USER_TYPES = (
+#         ('S', 'Student'),
+#         ('C', 'Coordinator'),
+#         ('A', 'Advisor'),
+#     )
+#     user_type = models.CharField(max_length=1, choices=USER_TYPES)
     # status = models.CharField(max_length=1, choices=STATUS)
 
 

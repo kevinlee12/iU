@@ -1,0 +1,29 @@
+[
+{
+  "pk": 76,
+  "model": "auth.permission",
+  "fields": {
+    "name": "student",
+    "content_type": 14,
+    "codename": "stu"
+  }
+},
+{
+  "pk": 77,
+  "model": "auth.permission",
+  "fields": {
+    "name": "coordinator",
+    "content_type": 16,
+    "codename": "coor"
+  }
+},
+{
+  "pk": 78,
+  "model": "auth.permission",
+  "fields": {
+    "name": "advisor",
+    "content_type": 15,
+    "codename": "advise"
+  }
+}
+]

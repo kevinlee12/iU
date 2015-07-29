@@ -6,7 +6,7 @@
     user: 3
     school: 1
     students: [1, 2]
-    advisors: []
+    advisors: [1]
 - model: journal.coordinator
   pk: 2
   fields:
@@ -15,4 +15,4 @@
     user: 6
     school: 1
     students: [1, 2]
-    advisors: []
+    advisors: [1]

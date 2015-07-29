@@ -22,7 +22,7 @@ from actstream.models import following
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 
-from journal.models import Student, UserType, Activity
+from journal.models import Student, Activity
 from journal.forms import ActivityForm
 
 from journal.models import Entry
@@ -31,6 +31,7 @@ from journal.forms import EntryForm
 from django.core.exceptions import ObjectDoesNotExist
 
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 from django.shortcuts import get_object_or_404
 
@@ -41,17 +42,10 @@ def stu_activities(request):
     user = request.user
     is_student = False
     if user.is_authenticated():
-        try:
-            auth_user_type = UserType.objects.get(user=request.user).user_type
-        except ObjectDoesNotExist:
-            auth_user_type = None
-            msg = 'User {0} not found!'.format(user.get_full_name())
-            stored_activities = [msg]
-        if auth_user_type == 'S':
-            student = Student.objects.get(user=user)
-            stored_activities = Activity.objects.all().filter(student=student)\
-                .order_by('activity_name').reverse()
-            is_student = True
+        student = Student.objects.get(user=user)
+        stored_activities = Activity.objects.all().filter(student=student)\
+            .order_by('activity_name').reverse()
+        is_student = True
     return render(request, 'journal/activities.html',
                   {'activities': stored_activities, 'is_student': is_student,
                    'feed': user_stream(request.user)})
@@ -102,7 +96,6 @@ def activity_deletion(request, activity_pk):
         delete_entry(request, activity.id, entry.pk)
     activity.delete()
     return HttpResponseRedirect('/activities/')
-
 
 
 def entry_verification(student, entry):

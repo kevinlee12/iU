@@ -22,7 +22,7 @@ from actstream.models import following
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 
-from journal.models import Coordinator, UserType, Student, Advisor
+from journal.models import Coordinator, Student, Advisor
 from journal.models import Activity, Entry
 from journal.forms import StudentRegistrationForm, AdvisorForm
 

@@ -1,1 +1,8 @@
-
+- model: journal.advisor
+  pk: 1
+  fields:
+    user: 8
+    first_name: 'Kevin'
+    last_name: 'Lee'
+    school: 1
+    students: [1, 2]

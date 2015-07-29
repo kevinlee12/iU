@@ -50,18 +50,20 @@ echo "Migrating database"
 python3 manage.py migrate
 echo "...done"
 echo "Loading the databases with data"
-echo "Loadding user data"
-python manage.py loaddata auth_users
 echo "Loadding group data"
 python manage.py loaddata groups
-echo "Loading users data"
-python manage.py loaddata users
 echo "Loading school data"
 python manage.py loaddata school
+echo "Loadding permissions"
+python manage.py loaddata permissions
+echo "Loadding user data"
+python manage.py loaddata auth_users
+# echo "Loading users data"
+# python manage.py loaddata users
 echo "Loading student data"
 python manage.py loaddata student
-# echo "Loading advisor data"
-# python manage.py loaddata advisor
+echo "Loading advisor data"
+python manage.py loaddata advisor
 echo "Loading coordinator data"
 python manage.py loaddata coordinator
 echo "Loading activityoptions data"

@@ -16,6 +16,7 @@
 
 # For all of the areas where user would first encounter
 from actstream import action
+from django.contrib.auth.models import User
 
 from .student import stu_activities, activity_form
 from .coordinator import activities_view, activity_view
@@ -26,7 +27,7 @@ from .coordinator import entries_view, view_stu_entry
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
-from journal.models import UserType, Coordinator, Student
+from journal.models import Coordinator, Student
 from journal.models import Activity, Entry
 
 from datetime import datetime
@@ -67,7 +68,8 @@ def home(request):
 
 
 def get_user_type(request):
-    return UserType.objects.get(user=request.user).user_type
+    return User.objects.get(email=request.user.email)\
+        .user_permissions.all()[0].codename
 
 
 def login_redirects(request):
@@ -76,9 +78,9 @@ def login_redirects(request):
         user_type = get_user_type(request)
     except:
         return HttpResponseRedirect('/')
-    if user_type == 'S':
+    if user_type == 'stu':
         return HttpResponseRedirect('/activities')
-    elif user_type == 'C':
+    elif user_type == 'coor':
         return HttpResponseRedirect('/coordinator')
     return HttpResponseRedirect('/')
 
@@ -87,9 +89,9 @@ def login_redirects(request):
 def activities(request, student_pk=None):
     user_type = get_user_type(request)
 
-    if user_type == 'S':
+    if user_type == 'stu':
         return stu_activities(request)
-    elif user_type == 'C':
+    elif user_type == 'coor':
         return activities_view(request, student_pk)
     return
 
@@ -108,9 +110,9 @@ def activity_details(request, activity_pk=None):
 def entries(request, activity_pk):
     user_type = get_user_type(request)
 
-    if user_type == 'S':
+    if user_type == 'stu':
         return stu_entries(request, activity_pk)
-    elif user_type == 'C':
+    elif user_type == 'coor':
         return entries_view(request, activity_pk)
 
 
@@ -118,9 +120,9 @@ def entries(request, activity_pk):
 def entry(request, activity_pk, entry_pk=None):
     user_type = get_user_type(request)
 
-    if user_type == 'S':
+    if user_type == 'stu':
         return entry_form(request, activity_pk, entry_pk)
-    elif user_type == 'C':
+    elif user_type == 'coor':
         return view_stu_entry(request, activity_pk, entry_pk)
 
 
@@ -128,9 +130,9 @@ def entry(request, activity_pk, entry_pk=None):
 def comment_submit(request):
     url_source = request.META['HTTP_REFERER']
     user_type = get_user_type(request)
-    if user_type == 'S':
+    if user_type == 'stu':
         user = Student.objects.get(user=request.user)
-    elif user_type == 'C':
+    elif user_type == 'coor':
         user = Coordinator.objects.get(user=request.user)
     url_source = url_source.split("/")
     if 'entry' in url_source:
