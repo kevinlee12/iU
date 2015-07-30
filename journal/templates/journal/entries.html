@@ -8,10 +8,14 @@
 {% endblock %}
 
 {% block 'page-css' %}
+<!-- <link rel="stylesheet" type="text/css" href="{% static 'journal/entries/css/jquery.capty.css' %}"> -->
 <link rel="stylesheet" type="text/css" href="{% static 'journal/entries/css/style.css' %}">
 {% endblock %}
 
 {% block 'page-js' %}
+<!-- <script src="{% static 'journal/entries/js/jquery.jpg.js' %}"></script>
+<script src="{% static 'journal/entries/js/jquery.capty.min.js' %}"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.1/masonry.pkgd.min.js"></script>
 <script src="{% static 'journal/entries/js/main.js' %}"></script>
 {% endblock %}
 
@@ -38,26 +42,30 @@
 {% endblock %}
 
 {% block 'main-content' %}
-<h2> Entries for {{ name }} </h2>
-{% if entries %}
-  	{% for entry in entries %}
-  	<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-  		<a href="/entry/{{ activity_id }}/{{ entry.pk }}/#{{ entry.entry_type }}">
-			<div class="entry-list">
-				<b>{{ entry.created }}</b> <br>
+	<div class="grid-item grid-item--width2">
+		<h2> Entries for {{ name }} </h2>
+	</div>
+	<div class="grid">
+	{% if entries %}
+  		{% for entry in entries %}
+  		<div class="grid-item">
+  			<a href="/entry/{{ activity_id }}/{{ entry.pk }}/#{{ entry.entry_type }}">
+				<div class="entry-list">
 				{% if entry.image_entry %}
-					{% thumbnail '100x50' entry.image_entry %}
+					{% thumbnail '250x250' entry.image_entry %}
 				{% else %}
 					{{ entry }}
 				{% endif %}
-			</div>
-		</a>
-	</div>
+					<div id="caption"> {{ entry.created }} 
+					</div>
+				</div> 
+			</a>
+		</div>
   	{% endfor %}
 {% else %}
-	<div class="col-xs-12 col-md-12 col-lg-12">
   	<h4> No entries yet, would you like to <a href="/entry/{{ activity_pk }}/#text">add</a> one? </h4>
 {% endif %}
+</div>
 
 {% endblock %}
 
