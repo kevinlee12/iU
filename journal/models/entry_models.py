@@ -51,7 +51,7 @@ class Entry(models.Model):
 
     def __str__(self):
         if self.text_entry:
-            return shorten(self.text_entry, 50)
+            return shorten(self.text_entry, 200)
         return str(self.image_entry) or str(self.link_entry)
 
     def is_valid_entry(self):

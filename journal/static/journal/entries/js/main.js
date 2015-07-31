@@ -20,17 +20,17 @@ $(document).ready(function() {
 	$('.grid').masonry({
   	// options
   	itemSelector: '.grid-item',
-  	columnWidth: 30
+  	columnWidth: 29
 	});
 
-	$(".grid").find(".grid-item").find("#caption").hide();
+	$(".grid").find(".grid-item").find(".overlay").hide();
 
 	$( ".entry-list" ).hover(
 		function() {
-    		$(this).find("#caption").fadeIn();
+    		$(this).find(".overlay").fadeIn();
 		}, 
 		function() {
-    		$(this).find("#caption").fadeOut();
+    		$(this).find(".overlay").fadeOut();
 		}
 	);
 
