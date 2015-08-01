@@ -21,6 +21,7 @@ from django.conf import settings
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^comments/', include('django_comments.urls')),
+    url(r'^summernote/', include('django_summernote.urls')),
     url(r'^', include('journal.urls')),
     url(r'^activity/', include('actstream.urls')),
     url('', include('social.apps.django_app.urls', namespace='social')),

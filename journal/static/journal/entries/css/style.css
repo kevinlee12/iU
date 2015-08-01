@@ -103,7 +103,7 @@ a:hover {
 }
 
 .overlay {
-  background-color: #808080;  
+  background-color: #808080;
   background-color: rgba(128,128,128,0.75);
   text-align: center;
   position: absolute;
@@ -123,5 +123,3 @@ a:hover {
 	color: white;
 	font-size: 20px;
 }
-
-

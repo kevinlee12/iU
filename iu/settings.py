@@ -48,7 +48,7 @@ CSRF_COOKIE_HTTPONLY = True
 # SESSION_COOKIE_SECURE = True
 SECURE_CONTENT_TYPE_NOSNIFF = True
 SECURE_BROWSER_XSS_FILTER = True
-X_FRAME_OPTIONS = 'DENY'
+# X_FRAME_OPTIONS = 'DENY'
 
 
 ALLOWED_HOSTS = [
@@ -70,6 +70,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_summernote',
     'debug_toolbar',
     'journal',
     'imagekit',
@@ -218,3 +219,35 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ['SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET'
 
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/login_redirects/'
 SOCIAL_AUTH_SANITIZE_REDIRECTS = True
+
+# Editor
+SUMMERNOTE_CONFIG = {
+    # Using SummernoteWidget - iframe mode
+    'iframe': True,  # or set False to use SummernoteInplaceWidget - no iframe mode
+
+    # Using Summernote Air-mode
+    'airMode': False,
+
+    # Use native HTML tags (`<b>`, `<i>`, ...) instead of style attributes
+    # (Firefox, Chrome only)
+    'styleWithTags': True,
+
+    # Set text direction : 'left to right' is default.
+    'direction': 'ltr',
+
+    # Change editor size
+    'width': '100%',
+    'height': '480',
+
+    # Customize toolbar buttons
+    'toolbar': [
+        ['style', ['bold', 'italic', 'underline']],
+        ['para', ['ul', 'ol']],
+        ['insert', ['link', 'picture', 'video']],
+        ['misc', ['help']],
+    ],
+
+    # Need authentication while uploading attachments.
+    'attachment_require_authentication': True,
+
+}

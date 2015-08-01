@@ -131,16 +131,13 @@ def entry_form(request, activity_pk, entry_pk=None):
     activity = Activity.objects.get(pk=activity_pk)
 
     e = None
-    entry_type = 'text'
     if entry_pk:
         e = Entry.objects.get(pk=entry_pk)
-        entry_type = e.entry_type
         entry_verification(curr_student, e)
     if request.method == 'POST':
         form = EntryForm(request.POST, request.FILES, instance=e)
         if form.is_valid():
             f = form.save(commit=False)
-            f.correct_entry_type()
             if type(e) == Entry:  # Editing
                 f.save()
                 form.save()
@@ -158,16 +155,13 @@ def entry_form(request, activity_pk, entry_pk=None):
 
     return render(request, 'journal/entry_form.html',
                   {'form': form, 'activity': activity,
-                   'entry_type': entry_type, 'entry_pk': entry_pk,
-                   'entry': e})
+                   'entry_pk': entry_pk, 'entry': e})
 
 
 @login_required
 def delete_entry(request, activity_pk, entry_pk):
     activity = get_object_or_404(Activity, pk=activity_pk)
     entry = get_object_or_404(Entry, pk=entry_pk)
-    if entry.entry_type == "i":  # If image exists, delete it
-        entry.image_entry.delete()
     activity.entries.remove(entry)
     student = Student.objects.get(user=request.user)
     entry_verification(student, entry)

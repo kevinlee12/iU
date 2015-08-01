@@ -28,20 +28,10 @@ $(document).ready(function() {
 	$( ".entry-list" ).hover(
 		function() {
     		$(this).find(".overlay").fadeIn();
-		}, 
+		},
 		function() {
     		$(this).find(".overlay").fadeOut();
 		}
 	);
 
 });
-
-
-
-
-
-
-
-
-
-

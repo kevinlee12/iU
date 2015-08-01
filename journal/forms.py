@@ -22,11 +22,12 @@ from journal.models import Student
 from journal.models import Advisor
 from django.forms.widgets import CheckboxSelectMultiple
 
+from django_summernote.widgets import SummernoteWidget
+
 from django import forms
 from django.contrib.auth.models import User
 
 import datetime
-
 
 class ContactForm(forms.Form):
     """Contact form that handles general inquiries from the home page."""
@@ -97,4 +98,7 @@ class EntryForm(ModelForm):
 
     class Meta:
         model = Entry
-        fields = ['text_entry', 'image_entry', 'link_entry']
+        fields = ['entry']
+        widgets = {
+            'entry': SummernoteWidget(),
+        }

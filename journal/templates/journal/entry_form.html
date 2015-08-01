@@ -40,45 +40,17 @@
   </ul>
 </h4>
 
-<h3 class="entry-type"> What is your entry type? </h3>
-<ul id="entry-type-selection" class="nav nav-tabs">
-  <li role="presentation"><a role="tab" data-toggle="tab" href="#text"> Text </a></li>
-  <li role="presentation"><a role="tab" data-toggle="tab" href="#image"> Image </a></li>
-  <li role="presentation"><a role="tab" data-toggle="tab" href="#link"> Link </a></li>
-</ul>
-<br>
 {{ form.errors }}
 <form name="entry_form" action="" method="post" enctype="multipart/form-data">
   {% csrf_token %}
-  <div class="tab-content">
-    <div id="text" class="tab-pane form-group">
-      <textarea class="form-control" rows="10" name="{{ form.text_entry.name }}" value="{{ form.text_entry.value }}">{{ form.text_entry.value|default:'' }}</textarea>
-    </div>
-
-    <div id="image" class="tab-pane form-group">
-      {% if form.image_entry.value %}
-      <img src="/media/{{ form.image_entry.value.name }}">
-      {% endif %}
-      <input type="file" class="form-control" accept="image/*"
-             id="{{ form.image_entry.id }}"
-             name="{{ form.image_entry.name }}"
-             value="{{ form.image_entry.value }}">
-    </div>
-
-    <div id="link" class="tab-pane form-group">
-      <input type="url" class="form-control" name="{{ form.link_entry.name }}"
-             value="{{ form.link_entry.value|default:'' }}">
-    </div>
-</div>
+  {{ form.entry }}
     <div class="buttons">
       {% if entry_pk %}
       <button type="button" class="btn btn-primary btn-danger" data-toggle="modal" data-target="#delete-modal">
        Delete
       </button>
       {% endif %}
-      {% if entry_type %}
       <button class="btn btn-success" type="submit" value="Submit">Submit </button>
-      {% endif %}
     </div>
 </form>
 
