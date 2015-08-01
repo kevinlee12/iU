@@ -31,8 +31,10 @@ from django.db import IntegrityError
 
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, Permission
 
+STUDENT_PERM = Permission.objects.get(codename='stu')
+ADVISOR_PERM = Permission.objects.get(codename='advise')
 
 
 def coordinator(request):
@@ -50,48 +52,56 @@ def coordinator(request):
 
 
 def user_creation(email, user_type):
-    exists = Users.objects.filter(email=email).count()
+    exists = User.objects.filter(email=email).count()
     if not exists:
-        Users.objects.create(email=email, user_type=user_type)
+        User.objects.create(email=email, user_type=user_type)
     return
 
 
 def user_removal(email):
-    exists = Users.objects.filter(email=email).count()
+    exists = User.objects.filter(email=email).count()
     if exists:
-        Users.objects.get(email=email).delete()
+        User.objects.get(email=email).delete()
     return
 
 
 def is_student(request):
-    return Users.objects.get(email=request.user.email).user_type == 'S'
+    return User.objects.get(email=request.user.email)\
+        .user_permissions.filter(codename='stu').exists()
 
 
 @login_required
-def advisors_form(request, advisors_pk=None):
-    curr_coordinator = Coordinator.objects.get(email=request.user.email)
+def advisors_form(request, advisor_pk=None):
+    curr_coordinator = Coordinator.objects.get(user=request.user)
 
     advisor = None
-    if advisors_pk:
-        advisor = Advisor.objects.get(pk=advisors_pk)
+    if advisor_pk:
+        advisor = Advisor.objects.get(pk=advisor_pk)
 
     if request.method == 'POST':
-        form = AdvisorForm(request.POST, instance=advisor)
+        form = AdvisorForm(request.POST, instance=advisor, coor=curr_coordinator)
         if form.is_valid():
             if type(advisor) == Advisor:
                 form.save()
             else:
                 f = form.save(commit=False)
                 f.school = curr_coordinator.school
-                f.students = curr_coordinator.students
-                user_creation(f.email, 'A')
+                # Create user in django auth
+                advisor_email = form.cleaned_data['email']
+                try:
+                    new_advisor = User.objects\
+                        .create_user(advisor_email, advisor_email)
+                except IntegrityError:
+                    new_advisor = User.objects.get(email=advisor_email)
+                new_advisor.user_permissions.add(ADVISOR_PERM)
+                f.user = new_advisor
                 f.save()
                 form.save()
                 curr_coordinator.advisors.add(f)
                 follow(request.user, f)
             return HttpResponseRedirect('/coordinator')
     else:
-        form = AdvisorForm(instance=advisor)
+        form = AdvisorForm(instance=advisor, coor=curr_coordinator)
     return render(request, 'journal/advisor_registration.html',
                   {'form': form, 'coordinator': curr_coordinator})
 
@@ -129,6 +139,7 @@ def student_registration(request, student_pk=None):
                     new_stu = User.objects.create_user(stu_email, stu_email)
                 except IntegrityError:
                     new_stu = User.objects.get(email=stu_email)
+                new_stu.user_permission.add(STUDENT_PERM)
                 f.user = new_stu
                 form.save()
                 f.save()

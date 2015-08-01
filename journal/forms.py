@@ -45,7 +45,19 @@ class AdvisorForm(ModelForm):
 
     class Meta:
         model = Advisor
-        fields = ['first_name', 'last_name']
+        fields = ['first_name', 'last_name', 'students']
+
+    def __init__(self, *args, **kwargs):
+        coordinator = kwargs.pop('coor')
+        super(AdvisorForm, self).__init__(*args, **kwargs)
+
+        self.fields['students'].widget = CheckboxSelectMultiple()
+        self.fields['students'].queryset = coordinator.students.all()
+        self.fields['students'].required = True
+
+        if kwargs['instance']:
+            advisor = kwargs['instance']
+            self.fields['email'].initial = advisor.user.email
 
 
 class StudentRegistrationForm(ModelForm):
