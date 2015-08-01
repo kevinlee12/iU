@@ -5,8 +5,7 @@
     activity_pk: 1
     last_modified: 2015-01-21 12:34:12
     created: 2015-01-21 12:34:12
-    entry_type: 'text'
-    text_entry: 'I learned I can actually walk around the block 100 times.'
+    entry: 'I learned I can actually walk around the block 100 times.'
 
 - model: journal.entry
   pk: 2
@@ -15,8 +14,7 @@
     activity_pk: 1
     last_modified: 2015-01-21 12:36:12
     created: 2015-01-21 12:36:12
-    entry_type: 'text'
-    text_entry: 'Walking is amazing, nature is amazing'
+    entry: 'Walking is amazing, nature is amazing'
 
 - model: journal.activity
   pk: 1
@@ -38,8 +36,7 @@
     activity_pk: 2
     last_modified: 2015-01-21 12:34:12
     created: 2015-01-21 12:34:12
-    entry_type: 'text'
-    text_entry: 'I learned I can actually walk around the block 100 times.'
+    entry: 'I learned I can actually walk around the block 100 times.'
 
 - model: journal.entry
   pk: 4
@@ -48,8 +45,7 @@
     activity_pk: 2
     last_modified: 2015-01-21 12:36:12
     created: 2015-01-21 12:36:12
-    entry_type: 'text'
-    text_entry: 'Walking is amazing, nature is amazing'
+    entry: 'Walking is amazing, nature is amazing'
 
 - model: journal.activity
   pk: 2
@@ -81,8 +77,7 @@
     activity_pk: 2
     last_modified: 2015-01-21 12:36:12
     created: 2015-01-21 12:36:12
-    entry_type: 'text'
-    text_entry: 'Walking is amazing, nature is amazing'
+    entry: 'Walking is amazing, nature is amazing'
 
 - model: journal.activity
   pk: 2
