@@ -54,6 +54,11 @@
     </div>
 </form>
 
+<div class="coordinator-chat">
+  <h4 class="coordinator-title"> Chat With a Coordinator! </h4>
+  <div class="line-break"> </div>
+</div>
+
 {% if entry_pk %}
   {% render_comment_list for entry %}
   {% get_comment_form for entry as form %}
@@ -64,7 +69,7 @@
     {{ form.object_pk }}
     {{ form.timestamp }}
     {{ form.security_hash }}
-    <textarea class="form-group" id="{{ form.comment.id }}" rows="10" name="{{ form.comment.name }}" value="{{ form.comment.value }}" required></textarea>
+    <textarea class="comment-box form-group" id="{{ form.comment.id }}" rows="10" name="{{ form.comment.name }}" value="{{ form.comment.value }}" required></textarea>
     <input type="hidden" name="next" value="/comment_submit/">
     <br><input class="btn btn-success" type="submit" value="Add comment" id="id_submit">
     </form>

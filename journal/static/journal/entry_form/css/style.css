@@ -46,6 +46,30 @@ h4 {
 	color: rgb(128, 128, 128);
 }
 
+.line-break {
+	border: 1px solid rgba(74,74,74,0.12);
+	width: 45%;
+	margin-bottom: 1%;
+}
+
+.coordinator-chat {
+	margin-top: 5%;
+}
+
+.coordinator-title {
+	color: #05CCCE;
+}
+
+.comment-box {
+	width: 50%;
+	border: 1px solid rgba(74,74,74,0.4);
+}
+
+dl {
+	color: rgb(128, 128, 128);
+}
+
+
 .activity-description {
 	text-align: center;
 }
