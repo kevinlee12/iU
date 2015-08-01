@@ -67,8 +67,7 @@
     activity_pk: 2
     last_modified: 2015-01-21 12:34:12
     created: 2015-01-21 12:34:12
-    entry_type: 'text'
-    text_entry: 'I learned I can actually walk around the block 100 times.'
+    entry: 'I learned I can actually walk around the block 100 times.'
 
 - model: journal.entry
   pk: 4
