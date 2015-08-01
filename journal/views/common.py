@@ -100,9 +100,9 @@ def activities(request, student_pk=None):
 def activity_details(request, activity_pk=None):
     user_type = get_user_type(request)
 
-    if user_type == 'S':
+    if user_type == 'stu':
         return activity_form(request, activity_pk)
-    elif user_type == 'C':
+    elif user_type == 'coor':
         return activity_view(request, activity_pk)
 
 

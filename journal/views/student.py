@@ -71,7 +71,7 @@ def activity_form(request, activity_pk=None):
             if type(a) == Activity:
                 form.save()
                 action.send(curr_student, verb='modifed the activity', target=a)
-                return HttpResponseRedirect('/activity/' + str(a.id))
+                return HttpResponseRedirect('/activity/' + str(a.pk))
             else:
                 f = form.save(commit=False)
                 f.student = curr_student
@@ -83,8 +83,7 @@ def activity_form(request, activity_pk=None):
         form = ActivityForm(instance=a)
 
     return render(request, 'journal/activity_form.html',
-                  {'form': form, 'student': curr_student,
-                   'activity': a})
+                  {'form': form, 'student': curr_student, 'activity': a})
 
 
 @login_required
