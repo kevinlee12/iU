@@ -3,7 +3,7 @@
 {% load comments %}
 
 {% block 'page-css' %}
-<!-- <link rel="stylesheet" type="text/css" href="{% static 'journal/entry_form/css/style.css' %}"> -->
+<link rel="stylesheet" type="text/css" href="{% static 'journal/entry_form/css/style.css' %}">
 {% endblock %}
 
 {% block 'page-js' %}
@@ -21,8 +21,32 @@
 
 
 {% block 'main-content' %}
+<h3> Entry for {{ activity.activity_name }}! </h3>
+<h4><b>Learning Objectives:</b>
+  <ul>
+  {% for l in activity.learned_objective.all %}
+    <li>{{ l.objective }}</li>
+  {% endfor %}
+  </ul>
+</h4>
+<h4> <b>CAS Type:</b>
+  <ul>
+    {% for i in activity.activity_type.all %}
+    <li> {{ i.name }} </li>
+    {% endfor %}
+  </ul>
+</h4>
+
+
 <!-- The actual entry is below: -->
-{{ entry }}
+<div class="entry-for-coor">
+  {{ entry | safe }}
+</div>
+
+<div class="coordinator-chat">
+  <h4 class="coordinator-title"> Chat With the Student About this Entry! </h4>
+  <div class="line-break"> </div>
+</div>
 <!-- This is the comments so far -->
 {% render_comment_list for entry %}
 <!-- The commenting form is here -->
@@ -34,7 +58,7 @@
   {{ form.object_pk }}
   {{ form.timestamp }}
   {{ form.security_hash }}
-  <textarea class="form-group" id="{{ form.comment.id }}" rows="10" name="{{ form.comment.name }}" value="{{ form.comment.value }}" required></textarea>
+  <textarea class="comment-box form-group" id="{{ form.comment.id }}" rows="4" name="{{ form.comment.name }}" value="{{ form.comment.value }}" required></textarea>
   <input type="hidden" name="next" value="/comment_submit/">
   <br><input class="btn btn-success" type="submit" value="Add comment" id="id_submit">
 </form>
