@@ -79,6 +79,7 @@ a:hover {
 
 .entry-list {
 	border: 1px solid rgba(74, 74, 74, 0.2);
+	overflow: hidden;
 }
 
 .grid {
@@ -95,6 +96,11 @@ a:hover {
 
 .grid-item--width2 {
 	width: 400px;
+	margin-left: -3%;
+}
+
+p {
+    margin: 0 0 0px;
 }
 
 #caption {
