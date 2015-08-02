@@ -27,6 +27,8 @@ urlpatterns = [
     url(r'^activity_details/$', views.activity_details, name='activity_details'),
     url(r'^activity_details/(?P<activity_pk>[0-9]+)', views.activity_details,
         name='activity_details'),
+    url(r'^advisor/$', views.advisors_form, name='advisor_form'),
+    url(r'^advisor/(?P<advisor_pk>[0-9]+)', views.advisors_form, name='advisor_form'),
     url(r'^coordinator/', views.coordinator, name='coordinator'),
     url(r'^delete_activity/(?P<activity_pk>[0-9]+)', views.activity_deletion,
         name='delete_activity'),
