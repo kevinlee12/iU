@@ -10,8 +10,6 @@ class Migration(migrations.Migration):
 
     dependencies = [
         ('auth', '__first__'),
-        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
-        ('auth', '0006_require_contenttypes_0002'),
     ]
 
     operations = [
