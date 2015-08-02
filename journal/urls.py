@@ -37,6 +37,7 @@ urlpatterns = [
     url(r'^entry/(?P<activity_pk>[0-9]+)/(?P<entry_pk>[0-9]+)', views.entry, name='entry'),
     url(r'^delete_entry/(?P<activity_pk>[0-9]+)/(?P<entry_pk>[0-9]+)',
         views.delete_entry, name='delete_entry'),
+    url(r'^profile/', views.profile, name='profile'),
     url(r'^student/$', views.student_registration, name='student'),
     url(r'^student/(?P<student_pk>[0-9]+)/', views.student_registration, name='student'),
     url(r'^remove_student/(?P<student_pk>[0-9]+)/', views.remove_student,

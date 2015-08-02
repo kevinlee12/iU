@@ -36,6 +36,10 @@ from django.contrib.auth.models import User
 from django.shortcuts import get_object_or_404
 
 
+def profile(request):
+    student = Student.objects.get(user=request.user)
+    return render(request, 'journal/student_profile.html', {'student': student})
+
 def stu_activities(request):
     """Function for the main activities page, login is not required"""
     stored_activities = []
