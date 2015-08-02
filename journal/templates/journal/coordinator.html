@@ -19,7 +19,7 @@
     <a href="/student/">Register a student</a> <br>
     <div class="border">
     </div>
-    <a href="/advisor_form/">Register an advisor</a>
+    <a href="/advisor/">Register an advisor</a>
   </div>
 {% endblock %}
 
@@ -28,7 +28,8 @@
   <div class="row">
     <div class="students">
       <div class="col-xs-12 col-md-4 col-lg-4">
-        <h2>Students</h2> <br>
+        <h2>Students</h2> 
+        <small><a href="/student/"> (Add) </a> </small>
         <div class="border-2">
         </div>
         {% if students %}
@@ -46,15 +47,14 @@
 
     <div class="advisors">
       <div class="col-xs-12 col-md-4 col-lg-4">
-        <h2>Advisors</h2> <br>
-        <div class="border-2">
-        </div>
+        <h2>Advisors</h2> <small><a href="/advisor/"> (Add) </a> </small>
+        <div class="border-2"></div>
         {% if advisors %}
           {% for advisor in advisors %}
           <a href="/advisor_form/{{advisor.pk}}"> {{ advisor }} </a>
           {% endfor %}
         {% else %}
-        <h4> No advisors yet, would you like to <a href="/advisor_form/">register</a> them? </h4>
+        <h4> No advisors yet, would you like to <a href="/advisor/">register</a> them? </h4>
         {% endif %}
       </div>
     </div>

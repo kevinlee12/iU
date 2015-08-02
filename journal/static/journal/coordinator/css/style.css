@@ -21,8 +21,8 @@
 
 h2 {
 	color: #05CCCE;
-	text-align: left; 
 	margin-bottom: -20px;
+	display: inline;
 }
 
 .title {
