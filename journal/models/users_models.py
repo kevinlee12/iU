@@ -17,7 +17,7 @@
 from django.db import models
 from django.contrib.auth.models import Group
 
-from django.conf import settings
+from django.contrib.auth.models import User
 
 # The following models are used for gathering user data and storing the
 # associated information of the users including journal entries and basic
@@ -52,7 +52,7 @@ class School(models.Model):
 class Person(models.Model):
     """Abstract class for all individuals"""
 
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, unique=True, default=0)
+    user = models.OneToOneField(User, unique=True, default=0)
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
     school = models.ForeignKey(School)

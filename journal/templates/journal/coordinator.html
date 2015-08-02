@@ -51,7 +51,7 @@
         <div class="border-2"></div>
         {% if advisors %}
           {% for advisor in advisors %}
-          <a href="/advisor_form/{{advisor.pk}}"> {{ advisor }} </a>
+          <a href="/advisor/{{advisor.pk}}"> {{ advisor }} </a>
           {% endfor %}
         {% else %}
         <h4> No advisors yet, would you like to <a href="/advisor/">register</a> them? </h4>

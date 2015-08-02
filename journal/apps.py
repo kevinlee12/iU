@@ -27,4 +27,5 @@ class JournalConfig(AppConfig):
         registry.register(User, self.get_model('Entry'),
                           self.get_model('Activity'),
                           self.get_model('Student'),
-                          self.get_model('Coordinator'))
+                          self.get_model('Coordinator'),
+                          self.get_model('Advisor'))

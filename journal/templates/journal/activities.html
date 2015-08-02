@@ -16,7 +16,7 @@
 
 {% block 'nav-content' %}
 <h3> {% if user and not user.is_anonymous %}
-	Welcome <br> {{ user.get_full_name|default:user.username }}! <br>
+	Welcome <br> <a href="/profile">{{ user.get_full_name|default:user.username }}</a>! <br>
 	<a href="{% url 'auth:logout' %}?next={{ request.path }}"> <h5>Logout</h5> </a>
 	{% else %}
 	<a href="#">Login with Google</a>
