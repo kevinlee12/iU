@@ -1,0 +1,28 @@
+{% extends 'journal/base_user.html' %}
+{% load staticfiles %}
+{% load comments %}
+
+{% block 'page-css' %}
+<!-- <link rel="stylesheet" type="text/css" href="{% static 'journal/entry_form/css/style.css' %}"> -->
+{% endblock %}
+
+{% block 'page-js' %}
+<!-- <script src="{% static 'journal/entry_form/js/main.js' %}"></script> -->
+{% endblock %}
+
+{% block 'nav-content' %}
+<div class="student-description">
+  {{ student }}
+  <a href="/activities/{{ student.pk }}"><i class="fa fa-long-arrow-left fa-6x"></i> Back to {{ student }}'s activities </a>
+</div>
+{% endblock %}
+
+
+{% block 'main-content' %}
+<!-- The actual activity information is below: -->
+<h2> Profile for {{ student }} </h2>
+<h3> {{ student.school.school_name }}</h3>
+<h3>Id: {{ student.student_id }}</h3>
+<h3>Personal Code: {{ student.personal_code }}</h3>
+
+{% endblock %}
