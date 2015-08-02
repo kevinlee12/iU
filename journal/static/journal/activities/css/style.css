@@ -88,3 +88,6 @@ li {
 	margin-bottom: -14.5px;
 	margin-top: 5px;
 }
+
+.btn-default .badge { 
+	background-color: #05CCCE;
