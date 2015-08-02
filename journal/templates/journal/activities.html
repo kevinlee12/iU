@@ -28,8 +28,30 @@
 	To edit a journal,<br>
 	click on an activity.
 </h4> <br>
-<h5> Need Inspiration? </h5>
 {% endif %}
+<h5> Need Inspiration? </h5>
+
+{% if is_student %}
+	<div class="dropdown">
+  		<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    	Notifications
+    		<span class="badge">2</span>
+  		</button>
+  	
+  	
+  		<ul class="dropdown-menu">
+  		<div class="notifications">
+  				{% for action in feed %}
+  				
+    			<li>{% display_action action %}</li>
+    			<li role="separator" class="divider"></li>
+    			
+  				{% endfor %}
+  				<div class="notifications">
+  		</ul>
+	</div>
+{% endif %}
+
 {% endblock %}
 
 {% block 'main-content'%}
@@ -93,7 +115,10 @@
 			{% endif %}
 		</div>
 	</div>
-	{% if is_student %}
+{% endblock %}
+
+
+	<!-- {% if is_student %}
 	<ul>
 	{% for action in feed %}
 	    <li>{% display_action action %}</li>
@@ -101,4 +126,4 @@
 	</ul>
 	{% endif %}
 </div>
-{% endblock %}
+

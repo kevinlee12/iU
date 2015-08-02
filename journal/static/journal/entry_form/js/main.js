@@ -27,6 +27,14 @@ function required_append(url) {
 }
 
 $(document).ready(function() {
+
+  $("form").find("iframe").contents().find("body")
+  .find(".note-editor").find(".note-dialog")
+  .find(".note-image-dialog").find(".modal-dialog")
+  .find(".modal-content").find(".modal-body")
+  .find(".form-group:first").find("label")
+  .append("<small> *Images larger than 1024x1024 pixels will be rejected* </small>");
+
   var url = document.location.hash;
   $('.nav-tabs a[href=#'+url.split('#')[1]+']').tab('show');
   required_append(url);
@@ -38,7 +46,19 @@ $(document).ready(function() {
   $('#myModal').on('shown.bs.modal', function () {
     $('#myInput').focus()
   })
+
+  $("form").find("iframe").load(function(){
+    $(this).contents().find("body")
+    .find(".note-editor").find(".note-dialog")
+    .find(".note-image-dialog").find(".modal-dialog")
+    .find(".modal-content").find(".modal-body")
+    .find(".form-group:first").find("label")
+    .append("<small> <br>Maximum image dimensions: 1024x1024 pixel </small>");
+  });
 });
+
+
+
 
 // $('#myModal').on('shown.bs.modal', function () {
 //   $('#myInput').focus()

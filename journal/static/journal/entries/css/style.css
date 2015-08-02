@@ -27,6 +27,11 @@ h2 {
 	text-align: center;
 }
 
+.grid-item h2 {
+	text-align: left;
+	margin-left: 5%;
+}
+
 h4 {
 	margin-top: 30px;
 	/*margin-left: 27px;*/
@@ -61,6 +66,10 @@ a:hover {
 	margin-top: 20px;
 }
 
+.activities-link a:hover {
+	color: #05CCCE;
+}
+
 .action-bar {
 	text-align: center;
 	margin-top: 50px;
@@ -79,6 +88,7 @@ a:hover {
 
 .entry-list {
 	border: 1px solid rgba(74, 74, 74, 0.2);
+	overflow: hidden;
 }
 
 .grid {
@@ -89,12 +99,17 @@ a:hover {
 
 .grid-item {
 	width: 250px;
-	margin-bottom: 1vh;
+	margin-bottom: 1.5vh;
 	word-wrap: break-word;
 }
 
 .grid-item--width2 {
 	width: 400px;
+	margin-left: -3%;
+}
+
+p {
+    margin: 0 0 0px;
 }
 
 #caption {

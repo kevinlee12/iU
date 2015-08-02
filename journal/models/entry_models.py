@@ -20,6 +20,7 @@ from imagekit.models import ProcessedImageField
 from journal.processors import ResizeToRatio
 
 from .utilities import shorten
+import journal.models.activity_models
 
 from django.core.files.storage import FileSystemStorage
 # The following are used for activity and entry logging.
@@ -39,35 +40,16 @@ class Entry(models.Model):
     activity_pk = models.CharField(max_length=30)
     last_modified = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
-    # entry_type = models.CharField(max_length=6, choices=ENTRY_TYPES)
     entry = models.CharField(max_length=1000)
     # image_entry = ProcessedImageField(processors=[ResizeToRatio()],
     #                                   format='JPEG',
     #                                   options={'quality': 80},
     #                                   blank=True, storage=fs)
-    # link_entry = models.URLField(blank=True)
 
     def __str__(self):
-        return shorten(self.entry, 300)
+        return journal.models.activity_models\
+            .Activity.objects.get(pk=int(self.activity_pk)).activity_name
 
-    def is_valid_entry(self):
-        # count = bool(self.text_entry) + bool(self.image_entry) + \
-        #         bool(self.link_entry)
-        return self.entry
-
-    # def correct_entry_type(self):
-    #     if self.text_entry:
-    #         self.entry_type = 'text'
-    #     elif self.image_entry.name:
-    #         self.entry_type = 'image'
-    #     elif self.link_entry:
-    #         self.entry_type = 'link'
-
-    # def save(self, *args, **kwargs):
-    #     self.correct_entry_type()
-    #     if not self.is_valid_entry():
-    #         return  # Don't save it not valid
-    #     super(Entry, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
         return '/entry/{0}/{1}/'.format(self.activity_pk, self.pk)
