@@ -67,3 +67,24 @@
   text-align: left;
   margin-bottom: 25px;
 }
+
+.dropdown-menu {
+	overflow: hidden;
+	font-size: 13px;
+	width: 200%;
+	box-shadow: none;
+}
+
+.dropdown-menu>li>a {
+	padding: 0;
+	display: inline-block;
+}
+
+li {
+	margin-left: 5px;
+}
+
+.notifications {
+	margin-bottom: -14.5px;
+	margin-top: 5px;
+}

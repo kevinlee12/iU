@@ -137,7 +137,8 @@ def comment_submit(request):
     url_source = url_source.split("/")
     if 'entry' in url_source:
         source = Entry.objects.get(pk=url_source[-2])
+        action.send(user, verb='commented on an entry in', target=source)
     elif 'activity_details' in url_source:
         source = Activity.objects.get(pk=url_source[-1])
-    action.send(user, verb='commented on', target=source)
+        action.send(user, verb='commented on', target=source)
     return HttpResponseRedirect(request.META['HTTP_REFERER'])

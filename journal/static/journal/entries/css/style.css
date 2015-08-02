@@ -66,6 +66,10 @@ a:hover {
 	margin-top: 20px;
 }
 
+.activities-link a:hover {
+	color: #05CCCE;
+}
+
 .action-bar {
 	text-align: center;
 	margin-top: 50px;
