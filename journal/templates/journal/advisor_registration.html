@@ -6,22 +6,40 @@
 {% endblock %}
 
 {% block 'page-css' %}
+<link rel="stylesheet" type="text/css" href="{% static 'journal/advisor_registration/css/style.css' %}">
 {% endblock %}
 
 {% block 'page-js' %}
 {% endblock %}
 
 {% block 'nav-content' %}
-<div>
-	Advisor Profile
-</div>
+<h3> Hi {{ coordinator }}! </h3>
+
 {% endblock %}
 
 {% block 'main-content' %}
-<h3> Hi {{ coordinator }}! </h3>
+<h2 class="advisor-title">
+	Advisor Profile
+</h2>
 <form action="" method="post">
-		{% csrf_token %}
-		{{ form }}
+	{% csrf_token %}
+		<div class="advisor-name">
+			<label for="first_name"> First Name: </label>
+				<input class="form-control" type="text" name="{{ form.first_name.name }}" value="{{ form.first_name.value|default:'' }}" required>
+			<div class="last-name-box">
+				<label for="last_name"> Last Name: </label>
+				<input class="form-control" type="text" name="{{ form.last_name.name }}" value="{{ form.last_name.value|default:'' }}" required>
+			</div>
+		</div>
+		<div class="advisors-students">
+			<h5><b> Students: </b></h5>
+			{{form.students}}
+		</div>
+		<div class="advisor-email">
+			<label for="email"> Email: </label>
+				<input class="form-control" type="text" name="{{ form.email.name }}" value="{{ form.email.value|default:'' }}" required>
+		</div>
+		<br>
 		<a class="btn btn-default" href="/coordinator" role="button"> Back </a>
 		<input class="btn btn-success" type="submit" value="Submit" />
 </form>
