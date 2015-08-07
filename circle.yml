@@ -13,9 +13,8 @@ machine:
     - postgresql
 
 database:
-  pre:
-    - python manage.py migrate auth
   post:
+    - python manage.py migrate auth
     - python manage.py loaddata groups
     - python manage.py loaddata school
     - python manage.py loaddata permissions
