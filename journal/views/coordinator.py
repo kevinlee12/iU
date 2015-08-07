@@ -33,8 +33,8 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User, Permission
 
-# STUDENT_PERM = Permission.objects.get(codename='stu')
-# ADVISOR_PERM = Permission.objects.get(codename='advise')
+STUDENT_PERM = Permission.objects.get(codename='stu')
+ADVISOR_PERM = Permission.objects.get(codename='advise')
 
 
 def coordinator(request):
@@ -93,7 +93,7 @@ def advisors_form(request, advisor_pk=None):
                         .create_user(advisor_email, advisor_email)
                 except IntegrityError:
                     new_advisor = User.objects.get(email=advisor_email)
-                # new_advisor.user_permissions.add(ADVISOR_PERM)
+                new_advisor.user_permissions.add(ADVISOR_PERM)
                 f.user = new_advisor
                 f.save()
                 form.save()
@@ -139,7 +139,7 @@ def student_registration(request, student_pk=None):
                     new_stu = User.objects.create_user(stu_email, stu_email)
                 except IntegrityError:
                     new_stu = User.objects.get(email=stu_email)
-                # new_stu.user_permission.add(STUDENT_PERM)
+                new_stu.user_permissions.add(STUDENT_PERM)
                 f.user = new_stu
                 form.save()
                 f.save()

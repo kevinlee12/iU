@@ -1,6 +1,5 @@
 {% extends 'journal/base_user.html' %}
 {% load staticfiles %}
-{% load activity_tags %}
 
 {% block 'title' %}
 <title>Journal </title>
@@ -33,21 +32,17 @@
 
 {% if is_student %}
 	<div class="dropdown">
-  		<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+  		<button class="btn btn-default dropdown-toggle" type="button"
+			id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+			aria-expanded="true" onclick="bounce()">
     	Notifications
-    		<span class="badge">2</span>
+    		<span class="badge">{% include 'journal/unread_count.html' %}</span>
   		</button>
-  	
-  	
+
+
   		<ul class="dropdown-menu">
   		<div class="notifications">
-  				{% for action in feed %}
-  				
-    			<li>{% display_action action %}</li>
-    			<li role="separator" class="divider"></li>
-    			
-  				{% endfor %}
-  				<div class="notifications">
+  				{% include 'journal/feed.html'%}
   		</ul>
 	</div>
 {% endif %}
@@ -116,14 +111,3 @@
 		</div>
 	</div>
 {% endblock %}
-
-
-	<!-- {% if is_student %}
-	<ul>
-	{% for action in feed %}
-	    <li>{% display_action action %}</li>
-	{% endfor %}
-	</ul>
-	{% endif %}
-</div>
-

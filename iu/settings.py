@@ -211,7 +211,6 @@ SOCIAL_AUTH_PIPELINE = (
     'social.pipeline.user.user_details'
 )
 
-SOCIAL_AUTH_USER_MODEL = 'auth.user'
 SOCIAL_AUTH_USERNAME_IS_FULL_EMAIL = True
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ['SOCIAL_AUTH_GOOGLE_OAUTH2_KEY']
@@ -253,3 +252,6 @@ SUMMERNOTE_CONFIG = {
     'attachment_filesize_limit': 1024 * 1024,
 
 }
+
+# For Activity Stream
+ACTSTREAM_SETTINGS['USE_JSONFIELD'] = True
