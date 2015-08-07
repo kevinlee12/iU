@@ -12,13 +12,6 @@ machine:
   services:
     - postgresql
 
-# TODO
-# test:
-#   override:
-#     - coverage run manage.py test
-#   post:
-#     - coverage html -d $CIRCLE_ARTIFACTS
-
 database:
   override:
     - sleep 5
@@ -31,3 +24,10 @@ database:
 dependencies:
   pre:
     - pip install -U pip
+
+# TODO
+# test:
+#   override:
+#     - coverage run manage.py test
+#   post:
+#     - coverage html -d $CIRCLE_ARTIFACTS
