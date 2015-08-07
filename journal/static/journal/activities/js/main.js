@@ -19,16 +19,3 @@ function bounce() {
     $('.badge').html(data);
   });
 }
-
-$(document).ready(function(){
-  setInterval(function() {
-    $.get('/ping', function(data) {
-      $('.badge').html(data);
-    });
-  }, 3600);
-  setInterval(function() {
-  	$.get("/feed", function(data) {
-  		$('.notifications').html(data);
-  	});
-  }, 3598);
-});

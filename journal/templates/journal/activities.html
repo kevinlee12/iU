@@ -11,6 +11,20 @@
 
 {% block 'page-js' %}
 <script src="{% static 'journal/activities/js/main.js' %}"></script>
+{% if is_student %}
+<script>
+setInterval(function() {
+	$.get('/ping', function(data) {
+		$('.badge').html(data);
+	});
+}, 3600);
+setInterval(function() {
+	$.get("/feed", function(data) {
+		$('.notifications').html(data);
+	});
+}, 3550);
+</script>
+{% endif %}
 {% endblock %}
 
 {% block 'nav-content' %}
