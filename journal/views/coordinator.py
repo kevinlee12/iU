@@ -139,7 +139,7 @@ def student_registration(request, student_pk=None):
                     new_stu = User.objects.create_user(stu_email, stu_email)
                 except IntegrityError:
                     new_stu = User.objects.get(email=stu_email)
-                # new_stu.user_permission.add(STUDENT_PERM)
+                # new_stu.user_permissions.add(STUDENT_PERM)
                 f.user = new_stu
                 form.save()
                 f.save()

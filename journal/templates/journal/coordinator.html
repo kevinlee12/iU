@@ -11,6 +11,7 @@
 {% endblock %}
 
 {% block 'page-js' %}
+<script src="{% static 'journal/coordinator/js/main.js' %}"></script>
 {% endblock %}
 
 {% block 'nav-content' %}
@@ -28,7 +29,7 @@
   <div class="row">
     <div class="students">
       <div class="col-xs-12 col-md-4 col-lg-4">
-        <h2>Students</h2> 
+        <h2>Students</h2>
         <small><a href="/student/"> (Add) </a> </small>
         <div class="border-2">
         </div>
@@ -65,11 +66,7 @@
         <div class="border-2">
         </div>
         <div class="activity-feed">
-        {% for action in feed %}
-          <h5>{% display_action action %} </h5>
-          <div class="border">
-          </div>
-        {% endfor %}
+        {% include 'journal/feed.html'%}
         </div>
       </div>
     </div>

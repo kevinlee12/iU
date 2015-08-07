@@ -12,23 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-
-function bounce() {
-  $.get('/bounce');
-  $.get('/ping', function(data) {
-    $('.badge').html(data);
-  });
-}
-
 $(document).ready(function(){
   setInterval(function() {
-    $.get('/ping', function(data) {
-      $('.badge').html(data);
+    $.get("/feed", function(data) {
+      $('.activity-feed').html(data);
     });
-  }, 2500);
-  setInterval(function() {
-  	$.get("/feed", function(data) {
-  		$('.notifications').html(data);
-  	});
   }, 2500);
 });

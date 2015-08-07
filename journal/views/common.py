@@ -16,6 +16,7 @@
 
 # For all of the areas where user would first encounter
 from actstream import action
+from actstream.models import user_stream
 from django.contrib.auth.models import User
 
 from .student import stu_activities, activity_form
@@ -38,6 +39,8 @@ from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 
 from journal.forms import ContactForm
+
+import itertools
 
 
 def home(request):
@@ -83,6 +86,11 @@ def login_redirects(request):
     elif user_type == 'coor':
         return HttpResponseRedirect('/coordinator')
     return HttpResponseRedirect('/')
+
+
+def feed(request):
+    return render(request, 'journal/feed.html',
+                  {'feed': user_stream(request.user)})
 
 
 @login_required
@@ -137,8 +145,9 @@ def comment_submit(request):
     url_source = url_source.split("/")
     if 'entry' in url_source:
         source = Entry.objects.get(pk=url_source[-2])
-        action.send(user, verb='commented on an entry in', target=source)
+        action.send(user, verb='commented on an entry in', target=source,
+                    seen=False)
     elif 'activity_details' in url_source:
         source = Activity.objects.get(pk=url_source[-1])
-        action.send(user, verb='commented on', target=source)
+        action.send(user, verb='commented on', target=source, seen=False)
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
