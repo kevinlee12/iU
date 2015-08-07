@@ -38,12 +38,6 @@ echo "Creating new iu database"
 createdb iu
 echo "...done"
 echo
-# echo "Removing old migrations"
-# rm -rf journal/migrations
-# echo "...done"
-# echo "Making migrations"
-# python3 manage.py makemigrations journal
-# echo "...done"
 echo
 sleep 5
 echo "Migrating database"

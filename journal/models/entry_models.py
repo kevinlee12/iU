@@ -33,11 +33,10 @@ class Entry(models.Model):
     ENTRY_TYPES = (
         ('text', 'Text'),
         ('image', 'Image'),
-        # ('v', 'Video'),
         ('link', 'Link'),
     )
     stu_pk = models.IntegerField()
-    activity_pk = models.CharField(max_length=30)
+    activity_pk = models.IntegerField()
     last_modified = models.DateTimeField(auto_now=True)
     created = models.DateTimeField(auto_now_add=True)
     entry = models.CharField(max_length=1000)

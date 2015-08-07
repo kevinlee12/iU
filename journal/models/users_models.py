@@ -16,7 +16,6 @@
 
 from django.db import models
 from django.contrib.auth.models import Group
-
 from django.contrib.auth.models import User
 
 # The following models are used for gathering user data and storing the
@@ -28,25 +27,14 @@ from django.contrib.auth.models import User
 # - Groups: school
 # - Permissions (one): student, coordinator, advisor
 
-# class UserType(models.Model):
-#     """For use to check if user is registered and type
-#     (Student or Coordinator)."""
-#
-#     user = models.OneToOneField(settings.AUTH_USER_MODEL, unique=True)
-#     USER_TYPES = (
-#         ('S', 'Student'),
-#         ('C', 'Coordinator'),
-#         ('A', 'Advisor'),
-#     )
-#     user_type = models.CharField(max_length=1, choices=USER_TYPES)
-    # status = models.CharField(max_length=1, choices=STATUS)
 
-
-class School(models.Model):
+class School(Group):
     """School object"""
     group = models.OneToOneField(Group)
     school_code = models.CharField(max_length=6)  # Max number of digits is 6
-    school_name = models.CharField(max_length=30)
+
+    def __str__(self):
+        return self.group.name
 
 
 class Person(models.Model):
@@ -71,11 +59,12 @@ class Student(Person):
     """Student object that inherits from Person"""
     student_id = models.CharField(max_length=4)  # Max number of digits is 4
     personal_code = models.CharField(max_length=7)
-    # For the following, please use the respective pk fields.
+    # Please use the respective pk values of the models
     stu_coordinator = models.IntegerField()
 
     def get_absolute_url(self):
         return '/activities/{0}'.format(self.pk)
+
 
 class IBAdmin(Person):
     students = models.ManyToManyField(Student, blank=True)
@@ -85,6 +74,7 @@ class IBAdmin(Person):
 
     def __str__(self):
         return self.first_name + ' ' + self.last_name
+
 
 class Advisor(IBAdmin):
     """Advisor object that inherits from Person"""

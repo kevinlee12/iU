@@ -1,6 +1,9 @@
 {% load activity_tags %}
-{% for action in feed %}
-<li>{% display_action action %}</li>
-<li role="separator" class="divider"></li>
-{% endfor %}
-<div class="notifications">
+{% if feed %}
+  {% for action in feed %}
+    <li>{% display_action action %}</li>
+    <li role="separator" class="divider"></li>
+  {% endfor %}
+{% else %}
+  <li> No messages yet! </li>
+{% endif %}

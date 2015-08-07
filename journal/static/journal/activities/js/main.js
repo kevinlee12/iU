@@ -25,10 +25,10 @@ $(document).ready(function(){
     $.get('/ping', function(data) {
       $('.badge').html(data);
     });
-  }, 2500);
+  }, 3600);
   setInterval(function() {
   	$.get("/feed", function(data) {
   		$('.notifications').html(data);
   	});
-  }, 2500);
+  }, 3598);
 });
