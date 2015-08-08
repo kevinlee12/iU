@@ -28,7 +28,7 @@ from .coordinator import entries_view, view_stu_entry
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
-from journal.models import Coordinator, Student
+from journal.models import Coordinator, Student, Advisor
 from journal.models import Activity, Entry
 
 from datetime import datetime
@@ -85,6 +85,8 @@ def login_redirects(request):
         return HttpResponseRedirect('/activities')
     elif user_type == 'coor':
         return HttpResponseRedirect('/coordinator')
+    elif user_type == 'advise':
+        return HttpResponseRedirect('/advise')
     return HttpResponseRedirect('/')
 
 
@@ -99,7 +101,7 @@ def activities(request, student_pk=None):
 
     if user_type == 'stu':
         return stu_activities(request)
-    elif user_type == 'coor':
+    elif user_type == 'coor' or user_type == 'advise':
         return activities_view(request, student_pk)
     return
 
@@ -110,7 +112,7 @@ def activity_details(request, activity_pk=None):
 
     if user_type == 'stu':
         return activity_form(request, activity_pk)
-    elif user_type == 'coor':
+    elif user_type == 'coor' or user_type == 'advise':
         return activity_view(request, activity_pk)
 
 
@@ -120,7 +122,7 @@ def entries(request, activity_pk):
 
     if user_type == 'stu':
         return stu_entries(request, activity_pk)
-    elif user_type == 'coor':
+    elif user_type == 'coor' or user_type == 'advise':
         return entries_view(request, activity_pk)
 
 
@@ -130,7 +132,7 @@ def entry(request, activity_pk, entry_pk=None):
 
     if user_type == 'stu':
         return entry_form(request, activity_pk, entry_pk)
-    elif user_type == 'coor':
+    elif user_type == 'coor' or user_type == 'advise':
         return view_stu_entry(request, activity_pk, entry_pk)
 
 
@@ -142,6 +144,8 @@ def comment_submit(request):
         user = Student.objects.get(user=request.user)
     elif user_type == 'coor':
         user = Coordinator.objects.get(user=request.user)
+    elif user_type == 'advise':
+        user = Advisor.objects.get(user=request.user)
     url_source = url_source.split("/")
     if 'entry' in url_source:
         source = Entry.objects.get(pk=url_source[-2])
