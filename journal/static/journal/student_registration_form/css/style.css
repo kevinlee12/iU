@@ -19,31 +19,37 @@
 }
 
 .form-control {
-	width: 40%;
+	width: 80%;
 }
 
 .student-name {
-	margin-top: 5%;
+	margin-top: 2%;
 	color: rgb(128, 128, 128);
 }
 
 .student-email {
+	margin-top: 2%;
+	width: 70%;
 	color: rgb(128, 128, 128);
 }
 
 .last-name-box {
 	margin-top: 2%;
-	margin-bottom: 2%;
+	color: rgb(128, 128, 128);
 }
 
 .student-id {
+	margin-top: 2%;
 	color: rgb(128, 128, 128);
-	margin-bottom: 2%;
 }
 
 .personal-code {
 	color: rgb(128, 128, 128);
-	margin-bottom: 2%;
+	margin-top: 2%;
+}
+
+.btn {
+	margin-top: 2%;
 }
 
 label {

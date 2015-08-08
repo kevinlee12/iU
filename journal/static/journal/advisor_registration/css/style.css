@@ -19,25 +19,32 @@
 }
 
 .form-control {
-	width: 40%;
+	width:80%;
 }
 
 .advisor-name {
-	margin-top: 5%;
+	margin-top: 2%;
 	color: rgb(128, 128, 128);
 }
 
 .advisors-students{
 	color: rgb(128, 128, 128);
+	margin-top: 2%;
 }
 
 .advisor-email {
+	margin-top: 2%;
+	width: 70%;
 	color: rgb(128, 128, 128);
 }
 
 .last-name-box {
 	margin-top: 2%;
-	margin-bottom: 2%;
+	color: rgb(128, 128, 128);
+}
+
+.btn {
+	margin-top: 2%;
 }
 
 label {
