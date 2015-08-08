@@ -13,7 +13,7 @@
  * limitations under the License.
 */
 
-.advisor-title {
+.student-title {
 	color: #05CCCE;
 	margin-top: 5%;
 }
@@ -22,21 +22,27 @@
 	width: 40%;
 }
 
-.advisor-name {
+.student-name {
 	margin-top: 5%;
 	color: rgb(128, 128, 128);
 }
 
-.advisors-students{
-	color: rgb(128, 128, 128);
-}
-
-.advisor-email {
+.student-email {
 	color: rgb(128, 128, 128);
 }
 
 .last-name-box {
 	margin-top: 2%;
+	margin-bottom: 2%;
+}
+
+.student-id {
+	color: rgb(128, 128, 128);
+	margin-bottom: 2%;
+}
+
+.personal-code {
+	color: rgb(128, 128, 128);
 	margin-bottom: 2%;
 }
 
@@ -46,12 +52,4 @@ label {
 
 h3{
 	margin-top: 20%;
-}
-
-h5 {
-	font-size: 16px;
-}
-
-ul {
-	list-style-type: none;
 }

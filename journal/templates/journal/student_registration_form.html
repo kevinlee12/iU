@@ -6,21 +6,49 @@
 {% endblock %}
 
 {% block 'page-css' %}
+<link rel="stylesheet" type="text/css" href="{% static 'journal/student_registration_form/css/style.css' %}">
 {% endblock %}
 
 {% block 'page-js' %}
 {% endblock %}
 
 {% block 'nav-content' %}
+<h3> Hi {{ coordinator }}! </h3>
 {% endblock %}
 
 {% block 'main-content' %}
 <body>
 	<div id="container">
-		<h3> Hi {{ coordinator }}! </h3>
+		<h2 class="student-title">
+			Student Profile
+		</h2>
 		<form action="" method="post">
     		{% csrf_token %}
-				{{ form.as_p }}
+
+				<div class="student-name">
+					<label for="first_name"> First Name: </label>
+						<input class="form-control" type="text" name="{{ form.first_name.name }}" value="{{ form.first_name.value|default:'' }}" required>
+					<div class="last-name-box">
+						<label for="last_name"> Last Name: </label>
+						<input class="form-control" type="text" name="{{ form.last_name.name }}" value="{{ form.last_name.value|default:'' }}" required>
+					</div>
+				</div>
+
+				<div class="student-id">
+					<label for="student_id"> Student id: </label>
+					<input class="form-control" type="text" name="{{ form.student_id.name }}" value="{{ form.student_id.value|default:'' }}" required>
+				</div>
+
+				<div class="personal-code">
+					<label for="personal_code"> Personal code: </label>
+					<input class="form-control" type="text" name="{{ form.personal_code.name }}" value="{{ form.personal_code.value|default:'' }}" required>
+				</div>
+
+				<div class="student-email">
+					<label for="email"> Email: </label>
+					<input class="form-control" type="text" name="{{ form.email.name }}" value="{{ form.email.value|default:'' }}" required>
+				</div>
+				<br>
 				<a class="btn btn-default" href="/coordinator" role="button"> Back </a>
 				<input class="btn btn-success" type="submit" value="Submit" />
 				{% if student_pk %}
