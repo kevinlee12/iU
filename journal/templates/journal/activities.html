@@ -1,6 +1,5 @@
 {% extends 'journal/base_user.html' %}
 {% load staticfiles %}
-{% load activity_tags %}
 
 {% block 'title' %}
 <title>Journal </title>
@@ -12,6 +11,20 @@
 
 {% block 'page-js' %}
 <script src="{% static 'journal/activities/js/main.js' %}"></script>
+{% if is_student %}
+<script>
+setInterval(function() {
+	$.get('/ping', function(data) {
+		$('.badge').html(data);
+	});
+}, 3600);
+setInterval(function() {
+	$.get("/feed", function(data) {
+		$('.notifications').html(data);
+	});
+}, 3550);
+</script>
+{% endif %}
 {% endblock %}
 
 {% block 'nav-content' %}
@@ -33,23 +46,23 @@
 
 {% if is_student %}
 	<div class="dropdown">
-  		<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+  		<button class="btn btn-default dropdown-toggle" type="button"
+			id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+			aria-expanded="true" onclick="bounce()">
     	Notifications
-    		<span class="badge">2</span>
+    		<span class="badge">{% include 'journal/unread_count.html' %}</span>
   		</button>
-  	
-  	
+
+
   		<ul class="dropdown-menu">
   		<div class="notifications">
-  				{% for action in feed %}
-  				
-    			<li>{% display_action action %}</li>
-    			<li role="separator" class="divider"></li>
-    			
-  				{% endfor %}
-  				<div class="notifications">
+  				{% include 'journal/feed.html'%}
   		</ul>
 	</div>
+{% else %}
+<div class="coordinator-link">
+	<a href="/{{ back_link }}"><i class="fa fa-long-arrow-left fa-6x"></i> Back to the students page. </a>
+</div>
 {% endif %}
 
 {% endblock %}
@@ -116,14 +129,3 @@
 		</div>
 	</div>
 {% endblock %}
-
-
-	<!-- {% if is_student %}
-	<ul>
-	{% for action in feed %}
-	    <li>{% display_action action %}</li>
-	{% endfor %}
-	</ul>
-	{% endif %}
-</div>
-

@@ -9,34 +9,35 @@ from django.conf import settings
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('auth', '0001_initial'),
+        ('auth', '0006_require_contenttypes_0002'),
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.CreateModel(
             name='Activity',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', auto_created=True, serialize=False, primary_key=True)),
+                ('id', models.AutoField(auto_created=True, verbose_name='ID', serialize=False, primary_key=True)),
                 ('activity_name', models.CharField(max_length=30)),
                 ('activity_description', models.TextField(max_length=150)),
                 ('start_date', models.DateField()),
-                ('end_date', models.DateField(null=True, blank=True)),
+                ('end_date', models.DateField(blank=True, null=True)),
                 ('activity_adviser', models.CharField(max_length=50)),
-                ('advisor_email', models.EmailField(null=True, blank=True, max_length=254)),
-                ('advisor_phone', models.CharField(null=True, validators=[django.core.validators.RegexValidator(regex='^\\+?1?\\d{9,15}$', message="Phone number must be entered in the format:                                 '+999999999'. Up to 15 digits allowed.")], max_length=15, blank=True)),
+                ('advisor_email', models.EmailField(blank=True, null=True, max_length=254)),
+                ('advisor_phone', models.CharField(max_length=15, blank=True, null=True, validators=[django.core.validators.RegexValidator(regex='^\\+?1?\\d{9,15}$', message="Phone number must be entered in the format:                                 '+999999999'. Up to 15 digits allowed.")])),
             ],
         ),
         migrations.CreateModel(
             name='ActivityOptions',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', auto_created=True, serialize=False, primary_key=True)),
+                ('id', models.AutoField(auto_created=True, verbose_name='ID', serialize=False, primary_key=True)),
                 ('name', models.CharField(max_length=10)),
             ],
         ),
         migrations.CreateModel(
             name='Advisor',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', auto_created=True, serialize=False, primary_key=True)),
+                ('id', models.AutoField(auto_created=True, verbose_name='ID', serialize=False, primary_key=True)),
                 ('first_name', models.CharField(max_length=30)),
                 ('last_name', models.CharField(max_length=30)),
             ],
@@ -47,7 +48,7 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Coordinator',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', auto_created=True, serialize=False, primary_key=True)),
+                ('id', models.AutoField(auto_created=True, verbose_name='ID', serialize=False, primary_key=True)),
                 ('first_name', models.CharField(max_length=30)),
                 ('last_name', models.CharField(max_length=30)),
                 ('advisors', models.ManyToManyField(to='journal.Advisor')),
@@ -59,9 +60,9 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Entry',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', auto_created=True, serialize=False, primary_key=True)),
+                ('id', models.AutoField(auto_created=True, verbose_name='ID', serialize=False, primary_key=True)),
                 ('stu_pk', models.IntegerField()),
-                ('activity_pk', models.CharField(max_length=30)),
+                ('activity_pk', models.IntegerField()),
                 ('last_modified', models.DateTimeField(auto_now=True)),
                 ('created', models.DateTimeField(auto_now_add=True)),
                 ('entry', models.CharField(max_length=1000)),
@@ -70,23 +71,22 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='LearningObjectiveOptions',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', auto_created=True, serialize=False, primary_key=True)),
+                ('id', models.AutoField(auto_created=True, verbose_name='ID', serialize=False, primary_key=True)),
                 ('objective', models.CharField(max_length=70)),
             ],
         ),
         migrations.CreateModel(
             name='School',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', auto_created=True, serialize=False, primary_key=True)),
+                ('group', models.OneToOneField(to='auth.Group', primary_key=True, serialize=False)),
                 ('school_code', models.CharField(max_length=6)),
-                ('school_name', models.CharField(max_length=30)),
-                ('group', models.OneToOneField(to='auth.Group')),
             ],
+            bases=('auth.group',),
         ),
         migrations.CreateModel(
             name='Student',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', auto_created=True, serialize=False, primary_key=True)),
+                ('id', models.AutoField(auto_created=True, verbose_name='ID', serialize=False, primary_key=True)),
                 ('first_name', models.CharField(max_length=30)),
                 ('last_name', models.CharField(max_length=30)),
                 ('student_id', models.CharField(max_length=4)),
@@ -107,7 +107,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='coordinator',
             name='students',
-            field=models.ManyToManyField(blank=True, to='journal.Student'),
+            field=models.ManyToManyField(to='journal.Student', blank=True),
         ),
         migrations.AddField(
             model_name='coordinator',
@@ -122,7 +122,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='advisor',
             name='students',
-            field=models.ManyToManyField(blank=True, to='journal.Student'),
+            field=models.ManyToManyField(to='journal.Student', blank=True),
         ),
         migrations.AddField(
             model_name='advisor',
@@ -137,7 +137,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='activity',
             name='entries',
-            field=models.ManyToManyField(blank=True, to='journal.Entry'),
+            field=models.ManyToManyField(to='journal.Entry', blank=True),
         ),
         migrations.AddField(
             model_name='activity',

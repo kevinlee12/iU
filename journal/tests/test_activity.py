@@ -25,8 +25,9 @@ from django.conf import settings
 
 class ActivitySeleleniumTests(StaticLiveServerTestCase):
     """Selenium tests for the activity page"""
-    fixtures = ['auth_users', 'groups', 'users', 'activityoptions', 'learningobjectiveoptions',
-                'school', 'student', 'coordinator', 'sample_entries']
+    fixtures = ['groups', 'school', 'permissions', 'auth_users', 'student',
+                'advisor', 'coordinator', 'activityoptions',
+                'learningobjectiveoptions', 'sample_entries']
 
     def __init__(self, *args, **kwargs):
         super(ActivitySeleleniumTests, self).__init__(*args, **kwargs)

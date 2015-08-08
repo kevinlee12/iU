@@ -38,12 +38,6 @@ echo "Creating new iu database"
 createdb iu
 echo "...done"
 echo
-# echo "Removing old migrations"
-# rm -rf journal/migrations
-# echo "...done"
-# echo "Making migrations"
-# python3 manage.py makemigrations journal
-# echo "...done"
 echo
 sleep 5
 echo "Migrating database"
@@ -58,8 +52,6 @@ echo "Loadding permissions"
 python manage.py loaddata permissions
 echo "Loadding user data"
 python manage.py loaddata auth_users
-# echo "Loading users data"
-# python manage.py loaddata users
 echo "Loading student data"
 python manage.py loaddata student
 echo "Loading advisor data"

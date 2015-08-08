@@ -12,18 +12,27 @@ machine:
   services:
     - postgresql
 
+database:
+  override:
+    - python manage.py migrate
+    - python manage.py loaddata groups
+    - python manage.py loaddata school
+    - python manage.py loaddata permissions
+    - python manage.py loaddata auth_users
+    - python manage.py loaddata student
+    - python manage.py loaddata advisor
+    - python manage.py loaddata coordinator
+    - python manage.py loaddata activityoptions
+    - python manage.py loaddata learningobjectiveoptions
+    - python manage.py loaddata sample_entries
+
+dependencies:
+  pre:
+    - pip install -U pip
+
 # TODO
 # test:
 #   override:
 #     - coverage run manage.py test
 #   post:
 #     - coverage html -d $CIRCLE_ARTIFACTS
-
-database:
-  override:
-    - sleep 5
-    - python manage.py migrate
-    - python manage.py loaddata auth_users
-    - python manage.py loaddata groups
-    - python manage.py loaddata learningobjectiveoptions
-    - python manage.py loaddata activityoptions

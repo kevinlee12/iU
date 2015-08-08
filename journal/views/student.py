@@ -35,10 +35,13 @@ from django.contrib.auth.models import User
 
 from django.shortcuts import get_object_or_404
 
+from .utilities import unread_notifications_count
+
 
 def profile(request):
     student = Student.objects.get(user=request.user)
     return render(request, 'journal/student_profile.html', {'student': student})
+
 
 def stu_activities(request):
     """Function for the main activities page, login is not required"""
@@ -51,8 +54,7 @@ def stu_activities(request):
             .order_by('activity_name').reverse()
         is_student = True
     return render(request, 'journal/activities.html',
-                  {'activities': stored_activities, 'is_student': is_student,
-                   'feed': user_stream(request.user)})
+                  {'activities': stored_activities, 'is_student': is_student})
 
 
 def student_activity_check(request, activity):
@@ -74,14 +76,16 @@ def activity_form(request, activity_pk=None):
         if form.is_valid():
             if type(a) == Activity:
                 form.save()
-                action.send(curr_student, verb='modifed the activity', target=a)
-                return HttpResponseRedirect('/activity/' + str(a.pk))
+                action.send(curr_student, verb='modifed the activity',
+                            target=a, seen=False)
+                return HttpResponseRedirect('/activity/{0}'.format(a.pk))
             else:
                 f = form.save(commit=False)
                 f.student = curr_student
                 f.save()
                 form.save()
-                action.send(curr_student, verb='created a new activity', target=a)
+                action.send(curr_student, verb='created a new activity',
+                            target=a, seen=False)
                 return HttpResponseRedirect('/activities')
     else:
         form = ActivityForm(instance=a)
@@ -144,14 +148,16 @@ def entry_form(request, activity_pk, entry_pk=None):
             if type(e) == Entry:  # Editing
                 f.save()
                 form.save()
-                action.send(curr_student, verb='edited an entry of', target=activity)
+                action.send(curr_student, verb='edited an entry of',
+                            target=activity, seen=False)
             else:  # New
                 f.stu_pk = curr_student.pk
                 f.activity_pk = activity.pk
                 f.save()
                 form.save()
                 activity.entries.add(f)
-                action.send(curr_student, verb='edited an entry of', target=activity)
+                action.send(curr_student, verb='added an entry in',
+                            target=activity, seen=False)
         return HttpResponseRedirect('/entries/' + activity_pk)
     else:
         form = EntryForm(instance=e)

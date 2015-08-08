@@ -33,8 +33,13 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User, Permission
 
-# STUDENT_PERM = Permission.objects.get(codename='stu')
-# ADVISOR_PERM = Permission.objects.get(codename='advise')
+
+try:
+    STUDENT_PERM = Permission.objects.get(codename='stu')
+    ADVISOR_PERM = Permission.objects.get(codename='advise')
+except:
+    STUDENT_PERM = None
+    ADVISOR_PERM = None
 
 
 def coordinator(request):
@@ -49,6 +54,17 @@ def coordinator(request):
     return render(request, 'journal/coordinator.html',
                   {'feed': user_stream(request.user), 'students': students,
                    'coordinator': coor, 'advisors': advisors})
+
+
+def advisor(request):
+    advisor = Advisor.objects.get(user=request.user)
+    students = advisor.students.all().order_by('last_name')
+    for student in students:
+        follow(request.user, student)
+        follow(User.objects.get(email=student.user.email), advisor)
+
+    return render(request, 'journal/advisor.html',
+                  {'feed': user_stream(request.user), 'students': students})
 
 
 def user_creation(email, user_type):
@@ -93,12 +109,13 @@ def advisors_form(request, advisor_pk=None):
                         .create_user(advisor_email, advisor_email)
                 except IntegrityError:
                     new_advisor = User.objects.get(email=advisor_email)
-                # new_advisor.user_permissions.add(ADVISOR_PERM)
+                new_advisor.user_permissions.add(ADVISOR_PERM)
                 f.user = new_advisor
                 f.save()
                 form.save()
                 curr_coordinator.advisors.add(f)
                 follow(request.user, f)
+                follow(new_advisor, curr_coordinator)
             return HttpResponseRedirect('/coordinator')
     else:
         form = AdvisorForm(instance=advisor, coor=curr_coordinator)
@@ -106,24 +123,34 @@ def advisors_form(request, advisor_pk=None):
                   {'form': form, 'coordinator': curr_coordinator})
 
 
-def coordinator_check(request, student):
+def get_user_type(request):
+    return User.objects.get(email=request.user.email)\
+        .user_permissions.all()[0].codename
+
+
+def staff_check(request, student):
     """Used for ensuring that coordinators are matched with the right
        students
     """
-    curr_coordinator = Coordinator.objects.get(user=request.user)
-    if student.stu_coordinator != curr_coordinator.pk:
+    staff_type = get_user_type(request)
+    if staff_type == 'coor':
+        staff = Coordinator.objects.get(user=request.user)
+    elif staff_type == 'advise':
+        staff = Advisor.objects.get(user=request.user)
+    if student not in staff.students.all():
         return render(request, 'journal/error.html')
     return  # Check is good
 
 
 @login_required
 def student_registration(request, student_pk=None):
+    # TODO: Allow advisors to register students
     curr_coordinator = Coordinator.objects.get(user=request.user)
 
     s = None
     if student_pk:
         s = Student.objects.get(pk=student_pk)
-        coordinator_check(request, s)
+        staff_check(request, s)
     if request.method == 'POST':
         form = StudentRegistrationForm(request.POST, instance=s)
         if form.is_valid():
@@ -139,7 +166,7 @@ def student_registration(request, student_pk=None):
                     new_stu = User.objects.create_user(stu_email, stu_email)
                 except IntegrityError:
                     new_stu = User.objects.get(email=stu_email)
-                # new_stu.user_permission.add(STUDENT_PERM)
+                new_stu.user_permissions.add(STUDENT_PERM)
                 f.user = new_stu
                 form.save()
                 f.save()
@@ -158,8 +185,6 @@ def student_registration(request, student_pk=None):
 def delete_stu_entry(activity_id, entry_pk):
     activity = get_object_or_404(Activity, id=activity_id)
     entry = get_object_or_404(Entry, pk=entry_pk)
-    if entry.entry_type == "i":  # If image exists, delete it
-        entry.image_entry.delete()
     activity.entries.remove(entry)
     entry.delete()
     return
@@ -176,7 +201,7 @@ def activity_stu_deletion(activity):
 @login_required
 def remove_student(request, student_pk):
     student = get_object_or_404(Student, pk=student_pk)
-    coordinator_check(request, student)
+    staff_check(request, student)
     stu = User.objects.get(email=student.user.email)
     try:
         unfollow(request.user, student)
@@ -191,19 +216,24 @@ def remove_student(request, student_pk):
 def activities_view(request, student_pk):
     """For viewing all activities related to the student"""
     student = Student.objects.get(pk=student_pk)
-    coordinator_check(request, student)
+    staff_check(request, student)
     stored_activities = Activity.objects.all().filter(student=student)\
         .order_by('activity_name').reverse()
+    staff_type = get_user_type(request)
+    if staff_type == 'coor':
+        back_link = 'coordinator'
+    else:
+        back_link = 'advise'
     return render(request, 'journal/activities.html',
                   {'activities': stored_activities, 'student_pk': student.pk,
-                   'is_student': False})
+                   'is_student': False, 'back_link': back_link})
 
 
 @login_required
 def activity_view(request, activity_pk):
     """For viewing specific activity specifics"""
     activity = Activity.objects.get(pk=activity_pk)
-    coordinator_check(request, activity.student)
+    staff_check(request, activity.student)
     return render(request, 'journal/activity_description_coor_view.html',
                   {'student': activity.student, 'activity': activity})
 
@@ -212,7 +242,7 @@ def activity_view(request, activity_pk):
 def entries_view(request, activity_pk):
     activity = Activity.objects.get(pk=activity_pk)
     student = activity.student
-    coordinator_check(request, student)
+    staff_check(request, student)
     activity_entries = activity.entries.all().order_by('created').reverse()
     name = activity.activity_name
     return render(request, 'journal/entries.html',
@@ -227,11 +257,15 @@ def entries_view(request, activity_pk):
 
 @login_required
 def view_stu_entry(request, activity_pk, entry_pk):
-    curr_coordinator = Coordinator.objects.get(user=request.user)
+    staff_type = get_user_type(request)
+    if staff_type == 'coor':
+        staff = Coordinator.objects.get(user=request.user)
+    elif staff_type == 'advise':
+        staff = Advisor.objects.get(user=request.user)
     activity = Activity.objects.get(pk=activity_pk)
     entry = Entry.objects.get(pk=entry_pk)
     student = activity.student
-    coordinator_check(request, student)
+    staff_check(request, student)
     return render(request, 'journal/entry_coor_view.html',
                   {'entry': entry, 'activity': activity,
-                   'coordinator': curr_coordinator})
+                   'coordinator': staff})
