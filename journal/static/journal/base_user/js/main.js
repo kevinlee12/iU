@@ -46,8 +46,8 @@ function runEffect() {
       "left": "-=245px"
     }, 1000);
 
-    // $(".button-2").css("display", "inline-block");
-    $(".button-2").delay( 800 ).show(100);
+    $(".logo-2").delay(950).show(1);
+    $(".button-2").delay( 950 ).show(1);
 
   }
   else if($(".main").css("left") == "60px") {
@@ -60,5 +60,6 @@ function runEffect() {
     }, 1000);
 
     $(".button-2").css("display", "none");
+    $(".logo-2").css("display", "none");
   }
 }
