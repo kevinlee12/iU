@@ -80,8 +80,9 @@
 	display: inline-block;
 }
 
-li {
+li a {
 	margin-left: 5px;
+	color: #05CCCE;
 }
 
 .notifications {
@@ -89,5 +90,20 @@ li {
 	margin-top: 5px;
 }
 
+li a:hover {
+	color:#05CCCE;
+}
+
+li:hover {
+	color:#05CCCE;
+}
+
 .btn-default .badge { 
 	background-color: #05CCCE;
+}
+
+.border {
+	border-bottom: 1px solid rgba(74, 74, 74, 0.12);
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
