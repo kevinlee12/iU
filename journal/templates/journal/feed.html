@@ -2,7 +2,7 @@
 {% if feed %}
   {% for action in feed %}
     <li>{% display_action action %}</li>
-    <li role="separator" class="divider"></li>
+    <div class="border"></div>
   {% endfor %}
 {% else %}
   <li> No messages yet! </li>
