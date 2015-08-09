@@ -101,5 +101,16 @@
 }
 
 .mini-sidebar {
+  position: fixed;
+  height: 100%;
+  width: 54px;
+  left: 0;
+  top: 0;
+  border-right: 1px solid black;
+  display: none;
 }
 
+.mini-sidebar-icons {
+  display: none;
+  z-index: 2;
+}

@@ -46,9 +46,12 @@ function runEffect() {
       "left": "-=245px"
     }, 1000);
 
-    $(".logo-2").delay(950).show(1);
-    $(".button-2").delay( 950 ).show(1);
-
+    $(".mini-sidebar").fadeIn(1000, function() {
+      $(".logo-2").fadeIn(900);
+      $(".button-2").fadeIn(900);
+      $(".mini-sidebar").css("display", "inherit").fadeIn(1000);
+      $(".mini-sidebar-icons").fadeIn(900);
+    });
   }
   else if($(".main").css("left") == "60px") {
     $(".main").animate({
@@ -59,7 +62,11 @@ function runEffect() {
       "left": "+=245px"
     }, 1000);
 
-    $(".button-2").css("display", "none");
-    $(".logo-2").css("display", "none");
+    $(".mini-sidebar").fadeOut(30, function() {
+      $(".logo-2").fadeOut(30);
+      $(".button-2").fadeOut(30);
+      $(".mini-sidebar").fadeOut(30);
+      $(".mini-sidebar-icons").fadeOut(30);
+    });
   }
 }
