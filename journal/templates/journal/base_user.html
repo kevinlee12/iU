@@ -44,15 +44,23 @@
 
 		<div class="main">
 			{% block 'main-content' %} {% endblock %}
-			<div class="button-2">
-				<button onclick="runEffect()" class=" sidebar-menu-icon" id="sidebar-menu-expand">
-					<i class="fa fa-bars">
-					</i>
-					<i class="fa fa-chevron-right sidebar-menu-img">
-					</i>
-				</button>
+			<div class="mini-sidebar">
+				<div class="logo-2">
+					<a href=" ">
+						<img src = "{% static 'journal/base_user/img/our-logo-3.svg' %}">
+					</a>
+				</div>
+
+				<div class="button-2">
+					<button onclick="runEffect()" class=" sidebar-menu-icon" id="sidebar-menu-expand">
+						<i class="fa fa-bars">
+						</i>
+						<i class="fa fa-chevron-right sidebar-menu-img">
+						</i>
+					</button>
+				</div>
 			</div>
-		</div>
+		</div>	
 	</div>
 	{% block 'modal' %} {% endblock %}
 </body>

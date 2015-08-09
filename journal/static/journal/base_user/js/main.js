@@ -39,18 +39,20 @@ function runEffect() {
   console.log("1");
   if ($(".main").css("left") == "240px") {
     $(".main").animate({
-      "left": "-=220px"
+      "left": "-=180px"
     }, 1000);
 
     $(".sidebar").animate({
       "left": "-=245px"
     }, 1000);
 
-    $(".button-2").css("display", "inline-block");
+    $(".logo-2").delay(950).show(1);
+    $(".button-2").delay( 950 ).show(1);
+
   }
-  else if($(".main").css("left") == "20px") {
+  else if($(".main").css("left") == "60px") {
     $(".main").animate({
-      "left": "+=220px"
+      "left": "+=180px"
     }, 1000);
 
     $(".sidebar").animate({
@@ -58,5 +60,6 @@ function runEffect() {
     }, 1000);
 
     $(".button-2").css("display", "none");
+    $(".logo-2").css("display", "none");
   }
 }

@@ -23,13 +23,11 @@ ul {
 h2 {
 	color: #05CCCE;
 	margin-top: 40px;
-	/*margin-left: 40px;*/
-	text-align: center;
+	margin-left: 100px;
 }
 
 .grid-item h2 {
-	text-align: left;
-	margin-left: 5%;
+	margin-left: 8%;
 }
 
 h4 {
@@ -137,4 +135,44 @@ p {
 	margin-top: -10px;
 	color: white;
 	font-size: 20px;
+}
+
+.add-symbol {
+	display: none;
+	color: rgb(128,128,128);
+	position: fixed;
+	top: 160px;
+	left: 20px;
+}
+
+.user-symbol {
+	display: none;
+	color: rgb(128,128,128);
+	position: fixed;
+	top: 240px;
+	left: 23px;
+}
+
+.left-symbol {
+	display: none;
+	color: rgb(128,128,128);
+	position: fixed;
+	top: 200px;
+	left: 20px;
+}
+
+#dropdownMenu1 {
+	display: none;
+	color: rgb(128,128,128);
+	border-width: 0;
+  	background-color: white;
+	position: fixed;
+	top: 240px;
+	left: 20px;
+}
+
+.dropdown-menu {
+	position: fixed;
+	top: 260px;
+	left: 20px;
 }

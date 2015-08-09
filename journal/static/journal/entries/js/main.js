@@ -35,3 +35,41 @@ jQuery(window).on('load', function(){
 	);
 
 });
+
+function runEffect() {
+  console.log("1");
+  if ($(".main").css("left") == "240px") {
+    $(".main").animate({
+      "left": "-=180px"
+    }, 1000);
+
+    $(".sidebar").animate({
+      "left": "-=245px"
+    }, 1000);
+
+    $(".logo-2").delay(950).show(1);
+    $(".button-2").delay( 950 ).show(1);
+    $(".add-symbol").delay( 950 ).show(1);
+    $(".user-symbol").delay( 950 ).show(1);
+    $("#dropdownMenu1").delay( 950 ).show(1);
+    $(".left-symbol").delay( 950 ).show(1);
+
+
+  }
+  else if($(".main").css("left") == "60px") {
+    $(".main").animate({
+      "left": "+=180px"
+    }, 1000);
+
+    $(".sidebar").animate({
+      "left": "+=245px"
+    }, 1000);
+
+    $(".button-2").css("display", "none");
+    $(".logo-2").css("display", "none");
+    $(".add-symbol").css("display", "none");
+    $(".user-symbol").css("display", "none");
+    $(".dropdownMenu1").css("display", "none");
+    $(".left-symbol").css("display", "none");
+  }
+}
