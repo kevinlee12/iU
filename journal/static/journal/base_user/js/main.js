@@ -46,11 +46,11 @@ function runEffect() {
       "left": "-=245px"
     }, 1000);
 
-    $(".mini-sidebar").fadeIn(1000, function() {
-      $(".logo-2").fadeIn(900);
-      $(".button-2").fadeIn(900);
+    $(".mini-sidebar").fadeIn(600, function() {
+      $(".logo-2").fadeIn(500);
+      $(".button-2").fadeIn(500);
       $(".mini-sidebar").css("display", "inherit").fadeIn(1000);
-      $(".mini-sidebar-icons").fadeIn(900);
+      $(".mini-sidebar-icons").fadeIn(500);
     });
   }
   else if($(".main").css("left") == "60px") {
