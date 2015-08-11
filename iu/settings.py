@@ -62,6 +62,7 @@ ALLOWED_HOSTS = [
 
 INSTALLED_APPS = (
     'actstream',
+    'cloudinary',
     'django_comments',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -217,6 +218,19 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ['SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET'
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/login_redirects/'
 SOCIAL_AUTH_SANITIZE_REDIRECTS = True
 
+# Cloudinary
+import cloudinary
+import cloudinary.uploader
+
+
+def uploaded_path(instance, filename):
+    server_response = cloudinary.uploader.upload(instance.file)
+    instance.file = server_response['secure_url']
+    instance.save()
+    logging.info(server_response)
+    return '{0}.{1}'.format(server_response['public_id'], server_response['format'])
+
+
 # Editor
 SUMMERNOTE_CONFIG = {
     # Using SummernoteWidget - iframe mode
@@ -228,9 +242,6 @@ SUMMERNOTE_CONFIG = {
     # Use native HTML tags (`<b>`, `<i>`, ...) instead of style attributes
     # (Firefox, Chrome only)
     'styleWithTags': True,
-
-    # Set text direction : 'left to right' is default.
-    'direction': 'ltr',
 
     # Change editor size
     'width': '100%',
@@ -244,6 +255,9 @@ SUMMERNOTE_CONFIG = {
         ['misc', ['help']],
     ],
 
+    'attachment_upload_to': None,
+    'attachment_storage_class': 'journal.storage.CloudinaryStorage',
+
     # Need authentication while uploading attachments.
     'attachment_require_authentication': True,
 
@@ -253,3 +267,22 @@ SUMMERNOTE_CONFIG = {
 
 # For Activity Stream
 ACTSTREAM_SETTINGS['USE_JSONFIELD'] = True
+
+# Logging
+import logging, logging.config
+import sys
+
+LOGGING = {
+    'version': 1,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'stream': sys.stdout,
+        }
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'INFO'
+    }
+}
+logging.config.dictConfig(LOGGING)

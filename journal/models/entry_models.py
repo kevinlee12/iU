@@ -21,6 +21,7 @@ from journal.processors import ResizeToRatio
 
 from .utilities import shorten
 import journal.models.activity_models
+from cloudinary.models import CloudinaryField
 
 from django.core.files.storage import FileSystemStorage
 # The following are used for activity and entry logging.

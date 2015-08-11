@@ -55,11 +55,16 @@ $(document).ready(function() {
     .find(".form-group:first").find("label")
     .append("<small> <br>Maximum image dimensions: 1024x1024 pixel </small>");
   });
+
+
+
+  // Summernote Image Mods
+  // $("form").find("iframe").load(function(){
+  //   $(this).find("#summernote").summernote({
+  //     onImageUpload: function(files, editor, welEditable) {
+  //       console.log(files, editor, welEditable);
+  //     }
+  //   });
+  // });
+
 });
-
-
-
-
-// $('#myModal').on('shown.bs.modal', function () {
-//   $('#myInput').focus()
-// })
