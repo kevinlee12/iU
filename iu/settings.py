@@ -52,6 +52,12 @@ SECURE_BROWSER_XSS_FILTER = True
 # X_FRAME_OPTIONS = 'DENY'
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
+try:
+    PRODUCTION = os.environ['ON_PRODUCTION']
+except:
+    PRODUCTION = False
+
+
 ALLOWED_HOSTS = [
     '127.0.0.1',
     socket.gethostname()
@@ -140,7 +146,8 @@ DATABASES = {
 }
 
 DATABASES['default'] = dj_database_url.config()
-DATABASES['default']['ENGINE'] = 'django_postgrespool'
+if PRODUCTION:
+    DATABASES['default']['ENGINE'] = 'django_postgrespool'
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
@@ -219,11 +226,6 @@ SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/login_redirects/'
 SOCIAL_AUTH_SANITIZE_REDIRECTS = True
 
 # Storage settings
-try:
-    PRODUCTION = os.environ['ON_PRODUCTION']
-except:
-    PRODUCTION = False
-
 if PRODUCTION:
     attachment_storage_class = 'journal.storage.CloudinaryStorage'
 else:
