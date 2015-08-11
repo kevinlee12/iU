@@ -218,18 +218,16 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ['SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET'
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/login_redirects/'
 SOCIAL_AUTH_SANITIZE_REDIRECTS = True
 
-# Cloudinary
-import cloudinary
-import cloudinary.uploader
+# Storage settings
+try:
+    PRODUCTION = os.environ['ON_PRODUCTION']
+except:
+    PRODUCTION = False
 
-
-def uploaded_path(instance, filename):
-    server_response = cloudinary.uploader.upload(instance.file)
-    instance.file = server_response['secure_url']
-    instance.save()
-    logging.info(server_response)
-    return '{0}.{1}'.format(server_response['public_id'], server_response['format'])
-
+if PRODUCTION:
+    attachment_storage_class = 'journal.storage.CloudinaryStorage'
+else:
+    attachment_storage_class = None
 
 # Editor
 SUMMERNOTE_CONFIG = {
@@ -255,8 +253,7 @@ SUMMERNOTE_CONFIG = {
         ['misc', ['help']],
     ],
 
-    'attachment_upload_to': None,
-    'attachment_storage_class': 'journal.storage.CloudinaryStorage',
+    'attachment_storage_class': attachment_storage_class,
 
     # Need authentication while uploading attachments.
     'attachment_require_authentication': True,

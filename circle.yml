@@ -1,7 +1,7 @@
 machine:
   environment:
       SECRET_KEY: 'JRM0u!Hhi&Uzo1iF-{EUh1)/SZ{C=~5QPpPA]m9Y:[z5ue.YfQ'
-      DATABASE_URL: postgres://ubuntu:@127.0.0.1:5432/circle_test
+      DATABASE_URL: 'postgres://ubuntu:@127.0.0.1:5432/circle_test'
   python:
     version: 3.3.0
   services:
