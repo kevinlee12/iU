@@ -25,6 +25,9 @@ dependencies:
   pre:
     - pip install -U pip
 
+test:
+  pre:
+    - python manage.py collectstatic --noinput
 # TODO
 # test:
 #   override:
