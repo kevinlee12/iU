@@ -35,14 +35,10 @@ class ActivitySeleleniumTests(StaticLiveServerTestCase):
             settings.DEBUG = True
 
     def setUp(self):
+        """Handles login and things"""
         self.selenium = WebDriver()
+        self.selenium.set_window_size(1024, 800)
         self.selenium.get('{0}/{1}'.format(self.live_server_url, ''))
-
-    def tearDown(self):
-        self.selenium.quit()
-
-    def test_activity_page(self):
-        """Tests to ensure that activities page has all necessary elements."""
         self.selenium.find_element_by_xpath('//*[@id="djHideToolBarButton"]').click()
         self.selenium.implicitly_wait(10)
         self.selenium.find_element_by_link_text('Login with Google').click()
@@ -52,7 +48,18 @@ class ActivitySeleleniumTests(StaticLiveServerTestCase):
         wait = WebDriverWait(self.selenium, 30)
         wait.until(EC.element_to_be_clickable((By.ID,'submit_approve_access')))
         self.selenium.find_element_by_xpath('//*[@id="submit_approve_access"]').click()
-        self.selenium.implicitly_wait(20)
+
+    def tearDown(self):
+        self.selenium.quit()
+
+    def test_activity_page(self):
+        """Tests to ensure that activities page has all necessary elements."""
         self.selenium.find_element_by_xpath("//img[@src='/static/journal/activities/"
                                    "img/journal_sign.png']")
         self.selenium.find_element_by_xpath('/html/body/div[1]/div[2]/div[1]/div/div/div[3]/a/div')
+        # Test shrinkage
+
+    def test_activity_form(self):
+        """Tests to ensure that the activity form works"""
+        self.selenium.find_element_by_xpath("/html/body/div[1]/div[2]/div/div[1]/div/div[2]/div/a").click()
+        self.selenium.find_element_by_name('activity_name')
