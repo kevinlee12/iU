@@ -33,8 +33,6 @@ from journal.models import Activity, Entry
 
 from datetime import datetime
 
-from django.core.exceptions import ObjectDoesNotExist
-
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 
@@ -125,7 +123,7 @@ def activity_details(request, activity_pk=None):
 
 @login_required
 def entries(request, activity_pk):
-    """Grabs all of the entries associated with the activity""""
+    """Grabs all of the entries associated with the activity"""
     user_type = get_user_type(request)
 
     if user_type == 'stu':
