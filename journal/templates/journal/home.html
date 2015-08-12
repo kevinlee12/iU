@@ -18,108 +18,106 @@
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
 	<div class="container-fluid">
 	<!-- Brand and toggle get grouped for better mobile display -->
-    	<div class="navbar-header">
+    <div class="navbar-header">
 		 	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        		<span class="sr-only">Toggle navigation</span>
-        		<span class="icon-bar"></span>
-        		<span class="icon-bar"></span>
-        		<span class="icon-bar"></span>
-      		</button>
-      		<div class="logo">
-      			<a class="navbar-brand" href=" "> <img src="{% static 'journal/home/img/logo3.gif' %}"> iU </a>
-      		</div>
-      	</div>
+      	<span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+    		<span class="icon-bar"></span>
+    		<span class="icon-bar"></span>
+      </button>
+      <div class="logo">
+  			<a class="navbar-brand" href=" "> <img src="{% static 'journal/home/img/logo3.gif' %}"> iU </a>
+  		</div>
+    </div>
 
-   		 <!-- Collect the nav links, forms, and other content for toggling -->
+   	<!-- Collect the nav links, forms, and other content for toggling -->
     	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      		<ul class="nav navbar-nav">
-        		<li><a href="#about-us">About</a></li>
-       			<li><a href="#features">Features</a></li>
-       			<li><a href="#interest">Interested?</a></li>
-       			<li><a href="#contact-us">Chat with us</a></li>
-       		</ul>
-       		<ul class="nav navbar-nav navbar-right">
-	   				<li>
-						{% if user and not user.is_anonymous %}
-      			Hello {{ user.get_full_name|default:user.username }}!
-      			<a href="{% url 'auth:logout' %}?next={{ request.path }}">Logout</a>
-      			{% else %}
-      			<a href="{% url 'social:begin' 'google-oauth2' %}">
+    		<ul class="nav navbar-nav">
+      		<li><a href="#about-us">About</a></li>
+       		<li><a href="#features">Features</a></li>
+       		<li><a href="#interest">Interested?</a></li>
+       		<li><a href="#contact-us">Chat with us</a></li>
+    		</ul>
+       	<ul class="nav navbar-nav navbar-right">
+	   			<li>
+					  {% if user and not user.is_anonymous %}
+    			  Hello {{ user.get_full_name|default:user.username }}!
+    			  <a href="{% url 'auth:logout' %}?next={{ request.path }}">Logout</a>
+    			  {% else %}
+      		  <a href="{% url 'social:begin' 'google-oauth2' %}">
       		 	Login with Google</a>
      				{% endif %}
-	       		</li>
-       		</ul>
+	       	</li>
+       	</ul>
    		</div>
-    </div>
+  </div>
 </nav>
 
 
 <body>
-    <div id="container">
-        <div class="parallax background">
-            <div class="main-title">
-                <div class="big">Welcome</div>
-                <div class="small">to the future of journaling</div>
-            </div>
-            <div class="overlay"></div>
-            <a href="#about-us" class="bouncing-arrow">
-                <i class="fa fa-chevron-down"></i>
-            </a>
-        </div>
-        <div id="content-panel">
-            <section id="about-us">
-                <h2>About Us</h2>
-            </section>
-
-            <section id="features">
-            	<h2> Features </h2>
-            </section>
-
-            <section id="interest">
-            	<h2> Interested? </h2>
-            </section>
-
-            <section id="contact-us">
-            	<h2> Chat With Us </h2>
-
-              <h4> Got Questions? We are here to help. </h4>
-              <form action="" method="post">
-                <div class="sender_name">
-                  <div class="form-group">   
-                    <label for="id_sender"> Name:</label>
-                    <input class="form-control" type="email" name="{{form.sender.name}}" value="{% if form.sender.value %} {{form.sender.value}} {% endif %}" />
-                  </div>
-                </div>
-
-                <div class="subject">
-                  <div class="form-group">  
-                    <label for="id_subject">Subject:</label>
-                    <input class="form-control" type="text" name="{{form.subject.name}}" value="{% if form.subject.value %} {{form.subject.value}} {% endif %}" maxlength="100" />
-                  </div>
-                </div>
-
-                <div class="message">
-                  <div class="form-group"> 
-                    <label for="id_message">Message:</label>
-                    <textarea class="form-control" rows="5"type="text" name="{{form.message.name}}" value="{{form.message.value}}" >
-                    </textarea>
-                  </div>
-                </div>
-
-                <div class="cc">
-                  <div class="checkbox"> 
-                    <label for="id_cc_myself"> 
-                      <input type="checkbox" name="{{form.cc_myself.name}}" value="{{form.cc_myself.value}}" /> Send a copy to myself
-                    </label>
-                  </div>
-                </div>
-                
-                <button type="submit" class="btn btn-default"> Send </button>
-
-              </form>
-            </section>
-        </div>
+  <div id="container">
+    <div class="parallax background">
+      <div class="main-title">
+        <div class="big">Welcome</div>
+        <div class="small">to the future of journaling</div>
+      </div>
+      <div class="overlay"></div>
+      <a href="#about-us" class="bouncing-arrow">
+        <i class="fa fa-chevron-down"></i>
+      </a>
     </div>
+    <div id="content-panel">
+      <section id="about-us">
+        <h2>About Us</h2>
+      </section>
+
+      <section id="features">
+        <h2> Features </h2>
+      </section>
+
+      <section id="interest">
+      	<h2> Interested? </h2>
+      </section>
+
+      <section id="contact-us">
+      	<h2> Chat With Us </h2>
+        <h4> Got Questions? We are here to help. </h4>
+          <form action="" method="post">
+            <div class="sender_name">
+              <div class="form-group">   
+                <label for="id_sender"> Name:</label>
+                <input class="form-control" type="email" name="{{form.sender.name}}" value="{% if form.sender.value %} {{form.sender.value}} {% endif %}" />
+              </div>
+            </div>
+
+            <div class="subject">
+              <div class="form-group">  
+                <label for="id_subject">Subject:</label>
+                <input class="form-control" type="text" name="{{form.subject.name}}" value="{% if form.subject.value %} {{form.subject.value}} {% endif %}" maxlength="100" />
+              </div>
+            </div>
+
+            <div class="message">
+              <div class="form-group"> 
+                <label for="id_message">Message:</label>
+                <textarea class="form-control" rows="5"type="text" name="{{form.message.name}}" value="{{form.message.value}}" >
+                </textarea>
+              </div>
+            </div>
+
+            <div class="cc">
+              <div class="checkbox"> 
+                <label for="id_cc_myself"> 
+                  <input type="checkbox" name="{{form.cc_myself.name}}" value="{{form.cc_myself.value}}" /> Send a copy to myself
+                </label>
+              </div>
+            </div>
+                
+            <button type="submit" class="btn btn-default"> Send </button>
+          </form>
+      </section>
+    </div>
+  </div>
 </body>
 
 {% endblock %}

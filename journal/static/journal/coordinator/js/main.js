@@ -12,9 +12,9 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-$(document).ready(function(){
+$(document).ready(function() {
   setInterval(function() {
-    $.get("/feed", function(data) {
+    $.get('/feed', function(data) {
       $('.activity-feed').html(data);
     });
   }, 2500);

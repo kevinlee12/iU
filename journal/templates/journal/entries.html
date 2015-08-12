@@ -46,7 +46,7 @@
 
 {% endblock %}
 
-{% block 'main-content' %}
+{% block 'mini-sidebar-content' %}
 <div class="mini-sidebar-icons">
 	<a href="/entry/{{ activity_pk }}/">
 		<i class="add-symbol fa fa-plus-circle fa-lg"></i>
@@ -60,16 +60,19 @@
 
 
 	<div class="dropdown">
-  		<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-    		<span class="user-symbol fa fa-user fa-lg"></span>
-  		</button>
-  		<ul class="dropdown-menu" aria-labelledby="dropdownMenu1 dropdownMenuDivider">
-    		<li><a href="#">Action</a></li>
-    		<li role="separator" class="divider"></li>
-    		<li><a href="#">Another action</a></li>
-  		</ul>
+  	<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    	<span class="user-symbol fa fa-user fa-lg"></span>
+  	</button>
+  	<ul class="dropdown-menu" aria-labelledby="dropdownMenu1 dropdownMenuDivider">
+    	<li><a href="#">Action</a></li>
+   		<li role="separator" class="divider"></li>
+   		<li><a href="#">Another action</a></li>
+  	</ul>
 	</div>
 </div>
+{% endblock %}
+
+{% block 'main-content' %}
 
 <div class="grid-item grid-item--width2">
 	<h2> Entries for {{ name }} </h2>
@@ -77,9 +80,9 @@
 
 <div class="grid">
 	{% if entries.count %}
-  		{% for entry in entries %}
-  			<div class="grid-item">
-  				<a href="/entry/{{ activity_id }}/{{ entry.pk }}/">
+  	{% for entry in entries %}
+  		<div class="grid-item">
+  			<a href="/entry/{{ activity_id }}/{{ entry.pk }}/">
 					<div class="entry-list">
 						{% if entry.image_entry %}
 							{% thumbnail '250x250' entry.image_entry %}
@@ -94,28 +97,28 @@
 			</div>
   		{% endfor %}
 	{% else %}
-  		<h4> No entries yet, would you like to <a href="/entry/{{ activity_pk }}/">add</a> one? </h4>
+  	<h4> No entries yet, would you like to <a href="/entry/{{ activity_pk }}/">add</a> one? </h4>
 	{% endif %}
 </div>
 {% endblock %}
 
 {% block 'modal' %}
 <div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title">Warning!</h4>
-            </div>
-            <div class="modal-body">
-            Are you sure you wan't to delete this activity?
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">No.</button>
-
-              <a type="button" class="btn btn-primary btn-danger" href="/delete_activity/{{activity.pk}}" >Yes!</a>
-            </div>
-        </div>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Warning!</h4>
       </div>
+      <div class="modal-body">
+        Are you sure you wan't to delete this activity?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">No.</button>
+
+        <a type="button" class="btn btn-primary btn-danger" href="/delete_activity/{{activity.pk}}" >Yes!</a>
+      </div>
+    </div>
   </div>
+</div>
 {% endblock %}
