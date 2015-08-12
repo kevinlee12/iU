@@ -14,20 +14,18 @@
 */
 
 html {
-    font-family: 'Raleway', sans-serif;
+  font-family: 'Raleway', sans-serif;
 }
 
 header, body {
-    font-family: 'Raleway', sans-serif;
+  font-family: 'Raleway', sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6 {
-    font-family: 'Raleway', sans-serif;
-}
-p, div, ul {
-    font-family: 'Raleway', sans-serif;
+  font-family: 'Raleway', sans-serif;
 }
 
-#id_honeypot {
-    display: none;
+p, div, ul {
+  font-family: 'Raleway', sans-serif;
 }
+

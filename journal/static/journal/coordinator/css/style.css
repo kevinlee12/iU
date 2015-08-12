@@ -96,12 +96,14 @@ small a {
 }
 
 .border {
+	border-bottom: 1px solid #4A4A4A;
 	border-bottom: 1px solid rgba(74, 74, 74, 0.12);
 	margin-top: 5px;
 	margin-bottom: 5px;
 }
 
 .border-2 {
+	border-bottom: 3px solid #4A4A4A;
 	border-bottom: 3px solid rgba(74, 74, 74, 0.12);
 }
 

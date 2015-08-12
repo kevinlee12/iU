@@ -47,6 +47,7 @@ h4 {
 }
 
 .line-break {
+	border: 1px solid #4A4A4A;
 	border: 1px solid rgba(74,74,74,0.12);
 	width: 45%;
 	margin-bottom: 1%;
@@ -62,6 +63,7 @@ h4 {
 
 .comment-box {
 	width: 50%;
+	border: 1px solid #4A4A4A;
 	border: 1px solid rgba(74,74,74,0.4);
 }
 
@@ -119,6 +121,7 @@ form {
 }
 
 .entry-for-coor {
+	border: 1px solid #4A4A4A;
 	border: 1px solid rgba(74,74,74,0.2);
 	width: 100%;
 }

@@ -15,22 +15,21 @@
 // Credit below goes to:
 // http://stackoverflow.com/questions/17147821/how-to-make-a-whole-row-in-a-table-clickable-as-a-link
 // $(document).ready(function() {
-jQuery(window).on('load', function(){
+jQuery(window).on('load', function() {
 
 	$('.grid').masonry({
-  		itemSelector: '.grid-item',
-  		columnWidth: 29
+  	itemSelector: '.grid-item',
+  	columnWidth: 29
 	});
 
-	$(".grid").find(".grid-item").find(".overlay").hide();
+	$('.grid').find('.grid-item').find('.overlay').hide();
 
-	$( ".entry-list" ).hover(
+	$('.entry-list').hover(
 		function() {
-    		$(this).find(".overlay").fadeIn();
+    	$(this).find('.overlay').fadeIn();
 		},
 		function() {
-    		$(this).find(".overlay").fadeOut();
+    	$(this).find('.overlay').fadeOut();
 		}
 	);
-
 });
