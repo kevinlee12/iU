@@ -38,7 +38,9 @@ LOGGING = {
 }
 logging.config.dictConfig(LOGGING)
 
+
 class CloudinaryStorage(Storage):
+    """Storage class to store files on Cloudinary"""
 
     def __init__(self, option=None):
         self.server_response = {}

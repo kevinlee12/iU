@@ -36,7 +36,6 @@ class ActivitySeleleniumTests(StaticLiveServerTestCase):
 
     def setUp(self):
         self.selenium = WebDriver()
-        # self.selenium.get('http://{0}:{1}@{2}{3}'.format("comet.tester@gmail.com", "!1WBaSr0IhPHt9aLzyBgCOOYdM1WI5pqkPKJcIpxJ", 'localhost:8081', '/activities'))
         self.selenium.get('{0}/{1}'.format(self.live_server_url, ''))
 
     def tearDown(self):

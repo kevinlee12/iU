@@ -33,8 +33,6 @@ from journal.models import Activity, Entry
 
 from datetime import datetime
 
-from django.core.exceptions import ObjectDoesNotExist
-
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 
@@ -71,6 +69,7 @@ def home(request):
 
 
 def get_user_type(request):
+    """Grabs the user type via the permissions in auth.User"""
     return User.objects.get(email=request.user.email)\
         .user_permissions.all()[0].codename
 
@@ -91,12 +90,17 @@ def login_redirects(request):
 
 
 def feed(request):
+    """Grabs all of the feeds for the user"""
     return render(request, 'journal/feed.html',
                   {'feed': user_stream(request.user)})
+
+# The following functions redirect call the appropriate function based on
+# the user is a student, coordinator, or advisor.
 
 
 @login_required
 def activities(request, student_pk=None):
+    """Grabs all the activities associated with the student"""
     user_type = get_user_type(request)
 
     if user_type == 'stu':
@@ -108,6 +112,7 @@ def activities(request, student_pk=None):
 
 @login_required
 def activity_details(request, activity_pk=None):
+    """Grabs the activity details (for staff) or form for the student"""
     user_type = get_user_type(request)
 
     if user_type == 'stu':
@@ -118,6 +123,7 @@ def activity_details(request, activity_pk=None):
 
 @login_required
 def entries(request, activity_pk):
+    """Grabs all of the entries associated with the activity"""
     user_type = get_user_type(request)
 
     if user_type == 'stu':
@@ -128,6 +134,7 @@ def entries(request, activity_pk):
 
 @login_required
 def entry(request, activity_pk, entry_pk=None):
+    """Grabs the entry or entry form if the user is a student."""
     user_type = get_user_type(request)
 
     if user_type == 'stu':
@@ -138,6 +145,7 @@ def entry(request, activity_pk, entry_pk=None):
 
 @login_required
 def comment_submit(request):
+    """Notifies all associated parties of the user when he or she comments."""
     url_source = request.META['HTTP_REFERER']
     user_type = get_user_type(request)
     if user_type == 'stu':
