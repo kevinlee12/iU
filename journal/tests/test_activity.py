@@ -21,6 +21,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 
 from django.conf import settings
+from django.core.management import call_command
 
 
 class ActivitySeleleniumTests(StaticLiveServerTestCase):
@@ -48,18 +49,30 @@ class ActivitySeleleniumTests(StaticLiveServerTestCase):
         wait = WebDriverWait(self.selenium, 30)
         wait.until(EC.element_to_be_clickable((By.ID,'submit_approve_access')))
         self.selenium.find_element_by_xpath('//*[@id="submit_approve_access"]').click()
+        super()
 
     def tearDown(self):
         self.selenium.quit()
-
-    def test_activity_page(self):
-        """Tests to ensure that activities page has all necessary elements."""
-        self.selenium.find_element_by_xpath("//img[@src='/static/journal/activities/"
-                                   "img/journal_sign.png']")
-        self.selenium.find_element_by_xpath('/html/body/div[1]/div[2]/div[1]/div/div/div[3]/a/div')
-        # Test shrinkage
+        super()
 
     def test_activity_form(self):
-        """Tests to ensure that the activity form works"""
+        """Tests to ensure that activities page has all necessary elements."""
+        self.selenium\
+            .find_element_by_xpath("//img[@src='/static/journal/activities/img"
+                                   "/journal_sign.png']")
+        self.selenium.find_element_by_xpath('/html/body/div[1]/div[2]/div[1]/div/div/div[3]/a/div')
         self.selenium.find_element_by_xpath("/html/body/div[1]/div[2]/div/div[1]/div/div[2]/div/a").click()
-        self.selenium.find_element_by_name('activity_name')
+        self.selenium.find_element_by_name('activity_name').send_keys('Walking the cat')
+        self.selenium.find_element_by_name('activity_description').send_keys('Walking the cat around the neighborhood')
+        self.selenium.find_element_by_xpath('//*[@id="id_activity_type"]/li[2]/label').click()
+        self.selenium.find_element_by_xpath('//*[@id="id_activity_type"]/li[3]/label').click()
+        self.selenium.find_element_by_xpath('//*[@id="id_learned_objective"]/li[6]/label').click()
+        self.selenium.find_element_by_xpath('/html/body/div[1]/div[2]/div[1]/form/div[5]/div/div/div[1]/input').send_keys('Cat')
+        self.selenium.find_element_by_xpath('/html/body/div[1]/div[2]/div[1]/form/div[5]/div/div/div[3]/input').send_keys('kitty@cats.cat')
+        self.selenium.find_element_by_xpath('/html/body/div[1]/div[2]/div[1]/form/div[6]/div/input').click()
+        self.selenium\
+            .find_element_by_xpath("//img[@src='/static/journal/activities/img"
+                                   "/journal_sign.png']")
+        body_text = self.selenium.find_element_by_tag_name('body').text
+        self.assertTrue('Walking the cat' in body_text)
+        self.assertTrue('Walking the cat around the neighborhood' in body_text)
