@@ -1,2 +1,0 @@
-csslint@0.10.0
-jshint@2.8.0
