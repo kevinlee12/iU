@@ -21,7 +21,7 @@ from .utilities import assert_true
 
 
 class ActivitySeleleniumTests(StaticLiveServerTestCase):
-    """Selenium tests for the activity page"""
+    """Selenium tests for the home page"""
 
     def setUp(self):
         """Opens the home page"""

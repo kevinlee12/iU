@@ -13,6 +13,7 @@
 # WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 # See the License for the specific language governing permissions and
 # limitations under the License.
+
 from selenium.webdriver.common.by import By
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium.webdriver.firefox.webdriver import WebDriver
@@ -26,7 +27,7 @@ from django.core.management import call_command
 
 class ActivitySeleleniumTests(StaticLiveServerTestCase):
     """Selenium tests for the activity page"""
-    fixtures = ['tests/fixtures/init_data.json']
+    fixtures = ['journal/tests/fixtures/init_data.json']
 
     def __init__(self, *args, **kwargs):
         super(ActivitySeleleniumTests, self).__init__(*args, **kwargs)
@@ -53,8 +54,8 @@ class ActivitySeleleniumTests(StaticLiveServerTestCase):
         self.selenium.quit()
         super()
 
-    def test_activity_form(self):
-        """Tests to ensure that activities page has all necessary elements."""
+    def test_activity_form_back(self):
+        """make sure the back button works"""
         self.selenium\
             .find_element_by_xpath("//img[@src='/static/journal/activities/img"
                                    "/journal_sign.png']")
@@ -68,10 +69,11 @@ class ActivitySeleleniumTests(StaticLiveServerTestCase):
         self.selenium.find_element_by_name('activity_adviser').send_keys('Cat')
         self.selenium.find_element_by_name('advisor_phone').send_keys('1234567890')
         self.selenium.find_element_by_name('advisor_email').send_keys('kitty@cats.cat')
-        self.selenium.find_element_by_xpath('/html/body/div[1]/div[2]/div[1]/form/div[6]/div/input').click()
+        self.selenium.find_element_by_link_text('Back').click()
         self.selenium\
             .find_element_by_xpath("//img[@src='/static/journal/activities/img"
                                    "/journal_sign.png']")
-        body_text = self.selenium.find_element_by_tag_name('body').text
-        self.assertTrue('Walking the cat' in body_text)
-        self.assertTrue('Walking the cat around the neighborhood' in body_text)
+
+
+
+

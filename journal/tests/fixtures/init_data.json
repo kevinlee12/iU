@@ -1,0 +1,472 @@
+[
+{
+  "fields": {
+    "permissions": [],
+    "name": "Glen A. Wilson HS"
+  },
+  "pk": 1,
+  "model": "auth.group"
+},
+{
+  "fields": {
+    "last_name": "Lee",
+    "date_joined": "2015-07-24T11:06:17.433",
+    "user_permissions": [
+      [
+        "stu",
+        "journal",
+        "school"
+      ]
+    ],
+    "password": "!TfhVfBl5PPgzeZUrgrGCbexeVfKpqOkz9TqKio2j",
+    "first_name": "Kevin",
+    "is_staff": false,
+    "groups": [
+      [
+        "Glen A. Wilson HS"
+      ]
+    ],
+    "email": "kevinlee963@gmail.com",
+    "is_superuser": false,
+    "last_login": "2015-07-28T15:19:04.176",
+    "username": "kevinlee963@gmail.com",
+    "is_active": true
+  },
+  "pk": 1,
+  "model": "auth.user"
+},
+{
+  "fields": {
+    "last_name": "",
+    "date_joined": "2015-07-24T11:06:48.118",
+    "user_permissions": [
+      [
+        "stu",
+        "journal",
+        "school"
+      ]
+    ],
+    "password": "!4GUDC8tm0slriViUOH6ZIeIjyRlb74Qg7wVfTDLk",
+    "first_name": "",
+    "is_staff": false,
+    "groups": [
+      [
+        "Glen A. Wilson HS"
+      ]
+    ],
+    "email": "janicez348@gmail.com",
+    "is_superuser": false,
+    "last_login": null,
+    "username": "janicez348@gmail.com",
+    "is_active": true
+  },
+  "pk": 2,
+  "model": "auth.user"
+},
+{
+  "fields": {
+    "last_name": "",
+    "date_joined": "2015-07-24T11:07:07.653",
+    "user_permissions": [
+      [
+        "coor",
+        "journal",
+        "advisor"
+      ]
+    ],
+    "password": "!GDliRjaNKcK4vnoI9mi922WykLBkKXH4UIKHWZGi",
+    "first_name": "",
+    "is_staff": true,
+    "groups": [
+      [
+        "Glen A. Wilson HS"
+      ]
+    ],
+    "email": "leekevin@berkeley.edu",
+    "is_superuser": false,
+    "last_login": null,
+    "username": "leekevin@berkeley.edu",
+    "is_active": true
+  },
+  "pk": 3,
+  "model": "auth.user"
+},
+{
+  "fields": {
+    "last_name": "",
+    "date_joined": "2015-07-24T21:44:34.121",
+    "user_permissions": [
+      [
+        "coor",
+        "journal",
+        "advisor"
+      ]
+    ],
+    "password": "!fLHVspFzqoVd6JkTl0zAtjnGRnXfG7q7Wka9vgdO",
+    "first_name": "",
+    "is_staff": false,
+    "groups": [
+      [
+        "Glen A. Wilson HS"
+      ]
+    ],
+    "email": "janicezhao348@gmail.com",
+    "is_superuser": false,
+    "last_login": null,
+    "username": "janicezhao348@gmail.com",
+    "is_active": true
+  },
+  "pk": 6,
+  "model": "auth.user"
+},
+{
+  "fields": {
+    "last_name": "Test",
+    "date_joined": "2015-07-26T11:25:47.463",
+    "user_permissions": [
+      [
+        "stu",
+        "journal",
+        "school"
+      ]
+    ],
+    "password": "!1WBaSr0IhPHt9aLzyBgCOOYdM1WI5pqkPKJcIpxJ",
+    "first_name": "Comet",
+    "is_staff": false,
+    "groups": [],
+    "email": "comet.tester@gmail.com",
+    "is_superuser": false,
+    "last_login": "2015-07-27T10:33:00.288",
+    "username": "comet.tester@gmail.com",
+    "is_active": true
+  },
+  "pk": 7,
+  "model": "auth.user"
+},
+{
+  "fields": {
+    "last_name": "",
+    "date_joined": "2015-07-28T17:59:18.099",
+    "user_permissions": [
+      [
+        "advise",
+        "journal",
+        "student"
+      ]
+    ],
+    "password": "!PMd3535u3yvDNUnw69ClJ3gfHmzAjIsNvbrbw670",
+    "first_name": "",
+    "is_staff": false,
+    "groups": [
+      [
+        "Glen A. Wilson HS"
+      ]
+    ],
+    "email": "kevinlee9630@gmail.com",
+    "is_superuser": false,
+    "last_login": null,
+    "username": "kevinlee9630@gmail.com",
+    "is_active": true
+  },
+  "pk": 8,
+  "model": "auth.user"
+},
+{
+  "fields": {
+    "domain": "example.com",
+    "name": "example.com"
+  },
+  "pk": 8123,
+  "model": "sites.site"
+},
+{
+  "fields": {
+    "created": "2015-01-21T12:34:12",
+    "activity_pk": 1,
+    "last_modified": "2015-01-21T12:34:12",
+    "stu_pk": 1,
+    "entry": "I learned I can actually walk around the block 100 times."
+  },
+  "pk": 1,
+  "model": "journal.entry"
+},
+{
+  "fields": {
+    "created": "2015-01-21T12:36:12",
+    "activity_pk": 1,
+    "last_modified": "2015-01-21T12:36:12",
+    "stu_pk": 1,
+    "entry": "Walking is amazing, nature is amazing"
+  },
+  "pk": 2,
+  "model": "journal.entry"
+},
+{
+  "fields": {
+    "created": "2015-01-21T12:34:12",
+    "activity_pk": 2,
+    "last_modified": "2015-01-21T12:34:12",
+    "stu_pk": 3,
+    "entry": "I learned I can actually walk around the block 100 times."
+  },
+  "pk": 3,
+  "model": "journal.entry"
+},
+{
+  "fields": {
+    "created": "2015-01-21T12:36:12",
+    "activity_pk": 2,
+    "last_modified": "2015-01-21T12:36:12",
+    "stu_pk": 3,
+    "entry": "Walking is amazing, nature is amazing"
+  },
+  "pk": 4,
+  "model": "journal.entry"
+},
+{
+  "fields": {
+    "permissions": [],
+    "school_code": "001023"
+  },
+  "pk": 1,
+  "model": "journal.school"
+},
+{
+  "fields": {
+    "first_name": "Kevin",
+    "last_name": "Lee",
+    "user": [
+      "kevinlee963@gmail.com"
+    ],
+    "student_id": "1234",
+    "stu_coordinator": 1,
+    "school": [
+      "Glen A. Wilson HS"
+    ],
+    "personal_code": "dty123"
+  },
+  "pk": 1,
+  "model": "journal.student"
+},
+{
+  "fields": {
+    "first_name": "Janice Jiayu",
+    "last_name": "Zhao",
+    "user": [
+      "janicez348@gmail.com"
+    ],
+    "student_id": "2345",
+    "stu_coordinator": 2,
+    "school": [
+      "Glen A. Wilson HS"
+    ],
+    "personal_code": "dty321"
+  },
+  "pk": 2,
+  "model": "journal.student"
+},
+{
+  "fields": {
+    "first_name": "Comet",
+    "last_name": "Tester",
+    "user": [
+      "comet.tester@gmail.com"
+    ],
+    "student_id": "2061",
+    "stu_coordinator": 1,
+    "school": [
+      "Glen A. Wilson HS"
+    ],
+    "personal_code": "dty075"
+  },
+  "pk": 3,
+  "model": "journal.student"
+},
+{
+  "fields": {
+    "first_name": "Kevin",
+    "last_name": "Lee",
+    "user": [
+      "kevinlee9630@gmail.com"
+    ],
+    "school": [
+      "Glen A. Wilson HS"
+    ],
+    "students": [
+      1,
+      2
+    ]
+  },
+  "pk": 1,
+  "model": "journal.advisor"
+},
+{
+  "fields": {
+    "first_name": "Kevin",
+    "last_name": "Lee",
+    "user": [
+      "leekevin@berkeley.edu"
+    ],
+    "students": [
+      1,
+      2
+    ],
+    "advisors": [
+      1
+    ],
+    "school": [
+      "Glen A. Wilson HS"
+    ]
+  },
+  "pk": 1,
+  "model": "journal.coordinator"
+},
+{
+  "fields": {
+    "first_name": "Janice",
+    "last_name": "Zhao",
+    "user": [
+      "janicezhao348@gmail.com"
+    ],
+    "students": [
+      1,
+      2
+    ],
+    "advisors": [
+      1
+    ],
+    "school": [
+      "Glen A. Wilson HS"
+    ]
+  },
+  "pk": 2,
+  "model": "journal.coordinator"
+},
+{
+  "fields": {
+    "name": "Creativity"
+  },
+  "pk": 1,
+  "model": "journal.activityoptions"
+},
+{
+  "fields": {
+    "name": "Action"
+  },
+  "pk": 2,
+  "model": "journal.activityoptions"
+},
+{
+  "fields": {
+    "name": "Service"
+  },
+  "pk": 3,
+  "model": "journal.activityoptions"
+},
+{
+  "fields": {
+    "objective": "Increased their awareness of their own strengths and areas of growth"
+  },
+  "pk": 1,
+  "model": "journal.learningobjectiveoptions"
+},
+{
+  "fields": {
+    "objective": "Undertaken new challenges"
+  },
+  "pk": 2,
+  "model": "journal.learningobjectiveoptions"
+},
+{
+  "fields": {
+    "objective": "Planned and initiated activities"
+  },
+  "pk": 3,
+  "model": "journal.learningobjectiveoptions"
+},
+{
+  "fields": {
+    "objective": "Worked collaboratively with others"
+  },
+  "pk": 4,
+  "model": "journal.learningobjectiveoptions"
+},
+{
+  "fields": {
+    "objective": "Shown perseverance and commitment in their activities"
+  },
+  "pk": 5,
+  "model": "journal.learningobjectiveoptions"
+},
+{
+  "fields": {
+    "objective": "Engaged with issues of global importance"
+  },
+  "pk": 6,
+  "model": "journal.learningobjectiveoptions"
+},
+{
+  "fields": {
+    "objective": "Considered the ethnical implications of their actions"
+  },
+  "pk": 7,
+  "model": "journal.learningobjectiveoptions"
+},
+{
+  "fields": {
+    "objective": "Developed new skills"
+  },
+  "pk": 8,
+  "model": "journal.learningobjectiveoptions"
+},
+{
+  "fields": {
+    "activity_name": "Walking around the block",
+    "activity_type": [
+      2
+    ],
+    "advisor_phone": "5555555555",
+    "student": 1,
+    "start_date": "2015-01-21",
+    "activity_adviser": "Squirrel",
+    "end_date": null,
+    "learned_objective": [
+      1,
+      2
+    ],
+    "entries": [
+      1,
+      2
+    ],
+    "advisor_email": null,
+    "activity_description": "Just walking"
+  },
+  "pk": 1,
+  "model": "journal.activity"
+},
+{
+  "fields": {
+    "activity_name": "Walking around the block",
+    "activity_type": [
+      2
+    ],
+    "advisor_phone": "5555555555",
+    "student": 3,
+    "start_date": "2015-01-21",
+    "activity_adviser": "Squirrel",
+    "end_date": null,
+    "learned_objective": [
+      1,
+      2
+    ],
+    "entries": [
+      1,
+      2
+    ],
+    "advisor_email": null,
+    "activity_description": "Just walking"
+  },
+  "pk": 2,
+  "model": "journal.activity"
+}
+]
