@@ -14,12 +14,15 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from selenium.webdriver.common.by import By
+
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 from selenium.webdriver.firefox.webdriver import WebDriver
+
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
+
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 
 from django.conf import settings
 from django.core.management import call_command
@@ -49,6 +52,9 @@ class ActivitySeleleniumTests(StaticLiveServerTestCase):
         wait = WebDriverWait(self.selenium, 30)
         wait.until(EC.element_to_be_clickable((By.ID,'submit_approve_access')))
         self.selenium.find_element_by_xpath('//*[@id="submit_approve_access"]').click()
+        self.selenium\
+            .find_element_by_xpath("//img[@src='/static/journal/activities/img"
+                                   "/journal_sign.png']")
         super()
 
     def tearDown(self):
@@ -57,9 +63,6 @@ class ActivitySeleleniumTests(StaticLiveServerTestCase):
 
     def test_activity_form_back(self):
         """make sure the back button works"""
-        self.selenium\
-            .find_element_by_xpath("//img[@src='/static/journal/activities/img"
-                                   "/journal_sign.png']")
         self.selenium.find_element_by_xpath("/html/body/div[1]/div[2]/div/div[1]/div/div[2]/div/a").click()
         self.selenium.find_element_by_name('activity_name').send_keys('Walking the cat')
         self.selenium.find_element_by_name('activity_description').send_keys('Walking the cat around the neighborhood')
@@ -77,9 +80,6 @@ class ActivitySeleleniumTests(StaticLiveServerTestCase):
 
     def test_activity_form_error(self):
         """Tests to check errors on the activity form"""
-        self.selenium\
-            .find_element_by_xpath("//img[@src='/static/journal/activities/img"
-                                   "/journal_sign.png']")
         self.selenium.find_element_by_xpath("/html/body/div[1]/div[2]/div/div[1]/div/div[2]/div/a").click()
         # self.selenium.find_element_by_name('activity_name').send_keys('')
         self.selenium.find_element_by_name('activity_description').send_keys('Walking with huahua around the neighborhood')
@@ -95,9 +95,6 @@ class ActivitySeleleniumTests(StaticLiveServerTestCase):
 
     def test_activity_form(self):
         """Tests to ensure that activities page has all necessary elements."""
-        self.selenium\
-            .find_element_by_xpath("//img[@src='/static/journal/activities/img"
-                                   "/journal_sign.png']")
         self.selenium.find_element_by_xpath("/html/body/div[1]/div[2]/div/div[1]/div/div[2]/div/a").click()
         self.selenium.find_element_by_name('activity_name').send_keys('Walking the cat')
         self.selenium.find_element_by_name('activity_description').send_keys('Walking the cat around the neighborhood')
