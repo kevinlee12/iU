@@ -23,19 +23,14 @@ from .utilities import assert_true
 class ActivitySeleleniumTests(StaticLiveServerTestCase):
     """Selenium tests for the activity page"""
 
-    @classmethod
-    def setUpClass(cls):
-        super(ActivitySeleleniumTests, cls).setUpClass()
-        cls.selenium = WebDriver()
-
-    @classmethod
-    def tearDownClass(cls):
-        cls.selenium.quit()
-        super(ActivitySeleleniumTests, cls).tearDownClass()
-
     def setUp(self):
         """Opens the home page"""
+        self.selenium = WebDriver()
         self.selenium.get('{0}{1}'.format(self.live_server_url, '/'))
+
+    def tearDown(self):
+        self.selenium.quit()
+        super()
 
     def test_elements(self):
         """Tests to ensure the proper elements are present"""
