@@ -5,7 +5,7 @@ CAS Management
 **Develop:**
 [![Circle CI](https://circleci.com/gh/kevinlee12/iU/tree/develop.svg?style=svg&circle-token=02f06191194ac379a0c4b7244fa361a6a619098a)](https://circleci.com/gh/kevinlee12/iU/tree/develop)
 
-For a hosted version of this app, please click [here](http://iu-codestig.rhcloud.com).
+For a hosted version of this app, please click [here](http://iu-cas.herokuapp.com/).
 
 **Hello and welcome!**
 
@@ -22,6 +22,10 @@ We aim to have one of the best user interfaces and flows so that Students can fo
 
 Please see our [wiki](https://github.com/kevinlee12/iU/wiki/Installing-the-Project-Locally) for details on installing the project.
 
+### Current implementation notes:
+- Runs on Python 3
+- Deployed on Heroku with Cloudinary as the image storage
+
 ### Licensing
 The bulk of the project that is authored by The iU Authors is licensed with Apache License, Version 2.0.
 A copy of the license is included in the root directory of the Project. Files that do not explicitly state
@@ -30,13 +34,14 @@ under the Apache License, Version 2.0. Copyright will be inherited from their re
 authored by The iU Authors.
 
 ### Acknowledgements
-The following is an incomplete list of acknowledgements and licensing of the respective authors.
+The following is an **incomplete** list of acknowledgements and licensing of the respective authors.
 
 Copyright (c) Django Software Foundation and individual contributors.
 All rights reserved.
 
 Redistribution and use in source and binary forms, with or without modification,
 are permitted provided that the following conditions are met:
+
     1. Redistributions of source code must retain the above copyright notice,
        this list of conditions and the following disclaimer.
 
@@ -59,24 +64,5 @@ ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
 (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
 SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-Copyright (c) 2014 John F Matthew
-
-The MIT License (MIT)
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+There are also many many more licenses associated with the respective pip packages, please
+refer to those. (We will be updating this list soon.)
