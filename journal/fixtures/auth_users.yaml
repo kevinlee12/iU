@@ -1,0 +1,90 @@
+- fields:
+    date_joined: 2015-07-24 11:06:17.433000
+    email: kevinlee963@gmail.com
+    first_name: Kevin
+    groups: [1]
+    is_active: true
+    is_staff: false
+    is_superuser: false
+    last_login: 2015-07-28 15:19:04.176000
+    last_name: Lee
+    password: '!TfhVfBl5PPgzeZUrgrGCbexeVfKpqOkz9TqKio2j'
+    user_permissions: [76]
+    username: kevinlee963@gmail.com
+  model: auth.user
+  pk: 1
+- fields:
+    date_joined: 2015-07-24 11:06:48.118000
+    email: janicez348@gmail.com
+    first_name: ''
+    groups: [1]
+    is_active: true
+    is_staff: false
+    is_superuser: false
+    last_login: null
+    last_name: ''
+    password: '!4GUDC8tm0slriViUOH6ZIeIjyRlb74Qg7wVfTDLk'
+    user_permissions: [76]
+    username: janicez348@gmail.com
+  model: auth.user
+  pk: 2
+- fields:
+    date_joined: 2015-07-24 11:07:07.653000
+    email: leekevin@berkeley.edu
+    first_name: ''
+    groups: [1]
+    is_active: true
+    is_staff: true
+    is_superuser: false
+    last_login: null
+    last_name: ''
+    password: '!GDliRjaNKcK4vnoI9mi922WykLBkKXH4UIKHWZGi'
+    user_permissions: [77]
+    username: leekevin@berkeley.edu
+  model: auth.user
+  pk: 3
+- fields:
+    date_joined: 2015-07-24 21:44:34.121000
+    email: janicezhao348@gmail.com
+    first_name: ''
+    groups: [1]
+    is_active: true
+    is_staff: false
+    is_superuser: false
+    last_login: null
+    last_name: ''
+    password: '!fLHVspFzqoVd6JkTl0zAtjnGRnXfG7q7Wka9vgdO'
+    user_permissions: [77]
+    username: janicezhao348@gmail.com
+  model: auth.user
+  pk: 6
+- fields:
+    date_joined: 2015-07-26 11:25:47.463000
+    email: comet.tester@gmail.com
+    first_name: Comet
+    groups: []
+    is_active: true
+    is_staff: false
+    is_superuser: false
+    last_login: 2015-07-27 10:33:00.288000
+    last_name: Test
+    password: '!1WBaSr0IhPHt9aLzyBgCOOYdM1WI5pqkPKJcIpxJ'
+    user_permissions: [76]
+    username: comet.tester@gmail.com
+  model: auth.user
+  pk: 7
+- fields:
+    date_joined: 2015-07-28 17:59:18.099000
+    email: kevinlee9630@gmail.com
+    first_name: ''
+    groups: [1]
+    is_active: true
+    is_staff: false
+    is_superuser: false
+    last_login: null
+    last_name: ''
+    password: '!PMd3535u3yvDNUnw69ClJ3gfHmzAjIsNvbrbw670'
+    user_permissions: [78]
+    username: kevinlee9630@gmail.com
+  model: auth.user
+  pk: 8

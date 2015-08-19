@@ -32,4 +32,6 @@ jQuery(window).on('load', function() {
     	$(this).find('.overlay').fadeOut();
 		}
 	);
+	
 });
+

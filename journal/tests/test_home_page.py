@@ -20,8 +20,8 @@ from selenium.webdriver.firefox.webdriver import WebDriver
 from .utilities import assert_true
 
 
-class ActivitySeleleniumTests(StaticLiveServerTestCase):
-    """Selenium tests for the activity page"""
+class HomePageSeleleniumTests(StaticLiveServerTestCase):
+    """Selenium tests for the home page"""
 
     def setUp(self):
         """Opens the home page"""
