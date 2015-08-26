@@ -17,9 +17,7 @@ $(document).ready(function() {
   fadeInHeader();
   $('section').css('height', $(window).height() + 'px');
   linkSmoothScroll();
-
 });
-
 
 function fadeInHeader() {
   $('.overlay').css('display', 'none');
@@ -44,7 +42,7 @@ function fadeInHeader() {
 }
 
 function linkSmoothScroll() {
-  $('a[href^='#']').click(function(event) {
+  $('a[href^="#"]').click(function(event) {
     event.preventDefault();
     $('html, body').animate({
       scrollTop: $($.attr(this, 'href')).offset().top
@@ -60,10 +58,5 @@ $(window).scroll(function() {
   } else {
     $('.container-fluid').removeClass('sticky');
   }
-  
+
 });
-
-
-
-
-
