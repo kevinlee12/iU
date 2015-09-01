@@ -60,6 +60,10 @@ setInterval(function() {
   		</div>
   		</ul>
 	</div>
+
+	<div>
+		<button class="btn btn-default tutorial" type="button" data-toggle="modal" data-target="#tutorial-modal">Tutorial</button>
+	</div>
 {% else %}
 <div class="coordinator-link">
 	<a href="/{{ back_link }}"><i class="fa fa-long-arrow-left fa-6x"></i> Back to the students page. </a>
@@ -69,7 +73,7 @@ setInterval(function() {
 {% endblock %}
 
 {% block 'main-content'%}
-<div class="content">
+<div class="content" ng-app="activityPageTutorial" ng-controller="tutorialSteps">
 	<div class="activities-list">
 		<div class = "row">
 			<div class="col-xs-12 col-md-12 col-lg-12">
@@ -78,8 +82,8 @@ setInterval(function() {
 				</div>
 			</div>
 			{% if is_student %}
-			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
-				<div class="add-journal-sign" >
+			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-4 tutorial-add" >
+				<div class="add-journal-sign">
 					<a href="/activity_details/">
 						<img src = "{% static 'journal/activities/img/add_sign.png' %}">
 					</a>
@@ -129,4 +133,25 @@ setInterval(function() {
 			{% endif %}
 		</div>
 	</div>
+{% endblock %}
+
+{% block 'modal' %}
+				<div class="modal fade" id="tutorial-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+ 					<div class="modal-dialog" role="document">
+    				<div class="modal-content">
+    		  		<div class="modal-header">
+        				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        				<h4 class="modal-title">Adding an activity</h4>
+      				</div>
+      				<div class="modal-body">
+        				Click on the add button to add an activity!
+      				</div>
+      				<div class="modal-footer">
+        				<button type="button" class="btn btn-default" data-dismiss="modal">Skip</button>
+
+        				<a type="button" class="btn btn-default" href="" >Next</a>
+      				</div>
+    				</div>
+  				</div>
+				</div>
 {% endblock %}

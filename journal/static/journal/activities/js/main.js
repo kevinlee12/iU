@@ -18,3 +18,21 @@ function bounce() {
     $('.badge').html(data);
   });
 }
+
+// $("tutorial").click(function() {
+// 	$(".tutorial-add").css("z-index","3");
+// });
+
+
+var app = angular.module('activityPageTutorial', []);
+
+app.controller('tutorialSteps' 
+	[ '$scope', function($scope) {
+		$scope.clicks = 0;
+
+		$scope.triggerStepCount = function() {
+			$scope.count++;
+		}
+
+	};
+]);
