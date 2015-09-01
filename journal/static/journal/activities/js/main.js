@@ -12,27 +12,38 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-function bounce() {
-  $.get('/bounce');
-  $.get('/ping', function(data) {
-    $('.badge').html(data);
-  });
-}
+var app = angular.module('mainApp', []);
 
-// $("tutorial").click(function() {
-// 	$(".tutorial-add").css("z-index","3");
-// });
+app.controller('activityTutorialCtrl',
+  ['$scope', function($scope) {
+    function bounce() {
+      $.get('/bounce');
+      $.get('/ping', function(data) {
+        $('.badge').html(data);
+      });
+    }
 
+    $scope.clicks = 0;
+    console.log('I <3 Huahua'); // Remove me when I am done.
 
-var app = angular.module('activityPageTutorial', []);
+    $scope.triggerStepCount = function() {
+      console.log('I <3 Huahua'); // Remove me when I am done.
+      $scope.clicks++;
+      if ($scope.clicks === 1) {
+        $('.add-journal-sign').css('z-index', '3');
+      } else if ($scope.clicks === 2) {
+        $('.add-journal-sign').css('z-index', '0');
+        $('.activity-box').css('z-index', '3');
+      }
+    };
 
-app.controller('tutorialSteps' 
-	[ '$scope', function($scope) {
-		$scope.clicks = 0;
+    $scope.triggerBackCount = function() {
+      $scope.clicks--;
+    };
 
-		$scope.triggerStepCount = function() {
-			$scope.count++;
-		}
+    $scope.skip = function() {
+      $scope.clicks = 0;
+    };
 
-	};
+  }
 ]);

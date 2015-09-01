@@ -14,11 +14,13 @@
 */
 
 .activity-box {
+	position: relative;
 	height: 153px;
 	margin-bottom: 20px;
 	text-align: center;
 	border: 1px solid #4A4A4A;
 	border: 1px solid rgba(74, 74, 74, 0.2);
+	background-color: white;
 }
 
 .activities-list {
@@ -59,7 +61,6 @@
 	top: 50%;
 	height: 153px;
 	text-align: center;
-	z-index: 3;
 }
 
 .modal-backdrop {
@@ -103,7 +104,7 @@ li:hover {
 	color:#05CCCE;
 }
 
-.btn-default .badge { 
+.btn-default .badge {
 	background-color: #05CCCE;
 }
 
@@ -114,6 +115,38 @@ li:hover {
 	margin-bottom: 5px;
 }
 
-#tutorial-modal {
-	margin-top: 200px;
+.popup {
+	position: absolute;
+	z-index: 10000;
+	background-color: white;
+	display: block;
+	font-size: 18px;
+	width: 250px;
+	height: 300px;
+	border: 2px solid gray;
+	margin: 2px;
+	text-align: center;
+}
+
+.arrow {
+	position: absolute;
+	z-index: 9;
+  right: 101%;
+	top: 50%;
+	-moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+	color: gray;
+}
+
+.overlay {
+  background-color: #000000;
+  background-color: rgba(0, 0, 0, 0.2);
+  position: fixed;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }

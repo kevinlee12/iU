@@ -11,6 +11,7 @@
 
 {% block 'page-js' %}
 <script src="{% static 'journal/activities/js/main.js' %}"></script>
+
 {% if is_student %}
 <script>
 setInterval(function() {
@@ -62,7 +63,7 @@ setInterval(function() {
 	</div>
 
 	<div>
-		<button class="btn btn-default tutorial" type="button" data-toggle="modal" data-target="#tutorial-modal">Tutorial</button>
+		<button class="btn btn-default tutorial" ng-click="triggerStepCount()" type="button">Tutorial</button>
 	</div>
 {% else %}
 <div class="coordinator-link">
@@ -73,7 +74,7 @@ setInterval(function() {
 {% endblock %}
 
 {% block 'main-content'%}
-<div class="content" ng-app="activityPageTutorial" ng-controller="tutorialSteps">
+<div class="content">
 	<div class="activities-list">
 		<div class = "row">
 			<div class="col-xs-12 col-md-12 col-lg-12">
@@ -95,7 +96,7 @@ setInterval(function() {
 				{% for activity in activities %}
 				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
 					<a href="/entries/{{ activity.pk }}">
-						<div class="activity-box" href>
+						<div class="activity-box">
 							<div class="activity-name">
 								{{ activity.name_short }}
 							</div>
@@ -133,25 +134,29 @@ setInterval(function() {
 			{% endif %}
 		</div>
 	</div>
-{% endblock %}
+</div>
 
-{% block 'modal' %}
-				<div class="modal fade" id="tutorial-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
- 					<div class="modal-dialog" role="document">
-    				<div class="modal-content">
-    		  		<div class="modal-header">
-        				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        				<h4 class="modal-title">Adding an activity</h4>
-      				</div>
-      				<div class="modal-body">
-        				Click on the add button to add an activity!
-      				</div>
-      				<div class="modal-footer">
-        				<button type="button" class="btn btn-default" data-dismiss="modal">Skip</button>
+	<!-- All tutorial dialogs here -->
+	<div class="overlay" ng-if="clicks > 0"></div>
+	<div class="popup" style="top: 15%;	left: 23%;" ng-if="clicks === 1">
+		<div class="arrow">
+			<i class="fa fa-play"></i>
+		</div>
+		My name is not Huahua.
+		<br>
+		<a ng-click="skip()">Skip</a>
+		<a ng-click="triggerStepCount()">Next</a>
+	</div>
 
-        				<a type="button" class="btn btn-default" href="" >Next</a>
-      				</div>
-    				</div>
-  				</div>
-				</div>
+	<div class="popup" style="top: 15%;	left: 75%;" ng-if="clicks === 2">
+		<div class="arrow">
+			<i class="fa fa-play"></i>
+		</div>
+		I like to sing stuff about.....
+		<br>
+		<a ng-click="skip()"> Skip </a>
+		<a ng-click="triggerBackCount()">Back</a>
+		<a ng-click="triggerStepCount()">Next</a>
+	</div>
+
 {% endblock %}
