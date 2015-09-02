@@ -37,11 +37,7 @@ setInterval(function() {
 	{% endif %}
 </h3>
 {% if is_student %}
-<h4> Click on the add button <br>
-	to create a new journal. <br>
-	To edit a journal,<br>
-	click on an activity.
-</h4> <br>
+
 {% endif %}
 <h5> Need Inspiration? </h5>
 
@@ -138,25 +134,37 @@ setInterval(function() {
 
 	<!-- All tutorial dialogs here -->
 	<div class="overlay" ng-if="clicks > 0"></div>
-	<div class="popup" style="top: 15%;	left: 23%;" ng-if="clicks === 1">
+	<div class="popup" style="top: 7%;	left: 23%;" ng-if="clicks === 1">
 		<div class="arrow">
 			<i class="fa fa-play"></i>
 		</div>
-		My name is not Huahua.
+		<p> Click on the add button to add an activity! </p>
 		<br>
-		<a ng-click="skip()">Skip</a>
-		<a ng-click="triggerStepCount()">Next</a>
+		<a class="popup-button skip-button" ng-click="skip()">Skip</a>
+		<a class="popup-button" ng-click="triggerStepCount()">Next</a>
 	</div>
 
-	<div class="popup" style="top: 15%;	left: 75%;" ng-if="clicks === 2">
+	<div class="popup" style="top: 13%;	left: 67%;" ng-if="clicks === 2">
 		<div class="arrow">
 			<i class="fa fa-play"></i>
 		</div>
-		I like to sing stuff about.....
+		<p>Click on the activity to add entries! </p>
 		<br>
-		<a ng-click="skip()"> Skip </a>
-		<a ng-click="triggerBackCount()">Back</a>
-		<a ng-click="triggerStepCount()">Next</a>
+		<a class="popup-button skip-button" ng-click="skip()"> Skip </a>
+		<a class="popup-button" ng-click="triggerBackCount()">Back</a>
+		<a class="popup-button" ng-click="triggerStepCount()">Next</a>
 	</div>
+
+	<div class="popup" style="top: 45%; left: -3%;" ng-if="clicks === 3">
+		<div class="arrow">
+			<i class="fa fa-play"></i>
+		</div>
+		<p> Check your notifications from advisors here! </p>
+		<br>
+		<a class="popup-button skip-button" ng-click="skip()"> Skip </a>
+		<a class="popup-button" ng-click="triggerBackCount()">Back</a>
+		<a class="popup-button" ng-click="triggerStepCount()">Next</a>
+	</div>
+
 
 {% endblock %}
