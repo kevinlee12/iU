@@ -75,7 +75,9 @@
 }
 
 .dropdown-menu {
-	position: relative;
+	position: absolute;
+	margin-top: 20%;
+	left: 0%;
 	overflow: hidden;
 	font-size: 13px;
 	width: 200%;
@@ -84,6 +86,17 @@
 
 .dropdown-toggle {
 	position: relative;
+	float: left;
+	border: none; 
+	color: rgb(128, 128, 128);
+	display: inline-block;
+}
+
+.tutorial-button {
+	float: left;
+	border: none; 
+	color: rgb(128, 128, 128);
+	display: inline-block;
 }
 
 .dropdown-menu>li>a {
@@ -96,9 +109,23 @@ li a {
 	color: #05CCCE;
 }
 
+a {
+	color: rgb(128, 128, 128);
+}
+
+a:hover {
+	color: #05CCCE;
+	text-decoration: none;
+}
+
 .notifications {
 	margin-bottom: -14.5px;
 	margin-top: 5px;
+	height: 100%;
+}
+
+.notification-icon {
+	position: relative;
 }
 
 li a:hover {
@@ -111,6 +138,11 @@ li:hover {
 
 .btn-default .badge {
 	background-color: #05CCCE;
+}
+
+.sidebar-buttons {
+	position: relative;
+	left: 15%;
 }
 
 .popup {
@@ -127,7 +159,7 @@ li:hover {
 }
 
 p {
-	margin-top: 25%;
+	margin-top: 20%;
 	padding: 10px;
 	color: rgb(128, 128, 128);
 }
@@ -162,6 +194,14 @@ p {
 	color: white;
 }
 
+.arrow-up {
+	position: relative;
+	top: -7.5%;
+	right: 18%;
+	z-index: 9;
+	color: white;
+}
+
 .overlay {
   background-color: #000000;
   background-color: rgba(0, 0, 0, 0.2);
@@ -171,4 +211,14 @@ p {
   left: 0;
   bottom: 0;
   right: 0;
+}
+
+.right-button {
+	position: absolute;
+	left: 56%;
+}
+
+.left-button {
+	position: absolute;
+	left: 35%;
 }

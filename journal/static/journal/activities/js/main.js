@@ -36,9 +36,9 @@ app.controller('activityTutorialCtrl',
         $('.activity-box').css('z-index', '3');
       } else if ($scope.clicks === 3) {
         $('.activity-box').css('z-index', '0');
-        $('.dropdown-toggle').css('z-index', '3');
+        $('.notification-icon').css('z-index', '3');
       } else if ($scope.clicks === 4) {
-        $('.dropdown-toggle').css('z-index', '0');
+        $('.notification-icon').css('z-index', '0');
         $('.overlay').remove();
         $scope.clicks = 0; 
       }

@@ -31,25 +31,33 @@ setInterval(function() {
 {% block 'nav-content' %}
 <h3> {% if user and not user.is_anonymous %}
 	Welcome <br> <a href="/profile">{{ user.get_full_name|default:user.username }}</a>! <br>
-	<a href="{% url 'auth:logout' %}?next={{ request.path }}"> <h5>Logout</h5> </a>
 	{% else %}
 	<a href="#">Login with Google</a>
 	{% endif %}
-</h3>
+</h3> <br>
 {% if is_student %}
 
 {% endif %}
-<h5> Need Inspiration? </h5>
+<h5> Need Inspiration? </h5> <br>
 
 {% if is_student %}
+<div class="sidebar-buttons">
 	<div class="dropdown">
-  		<button class="btn btn-default dropdown-toggle" type="button"
+  	<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    	<i class="fa fa-user fa-lg"></i>
+  	</button>
+  	<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    	<li><a href="{% url 'auth:logout' %}?next={{ request.path }}">Logout</a></li>
+  	</ul>
+	</div>
+
+	<div class="dropdown">
+  		<button class="btn btn-default dropdown-toggle notification-icon" type="button"
 			id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
 			aria-expanded="true" onclick="bounce()">
-    	Notifications
+    		<i class="fa fa-bolt fa-lg"></i>
     		<span class="badge">{% include 'journal/unread_count.html' %}</span>
   		</button>
-
 
   		<ul class="dropdown-menu">
   		<div class="notifications">
@@ -59,8 +67,11 @@ setInterval(function() {
 	</div>
 
 	<div>
-		<button class="btn btn-default tutorial" ng-click="triggerStepCount()" type="button">Tutorial</button>
+		<button class="btn btn-default tutorial-button" ng-click="triggerStepCount()" type="button">
+			<i class="fa fa-question-circle fa-lg"></i>
+		</button>
 	</div>
+</div>
 {% else %}
 <div class="coordinator-link">
 	<a href="/{{ back_link }}"><i class="fa fa-long-arrow-left fa-6x"></i> Back to the students page. </a>
@@ -138,32 +149,39 @@ setInterval(function() {
 		<div class="arrow">
 			<i class="fa fa-play"></i>
 		</div>
-		<p> Click on the add button to add an activity! </p>
-		<br>
+		<p> Click on this add button to record the activities that you have completed! </p>
 		<a class="popup-button skip-button" ng-click="skip()">Skip</a>
-		<a class="popup-button" ng-click="triggerStepCount()">Next</a>
+		<a class="popup-button" ng-click="triggerStepCount()">
+			<i class="fa fa-angle-right right-button fa-2x" style="left:48%"></i>
+		</a>
 	</div>
 
 	<div class="popup" style="top: 13%;	left: 67%;" ng-if="clicks === 2">
 		<div class="arrow">
 			<i class="fa fa-play"></i>
 		</div>
-		<p>Click on the activity to add entries! </p>
-		<br>
+		<p>Click on the activity block to add entries for your journal! </p>
 		<a class="popup-button skip-button" ng-click="skip()"> Skip </a>
-		<a class="popup-button" ng-click="triggerBackCount()">Back</a>
-		<a class="popup-button" ng-click="triggerStepCount()">Next</a>
+		<a class="popup-button" ng-click="triggerBackCount()">
+			<i class="fa fa-angle-left left-button fa-2x"></i>
+		</a>
+		<a class="popup-button" ng-click="triggerStepCount()">
+			<i class="fa fa-angle-right right-button fa-2x"></i>
+		</a>
 	</div>
 
-	<div class="popup" style="top: 45%; left: -3%;" ng-if="clicks === 3">
-		<div class="arrow">
-			<i class="fa fa-play"></i>
+	<div class="popup" style="top: 50%; left: -20%;" ng-if="clicks === 3">
+		<div class="arrow-up">
+			<i class="fa fa-play fa-rotate-270"></i>
 		</div>
-		<p> Check your notifications from advisors here! </p>
-		<br>
+		<p style="margin-top: 10%"> Don't forget to check notifications from your advisors right here! </p>
 		<a class="popup-button skip-button" ng-click="skip()"> Skip </a>
-		<a class="popup-button" ng-click="triggerBackCount()">Back</a>
-		<a class="popup-button" ng-click="triggerStepCount()">Next</a>
+		<a class="popup-button" ng-click="triggerBackCount()">
+			<i class="fa fa-angle-left left-button fa-2x"></i>
+		</a>
+		<a class="popup-button" ng-click="triggerStepCount()">
+			<i class="fa fa-angle-right right-button fa-2x"></i>
+		</a>
 	</div>
 
 
