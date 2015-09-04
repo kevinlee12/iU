@@ -34,6 +34,13 @@ app.controller('activityTutorialCtrl',
       } else if ($scope.clicks === 2) {
         $('.add-journal-sign').css('z-index', '0');
         $('.activity-box').css('z-index', '3');
+      } else if ($scope.clicks === 3) {
+        $('.activity-box').css('z-index', '0');
+        $('.notification-icon').css('z-index', '3');
+      } else if ($scope.clicks === 4) {
+        $('.notification-icon').css('z-index', '0');
+        $('.overlay').remove();
+        $scope.clicks = 0; 
       }
     };
 

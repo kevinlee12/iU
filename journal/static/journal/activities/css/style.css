@@ -75,10 +75,28 @@
 }
 
 .dropdown-menu {
+	position: absolute;
+	margin-top: 20%;
+	left: 0%;
 	overflow: hidden;
 	font-size: 13px;
 	width: 200%;
 	box-shadow: none;
+}
+
+.dropdown-toggle {
+	position: relative;
+	float: left;
+	border: none; 
+	color: rgb(128, 128, 128);
+	display: inline-block;
+}
+
+.tutorial-button {
+	float: left;
+	border: none; 
+	color: rgb(128, 128, 128);
+	display: inline-block;
 }
 
 .dropdown-menu>li>a {
@@ -91,9 +109,23 @@ li a {
 	color: #05CCCE;
 }
 
+a {
+	color: rgb(128, 128, 128);
+}
+
+a:hover {
+	color: #05CCCE;
+	text-decoration: none;
+}
+
 .notifications {
 	margin-bottom: -14.5px;
 	margin-top: 5px;
+	height: 100%;
+}
+
+.notification-icon {
+	position: relative;
 }
 
 li a:hover {
@@ -108,36 +140,66 @@ li:hover {
 	background-color: #05CCCE;
 }
 
-.border {
-	bottom-border: 1px solid #4A4A4A;
-	border-bottom: 1px solid rgba(74, 74, 74, 0.12);
-	margin-top: 5px;
-	margin-bottom: 5px;
+.sidebar-buttons {
+	position: relative;
+	left: 15%;
 }
 
 .popup {
 	position: absolute;
-	z-index: 10000;
+	z-index: 8;
 	background-color: white;
 	display: block;
 	font-size: 18px;
 	width: 250px;
-	height: 300px;
-	border: 2px solid gray;
+	height: 250px;
+	border: 2px solid rgba(0, 0, 0, 0.1);
 	margin: 2px;
 	text-align: center;
+}
+
+p {
+	margin-top: 20%;
+	padding: 10px;
+	color: rgb(128, 128, 128);
+}
+
+.popup-button {
+	color: rgba(0, 0, 0, 0.5);
+	font-weight: 800;
+}
+
+.popup-button:hover {
+	color: #05CCCE;
+	text-decoration: none;
+}
+
+.skip-button {
+	position: absolute;
+	top: 220px;
+	right: 210px;
+	font-size: 13px;
+	color: rgba(0, 0, 0, 0.3);
 }
 
 .arrow {
 	position: absolute;
 	z-index: 9;
-  right: 101%;
-	top: 50%;
+  right: 99.5%;
+	top: 30%;
 	-moz-transform: scaleX(-1);
   -o-transform: scaleX(-1);
   -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
-	color: gray;
+	color: white;
+}
+
+.arrow-up {
+	position: relative;
+	top: -7.5%;
+	right: 18%;
+	z-index: 9;
+	color: white;
 }
 
 .overlay {
@@ -149,4 +211,14 @@ li:hover {
   left: 0;
   bottom: 0;
   right: 0;
+}
+
+.right-button {
+	position: absolute;
+	left: 56%;
+}
+
+.left-button {
+	position: absolute;
+	left: 35%;
 }
