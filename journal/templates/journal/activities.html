@@ -34,29 +34,33 @@ ng-controller="activityTutorialCtrl"
 {% block 'nav-content' %}
 <h3> {% if user and not user.is_anonymous %}
 	Welcome <br> <a href="/profile">{{ user.get_full_name|default:user.username }}</a>! <br>
-	<a href="{% url 'auth:logout' %}?next={{ request.path }}"> <h5>Logout</h5> </a>
 	{% else %}
 	<a href="#">Login with Google</a>
 	{% endif %}
-</h3>
+</h3> <br>
 {% if is_student %}
-<h4> Click on the add button <br>
-	to create a new journal. <br>
-	To edit a journal,<br>
-	click on an activity.
-</h4> <br>
+
 {% endif %}
-<h5> Need Inspiration? </h5>
+<h5> Need Inspiration? </h5> <br>
 
 {% if is_student %}
+<div class="sidebar-buttons">
 	<div class="dropdown">
-  		<button class="btn btn-default dropdown-toggle" type="button"
+  	<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    	<i class="fa fa-user fa-lg"></i>
+  	</button>
+  	<ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+    	<li><a href="{% url 'auth:logout' %}?next={{ request.path }}">Logout</a></li>
+  	</ul>
+	</div>
+
+	<div class="dropdown">
+  		<button class="btn btn-default dropdown-toggle notification-icon" type="button"
 			id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
-			aria-expanded="true" ng-click="bounce()">
-    	Notifications
+			aria-expanded="true" onclick="bounce()">
+    		<i class="fa fa-bolt fa-lg"></i>
     		<span class="badge">{% include 'journal/unread_count.html' %}</span>
   		</button>
-
 
   		<ul class="dropdown-menu">
   		<div class="notifications">
@@ -66,8 +70,11 @@ ng-controller="activityTutorialCtrl"
 	</div>
 
 	<div>
-		<button class="btn btn-default tutorial" ng-click="triggerStepCount()" type="button">Tutorial</button>
+		<button class="btn btn-default tutorial-button" ng-click="triggerStepCount()" type="button">
+			<i class="fa fa-question-circle fa-lg"></i>
+		</button>
 	</div>
+</div>
 {% else %}
 <div class="coordinator-link">
 	<a href="/{{ back_link }}"><i class="fa fa-long-arrow-left fa-6x"></i> Back to the students page. </a>
@@ -95,13 +102,7 @@ ng-controller="activityTutorialCtrl"
 			</div>
 			{% endif %}
 
-			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" ng-repeat="activity in activities track by $index">
-				<div class="activity-box">
-					<div class="activity-name" ng-bind="activity"></div>
-				</div>
-			</div>
-
-			<!-- {% if activities %}
+			{% if activities %}
 				{% for activity in activities %}
 				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
 					<a href="/entries/{{ activity.pk }}">
@@ -116,29 +117,75 @@ ng-controller="activityTutorialCtrl"
 					</a>
 				</div>
 				{% endfor %}
-		{% endif %} -->
+			{% else %}
+				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
+					{% if is_student %}
+					<a href="/activity_details/">
+						<div class="activity-box">
+							<div class="activity-name">
+								No Activities yet,
+							</div>
+							<div class="activity-description">
+								would you like to <b>add</b> one?
+							</div>
+					{% else %}
+					<a href="#">
+						<div class="activity-box">
+							<div class="activity-name">
+								No Activities
+							</div>
+							<div class="activity-description" style="font-size: 1.3vw">
+								The student does not have any activities yet. Would you like to tell the student to add one?
+							</div>
+					{% endif %}
+						</div>
+					</a>
+				</div>
+			{% endif %}
+		</div>
+	</div>
+</div>
 
 	<!-- All tutorial dialogs here -->
 	<div class="overlay" ng-if="clicks > 0"></div>
-	<div class="popup" style="top: 15%;	left: 23%;" ng-if="clicks === 1">
+	<div class="popup" style="top: 7%;	left: 23%;" ng-if="clicks === 1">
 		<div class="arrow">
 			<i class="fa fa-play"></i>
 		</div>
-		I am the Stig
-		<br>
-		<a ng-click="skip()">Skip</a>
-		<a ng-click="triggerStepCount()">Next</a>
+		<p> Click on this add button to record the activities that you have completed! </p>
+		<a class="popup-button skip-button" ng-click="skip()">Skip</a>
+		<a class="popup-button" ng-click="triggerStepCount()">
+			<i class="fa fa-angle-right right-button fa-2x" style="left:48%"></i>
+		</a>
 	</div>
 
-	<div class="popup" style="top: 15%;	left: 75%;" ng-if="clicks === 2">
+	<div class="popup" style="top: 13%;	left: 67%;" ng-if="clicks === 2">
 		<div class="arrow">
 			<i class="fa fa-play"></i>
 		</div>
-		Some say that I am made of horses.
-		<br>
-		<a ng-click="skip()"> Skip </a>
-		<a ng-click="triggerBackCount()">Back</a>
-		<a ng-click="triggerStepCount()">Next</a>
+		<p>Click on the activity block to add entries for your journal! </p>
+		<a class="popup-button skip-button" ng-click="skip()"> Skip </a>
+		<a class="popup-button" ng-click="triggerBackCount()">
+			<i class="fa fa-angle-left left-button fa-2x"></i>
+		</a>
+		<a class="popup-button" ng-click="triggerStepCount()">
+			<i class="fa fa-angle-right right-button fa-2x"></i>
+		</a>
 	</div>
-</div>
+
+	<div class="popup" style="top: 50%; left: -20%;" ng-if="clicks === 3">
+		<div class="arrow-up">
+			<i class="fa fa-play fa-rotate-270"></i>
+		</div>
+		<p style="margin-top: 10%"> Don't forget to check notifications from your advisors right here! </p>
+		<a class="popup-button skip-button" ng-click="skip()"> Skip </a>
+		<a class="popup-button" ng-click="triggerBackCount()">
+			<i class="fa fa-angle-left left-button fa-2x"></i>
+		</a>
+		<a class="popup-button" ng-click="triggerStepCount()">
+			<i class="fa fa-angle-right right-button fa-2x"></i>
+		</a>
+	</div>
+
+
 {% endblock %}
