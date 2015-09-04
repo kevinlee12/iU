@@ -11,7 +11,6 @@
 
 {% block 'page-js' %}
 <script src="{% static 'journal/activities/js/main.js' %}"></script>
-
 {% if is_student %}
 <script>
 setInterval(function() {
@@ -26,6 +25,10 @@ setInterval(function() {
 }, 3550);
 </script>
 {% endif %}
+{% endblock %}
+
+{% block 'controller' %}
+ng-controller="activityTutorialCtrl"
 {% endblock %}
 
 {% block 'nav-content' %}
@@ -49,7 +52,7 @@ setInterval(function() {
 	<div class="dropdown">
   		<button class="btn btn-default dropdown-toggle" type="button"
 			id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
-			aria-expanded="true" onclick="bounce()">
+			aria-expanded="true" ng-click="bounce()">
     	Notifications
     		<span class="badge">{% include 'journal/unread_count.html' %}</span>
   		</button>
@@ -92,7 +95,13 @@ setInterval(function() {
 			</div>
 			{% endif %}
 
-			{% if activities %}
+			<div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" ng-repeat="activity in activities track by $index">
+				<div class="activity-box">
+					<div class="activity-name" ng-bind="activity"></div>
+				</div>
+			</div>
+
+			<!-- {% if activities %}
 				{% for activity in activities %}
 				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
 					<a href="/entries/{{ activity.pk }}">
@@ -107,34 +116,7 @@ setInterval(function() {
 					</a>
 				</div>
 				{% endfor %}
-			{% else %}
-				<div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
-					{% if is_student %}
-					<a href="/activity_details/">
-						<div class="activity-box">
-							<div class="activity-name">
-								No Activities yet,
-							</div>
-							<div class="activity-description">
-								would you like to <b>add</b> one?
-							</div>
-					{% else %}
-					<a href="#">
-						<div class="activity-box">
-							<div class="activity-name">
-								No Activities
-							</div>
-							<div class="activity-description" style="font-size: 1.3vw">
-								The student does not have any activities yet. Would you like to tell the student to add one?
-							</div>
-					{% endif %}
-						</div>
-					</a>
-				</div>
-			{% endif %}
-		</div>
-	</div>
-</div>
+		{% endif %} -->
 
 	<!-- All tutorial dialogs here -->
 	<div class="overlay" ng-if="clicks > 0"></div>
@@ -142,7 +124,7 @@ setInterval(function() {
 		<div class="arrow">
 			<i class="fa fa-play"></i>
 		</div>
-		My name is not Huahua.
+		I am the Stig
 		<br>
 		<a ng-click="skip()">Skip</a>
 		<a ng-click="triggerStepCount()">Next</a>
@@ -152,11 +134,11 @@ setInterval(function() {
 		<div class="arrow">
 			<i class="fa fa-play"></i>
 		</div>
-		I like to sing stuff about.....
+		Some say that I am made of horses.
 		<br>
 		<a ng-click="skip()"> Skip </a>
 		<a ng-click="triggerBackCount()">Back</a>
 		<a ng-click="triggerStepCount()">Next</a>
 	</div>
-
+</div>
 {% endblock %}

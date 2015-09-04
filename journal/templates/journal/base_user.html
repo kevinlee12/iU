@@ -18,8 +18,8 @@
 {% endblock %}
 
 {% block 'content' %}
-<body ng-app="mainApp" ng-controller="activityTutorialCtrl">
-	<div class="container-fluid">
+<body>
+	<div class="container-fluid" {% block 'controller' %}{% endblock %}>
 		<div id="effect" class="ui-widget-content ui-corner-all">
 			<nav class="sidebar sidebar-collapsed" >
 				<div class="brand">

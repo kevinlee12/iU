@@ -16,18 +16,18 @@ var app = angular.module('mainApp', []);
 
 app.controller('activityTutorialCtrl',
   ['$scope', function($scope) {
-    function bounce() {
+
+    $scope.bounce = function() {
       $.get('/bounce');
       $.get('/ping', function(data) {
         $('.badge').html(data);
       });
-    }
+    };
 
     $scope.clicks = 0;
-    console.log('I <3 Huahua'); // Remove me when I am done.
 
     $scope.triggerStepCount = function() {
-      console.log('I <3 Huahua'); // Remove me when I am done.
+      console.log('I am the Stig'); // Remove me when I am done.
       $scope.clicks++;
       if ($scope.clicks === 1) {
         $('.add-journal-sign').css('z-index', '3');
@@ -44,6 +44,5 @@ app.controller('activityTutorialCtrl',
     $scope.skip = function() {
       $scope.clicks = 0;
     };
-
   }
 ]);
