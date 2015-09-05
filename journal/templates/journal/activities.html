@@ -83,6 +83,42 @@ ng-controller="activityTutorialCtrl"
 
 {% endblock %}
 
+{% block 'mini-sidebar-content' %}
+<div class="mini-sidebar-icons">
+
+	<div class="dropdown">
+  	<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    	<span class="user-symbol fa fa-user fa-lg"></span>
+  	</button>
+  	<ul class="dropdown-menu mini-user-dropdown" aria-labelledby="dropdownMenu2 dropdownMenuDivider">
+    	<li><a href="{% url 'auth:logout' %}?next={{ request.path }}">Logout</a></li>
+  	</ul>
+	</div>
+
+	<div class="dropdown">
+  		<button class="btn btn-default dropdown-toggle notification-symbol" type="button"
+			id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true"
+			aria-expanded="true" onclick="bounce()">
+    		<i class="notification-side fa fa-bolt fa-lg"></i>
+    		<!-- <span class="badge">{% include 'journal/unread_count.html' %}</span> -->
+  		</button>
+
+  		<ul class="dropdown-menu mini-notification">
+  			<div class="notifications">
+  				{% include 'journal/feed.html'%}
+  			</div>
+  		</ul>
+	</div>
+
+	<div>
+		<button class="btn btn-default mini-tutorial-button" ng-click="triggerStepCount()" type="button">
+			<i class="fa fa-question-circle fa-lg"></i>
+		</button>
+	</div>
+
+</div>
+{% endblock %}
+
 {% block 'main-content'%}
 <div class="content">
 	<div class="activities-list">
