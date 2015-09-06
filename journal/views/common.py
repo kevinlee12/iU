@@ -73,6 +73,9 @@ def get_user_type(request):
     return User.objects.get(email=request.user.email)\
         .user_permissions.all()[0].codename
 
+def gateway(request):
+    return
+
 
 def login_redirects(request):
     """Function that redirects users appropriately after login"""

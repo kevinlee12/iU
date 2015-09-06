@@ -111,6 +111,10 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'iu.urls'
 
+DIRS = [
+
+]
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',

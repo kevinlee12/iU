@@ -15,6 +15,7 @@
 # limitations under the License.
 
 from django.conf.urls import url
+from django.conf import settings
 
 from . import views
 
@@ -48,3 +49,6 @@ urlpatterns = [
     url(r'^ping/', views.unread_notifications_count, name='ping'),
     url(r'^feed/', views.feed, name='feed'),
 ]
+
+if settings.DEBUG:
+    urlpatterns.append(url(r'^gateway/', views.gateway, name='gateway'))
