@@ -17,21 +17,21 @@
 // $(document).ready(function() {
 jQuery(window).on('load', function() {
 
-	$('.grid').masonry({
-  	itemSelector: '.grid-item',
-  	columnWidth: 29
-	});
+  $('.grid').masonry({
+  itemSelector: '.grid-item',
+  columnWidth: 29
+  });
 
-	$('.grid').find('.grid-item').find('.overlay').hide();
+  $('.grid').find('.grid-item').find('.overlay').hide();
 
-	$('.entry-list').hover(
-		function() {
-    	$(this).find('.overlay').fadeIn();
-		},
-		function() {
-    	$(this).find('.overlay').fadeOut();
-		}
-	);
-	
+  $('.entry-list').hover(
+    function() {
+    $(this).find('.overlay').fadeIn();
+    },
+    function() {
+    $(this).find('.overlay').fadeOut();
+    }
+  );
+  
 });
 

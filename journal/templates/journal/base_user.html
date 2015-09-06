@@ -19,7 +19,7 @@
 
 {% block 'content' %}
 <body>
-	<div class="container-fluid">
+	<div class="container-fluid" {% block 'controller' %}{% endblock %}>
 		<div id="effect" class="ui-widget-content ui-corner-all">
 			<nav class="sidebar sidebar-collapsed" >
 				<div class="brand">
