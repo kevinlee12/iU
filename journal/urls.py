@@ -20,8 +20,9 @@ from django.conf import settings
 from . import views
 
 urlpatterns = [
-    url(r'^$', views.home, name='home'),
-    url(r'^login_redirects/', views.login_redirects, name='login_redirects'),
+    url(r'^$', views.HomeView.as_view(), name='home'),
+    url(r'^login_redirects/$', views.login_redirects, name='login_redirects'),
+    url(r'^login_redirects/(?P<user_type>\w+)', views.login_redirects, name='login_redirects'),
     url(r'^accounts/login/', views.login_redirects, name='login_redirects'),
     url(r'^activities/$', views.activities, name='activities'),
     url(r'^activities/(?P<student_pk>[0-9]+)', views.activities, name='activities'),
@@ -51,4 +52,4 @@ urlpatterns = [
 ]
 
 if settings.DEBUG:
-    urlpatterns.append(url(r'^gateway/', views.gateway, name='gateway'))
+    urlpatterns.append(url(r'^gateway/', views.GatewayView.as_view(), name='gateway'))

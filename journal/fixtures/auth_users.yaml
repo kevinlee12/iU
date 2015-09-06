@@ -6,9 +6,9 @@
     is_active: true
     is_staff: false
     is_superuser: false
-    last_login: null
+    last_login: 2015-09-06 15:15:02.297225
     last_name: ''
-    password: '!gnRu86RnqeegEsjwD5OgQmobhRdX1RB99bXkQmwd'
+    password: pbkdf2_sha256$20000$O8op7ZqeuqNk$8tJloExVaFWiqd0kRNw2qzRN04uJM8CdKJUaaCzNv3M=
     user_permissions: [76]
     username: Student
   model: auth.user
@@ -23,7 +23,7 @@
     is_superuser: false
     last_login: null
     last_name: ''
-    password: '!NvxFXg3ViKqtPsO3q9ODbTWhC8A5bN52SCfplE6G'
+    password: pbkdf2_sha256$20000$4RK17CsjS6zH$f1pfJ2z7KLx8jHud1cjVV4EQQOrf7reQg6oD343F1rE=
     user_permissions: [77]
     username: Coordinator
   model: auth.user
@@ -38,7 +38,7 @@
     is_superuser: false
     last_login: null
     last_name: ''
-    password: '!XvJ1gj9Qm6nctiF628LUNNPPpCkYG1Ll08KRaDkJ'
+    password: pbkdf2_sha256$20000$W50mqLzbnX6U$2R7YAlN/1qn3ohfWwsr0tYLbh9+JJ9vf1xmOYtWiGAU=
     user_permissions: [78]
     username: Advisor
   model: auth.user

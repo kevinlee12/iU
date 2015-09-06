@@ -35,23 +35,30 @@ class ActivitySeleleniumTests(StaticLiveServerTestCase):
         super().__init__(*args, **kwargs)
         if not settings.DEBUG:
             settings.DEBUG = True
+        if not settings.TESTING:
+            settings.TESTING = True
 
     def setUp(self):
         """Handles login and things"""
         call_command('flush', interactive=False, verbosity=0)  # Clears db
-        call_command('loaddata', 'test_init', commit=False, verbosity=0)
+        call_command('loaddata', 'groups', commit=False, verbosity=0)
+        call_command('loaddata', 'school', commit=False, verbosity=0)
+        call_command('loaddata', 'permissions', commit=False, verbosity=0)
+        call_command('loaddata', 'auth_users', commit=False, verbosity=0)
+        call_command('loaddata', 'student', commit=False, verbosity=0)
+        call_command('loaddata', 'advisor', commit=False, verbosity=0)
+        call_command('loaddata', 'coordinator', commit=False, verbosity=0)
+        call_command('loaddata', 'activityoptions', commit=False, verbosity=0)
+        call_command('loaddata', 'learningobjectiveoptions', commit=False, verbosity=0)
+        call_command('loaddata', 'sample_entries', commit=False, verbosity=0)
         self.selenium = WebDriver()
         self.selenium.set_window_size(1024, 800)
         self.selenium.get('{0}/{1}'.format(self.live_server_url, ''))
         self.selenium.find_element_by_xpath('//*[@id="djHideToolBarButton"]').click()
         self.selenium.implicitly_wait(10)
-        self.selenium.find_element_by_link_text('Login with Google').click()
-        self.selenium.find_element_by_xpath('//*[@id="Email"]').send_keys('comet.tester', Keys.ENTER)
-        self.selenium.implicitly_wait(10)
-        self.selenium.find_element_by_xpath('//*[@id="Passwd"]').send_keys("halley's comet", Keys.ENTER)
-        wait = WebDriverWait(self.selenium, 30)
-        wait.until(EC.element_to_be_clickable((By.ID,'submit_approve_access')))
-        self.selenium.find_element_by_xpath('//*[@id="submit_approve_access"]').click()
+        self.selenium.find_element_by_link_text('Login').click()
+        # Click on the student button in the gateway
+        self.selenium.find_element_by_xpath('/html/body/center/md-content/div/div/div[1]/a').click()
         self.selenium\
             .find_element_by_xpath("//img[@src='/static/journal/activities/img"
                                    "/journal_sign.png']")

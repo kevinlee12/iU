@@ -12,7 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-var app = angular.module('mainApp', []);
 
 app.controller('activityTutorialCtrl',
   ['$scope', function($scope) {
@@ -40,7 +39,7 @@ app.controller('activityTutorialCtrl',
       } else if ($scope.clicks === 4) {
         $('.notification-icon').css('z-index', '0');
         $('.overlay').remove();
-        $scope.clicks = 0; 
+        $scope.clicks = 0;
       }
     };
 

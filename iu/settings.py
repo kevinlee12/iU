@@ -40,8 +40,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ['SECRET_KEY']
 
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+TESTING = False
 
 # Secure
 # CSRF_COOKIE_SECURE = True
@@ -110,10 +112,6 @@ MIDDLEWARE_CLASSES = (
 )
 
 ROOT_URLCONF = 'iu.urls'
-
-DIRS = [
-
-]
 
 TEMPLATES = [
     {

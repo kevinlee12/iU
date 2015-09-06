@@ -41,11 +41,13 @@
        	<ul class="nav navbar-nav navbar-right">
 	   			<li>
 					  {% if user and not user.is_anonymous %}
-    			  Hello {{ user.get_full_name|default:user.username }}!
-    			  <a href="{% url 'auth:logout' %}?next={{ request.path }}">Logout</a>
+    			  	Hello {{ user.get_full_name|default:user.username }}!
+    			  	<a href="{% url 'auth:logout' %}?next={{ request.path }}">Logout</a>
+						{% elif gateway %}
+							<a href="/gateway"> Login </a>
     			  {% else %}
-      		  <a href="{% url 'social:begin' 'google-oauth2' %}">
-      		 	Login with Google</a>
+      		  	<a href="{% url 'social:begin' 'google-oauth2' %}">
+      		 		Login with Google</a>
      				{% endif %}
 	       	</li>
        	</ul>
@@ -84,21 +86,21 @@
         <h4> Got Questions? We are here to help. </h4>
           <form action="" method="post">
             <div class="sender_name">
-              <div class="form-group">   
+              <div class="form-group">
                 <label for="id_sender"> Name:</label>
                 <input class="form-control" type="email" name="{{form.sender.name}}" value="{% if form.sender.value %} {{form.sender.value}} {% endif %}" />
               </div>
             </div>
 
             <div class="subject">
-              <div class="form-group">  
+              <div class="form-group">
                 <label for="id_subject">Subject:</label>
                 <input class="form-control" type="text" name="{{form.subject.name}}" value="{% if form.subject.value %} {{form.subject.value}} {% endif %}" maxlength="100" />
               </div>
             </div>
 
             <div class="message">
-              <div class="form-group"> 
+              <div class="form-group">
                 <label for="id_message">Message:</label>
                 <textarea class="form-control" rows="5"type="text" name="{{form.message.name}}" value="{{form.message.value}}" >
                 </textarea>
@@ -106,13 +108,13 @@
             </div>
 
             <div class="cc">
-              <div class="checkbox"> 
-                <label for="id_cc_myself"> 
+              <div class="checkbox">
+                <label for="id_cc_myself">
                   <input type="checkbox" name="{{form.cc_myself.name}}" value="{{form.cc_myself.value}}" /> Send a copy to myself
                 </label>
               </div>
             </div>
-                
+
             <button type="submit" class="btn btn-default"> Send </button>
           </form>
       </section>
