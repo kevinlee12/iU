@@ -12,9 +12,44 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-function bounce() {
-  $.get('/bounce');
-  $.get('/ping', function(data) {
-    $('.badge').html(data);
-  });
-}
+var app = angular.module('mainApp', []);
+
+app.controller('activityTutorialCtrl',
+  ['$scope', function($scope) {
+
+    $scope.bounce = function() {
+      $.get('/bounce');
+      $.get('/ping', function(data) {
+        $('.badge').html(data);
+      });
+    };
+
+    $scope.clicks = 0;
+
+    $scope.triggerStepCount = function() {
+      console.log('I am the Stig'); // Remove me when I am done.
+      $scope.clicks++;
+      if ($scope.clicks === 1) {
+        $('.add-journal-sign').css('z-index', '3');
+      } else if ($scope.clicks === 2) {
+        $('.add-journal-sign').css('z-index', '0');
+        $('.activity-box').css('z-index', '3');
+      } else if ($scope.clicks === 3) {
+        $('.activity-box').css('z-index', '0');
+        $('.notification-icon').css('z-index', '3');
+      } else if ($scope.clicks === 4) {
+        $('.notification-icon').css('z-index', '0');
+        $('.overlay').remove();
+        $scope.clicks = 0; 
+      }
+    };
+
+    $scope.triggerBackCount = function() {
+      $scope.clicks--;
+    };
+
+    $scope.skip = function() {
+      $scope.clicks = 0;
+    };
+  }
+]);
