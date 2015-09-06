@@ -27,10 +27,19 @@
 
 <div class="action-bar">
 	{% if is_student %}
-	<a href="/entry/{{ activity_pk }}/"> Add an entry</a> <br>
-	<a href="/activity_details/{{ activity_pk }}">Edit the activity</a> <br>
+	<a href="/entry/{{ activity_pk }}/"> 
+		<i class="fa fa-plus-circle"></i>
+		Add an entry
+	</a> <br>
+	<a href="/activity_details/{{ activity_pk }}">
+		<i class="fa fa-pencil-square-o"></i>
+		Edit the activity
+	</a> <br>
 	<!-- TODO: Confirmation dialog -->
-	<a href="/delete_activity/{{ activity_pk }}"> Delete the activity </a>
+	<a href="/delete_activity/{{ activity_pk }}"> 
+		<i class="fa fa-trash-o"></i>
+		Delete the activity 
+	</a>
 	{% else %}
 	<a href="/activity_details/{{ activity_pk }}"> View activity details </a>
 
@@ -58,15 +67,20 @@
 	<a href="/activities/{{ activity_pk }}"><i class="left-symbol fa fa-arrow-left fa-lg"></i>  </a>
 	{% endif %}
 
+	<a href="/activity_details/{{ activity_pk }}">
+		<i class="edit-icon fa fa-pencil-square-o fa-lg"></i>
+	</a>
+
+	<a href="/delete_activity/{{ activity_pk }}"> 
+		<i class="delete-icon fa fa-trash-o fa-lg"></i>
+	</a>
 
 	<div class="dropdown">
   	<button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
     	<span class="user-symbol fa fa-user fa-lg"></span>
   	</button>
   	<ul class="dropdown-menu" aria-labelledby="dropdownMenu1 dropdownMenuDivider">
-    	<li><a href="#">Action</a></li>
-   		<li role="separator" class="divider"></li>
-   		<li><a href="#">Another action</a></li>
+    	<li><a href="{% url 'auth:logout' %}?next={{ request.path }}">Logout</a></li>
   	</ul>
 	</div>
 </div>
