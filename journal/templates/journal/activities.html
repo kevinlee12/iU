@@ -55,18 +55,18 @@ ng-controller="activityTutorialCtrl"
 	</div>
 
 	<div class="dropdown">
-  		<button class="btn btn-default dropdown-toggle notification-icon" type="button"
-			id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
-			aria-expanded="true" onclick="bounce()">
-    		<i class="fa fa-bolt fa-lg"></i>
+  	<button class="btn btn-default dropdown-toggle notification-icon" type="button"
+		id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true"
+		aria-expanded="true" onclick="bounce()">
+    	<i class="fa fa-bolt fa-lg"></i>
     		<span class="badge">{% include 'journal/unread_count.html' %}</span>
-  		</button>
+  	</button>
 
-  		<ul class="dropdown-menu">
-  		<div class="notifications">
+  	<ul class="dropdown-menu">
+ 			<div class="notifications">
   			{% include 'journal/feed.html'%}
   		</div>
-  		</ul>
+  	</ul>
 	</div>
 
 	<div>
@@ -96,18 +96,18 @@ ng-controller="activityTutorialCtrl"
 	</div>
 
 	<div class="dropdown">
-  		<button class="btn btn-default dropdown-toggle notification-symbol" type="button"
-			id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true"
-			aria-expanded="true" onclick="bounce()">
-    		<i class="notification-side fa fa-bolt fa-lg"></i>
+  	<button class="btn btn-default dropdown-toggle notification-symbol" type="button"
+		id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true"
+		aria-expanded="true" onclick="bounce()">
+    	<i class="notification-side fa fa-bolt fa-lg"></i>
     		<!-- <span class="badge">{% include 'journal/unread_count.html' %}</span> -->
-  		</button>
+  	</button>
 
-  		<ul class="dropdown-menu mini-notification">
-  			<div class="notifications">
-  				{% include 'journal/feed.html'%}
-  			</div>
-  		</ul>
+  	<ul class="dropdown-menu mini-notification">
+  		<div class="notifications">
+ 				{% include 'journal/feed.html'%}
+ 			</div>
+  	</ul>
 	</div>
 
 	<div>
@@ -219,9 +219,7 @@ ng-controller="activityTutorialCtrl"
 			<i class="fa fa-angle-left left-button fa-2x"></i>
 		</a>
 		<a class="popup-button" ng-click="triggerStepCount()">
-			<i class="fa fa-angle-right right-button fa-2x"></i>
+			<i class="fa fa-check done-button fa-lg"></i>
 		</a>
 	</div>
-
-
 {% endblock %}

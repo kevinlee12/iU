@@ -223,6 +223,12 @@ p {
 	left: 35%;
 }
 
+.done-button {
+	position: absolute;
+	top: 67%;
+	left: 52%;
+}
+
 .user-symbol {
 	position: fixed;
 	top: 160px;
