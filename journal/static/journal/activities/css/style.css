@@ -14,192 +14,192 @@
 */
 
 .activity-box {
-	position: relative;
-	height: 153px;
-	margin-bottom: 20px;
-	text-align: center;
-	border: 1px solid #4A4A4A;
-	border: 1px solid rgba(74, 74, 74, 0.2);
-	background-color: white;
+  position: relative;
+  height: 153px;
+  margin-bottom: 20px;
+  text-align: center;
+  border: 1px solid #4A4A4A;
+  border: 1px solid rgba(74, 74, 74, 0.2);
+  background-color: white;
 }
 
 .activities-list {
-	position: relative;
-	top: 15%;
+  position: relative;
+  top: 15%;
 }
 
 .activity-description {
-	position: relative;
-	top: 38%;
-	text-align: left;
-	padding-left: 5%;
-	max-width: 90%;
-	word-wrap: break-word;
-	color: rgb(128, 128, 128);
-	font-size: 16px;
-	font-size: 1.5vw;
-	overflow-x: hidden;
-	overflow-y: hidden;
+  position: relative;
+  top: 38%;
+  text-align: left;
+  padding-left: 5%;
+  max-width: 90%;
+  word-wrap: break-word;
+  color: rgb(128, 128, 128);
+  font-size: 16px;
+  font-size: 1.5vw;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .activity-name {
-	position: absolute;
-	top: 10%;
-	background-color: #30CCCB;
-	color: white;
-	font-size: 1.8vw;
-	padding-right: 20px;
-	padding-left: 10px;
-	max-width: 280px;
-	max-height: 34px;
-	overflow-x: hidden;
-	overflow-y: hidden;
+  position: absolute;
+  top: 10%;
+  background-color: #30CCCB;
+  color: white;
+  font-size: 1.8vw;
+  padding-right: 20px;
+  padding-left: 10px;
+  max-width: 280px;
+  max-height: 34px;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .add-journal-sign {
-	position: relative;
-	top: 50%;
-	height: 153px;
-	text-align: center;
+  position: relative;
+  top: 50%;
+  height: 153px;
+  text-align: center;
 }
 
 .modal-backdrop {
-	z-index: 1;
+  z-index: 1;
 }
 
 .pencil-sign {
-	position: relative;
-	left: 0;
+  position: relative;
+  left: 0;
   text-align: left;
   margin-bottom: 25px;
 }
 
 .dropdown-menu {
-	position: absolute;
-	margin-top: 20%;
-	left: 0%;
-	overflow: hidden;
-	font-size: 13px;
-	width: 200%;
-	box-shadow: none;
+  position: absolute;
+  margin-top: 20%;
+  left: 0%;
+  overflow: hidden;
+  font-size: 13px;
+  width: 200%;
+  box-shadow: none;
 }
 
 .dropdown-toggle {
-	position: relative;
-	float: left;
-	border: none; 
-	color: rgb(128, 128, 128);
-	display: inline-block;
+  position: relative;
+  float: left;
+  border: none; 
+  color: rgb(128, 128, 128);
+  display: inline-block;
 }
 
 .tutorial-button {
-	float: left;
-	border: none; 
-	color: rgb(128, 128, 128);
-	display: inline-block;
+  float: left;
+  border: none; 
+  color: rgb(128, 128, 128);
+  display: inline-block;
 }
 
 .dropdown-menu>li>a {
-	padding: 0;
-	display: inline-block;
+  padding: 0;
+  display: inline-block;
 }
 
 li a {
-	margin-left: 5px;
-	color: #05CCCE;
+  margin-left: 5px;
+  color: #05CCCE;
 }
 
 a {
-	color: rgb(128, 128, 128);
+  color: rgb(128, 128, 128);
 }
 
 a:hover {
-	color: #05CCCE;
-	text-decoration: none;
+  color: #05CCCE;
+  text-decoration: none;
 }
 
 .notifications {
-	margin-bottom: -14.5px;
-	margin-top: 5px;
-	height: 100%;
+  margin-bottom: -14.5px;
+  margin-top: 5px;
+  height: 100%;
 }
 
 .notification-icon {
-	position: relative;
+  position: relative;
 }
 
 li a:hover {
-	color:#05CCCE;
+  color:#05CCCE;
 }
 
 li:hover {
-	color:#05CCCE;
+  color:#05CCCE;
 }
 
 .btn-default .badge {
-	background-color: #05CCCE;
+  background-color: #05CCCE;
 }
 
 .sidebar-buttons {
-	position: relative;
-	left: 15%;
+  position: relative;
+  left: 15%;
 }
 
 .popup {
-	position: absolute;
-	z-index: 8;
-	background-color: white;
-	display: block;
-	font-size: 18px;
-	width: 250px;
-	height: 250px;
-	border: 2px solid rgba(0, 0, 0, 0.1);
-	margin: 2px;
-	text-align: center;
+  position: absolute;
+  z-index: 8;
+  background-color: white;
+  display: block;
+  font-size: 18px;
+  width: 250px;
+  height: 250px;
+  border: 2px solid rgba(0, 0, 0, 0.1);
+  margin: 2px;
+  text-align: center;
 }
 
 p {
-	margin-top: 20%;
-	padding: 10px;
-	color: rgb(128, 128, 128);
+  margin-top: 20%;
+  padding: 10px;
+  color: rgb(128, 128, 128);
 }
 
 .popup-button {
-	color: rgba(0, 0, 0, 0.5);
-	font-weight: 800;
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 800;
 }
 
 .popup-button:hover {
-	color: #05CCCE;
-	text-decoration: none;
+  color: #05CCCE;
+  text-decoration: none;
 }
 
 .skip-button {
-	position: absolute;
-	top: 220px;
-	right: 210px;
-	font-size: 13px;
-	color: rgba(0, 0, 0, 0.3);
+  position: absolute;
+  top: 220px;
+  right: 210px;
+  font-size: 13px;
+  color: rgba(0, 0, 0, 0.3);
 }
 
 .arrow {
-	position: absolute;
-	z-index: 9;
+  position: absolute;
+  z-index: 9;
   right: 99.5%;
-	top: 30%;
-	-moz-transform: scaleX(-1);
+  top: 30%;
+  -moz-transform: scaleX(-1);
   -o-transform: scaleX(-1);
   -webkit-transform: scaleX(-1);
   transform: scaleX(-1);
-	color: white;
+  color: white;
 }
 
 .arrow-up {
-	position: relative;
-	top: -7.5%;
-	right: 18%;
-	z-index: 9;
-	color: white;
+  position: relative;
+  top: -7.5%;
+  right: 18%;
+  z-index: 9;
+  color: white;
 }
 
 .overlay {
@@ -214,76 +214,76 @@ p {
 }
 
 .right-button {
-	position: absolute;
-	left: 56%;
+  position: absolute;
+  left: 56%;
 }
 
 .left-button {
-	position: absolute;
-	left: 35%;
+  position: absolute;
+  left: 35%;
 }
 
 .done-button {
-	position: absolute;
-	top: 67%;
-	left: 52%;
+  position: absolute;
+  top: 67%;
+  left: 52%;
 }
 
 .user-symbol {
-	position: fixed;
-	top: 160px;
-	left: 20px;
+  position: fixed;
+  top: 160px;
+  left: 20px;
 }
 
 #dropdownMenu2 {
-	color: rgb(128,128,128);
-	border-width: 0;
+  color: rgb(128,128,128);
+  border-width: 0;
   background-color: white;
-	position: fixed;
-	top: 160px;
-	left: 20px;
+  position: fixed;
+  top: 160px;
+  left: 20px;
 }
 
 #dropdownMenu3 {
-	color: rgb(128,128,128);
-	border-width: 0;
+  color: rgb(128,128,128);
+  border-width: 0;
   background-color: white;
-	position: fixed;
-	top: 200px;
-	left: 20px;
+  position: fixed;
+  top: 200px;
+  left: 20px;
 }
 
 .mini-user-dropdown {
-	position: fixed;
-	top: 180px;
-	left: 20px;
-	width: 10%;
-	margin-top: 0%;
+  position: fixed;
+  top: 180px;
+  left: 20px;
+  width: 10%;
+  margin-top: 0%;
 }
 
 .notification-side {
-	position: fixed;
-	top: 200px;
-	left: 22px;
+  position: fixed;
+  top: 200px;
+  left: 22px;
 }
 
 .mini-notification {
-	position: fixed;
-	top: 220px;
-	left: 20px;
-	width: 30%;
-	margin-top: 0%;
+  position: fixed;
+  top: 220px;
+  left: 20px;
+  width: 30%;
+  margin-top: 0%;
 }
 
 .mini-tutorial-button {
-	position: fixed;
-	top: 230px;
-	left: 6px;
-	border: none; 
-	color: rgb(128, 128, 128);
+  position: fixed;
+  top: 230px;
+  left: 6px;
+  border: none; 
+  color: rgb(128, 128, 128);
 }
 
 .mini-tutorial-button:hover {
-	background-color: white;
-	color: rgb(128, 128, 128);
+  background-color: white;
+  color: rgb(128, 128, 128);
 }

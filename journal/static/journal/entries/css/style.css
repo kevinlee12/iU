@@ -21,89 +21,89 @@ ul {
 }
 
 h2 {
-	color: #05CCCE;
-	margin-top: 40px;
-	margin-left: 100px;
+  color: #05CCCE;
+  margin-top: 40px;
+  margin-left: 100px;
 }
 
 .grid-item h2 {
-	margin-left: 8%;
+  margin-left: 8%;
 }
 
 h4 {
-	margin-top: 30px;
-	/*margin-left: 27px;*/
-	text-align: center;
-	color: rgb(128, 128, 128);
+  margin-top: 30px;
+  /*margin-left: 27px;*/
+  text-align: center;
+  color: rgb(128, 128, 128);
 }
 
 h4 a {
-	color: #05CCCE;
+  color: #05CCCE;
 }
 
 .activity {
-	border-bottom: 1px solid #4A4A4A;
-	border-bottom: 1px solid rgba(74,74,74,0.12);
-	display: inline-block;
-	line-height: 50px;
+  border-bottom: 1px solid #4A4A4A;
+  border-bottom: 1px solid rgba(74,74,74,0.12);
+  display: inline-block;
+  line-height: 50px;
   color: #05CCCE;
 }
 
 a {
-	color: rgb(128, 128, 128);
-	font-size: 17px;
+  color: rgb(128, 128, 128);
+  font-size: 17px;
 }
 
 a:hover {
-	color: rgb(128, 128, 128);
-	text-decoration: none;
+  color: rgb(128, 128, 128);
+  text-decoration: none;
 }
 
 .activities-link {
-	font-size: 15px;
-	margin-top: 20px;
+  font-size: 15px;
+  margin-top: 20px;
 }
 
 .activities-link a:hover {
-	color: #05CCCE;
+  color: #05CCCE;
 }
 
 .action-bar {
-	text-align: center;
-	margin-top: 50px;
-	font-size: 18px;
-	line-height: 30px;
+  text-align: center;
+  margin-top: 50px;
+  font-size: 18px;
+  line-height: 30px;
 }
 
 .action-bar a:hover {
-	color: #05CCCE;
+  color: #05CCCE;
 }
 
 .activity-description {
-	color: rgb(128, 128, 128);
-	text-align: center;
+  color: rgb(128, 128, 128);
+  text-align: center;
 }
 
 .entry-list {
-	border: 1px solid rgba(74, 74, 74, 0.2);
-	overflow: hidden;
+  border: 1px solid rgba(74, 74, 74, 0.2);
+  overflow: hidden;
 }
 
 .grid {
-	margin-left: 5px;
-	margin-top: 50px;
+  margin-left: 5px;
+  margin-top: 50px;
 }
 
 
 .grid-item {
-	width: 250px;
-	margin-bottom: 1.5vh;
-	word-wrap: break-word;
+  width: 250px;
+  margin-bottom: 1.5vh;
+  word-wrap: break-word;
 }
 
 .grid-item--width2 {
-	width: 400px;
-	margin-left: -3%;
+  width: 400px;
+  margin-left: -3%;
 }
 
 p {
@@ -111,8 +111,8 @@ p {
 }
 
 #caption {
-	background-color: #05CCCE;
-	color: white;
+  background-color: #05CCCE;
+  color: white;
 }
 
 .overlay {
@@ -128,59 +128,59 @@ p {
 }
 
 .overlay span {
-	position: absolute;
-	top: 45%;
-	left: 0;
-	right: 0;
-	margin-top: -10px;
-	color: white;
-	font-size: 20px;
+  position: absolute;
+  top: 45%;
+  left: 0;
+  right: 0;
+  margin-top: -10px;
+  color: white;
+  font-size: 20px;
 }
 
 .add-symbol {
-	color: rgb(128,128,128);
-	position: fixed;
-	top: 160px;
-	left: 17px;
+  color: rgb(128,128,128);
+  position: fixed;
+  top: 160px;
+  left: 17px;
 }
 
 .user-symbol {
-	color: rgb(128,128,128);
-	position: fixed;
-	top: 280px;
-	left: 20px;
+  color: rgb(128,128,128);
+  position: fixed;
+  top: 280px;
+  left: 20px;
 }
 
 .left-symbol {
-	color: rgb(128,128,128);
-	position: fixed;
-	top: 320px;
-	left: 17px;
+  color: rgb(128,128,128);
+  position: fixed;
+  top: 320px;
+  left: 17px;
 }
 
 #dropdownMenu1 {
-	color: rgb(128,128,128);
-	border-width: 0;
+  color: rgb(128,128,128);
+  border-width: 0;
   background-color: white;
-	position: fixed;
-	top: 280px;
-	left: 20px;
+  position: fixed;
+  top: 280px;
+  left: 20px;
 }
 
 .dropdown-menu {
-	position: fixed;
-	top: 300px;
-	left: 20px;
+  position: fixed;
+  top: 300px;
+  left: 20px;
 }
 
 .edit-icon {
-	position: fixed;
-	top: 200px;
-	left: 17px;
+  position: fixed;
+  top: 200px;
+  left: 17px;
 }
 
 .delete-icon {
-	position: fixed;
-	top: 240px;
-	left: 18px;
+  position: fixed;
+  top: 240px;
+  left: 18px;
 }
