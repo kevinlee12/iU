@@ -42,7 +42,11 @@ SECRET_KEY = os.environ['SECRET_KEY']
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+try:
+    DEBUG = not bool(os.environ['ON_PRODUCTION'])  # Guarentees false on Heroku
+except:
+    DEBUG = True
+
 TESTING = False
 
 # Secure
