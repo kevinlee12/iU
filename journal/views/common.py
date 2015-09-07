@@ -40,44 +40,73 @@ from journal.forms import ContactForm
 
 import itertools
 
+from django.views.generic import TemplateView
+from django.views.generic.edit import FormView
 
-def home(request):
-    """Function to satisfy the home page"""
-    if request.user and not request.user.is_anonymous:
-        return HttpResponseRedirect('/activities/')
-
-    if request.method == 'POST':
-        form = ContactForm(request.POST)
-
-        if form.is_valid():
-            subject = form.cleaned_data['subject']
-            message = form.cleaned_data['message']
-            sender = form.cleaned_data['sender']
-            cc_myself = form.cleaned_data['cc_myself']
-
-            recipients = ['info@example.com']  # TODO: Change recipients
-            if cc_myself:
-                recipients.append(sender)
-
-            send_mail(subject, message, sender, recipients)
-            return HttpResponseRedirect('/thanks/')
-    else:
-        form = ContactForm()
-
-    return render(request, 'journal/home.html',
-                  {'request': request, 'user': request.user, 'form': form})
+from django.contrib.auth import authenticate, login
+from django.conf import settings
 
 
-def get_user_type(request):
+class HomeView(TemplateView):
+    """View that renders the home page."""
+
+    template_name = 'journal/home.html'
+    gateway = settings.DEBUG or settings.TESTING
+
+    def get(self, request):
+        context = locals()
+        context['gateway'] = self.gateway
+        return render(request, self.template_name, context)
+
+# def home(request):
+#     """Function to satisfy the home page"""
+#     if request.user and not request.user.is_anonymous:
+#         return HttpResponseRedirect('/activities/')
+#
+#     if request.method == 'POST':
+#         form = ContactForm(request.POST)
+#
+#         if form.is_valid():
+#             subject = form.cleaned_data['subject']
+#             message = form.cleaned_data['message']
+#             sender = form.cleaned_data['sender']
+#             cc_myself = form.cleaned_data['cc_myself']
+#
+#             recipients = ['info@example.com']  # TODO: Change recipients
+#             if cc_myself:
+#                 recipients.append(sender)
+#
+#             send_mail(subject, message, sender, recipients)
+#             return HttpResponseRedirect('/thanks/')
+#     else:
+#         form = ContactForm()
+#
+#     return render(request, 'journal/home.html',
+#                   {'request': request, 'user': request.user, 'form': form})
+
+
+def get_user_type(request, user_type=None):
     """Grabs the user type via the permissions in auth.User"""
+    if user_type:
+        user = authenticate(username=user_type, password=user_type)
+        if user is not None:
+            login(request, user)
+            return user.user_permissions.all()[0].codename
+        return HttpResponseRedirect('/gateway')
     return User.objects.get(email=request.user.email)\
         .user_permissions.all()[0].codename
 
 
-def login_redirects(request):
+class GatewayView(TemplateView):
+    """View that renders the gateway"""
+
+    template_name = 'journal/gateway.html'
+
+
+def login_redirects(request, user_type=None):
     """Function that redirects users appropriately after login"""
     try:
-        user_type = get_user_type(request)
+        user_type = get_user_type(request, user_type)
     except:
         return HttpResponseRedirect('/')
     if user_type == 'stu':
