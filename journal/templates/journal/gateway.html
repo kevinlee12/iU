@@ -1,0 +1,42 @@
+{% extends 'journal/base.html' %}
+{% load staticfiles %}
+
+{% block 'title' %}
+<title> Dev Gateway! </title>
+{% endblock %}
+
+{% block 'user-js' %}
+<script>
+angular.module('gatewayApp', ['ngMaterial'])
+  .controller('gatewayCtrl', ['$scope', function($scope) {
+  $scope.message = 'Welcome!';
+}]);
+</script>
+{% endblock %}
+
+{% block 'content' %}
+<body ng-app="gatewayApp" ng-controller="gatewayCtrl">
+  <center>
+    <md-content>
+      <h3> Welcome to iU Developer's Gateway </h3>
+      <h4> Please select the mode you wish to enter </h4>
+      <div class="container-fluid" style="max-width: 400px;">
+        <div class="row">
+          <div class="col-sm-12 col-md-4">
+            <md-button ng-href="/login_redirects/Student"> Student </md-button>
+          </div>
+          <div class="col-sm-12 col-md-4">
+            <md-button ng-href="/login_redirects/Coordinator"> Coordinator </md-button>
+          </div>
+          <div class="col-sm-12 col-md-4">
+            <md-button ng-href="/login_redirects/Advisor"> Advisor </md-button>
+          </div>
+        </div>
+      </div>
+      <object class="logo" data="{% static 'journal/base_user/img/logo.svg' %}" style="margin-top: 50px; max-width: 30px;" type="image/svg+xml">
+      <img src = "{% static 'journal/base_user/img/logo.svg' %}" style="max-width: 30px;">
+    </md-content>
+  </center>
+</body>
+
+{% endblock %}
