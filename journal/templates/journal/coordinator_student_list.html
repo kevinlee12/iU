@@ -1,0 +1,10 @@
+{% if students %}
+  {% for student in students %}
+    <a class="student-names" href="/activities/{{student.pk}}"> {{ student }} </a>
+      <small><a href="/student/{{student.pk}}"> (edit) </a> <br> </small>
+        <div class="border">
+        </div>
+  {% endfor %}
+{% else %}
+  <h4> No students yet, would you like to <a href="/student/">register</a> them? </h4>
+ {% endif %}

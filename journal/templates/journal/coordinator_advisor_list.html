@@ -1,0 +1,9 @@
+{% if advisors %}
+  {% for advisor in advisors %}
+    <a class="advisor-name" href="/advisor/{{advisor.pk}}"> {{ advisor }} </a>
+      <div class="border">
+      </div>
+  {% endfor %}
+{% else %}
+  <h4> No advisors yet, would you like to <a href="/advisor/">register</a> them? </h4>
+{% endif %}

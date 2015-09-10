@@ -1,0 +1,35 @@
+<form action="" method="post">
+	{% csrf_token %}
+	<div class="col-xs-12 col-md-6 col-lg-6">
+		<div class="advisor-name">
+			<label for="first_name"> First Name: </label>
+				<input class="form-control" type="text" name="{{ form.first_name.name }}" value="{{ form.first_name.value|default:'' }}" required>
+		</div>
+	</div>		
+	<div class="col-xs-12 col-md-6 col-lg-6">	
+		<div class="last-name-box">
+			<label for="last_name"> Last Name: </label>
+			<input class="form-control" type="text" name="{{ form.last_name.name }}" value="{{ form.last_name.value|default:'' }}" required>
+		</div>
+	</div>
+
+	<div class="col-xs-12 col-md-12 col-lg-12">	
+		<div class="advisor-email">
+			<label for="email"> Email: </label>
+				<input class="form-control" type="text" name="{{ form.email.name }}" value="{{ form.email.value|default:'' }}" required>
+		</div>
+	</div>
+
+	<div class="col-xs-12 col-md-12 col-lg-12">	
+		<div class="advisors-students">
+			<h5><b> Students: </b></h5>
+			{{form.students}}
+		</div>
+	</div>
+
+		<br>
+	<div class="col-xs-12 col-md-12 col-lg-12">	
+		<a class="btn btn-default" href="/coordinator" role="button"> Back </a>
+		<input class="btn btn-success" type="submit" value="Submit" />
+	</div>
+</form>

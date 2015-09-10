@@ -1,0 +1,24 @@
+<h4><b>Learning Objectives:</b>
+  <ul>
+  {% for l in activity.learned_objective.all %}
+    <li>{{ l.objective }}</li>
+  {% endfor %}
+  </ul>
+</h4>
+
+<h4> <b>CAS Type:</b>
+  <ul>
+    {% for i in activity.activity_type.all %}
+    <li> {{ i.name }} </li>
+    {% endfor %}
+  </ul>
+</h4>
+
+{% include 'journal/entry_form_inputs.html' %}
+
+{% if entry_pk %}
+  <div class="coordinator-chat">
+    <h4 class="coordinator-title"> Chat With a Coordinator! </h4>
+    <div class="line-break"> </div>
+  </div>
+{% endif %}

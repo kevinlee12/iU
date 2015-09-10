@@ -138,46 +138,7 @@ ng-controller="activityTutorialCtrl"
       </div>
       {% endif %}
 
-      {% if activities %}
-        {% for activity in activities %}
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
-          <a href="/entries/{{ activity.pk }}">
-            <div class="activity-box">
-              <div class="activity-name">
-                {{ activity.name_short }}
-              </div>
-              <div class="activity-description">
-                {{activity.description_short}}
-              </div>
-            </div>
-          </a>
-        </div>
-        {% endfor %}
-      {% else %}
-        <div class="col-xs-12 col-sm-12 col-md-6 col-lg-4" >
-          {% if is_student %}
-          <a href="/activity_details/">
-            <div class="activity-box">
-              <div class="activity-name">
-                No Activities yet,
-              </div>
-              <div class="activity-description">
-                would you like to <b>add</b> one?
-              </div>
-          {% else %}
-          <a href="#">
-            <div class="activity-box">
-              <div class="activity-name">
-                No Activities
-              </div>
-              <div class="activity-description" style="font-size: 1.3vw">
-                The student does not have any activities yet. Would you like to tell the student to add one?
-              </div>
-          {% endif %}
-            </div>
-          </a>
-        </div>
-      {% endif %}
+      {% include 'journal/activity_boxes.html' %}
     </div>
   </div>
 </div>
