@@ -21,6 +21,7 @@
   padding: 20px;
   width: 240px;
   max-width: 240px;
+  min-height: 50em;
   margin-right: 1px;
   border-right: 1px solid #4A4A4A;
   border-right: 1px solid rgba(74, 74, 74, 0.12);
