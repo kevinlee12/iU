@@ -1,25 +1,12 @@
 machine:
   environment:
+      # This is not really used on production
       SECRET_KEY: 'JRM0u!Hhi&Uzo1iF-{EUh1)/SZ{C=~5QPpPA]m9Y:[z5ue.YfQ'
       DATABASE_URL: 'postgres://ubuntu:@127.0.0.1:5432/circle_test'
   python:
     version: 3.3.0
   services:
     - postgresql
-
-database:
-  override:
-    - python manage.py migrate
-    - python manage.py loaddata groups
-    - python manage.py loaddata school
-    - python manage.py loaddata permissions
-    - python manage.py loaddata auth_users
-    - python manage.py loaddata student
-    - python manage.py loaddata advisor
-    - python manage.py loaddata coordinator
-    - python manage.py loaddata activityoptions
-    - python manage.py loaddata learningobjectiveoptions
-    - python manage.py loaddata sample_entries
 
 dependencies:
   pre:

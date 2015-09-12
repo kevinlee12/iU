@@ -26,9 +26,14 @@
 {% block 'main-content' %}
 <h3> Adding entry for {{ activity.activity_name }}! </h3>
 
-  
 {% include 'journal/entry_form_description.html' %}
+{% include 'journal/entry_form_inputs.html' %}
 
+{% if entry_pk %}
+  <div class="coordinator-chat">
+    <h4 class="coordinator-title"> Chat With a Coordinator! </h4>
+    <div class="line-break"> </div>
+  </div>
   {% render_comment_list for entry %}
   {% get_comment_form for entry as form %}
     <form action="{% comment_form_target %}" method="POST">
@@ -42,6 +47,7 @@
     <input type="hidden" name="next" value="/comment_submit/">
     <br><input class="btn btn-success" type="submit" value="Add comment" id="id_submit">
     </form>
+{% endif %}
 {% endblock %}
 
 {% block 'modal' %}
