@@ -14,51 +14,51 @@
 */
 
 .advisor-title {
-	color: #05CCCE;
-	margin-top: 5%;
+  color: #05CCCE;
+  margin-top: 5%;
 }
 
 .form-control {
-	width:80%;
+  width:80%;
 }
 
 .advisor-name {
-	margin-top: 2%;
-	color: rgb(128, 128, 128);
+  margin-top: 2%;
+  color: rgb(128, 128, 128);
 }
 
 .advisors-students{
-	color: rgb(128, 128, 128);
-	margin-top: 2%;
+  color: rgb(128, 128, 128);
+  margin-top: 2%;
 }
 
 .advisor-email {
-	margin-top: 2%;
-	width: 70%;
-	color: rgb(128, 128, 128);
+  margin-top: 2%;
+  width: 70%;
+  color: rgb(128, 128, 128);
 }
 
 .last-name-box {
-	margin-top: 2%;
-	color: rgb(128, 128, 128);
+  margin-top: 2%;
+  color: rgb(128, 128, 128);
 }
 
 .btn {
-	margin-top: 2%;
+  margin-top: 2%;
 }
 
 label {
-	font-size: 16px;
+  font-size: 16px;
 }
 
 h3{
-	margin-top: 20%;
+  margin-top: 20%;
 }
 
 h5 {
-	font-size: 16px;
+  font-size: 16px;
 }
 
 ul {
-	list-style-type: none;
+  list-style-type: none;
 }
