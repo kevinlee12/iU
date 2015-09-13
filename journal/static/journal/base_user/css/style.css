@@ -39,10 +39,10 @@
 }
 
 .nav-text {
-	position: relative;
-	top: 7.2vw;
-	left: 2%;
-	width: 100%;
+  position: relative;
+  top: 7.2vw;
+  left: 2%;
+  width: 100%;
   text-align: center;
   color: rgb(128, 128, 128);
 }
