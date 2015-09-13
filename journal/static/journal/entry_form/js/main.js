@@ -12,20 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-function required_append(url) {
-  var item = url.split('#')[1];
-  $('textarea').prop('required', false);
-  $('[name=image_entry]').prop('required', false);
-  $('[name=link_entry]').prop('required', false);
-  if (item === 'text') {
-    $('textarea').prop('required', true);
-  } else if (item === 'image') {
-    $('[name=image_entry]').prop('required', true);
-  } else if (item === 'link') {
-    $('[name=link_entry]').prop('required', true);
-  }
-}
-
 $(document).ready(function() {
 
   $('form').find('iframe').contents().find('body')
@@ -35,14 +21,6 @@ $(document).ready(function() {
   .find('.form-group:first').find('label')
   .append('<small> Maximum image dimensions: 1024x1024 pixel </small>');
 
-  var url = document.location.hash;
-  $('.nav-tabs a[href=#' + url.split('#')[1] + ']').tab('show');
-  required_append(url);
-
-  $('.nav-tabs a').on('shown.bs.tab', function(e) {
-    window.location.hash = e.target.hash;
-    required_append(window.location.hash);
-  });
   $('#myModal').on('shown.bs.modal', function() {
     $('#myInput').focus();
   });
@@ -55,8 +33,6 @@ $(document).ready(function() {
     .find('.form-group:first').find('label')
     .append('<small> <br>Maximum image dimensions: 1024x1024 pixel </small>');
   });
-
-
 
   // Summernote Image Mods
   // $('form').find('iframe').load(function(){
