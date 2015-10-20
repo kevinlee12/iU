@@ -15,113 +15,113 @@
 
 /*TODO(Janice): Fix so that it works on mobile*/
 form {
-	display: inline-block;
+  display: inline-block;
 }
 
 input {
-	display: block;
+  display: block;
 }
 
 ul {
-	list-style-type: none;
+  list-style-type: none;
 }
 
 .nav-tabs {
-	height: 45px;
-	display: inline-block;
+  height: 45px;
+  display: inline-block;
 }
 
 h5 {
-	width: 30%;
+  width: 30%;
 }
 
 h3 {
-	margin-top: 3.5vw;
-	margin-bottom: 30px;
-	color: #05CCCE;
+  margin-top: 3.5vw;
+  margin-bottom: 30px;
+  color: #05CCCE;
 }
 
 h4 {
-	line-height: 25px;
-	color: rgb(128, 128, 128);
+  line-height: 25px;
+  color: rgb(128, 128, 128);
 }
 
 .line-break {
-	border: 1px solid #4A4A4A;
-	border: 1px solid rgba(74,74,74,0.12);
-	width: 45%;
-	margin-bottom: 1%;
+  border: 1px solid #4A4A4A;
+  border: 1px solid rgba(74,74,74,0.12);
+  width: 45%;
+  margin-bottom: 1%;
 }
 
 .coordinator-chat {
-	margin-top: 5%;
+  margin-top: 5%;
 }
 
 .coordinator-title {
-	color: #05CCCE;
+  color: #05CCCE;
 }
 
 .comment-box {
-	width: 50%;
-	border: 1px solid #4A4A4A;
-	border: 1px solid rgba(74,74,74,0.4);
+  width: 50%;
+  border: 1px solid #4A4A4A;
+  border: 1px solid rgba(74,74,74,0.4);
 }
 
 dl {
-	color: rgb(128, 128, 128);
+  color: rgb(128, 128, 128);
 }
 
 
 .activity-description {
-	text-align: center;
+  text-align: center;
 }
 
 .activity {
-	border-bottom: 1px solid #4A4A4A;
-	border-bottom: 1px solid rgba(74,74,74,0.12);
-	display: inline-block;
-	line-height: 50px;
-	color: rgb(128, 128, 128);;
+  border-bottom: 1px solid #4A4A4A;
+  border-bottom: 1px solid rgba(74,74,74,0.12);
+  display: inline-block;
+  line-height: 50px;
+  color: rgb(128, 128, 128);;
 }
 
 .action-bar {
-	text-align: center;
-	margin-top: 50px;
-	font-size: 20px;
-	/*line-height: 30px;*/
-	color: rgb(128, 128, 128);
+  text-align: center;
+  margin-top: 50px;
+  font-size: 20px;
+  /*line-height: 30px;*/
+  color: rgb(128, 128, 128);
 }
 
 a {
-	color: rgb(128, 128, 128);
+  color: rgb(128, 128, 128);
 }
 
 .action-bar a:hover {
-	color: #05CCCE;
+  color: #05CCCE;
 }
 
 .nav-tabs {
-	position: relative;
+  position: relative;
 }
 
 form {
-	width: 70vw;
+  width: 70vw;
 }
 
 .entry-type {
-	margin-top: 30px;
+  margin-top: 30px;
 }
 
 .modal {
-	z-index: 10;
+  z-index: 10;
 }
 
 .modal-backdrop {
-	z-index: 9;
+  z-index: 9;
 }
 
 .entry-for-coor {
-	border: 1px solid #4A4A4A;
-	border: 1px solid rgba(74,74,74,0.2);
-	width: 100%;
+  border: 1px solid #4A4A4A;
+  border: 1px solid rgba(74,74,74,0.2);
+  width: 100%;
 }

@@ -35,7 +35,6 @@
     <i class="fa fa-pencil-square-o"></i>
     Edit the activity
   </a> <br>
-  <!-- TODO: Confirmation dialog -->
   <a href="/delete_activity/{{ activity_pk }}"> 
     <i class="fa fa-trash-o"></i>
     Delete the activity 
@@ -93,26 +92,7 @@
 </div>
 
 <div class="grid">
-  {% if entries.count %}
-  {% for entry in entries %}
-    <div class="grid-item">
-      <a href="/entry/{{ activity_id }}/{{ entry.pk }}/">
-          <div class="entry-list">
-            {% if entry.image_entry %}
-              {% thumbnail '250x250' entry.image_entry %}
-            {% else %}
-              {{ entry.entry | safe }}
-            {% endif %}
-            <div class="overlay">
-              <span>{{ entry.created }} </span>
-            </div>
-          </div>
-        </a>
-      </div>
-    {% endfor %}
-  {% else %}
-  <h4> No entries yet, would you like to <a href="/entry/{{ activity_pk }}/">add</a> one? </h4>
-  {% endif %}
+  {% include 'journal/entry_boxes.html' %}
 </div>
 {% endblock %}
 

@@ -14,100 +14,100 @@
 */
 
 body {
-	margin: 0;
-	padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 h3 {
-	text-align: center;
-	color: #05CCCE;
-	margin-bottom: 30px;
-	margin-top: 30px;
-	font-size: 30px;
+  text-align: center;
+  color: #05CCCE;
+  margin-bottom: 30px;
+  margin-top: 30px;
+  font-size: 30px;
 }
 
 h4 {
-	color: #05CCCE;
-	text-align: center;
+  color: #05CCCE;
+  text-align: center;
 }
 
 li {
-	list-style-type: none;
+  list-style-type: none;
 }
 
 form {
-	left: 50%;
-	padding-left: 10%;
+  left: 50%;
+  padding-left: 10%;
 }
 
 a {
-	color: rgb(128, 128, 128);
+  color: rgb(128, 128, 128);
 }
 
 a:hover {
-	color: #05CCCE;
+  color: #05CCCE;
 }
 
 .activity-box {
-	text-align: center;
-	position: relative;
-	left: 25%;
-	color: rgb(128, 128, 128);
-	width: 50%;
+  text-align: center;
+  position: relative;
+  left: 25%;
+  color: rgb(128, 128, 128);
+  width: 50%;
 }
 
 .advisor-box {
-	position: relative;
-	left: 30%;
-	width: 40%;
-	text-align: center;
-	color: rgb(128, 128, 128);
+  position: relative;
+  left: 30%;
+  width: 40%;
+  text-align: center;
+  color: rgb(128, 128, 128);
 }
 
 .dates {
-	margin-bottom: 10%;
-	padding-left: 15%;
-	padding-right: 17%;
+  margin-bottom: 10%;
+  padding-left: 15%;
+  padding-right: 17%;
 }
 
 
 .help-block {
-	text-align: center;
-	font-size: 12px;
+  text-align: center;
+  font-size: 12px;
 }
 
 .row {
-	color: rgb(128, 128, 128);
-	max-width: 900px;
+  color: rgb(128, 128, 128);
+  max-width: 900px;
 }
 
 .submit-button {
-	text-align: center;
-	color: rgb(128, 128, 128);
+  text-align: center;
+  color: rgb(128, 128, 128);
 }
 
 .activity-type {
-	font-size: 20px;
+  font-size: 20px;
 }
 
 .activity-type-box {
-	padding-left: 40%;
-	margin-bottom: 20px;
-	color: rgb(128, 128, 128);
+  padding-left: 40%;
+  margin-bottom: 20px;
+  color: rgb(128, 128, 128);
 }
 
 .advisor-info {
-	text-align: center;
-	font-size: 20px;
+  text-align: center;
+  font-size: 20px;
 }
 
 .learning-obj {
-	font-size: 20px;
+  font-size: 20px;
 }
 
 .learn-obj-box {
-	padding-left: 10%;
-	color: rgb(128, 128, 128);
-	overflow: hidden;
-	font-size: 15px;
+  padding-left: 10%;
+  color: rgb(128, 128, 128);
+  overflow: hidden;
+  font-size: 15px;
 }

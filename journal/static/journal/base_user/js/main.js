@@ -13,11 +13,11 @@
 // limitations under the License.
 
 $(document).ready(function() {
+  $('.sidebar').css('min-height', $(window).height() + 'px');
   resizeAction();
   $(window).resize(function() {
     resizeAction();
   });
-
 });
 
 function resizeAction() {

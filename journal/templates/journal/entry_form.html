@@ -25,34 +25,9 @@
 
 {% block 'main-content' %}
 <h3> Adding entry for {{ activity.activity_name }}! </h3>
-<h4><b>Learning Objectives:</b>
-  <ul>
-  {% for l in activity.learned_objective.all %}
-    <li>{{ l.objective }}</li>
-  {% endfor %}
-  </ul>
-</h4>
-<h4> <b>CAS Type:</b>
-  <ul>
-    {% for i in activity.activity_type.all %}
-    <li> {{ i.name }} </li>
-    {% endfor %}
-  </ul>
-</h4>
 
-{{ form.errors }}
-<form name="entry_form" action="" method="post" enctype="multipart/form-data">
-  {% csrf_token %}
-  {{ form.entry }}
-    <div class="buttons">
-      {% if entry_pk %}
-      <button type="button" class="btn btn-primary btn-danger" data-toggle="modal" data-target="#delete-modal">
-       Delete
-      </button>
-      {% endif %}
-      <button class="btn btn-success" type="submit" value="Submit">Submit </button>
-    </div>
-</form>
+{% include 'journal/entry_form_description.html' %}
+{% include 'journal/entry_form_inputs.html' %}
 
 {% if entry_pk %}
   <div class="coordinator-chat">

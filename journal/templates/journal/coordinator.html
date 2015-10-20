@@ -30,19 +30,10 @@
     <div class="students">
       <div class="col-xs-12 col-md-4 col-lg-4">
         <h2>Students</h2>
-        <small><a href="/student/"> (Add) </a> </small>
+        <small> <a href="/student/"> (Add) </a> </small>
         <div class="border-2">
         </div>
-        {% if students %}
-          {% for student in students %}
-          <a class="student-names" href="/activities/{{student.pk}}"> {{ student }} </a>
-          <small><a href="/student/{{student.pk}}"> (edit) </a> <br> </small>
-          <div class="border">
-          </div>
-          {% endfor %}
-        {% else %}
-        <h4> No students yet, would you like to <a href="/student/">register</a> them? </h4>
-        {% endif %}
+        {% include 'journal/coordinator_student_list.html' %}
       </div>
     </div>
 
@@ -50,15 +41,7 @@
       <div class="col-xs-12 col-md-4 col-lg-4">
         <h2>Advisors</h2> <small><a href="/advisor/"> (Add) </a> </small>
         <div class="border-2"></div>
-        {% if advisors %}
-          {% for advisor in advisors %}
-          <a class="advisor-name" href="/advisor/{{advisor.pk}}"> {{ advisor }} </a>
-          <div class="border">
-          </div>
-          {% endfor %}
-        {% else %}
-        <h4> No advisors yet, would you like to <a href="/advisor/">register</a> them? </h4>
-        {% endif %}
+        {% include 'journal/coordinator_advisor_list.html' %}
       </div>
     </div>
 

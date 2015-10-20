@@ -14,48 +14,48 @@
 */
 
 .student-title {
-	color: #05CCCE;
-	margin-top: 5%;
+  color: #05CCCE;
+  margin-top: 5%;
 }
 
 .form-control {
-	width: 80%;
+  width: 80%;
 }
 
 .student-name {
-	margin-top: 2%;
-	color: rgb(128, 128, 128);
+  margin-top: 2%;
+  color: rgb(128, 128, 128);
 }
 
 .student-email {
-	margin-top: 2%;
-	width: 70%;
-	color: rgb(128, 128, 128);
+  margin-top: 2%;
+  width: 70%;
+  color: rgb(128, 128, 128);
 }
 
 .last-name-box {
-	margin-top: 2%;
-	color: rgb(128, 128, 128);
+  margin-top: 2%;
+  color: rgb(128, 128, 128);
 }
 
 .student-id {
-	margin-top: 2%;
-	color: rgb(128, 128, 128);
+  margin-top: 2%;
+  color: rgb(128, 128, 128);
 }
 
 .personal-code {
-	color: rgb(128, 128, 128);
-	margin-top: 2%;
+  color: rgb(128, 128, 128);
+  margin-top: 2%;
 }
 
 .btn {
-	margin-top: 2%;
+  margin-top: 2%;
 }
 
 label {
-	font-size: 16px;
+  font-size: 16px;
 }
 
 h3{
-	margin-top: 20%;
+  margin-top: 20%;
 }
