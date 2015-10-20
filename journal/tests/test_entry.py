@@ -180,36 +180,39 @@ class EntrySeleleniumTests(StaticLiveServerTestCase):
         self.selenium.find_element_by_xpath("//img[@src='http://images.jfdaily.com/jiefang/wenyu/new/201409/W020140919421426345484.jpg']")
 
     def test_video_text_entry(self):
-    	"""Test to ensure that a student can add an text+video entry"""
+        """Test to ensure that a student can add an text+video entry"""
         # Click on the first activity box: Walking around the block
-    	self.selenium.find_element_by_xpath('/html/body/div[1]/div[2]/div/div[1]/div/div[3]/a/div').click()
-    	self.selenium.find_element_by_link_text('Add an entry').click()
+        self.selenium.find_element_by_xpath(
+            '/html/body/div[1]/div[2]/div/div[1]/div/div[3]/a/div').click()
+        self.selenium.find_element_by_link_text('Add an entry').click()
         # The following has 2 matching: Just walking and Adding entry...block
-    	header_text = self.selenium.find_elements_by_tag_name('h3')[1].text
-    	self.assertTrue('Adding entry for Walking around the block!' in header_text)
+        header_text = self.selenium.find_elements_by_tag_name('h3')[1].text
+        self.assertTrue('Adding entry for Walking around the block!' in header_text)
         # Switching to iframe focus
-    	self.selenium.switch_to_frame(self.selenium.find_element_by_id('id_entry_iframe'))
+        self.selenium.switch_to_frame(self.selenium.find_element_by_id('id_entry_iframe'))
         # Insert text
-    	entry = 'I think I will bring my cat out next time.'
-    	self.selenium.find_element_by_class_name('note-editable')\
+        entry = 'I think I will bring my cat out next time.'
+        self.selenium.find_element_by_class_name('note-editable')\
             .send_keys(entry)
-         # Insert video
-    	self.selenium.find_element_by_xpath('/html/body/div[2]/div[5]/div[3]/button[3]').click()
-    	video_entry = 'https://www.youtube.com/watch?v=Rk_bV0RJRhs&index=20&list=PLJU_WCB1rA2SFwFy3lEvY_NH23ql1-Cgi'
-    	self.selenium.find_element_by_xpath('/html/body/div[2]/div[2]/div[4]/div/div/div[2]/div/input')\
-    	    .send_keys(video_entry)
+        # Insert video
+        self.selenium.find_element_by_xpath('/html/body/div[2]/div[5]/div[3]/button[3]').click()
+        video_entry = 'https://www.youtube.com/watch?v=Rk_bV0RJRhs&index=20&list=PLJU_WCB1rA2SFwFy3lEvY_NH23ql1-Cgi'
+        self.selenium.find_element_by_xpath('/html/body/div[2]/div[2]/div[4]/div/div/div[2]/div/input')\
+            .send_keys(video_entry)
         # Click on the insert video button
-    	self.selenium.find_element_by_xpath('/html/body/div[2]/div[2]/div[4]/div/div/div[3]/button').click()
+        self.selenium.find_element_by_xpath('/html/body/div[2]/div[2]/div[4]/div/div/div[3]/button')\
+            .click()
         # Switch back out of the iframe.
-    	self.selenium.switch_to_default_content()
+        self.selenium.switch_to_default_content()
         # Click on the submit button
-    	self.selenium.find_element_by_class_name('btn-success').click()
+        self.selenium.find_element_by_class_name('btn-success').click()
         # Ensure that we are back on the entries page.
-    	self.selenium.find_element_by_link_text('Add an entry')
+        self.selenium.find_element_by_link_text('Add an entry')
         # Ensure that entry exists as the first box on the page.
-    	box_text = self.selenium.find_element_by_xpath('/html/body/div[1]/div[2]/div[2]/div[1]/a/div').text
-    	self.assertTrue(entry in box_text)
-    	self.selenium.find_element_by_xpath('//iframe[@src="//www.youtube.com/embed/Rk_bV0RJRhs"]')
+        box_text = self.selenium.find_element_by_xpath('/html/body/div[1]/div[2]/div[2]/div[1]/a/div')\
+            .text
+        self.assertTrue(entry in box_text)
+        self.selenium.find_element_by_xpath('//iframe[@src="//www.youtube.com/embed/Rk_bV0RJRhs"]')
 
     def test_text_image_video_entry(self):
         """Test to ensure that a student can add an text+image+video entry"""
@@ -252,58 +255,58 @@ class EntrySeleleniumTests(StaticLiveServerTestCase):
         self.selenium.find_element_by_xpath('//iframe[@src="//www.youtube.com/embed/Rk_bV0RJRhs"]')
 
     def test_delete_entry(self):
-    	"""Test to ensure that a student can delete an entry"""
-    	# Click on the first activity box: Walking around the block
-    	self.selenium.find_element_by_xpath('/html/body/div[1]/div[2]/div/div[1]/div/div[3]/a/div').click()
-    	self.selenium.find_element_by_link_text('Add an entry').click()
+        """Test to ensure that a student can delete an entry"""
+        # Click on the first activity box: Walking around the block
+        self.selenium.find_element_by_xpath('/html/body/div[1]/div[2]/div/div[1]/div/div[3]/a/div').click()
+        self.selenium.find_element_by_link_text('Add an entry').click()
         # The following has 2 matching: Just walking and Adding entry...block
-    	header_text = self.selenium.find_elements_by_tag_name('h3')[1].text
-    	self.assertTrue('Adding entry for Walking around the block!' in header_text)
+        header_text = self.selenium.find_elements_by_tag_name('h3')[1].text
+        self.assertTrue('Adding entry for Walking around the block!' in header_text)
         # Switching to iframe focus
-    	self.selenium.switch_to_frame(self.selenium.find_element_by_id('id_entry_iframe'))
+        self.selenium.switch_to_frame(self.selenium.find_element_by_id('id_entry_iframe'))
         # Insert text
-    	text_entry = 'I think I will bring my cat out next time.'
-    	self.selenium.find_element_by_class_name('note-editable')\
-    	    .send_keys(text_entry)
+        text_entry = 'I think I will bring my cat out next time.'
+        self.selenium.find_element_by_class_name('note-editable')\
+            .send_keys(text_entry)
         # Insert image button
-    	self.selenium.find_element_by_xpath('/html/body/div[2]/div[5]/div[3]/button[2]').click()
-    	image_entry = 'http://images.jfdaily.com/jiefang/wenyu/new/201409/W020140919421426345484.jpg'
-    	self.selenium.find_element_by_xpath('/html/body/div[2]/div[2]/div[1]/div/div/div[2]/div[2]/input')\
-    	    .send_keys(image_entry)
+        self.selenium.find_element_by_xpath('/html/body/div[2]/div[5]/div[3]/button[2]').click()
+        image_entry = 'http://images.jfdaily.com/jiefang/wenyu/new/201409/W020140919421426345484.jpg'
+        self.selenium.find_element_by_xpath('/html/body/div[2]/div[2]/div[1]/div/div/div[2]/div[2]/input')\
+            .send_keys(image_entry)
         # Click on the inset image button
-    	self.selenium.find_element_by_xpath('/html/body/div[2]/div[2]/div[1]/div/div/div[3]/button').click()
+        self.selenium.find_element_by_xpath('/html/body/div[2]/div[2]/div[1]/div/div/div[3]/button').click()
         # Insert video button
-    	self.selenium.find_element_by_xpath('/html/body/div[2]/div[5]/div[3]/button[3]').click()
-    	video_entry = 'https://www.youtube.com/watch?v=Rk_bV0RJRhs&index=20&list=PLJU_WCB1rA2SFwFy3lEvY_NH23ql1-Cgi'
-    	self.selenium.find_element_by_xpath('/html/body/div[2]/div[2]/div[4]/div/div/div[2]/div/input')\
-    	    .send_keys(video_entry)
+        self.selenium.find_element_by_xpath('/html/body/div[2]/div[5]/div[3]/button[3]').click()
+        video_entry = 'https://www.youtube.com/watch?v=Rk_bV0RJRhs&index=20&list=PLJU_WCB1rA2SFwFy3lEvY_NH23ql1-Cgi'
+        self.selenium.find_element_by_xpath('/html/body/div[2]/div[2]/div[4]/div/div/div[2]/div/input')\
+            .send_keys(video_entry)
         # Click on the insert video button
-    	self.selenium.find_element_by_xpath('/html/body/div[2]/div[2]/div[4]/div/div/div[3]/button').click()
+        self.selenium.find_element_by_xpath('/html/body/div[2]/div[2]/div[4]/div/div/div[3]/button').click()
         # Switch back out of the iframe.
-    	self.selenium.switch_to_default_content()
+        self.selenium.switch_to_default_content()
         # Click on the submit button
-    	self.selenium.find_element_by_class_name('btn-success').click()
+        self.selenium.find_element_by_class_name('btn-success').click()
         # Ensure that we are back on the entries page.
-    	self.selenium.find_element_by_link_text('Add an entry')
+        self.selenium.find_element_by_link_text('Add an entry')
         # Ensure that entry exists as the first box on the page.
-    	box_text = self.selenium.find_element_by_xpath('/html/body/div[1]/div[2]/div[2]/div[1]/a/div').text
-    	self.assertTrue(text_entry in box_text)
-    	self.selenium.find_element_by_xpath("//img[@src='http://images.jfdaily.com/jiefang/wenyu/new/201409/W020140919421426345484.jpg']")
-    	self.selenium.find_element_by_xpath('//iframe[@src="//www.youtube.com/embed/Rk_bV0RJRhs"]')
+        box_text = self.selenium.find_element_by_xpath('/html/body/div[1]/div[2]/div[2]/div[1]/a/div').text
+        self.assertTrue(text_entry in box_text)
+        self.selenium.find_element_by_xpath("//img[@src='http://images.jfdaily.com/jiefang/wenyu/new/201409/W020140919421426345484.jpg']")
+        self.selenium.find_element_by_xpath('//iframe[@src="//www.youtube.com/embed/Rk_bV0RJRhs"]')
         # Click on the entry that was created
-    	self.selenium.find_element_by_xpath('/html/body/div[1]/div[2]/div[2]/div[1]/a').click()
+        self.selenium.find_element_by_xpath('/html/body/div[1]/div[2]/div[2]/div[1]/a').click()
         # Click on the delete button
-    	self.selenium.find_element_by_class_name('btn-danger').click()
-    	self.selenium.find_element_by_xpath('//*[@id="delete-modal"]/div/div/div[3]/a').click()
-    	# Ensure that we are back on the entries page.
-    	self.selenium.find_element_by_link_text('Add an entry')
-    	# Ensure that the entry created is no longer on the entries page
-    	main_text = self.selenium.find_element_by_class_name('main').text
-    	# Check for text
-    	self.assertFalse(text_entry in main_text)
-    	# Check for image
-    	image_entry_xpath = "//img[@src='http://images.jfdaily.com/jiefang/wenyu/new/201409/W020140919421426345484.jpg']"
-    	self.assertFalse(image_entry_xpath in main_text)
-    	# Check for video
-    	video_entry_xpath = '//iframe[@src="//www.youtube.com/embed/Rk_bV0RJRhs"]'
-    	self.assertFalse(video_entry_xpath in main_text)
+        self.selenium.find_element_by_class_name('btn-danger').click()
+        self.selenium.find_element_by_xpath('//*[@id="delete-modal"]/div/div/div[3]/a').click()
+        # Ensure that we are back on the entries page.
+        self.selenium.find_element_by_link_text('Add an entry')
+        # Ensure that the entry created is no longer on the entries page
+        main_text = self.selenium.find_element_by_class_name('main').text
+        # Check for text
+        self.assertFalse(text_entry in main_text)
+        # Check for image
+        image_entry_xpath = "//img[@src='http://images.jfdaily.com/jiefang/wenyu/new/201409/W020140919421426345484.jpg']"
+        self.assertFalse(image_entry_xpath in main_text)
+        # Check for video
+        video_entry_xpath = '//iframe[@src="//www.youtube.com/embed/Rk_bV0RJRhs"]'
+        self.assertFalse(video_entry_xpath in main_text)
