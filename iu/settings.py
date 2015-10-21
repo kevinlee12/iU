@@ -44,7 +44,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 try:
     DEBUG = not bool(os.environ['ON_PRODUCTION'])  # Guarentees false on Heroku
-except:
+except BaseException:
     DEBUG = True
 
 TESTING = False
@@ -60,12 +60,13 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 try:
     PRODUCTION = os.environ['ON_PRODUCTION']
-except:
+except BaseException:
     PRODUCTION = False
 
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
+    'iu-cas.herokuapp.com',
     socket.gethostname()
 ]
 
