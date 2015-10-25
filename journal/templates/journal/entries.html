@@ -1,7 +1,6 @@
 {% extends 'journal/base_user.html' %}
 {% load staticfiles %}
 
-
 {% block 'title' %}
 <title>Journal </title>
 {% endblock %}
@@ -60,9 +59,9 @@
   </a>
 
   {% if is_student %}
-  <a href="/activities"><i class="left-symbol fa fa-arrow-left fa-lg"></i> </a>
+  <a href="/activities"><i class="left-symbol fa fa-arrow-left fa-lg"></i></a>
   {% else %}
-  <a href="/activities/{{ activity_pk }}"><i class="left-symbol fa fa-arrow-left fa-lg"></i>  </a>
+  <a href="/activities/{{ activity_pk }}"><i class="left-symbol fa fa-arrow-left fa-lg"></i></a>
   {% endif %}
 
   <a href="/activity_details/{{ activity_pk }}">
@@ -91,6 +90,7 @@
 </div>
 
 <div class="grid">
+  {% include 'journal/entry_boxes.html' %}
 </div>
 {% endblock %}
 
