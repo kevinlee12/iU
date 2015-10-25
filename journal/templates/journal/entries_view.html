@@ -88,7 +88,22 @@
 </div>
 
 <div class="grid">
-  {% include 'journal/entry_boxes.html' %}
+  {% if entries.count %}
+    {% for entry in entries %}
+      <div class="grid-item">
+        <a href="/entry/{{ activity_id }}/{{ entry.pk }}/">
+          <div class="entry-list">
+            {{ entry.entry | safe }}
+            <div class="overlay">
+              <span>{{ entry.created }} </span>
+            </div>
+          </div>
+        </a>
+      </div>
+      {% endfor %}
+  {% else %}
+    <h4> No entries yet, would you like to <a href="/entry/{{ activity_pk }}/">add</a> one? </h4>
+  {% endif %}
 </div>
 {% endblock %}
 
