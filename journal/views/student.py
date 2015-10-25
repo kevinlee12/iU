@@ -128,13 +128,12 @@ def stu_entries(request, activity_pk):
     except ObjectDoesNotExist:
         return HttpResponseRedirect('/activities')
     return render(request, 'journal/blank.html',
-                  {'name': name})
-                #   {'name': name, 'entries': activity_entries,
-                #    'activity_description': activity.activity_description,
-                #    'activity_pk': activity_pk, 'activity_id': activity.id,
-                #    'activity_start': activity.start_date,
-                #    'activity_end': activity.end_date or 'Ongoing',
-                #    'is_student': True})
+                  {'name': name, 'entries': activity_entries,
+                   'activity_description': activity.activity_description,
+                   'activity_pk': activity_pk, 'activity_id': activity.id,
+                   'activity_start': activity.start_date,
+                   'activity_end': activity.end_date or 'Ongoing',
+                   'is_student': True})
 
 
 @login_required
