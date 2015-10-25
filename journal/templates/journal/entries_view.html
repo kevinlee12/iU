@@ -16,76 +16,18 @@
 {% endblock %}
 
 {% block 'nav-content'%}
-<div class="activity-description">
-  <h3 class="activity"> {{ activity_description }} </h3>
-  <h5> {{ activity_start }} -- {{ activity_end }} </h5>
-</div>
-
-<div class="action-bar">
-  {% if is_student %}
-  <a href="/entry/{{ activity_pk }}/">
-    <i class="fa fa-plus-circle"></i>
-    Add an entry
-  </a> <br>
-  <a href="/activity_details/{{ activity_pk }}">
-    <i class="fa fa-pencil-square-o"></i>
-    Edit the activity
-  </a> <br>
-  <a href="/delete_activity/{{ activity_pk }}">
-    <i class="fa fa-trash-o"></i>
-    Delete the activity
-  </a>
-  {% else %}
-  <a href="/activity_details/{{ activity_pk }}"> View activity details </a>
-  {% endif %}
-</div>
-
-<div class="activities-link">
-  {% if is_student %}
-  <a href="/activities"><i class="fa fa-arrow-left fa-6x"></i> Back to activities page. </a>
-  {% else %}
-  <a href="/activities/{{ activity_pk }}"><i class="fa fa-long-arrow-left fa-6x"></i> Back to activities page. </a>
-  {% endif %}
-</div>
-
+<div> Stuff </div>
 {% endblock %}
 
 {% block 'mini-sidebar-content' %}
-<div class="mini-sidebar-icons">
-  <a href="/entry/{{ activity_pk }}/">
-    <i class="add-symbol fa fa-plus-circle fa-lg"></i>
-  </a>
-
-  {% if is_student %}
-  <a href="/activities"><i class="left-symbol fa fa-arrow-left fa-lg"></i></a>
-  {% else %}
-  <a href="/activities/{{ activity_pk }}"><i class="left-symbol fa fa-arrow-left fa-lg"></i></a>
-  {% endif %}
-
-  <a href="/activity_details/{{ activity_pk }}">
-    <i class="edit-icon fa fa-pencil-square-o fa-lg"></i>
-  </a>
-
-  <a href="/delete_activity/{{ activity_pk }}">
-    <i class="delete-icon fa fa-trash-o fa-lg"></i>
-  </a>
-
-  <div class="dropdown">
-  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-    <span class="user-symbol fa fa-user fa-lg"></span>
-  </button>
-  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1 dropdownMenuDivider">
-    <li><a href="{% url 'auth:logout' %}?next={{ request.path }}">Logout</a></li>
-  </ul>
-  </div>
-</div>
+<div> Mini-sidebar</div>
 {% endblock %}
 
 {% block 'main-content' %}
 
-<!-- <div class="grid-item grid-item-width2">
+<div class="grid-item grid-item-width2">
   <h2> Entries for bracket name bracket </h2>
-</div> -->
+</div>
 
 <div class="grid">
   {% include 'journal/entry_boxes.html' %}
