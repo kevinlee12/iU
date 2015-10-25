@@ -37,9 +37,9 @@
   </a>
   {% else %}
   <a href="/activity_details/{{ activity_pk }}"> View activity details </a>
-
   {% endif %}
 </div>
+
 <div class="activities-link">
   {% if is_student %}
   <a href="/activities"><i class="fa fa-arrow-left fa-6x"></i> Back to activities page. </a>
@@ -83,9 +83,9 @@
 
 {% block 'main-content' %}
 
-<div class="grid-item grid-item--width2">
+<!-- <div class="grid-item grid-item-width2">
   <h2> Entries for {{ name }} </h2>
-</div>
+</div> -->
 
 <div class="grid">
   {% include 'journal/entry_boxes.html' %}
@@ -98,7 +98,7 @@
   <div class="modal-content">
     <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <h4 class="modal-title">Warning!</h4>
+    <h4 class="modal-title">Heads up!</h4>
     </div>
     <div class="modal-body">
     Are you sure you wan't to delete this activity?
