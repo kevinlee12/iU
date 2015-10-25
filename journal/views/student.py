@@ -127,7 +127,7 @@ def stu_entries(request, activity_pk):
         activity_entries = activity.entries.order_by('created').reverse()
     except ObjectDoesNotExist:
         return HttpResponseRedirect('/activities')
-    return render(request, 'journal/entries_view.html',
+    return render(request, 'journal/blank.html',
                   {'name': name, 'entries': activity_entries,
                    'activity_description': activity.activity_description,
                    'activity_pk': activity_pk, 'activity_id': activity.id,
