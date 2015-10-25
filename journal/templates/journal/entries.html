@@ -1,6 +1,5 @@
 {% extends 'journal/base_user.html' %}
 {% load staticfiles %}
-{% load imagekit %}
 
 
 {% block 'title' %}
@@ -27,7 +26,7 @@
 
 <div class="action-bar">
   {% if is_student %}
-  <a href="/entry/{{ activity_pk }}/"> 
+  <a href="/entry/{{ activity_pk }}/">
     <i class="fa fa-plus-circle"></i>
     Add an entry
   </a> <br>
@@ -35,9 +34,9 @@
     <i class="fa fa-pencil-square-o"></i>
     Edit the activity
   </a> <br>
-  <a href="/delete_activity/{{ activity_pk }}"> 
+  <a href="/delete_activity/{{ activity_pk }}">
     <i class="fa fa-trash-o"></i>
-    Delete the activity 
+    Delete the activity
   </a>
   {% else %}
   <a href="/activity_details/{{ activity_pk }}"> View activity details </a>
@@ -70,7 +69,7 @@
     <i class="edit-icon fa fa-pencil-square-o fa-lg"></i>
   </a>
 
-  <a href="/delete_activity/{{ activity_pk }}"> 
+  <a href="/delete_activity/{{ activity_pk }}">
     <i class="delete-icon fa fa-trash-o fa-lg"></i>
   </a>
 
@@ -93,7 +92,7 @@
 
 <div class="grid">
   {% include 'journal/entry_boxes.html' %}
-</div>
+</div>s
 {% endblock %}
 
 {% block 'modal' %}

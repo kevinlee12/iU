@@ -44,14 +44,19 @@ def profile(request):
 
 
 def stu_activities(request):
-    """Function for the main activities page, login is not required"""
+    """Function for the main activities page"""
     stored_activities = []
     user = request.user
     is_student = False
     if user.is_authenticated():
-        student = Student.objects.get(user=user)
-        stored_activities = Activity.objects.all().filter(student=student)\
-            .order_by('activity_name').reverse()
+        try:
+            student = Student.objects.get(user=user)
+            stored_activities = Activity.objects.filter(student=student)\
+                .order_by('activity_name').reverse()
+        except ObjectDoesNotExist:
+            return render(request, 'journal/404.html')
+            student = None
+            stored_activities = []
         is_student = True
     return render(request, 'journal/activities.html',
                   {'activities': stored_activities, 'is_student': is_student})
@@ -119,7 +124,7 @@ def stu_entries(request, activity_pk):
             # Redirect its not the corresponding activity
             return HttpResponseRedirect('/activities')
         name = activity.activity_name
-        activity_entries = activity.entries.all().order_by('created').reverse()
+        activity_entries = activity.entries.order_by('created').reverse()
     except ObjectDoesNotExist:
         return HttpResponseRedirect('/activities')
     return render(request, 'journal/entries.html',

@@ -93,8 +93,9 @@ def get_user_type(request, user_type=None):
             login(request, user)
             return user.user_permissions.all()[0].codename
         return HttpResponseRedirect('/gateway')
-    return User.objects.get(email=request.user.email)\
-        .user_permissions.all()[0].codename
+    return 'stu'
+    # return User.objects.get(email=request.user.email)\
+    #     .user_permissions.all()[0].codename
 
 
 class GatewayView(TemplateView):

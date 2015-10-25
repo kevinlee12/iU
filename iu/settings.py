@@ -42,12 +42,13 @@ SECRET_KEY = os.environ['SECRET_KEY']
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-try:
-    DEBUG = not bool(os.environ['ON_PRODUCTION'])  # Guarentees false on Heroku
-except BaseException:
-    DEBUG = True
+# try:
+#     DEBUG = not bool(os.environ['ON_PRODUCTION'])  # Guarentees false on Heroku
+# except BaseException:
+#     DEBUG = True
 
 TESTING = False
+DEBUG = True
 
 # Secure
 # CSRF_COOKIE_SECURE = True
@@ -66,10 +67,10 @@ except BaseException:
 
 ALLOWED_HOSTS = [
     '127.0.0.1',
+    '0.0.0.0:5000',
     'iu-cas.herokuapp.com',
     socket.gethostname()
 ]
-
 
 # Application definition
 

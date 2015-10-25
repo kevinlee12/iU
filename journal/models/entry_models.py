@@ -16,10 +16,7 @@
 
 from django.db import models
 from django.conf import settings
-from imagekit.models import ProcessedImageField
-from journal.processors import ResizeToRatio
 
-from .utilities import shorten
 import journal.models.activity_models
 from cloudinary.models import CloudinaryField
 
