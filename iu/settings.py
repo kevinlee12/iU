@@ -48,7 +48,6 @@ except BaseException:
     DEBUG = True
 
 TESTING = False
-# DEBUG = False
 
 # Secure
 # CSRF_COOKIE_SECURE = True

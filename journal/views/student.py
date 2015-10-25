@@ -128,7 +128,7 @@ def stu_entries(request, activity_pk):
     except ObjectDoesNotExist:
         return HttpResponseRedirect('/activities')
     return render(request, 'journal/entries.html',
-                  {'name': name, 'entries': activity_entries,
+                  {'name': name, 'entries': activity_entries or [],
                    'activity_description': activity.activity_description,
                    'activity_pk': activity.pk, 'activity_id': activity.id,
                    'activity_start': activity.start_date,
