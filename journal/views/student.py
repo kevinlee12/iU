@@ -127,14 +127,13 @@ def stu_entries(request, activity_pk):
         activity_entries = activity.entries.order_by('created').reverse()
     except ObjectDoesNotExist:
         return HttpResponseRedirect('/activities')
-    return HttpResponseRedirect('/')
-    # return render(request, 'journal/entries.html',
-    #               {'name': name, 'entries': activity_entries or [],
-    #                'activity_description': activity.activity_description,
-    #                'activity_pk': activity.pk, 'activity_id': activity.id,
-    #                'activity_start': activity.start_date,
-    #                'activity_end': activity.end_date or 'Ongoing',
-    #                'is_student': True})
+    return render(request, 'journal/blank.html',
+                  {'name': name, 'entries': activity_entries or [],
+                   'activity_description': activity.activity_description,
+                   'activity_pk': activity_pk, 'activity_id': activity.id,
+                   'activity_start': activity.start_date,
+                   'activity_end': activity.end_date or 'Ongoing',
+                   'is_student': True})
 
 
 @login_required
