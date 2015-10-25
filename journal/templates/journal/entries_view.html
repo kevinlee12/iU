@@ -25,32 +25,15 @@
 
 {% block 'main-content' %}
 
-<div class="grid-item grid-item-width2">
+<!-- <div class="grid-item grid-item-width2">
   <h2> Entries for bracket name bracket </h2>
 </div>
 
 <div class="grid">
-  {% include 'journal/entry_boxes.html' %}
-</div>
+  bracket % include 'journal/entry_boxes.html' % bracket
+</div> -->
 {% endblock %}
 
 {% block 'modal' %}
-<div class="modal fade" id="delete-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-  <div class="modal-content">
-    <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-    <h4 class="modal-title">Heads up!</h4>
-    </div>
-    <div class="modal-body">
-    Are you sure you wan't to delete this activity?
-    </div>
-    <div class="modal-footer">
-    <button type="button" class="btn btn-default" data-dismiss="modal">No.</button>
-
-    <a type="button" class="btn btn-primary btn-danger" href="/delete_activity/{{activity.pk}}" >Yes!</a>
-    </div>
-  </div>
-  </div>
-</div>
+<div> Stuff </div>
 {% endblock %}
