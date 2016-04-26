@@ -1,11 +1,10 @@
 CAS Management
 ===
-**Master:** [![Circle CI](https://circleci.com/gh/kevinlee12/iU/tree/master.svg?style=svg&circle-token=02f06191194ac379a0c4b7244fa361a6a619098a)](https://circleci.com/gh/kevinlee12/iU/tree/master)
+**Please note that this repo is no longer maintained and is succeeded by the repo
+in WildCAS link: https://github.com/WildCAS/CASCategorization. If you would like to help out, please send a PR to that repo, thanks!**
 
-**Develop:**
-[![Circle CI](https://circleci.com/gh/kevinlee12/iU/tree/develop.svg?style=svg&circle-token=02f06191194ac379a0c4b7244fa361a6a619098a)](https://circleci.com/gh/kevinlee12/iU/tree/develop)
+**Quick technical notes: This app was in the transition to adopt AngularJS, but the project was never completed, so you may encounter many bugs along the way. The succeeding project will continue to use Django, but will instead be employing ReactJS as frontend.**
 
-For a hosted version of this app, please click [here](http://iu-cas.herokuapp.com/).
 
 **Hello and welcome!**
 
